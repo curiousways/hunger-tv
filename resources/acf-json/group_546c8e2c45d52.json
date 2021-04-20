@@ -1,0 +1,152 @@
+{
+    "key": "group_546c8e2c45d52",
+    "title": "Blogger",
+    "fields": [
+        {
+            "key": "field_4f9a6b6aec24e",
+            "label": "Biography",
+            "name": "blogger_biography",
+            "prefix": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "the_content": "yes",
+            "tabs": "all"
+        },
+        {
+            "key": "field_4f9a6b6aec7d2",
+            "label": "Twitter Name",
+            "name": "blogger_twitter_name",
+            "prefix": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "formatting": "none",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_4f9a7556361c1",
+            "label": "Contac E-Mail Address (Public)",
+            "name": "blogger_email",
+            "prefix": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "formatting": "none",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_4fa26a638913e",
+            "label": "Name, Role",
+            "name": "blogger_name_role",
+            "prefix": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "formatting": "none",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_4f9a6b6aecdcd",
+            "label": "Profile Picture",
+            "name": "blogger_profile_picture",
+            "prefix": "",
+            "type": "image",
+            "instructions": "Shown above bio on blog page (182 x 238 pixels)",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "preview_size": "thumbnail",
+            "return_format": "id",
+            "library": "all"
+        },
+        {
+            "key": "field_4f9a6b6aed8a3",
+            "label": "Blogs Page Image",
+            "name": "blogger_blogs_page_image",
+            "prefix": "",
+            "type": "image",
+            "instructions": "Shown blogs page (252 x 182 pixels)",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "preview_size": "thumbnail",
+            "return_format": "id",
+            "library": "all"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "blogger"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "slug"
+    ]
+}

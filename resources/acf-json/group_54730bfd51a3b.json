@@ -1,0 +1,90 @@
+{
+    "key": "group_54730bfd51a3b",
+    "title": "Article\/Feature 2.0",
+    "fields": [
+        {
+            "key": "field_3",
+            "label": "Custom Embed Code",
+            "name": "custom_embed_code",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "replace": "Replacing first image",
+                "above": "Above first image"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "allow_null": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_4",
+            "label": "Embed Code",
+            "name": "embed_code",
+            "type": "textarea",
+            "instructions": "Please copy your embed code in here. It will be shown as first element next to the copy. Please ensure to configure the right dimensions. The embedded element should have a width of 518px. We suggest the following formats 518x291 (16:9) or 518x388 (4:3).",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_3",
+                        "operator": "==",
+                        "value": "above"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_3",
+                        "operator": "==",
+                        "value": "replace"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "htv_post",
+                "operator": "==",
+                "value": "htv_2"
+            },
+            {
+                "param": "options_page",
+                "operator": "!=",
+                "value": "acf-options-hunger-theme-settings"
+            }
+        ]
+    ],
+    "menu_order": -11,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1529426693
+}
