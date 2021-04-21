@@ -1,0 +1,16 @@
+{
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+	],
+	"require": {
+		"php": ">=7.2",
+		"roots/wordpress": "5.7.*",
+		"roots/wp-password-bcrypt": "^1.0"
+	},
+	"extra": {
+		"wordpress-install-dir": "wp"
+	}
+}

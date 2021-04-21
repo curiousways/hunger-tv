@@ -1,0 +1,17 @@
+/vendor
+/.htaccess
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# WordPress
+/wp
+/wp-config.php
+/app/uploads
+/app/plugins/wp-cli-login-server

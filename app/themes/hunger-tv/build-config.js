@@ -1,4 +1,4 @@
-const host = 'https://flynt.test'
+const host = 'http://hungertv'
 const dest = './dist'
 
 function getCopyConfig (source) {
