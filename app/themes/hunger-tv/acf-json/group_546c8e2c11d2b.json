@@ -1,0 +1,1212 @@
+{
+    "key": "group_546c8e2c11d2b",
+    "title": "Advertisements",
+    "fields": [
+        {
+            "key": "field_adv_type",
+            "label": "Advertisement Type",
+            "name": "type",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "takeover": "Homepage Takeover (IMG)",
+                "takeover_swf": "Homepage Takeover (SWF)",
+                "takeover_emb": "Homepage Takeover (EMBED)",
+                "newsletter": "Newsletter",
+                "header": "Header (IMG)",
+                "header_swf": "Header (SWF)",
+                "header_emb": "Header (EMBED)",
+                "carousel": "Feature Carousel (IMG)",
+                "carousel_swf": "Feature Carousel (SWF)",
+                "carousel_emb": "Feature Carousel (EMBED)",
+                "feature_stream": "Feature Stream (IMG)",
+                "feature_stream_emb": "Feature Stream (EMBED)",
+                "feature_stream_mpu_swf": "Feature Stream MPU (SWF)",
+                "feature_stream_mpu_emb": "Feature Stream MPU (EMBED)",
+                "feature_images": "Feature (IMG)",
+                "feature_images_emb": "Feature (EMBED)",
+                "feature_images_mpu_swf": "Feature (MPU\/SWF)",
+                "feature_images_mpu_emb": "Feature (MPU\/EMB)",
+                "blog_stream": "Blog Stream"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_adv_visible_until",
+            "label": "Visible Until",
+            "name": "visible_until",
+            "type": "date_picker",
+            "instructions": "Show advertisement until (early morning, e.g. 25.09.14 means the advert will be disabled around 25.09.14 at 00:00:01)",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "Ymd",
+            "first_day": 1,
+            "display_format": "d\/m\/Y"
+        },
+        {
+            "key": "field_adv_pos_1_5",
+            "label": "Position",
+            "name": "position_1_5",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 4,
+                "5": 5
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_adv_pos_1_10",
+            "label": "Position",
+            "name": "position_1_10",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "blog_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 4,
+                "5": 5,
+                "6": 6,
+                "7": 7,
+                "8": 8,
+                "9": 9,
+                "10": 10
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_54917b274ebd6",
+            "label": "MPU Type",
+            "name": "mpu_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "mpu": "MPU",
+                "hpu": "HPU"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "mpu",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_adv_repeat",
+            "label": "Repeat on other Pages",
+            "name": "repeat",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "blog_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Repeat Advertisement on further loaded pages",
+            "default_value": 0
+        },
+        {
+            "key": "field_adv_on_home",
+            "label": "Only on Homepage",
+            "name": "on_home",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Show only on Homepage",
+            "default_value": 0
+        },
+        {
+            "key": "field_adv_new_win",
+            "label": "In New Window",
+            "name": "new_window",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "takeover_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "header_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "carousel_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_mpu_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Open URL(s) in new Window",
+            "default_value": 0
+        },
+        {
+            "key": "field_adv_url",
+            "label": "URL",
+            "name": "url",
+            "type": "text",
+            "instructions": "This is the URL the advertisement can link on. Please use either full links (e.g. http:\/\/www.hungertv.com) or relative links (e.g. \/feature\/interesting-feature\/)<br><b>Homepage Takeover:<\/b> Click through link top image<br>\r\n<b>Header:<\/b> Click through link (backup) img<br>\r\n<b>Feature Carousel:<\/b> Click through link img<br>\r\n<b>Feature Stream MPU:<\/b> Click through link for optional background image<br\/>\r\n<b>Feature (MPU\/SWF):<\/b> Click through link swf and backup image<br\/>",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "takeover_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "header_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "carousel_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_mpu_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_adv_file_1",
+            "label": "File",
+            "name": "file_1",
+            "type": "file",
+            "instructions": "SWF File for MPU (300x250px)",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_image",
+            "label": "Image",
+            "name": "image",
+            "type": "image",
+            "instructions": "<br><b>Homepage Takeover:<\/b> Top\/Header Image (1000x100-400px)<br>\r\n<b>Header:<\/b> (Backup) img<br>\r\n<b>Feature Carousel:<\/b> (Backup) img<br>\r\n<b>Feature Stream MPU:<\/b> Backup image in case Flash does not work on device (300x250px)\r\n<b>Feature (MPU\/SWF):<\/b> Backup image in case Flash does not work on device (300x250px)",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "takeover_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "carousel_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_mpu_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "header_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_stream_emb"
+                    },
+                    {
+                        "field": "field_adv_type",
+                        "operator": "!=",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "2column",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_columns",
+            "label": "Image Width (Columns)",
+            "name": "width",
+            "type": "radio",
+            "instructions": "The ad spans how many columns",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "1 Column",
+                "2": "2 Columns"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_adv_features",
+            "label": "Features",
+            "name": "features",
+            "type": "relationship",
+            "instructions": "Show only on the selected features.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "article"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": "",
+            "max": "",
+            "return_format": "id",
+            "min": 0
+        },
+        {
+            "key": "field_adv_embed_1",
+            "label": "Embed Code",
+            "name": "embed_1",
+            "type": "textarea",
+            "instructions": "<b>CAROUSEL EMBED<\/b>: Embed Code use width and height 100%<br\/>\r\n<b>FEATURE STREAM EMBED<\/b>: Embed Code (100% x Fixed Height, e.g. 100%x250px)<br\/>\r\n<b>FEATURE STREAM MPU<\/b>: Embed Code (300x250px)<br\/>\r\n<b>TAKEOVER<\/b>: Embend Code (Top)<br\/>\r\n",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_emb"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_images_mpu_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_75",
+            "label": "Skin Scolling of Fixed",
+            "name": "skin_scolling_of_fixed",
+            "type": "radio",
+            "instructions": "Shall the skins scroll with the banner or remain fixed",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "scrolling": "Scrolling",
+                "fixed": "Fixed"
+            },
+            "default_value": "scrolling",
+            "layout": "horizontal",
+            "other_choice": 0,
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_adv_url_2",
+            "label": "URL 2",
+            "name": "url_2",
+            "type": "text",
+            "instructions": "<b>Homepage Takeover:<\/b> Click through link left image\/swf<br>\r\n<b>Header:<\/b> Click through link swf<br>\r\n<b>Feature Carousel:<\/b> Click through link swf<br>\r\n<b>Feature Stream MPU:<\/b> Click through link for SWF and backup image",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "header_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "carousel_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "feature_stream_mpu_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "formatting": "none",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_73",
+            "label": "File 2",
+            "name": "file_2",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_size": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_image_2",
+            "label": "Image 2",
+            "name": "image_2",
+            "type": "image",
+            "instructions": "<b>Homepage Takeover<\/b>: Left Image (250x600-1200px)<br\/>",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "2column",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_embed_2",
+            "label": "Embed Code (Left)",
+            "name": "embed_2",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "readonly": 0,
+            "disabled": 0,
+            "rows": ""
+        },
+        {
+            "key": "field_adv_url_3",
+            "label": "URL 3",
+            "name": "url_3",
+            "type": "text",
+            "instructions": "<b>Homepage Takeover:<\/b> Click through link right image",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "formatting": "none",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_74",
+            "label": "File 3",
+            "name": "file_3",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_size": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_image_3",
+            "label": "Image 3",
+            "name": "image_3",
+            "type": "image",
+            "instructions": "<b>Homepage Takeover<\/b>: Right Image (250x600-1200px)<br\/>",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "preview_size": "2column",
+            "return_format": "array",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_adv_embed_3",
+            "label": "Embed Code (Right)",
+            "name": "embed_3",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "readonly": 0,
+            "disabled": 0,
+            "rows": ""
+        },
+        {
+            "key": "field_adv_bg_color",
+            "label": "Background Colour",
+            "name": "bg_color",
+            "type": "color_picker",
+            "instructions": "Background colour of page. Leave blank to keep white. User CSS HEX values, e.g. #000000",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_swf"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_adv_type",
+                        "operator": "==",
+                        "value": "takeover_emb"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "hungerads"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "slug",
+        "author"
+    ],
+    "modified": 1477564217
+}

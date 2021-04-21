@@ -1,0 +1,27 @@
+{
+    "key": "group_546c8e2c60d58",
+    "title": "Post",
+    "fields": [],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields",
+        "discussion",
+        "comments",
+        "format",
+        "tags",
+        "send-trackbacks"
+    ]
+}
