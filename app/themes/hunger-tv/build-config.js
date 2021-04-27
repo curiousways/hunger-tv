@@ -53,7 +53,7 @@ module.exports = {
       './Components/**/*.{php,twig}'
     ],
     watch: true,
-    // https: true
+    https: false
   },
   webpackDevMiddleware: {
     stats: false,

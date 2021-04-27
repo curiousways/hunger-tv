@@ -17,7 +17,7 @@ define('SECURE_AUTH_SALT', '');
 define('LOGGED_IN_SALT',   '');
 define('NONCE_SALT',       '');
 
-$table_prefix  = 'wp_';
+$table_prefix = 'wp_';
 $domain = 'http://localhost';
 define('WP_ENVIRONMENT_TYPE', 'development');
 
