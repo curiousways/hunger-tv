@@ -214,3 +214,5 @@ class StarterSite extends Timber\Site {
 }
 
 new StarterSite();
+
+require 'hungertv-custom/hungertv-add-custom-post-types.php';
