@@ -66,6 +66,55 @@ class StarterSite extends Timber\Site {
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		parent::__construct();
+
+		register_nav_menus([
+			'header-navigation' => 'Header navigation',
+			'footer-navigation' => 'Footer navigation'
+		]);
+
+		// ACF Global Options
+		if (function_exists('acf_add_options_page')) {
+			acf_add_options_page();
+		}
+
+		// Enqueue assets
+		function _mghd_enqueue_assets() {
+			// Enqueue styles
+			wp_enqueue_style(
+				'styles',
+				get_template_directory_uri() . '/dist/assets/main.css',
+				false,
+				filemtime(get_template_directory() . '/dist/assets/main.css')
+			);
+			
+			// Enqueue scripts
+			wp_enqueue_script(
+				'app',
+				get_stylesheet_directory_uri() . '/dist/assets/main.js',
+				['jquery'],
+				filemtime(get_stylesheet_directory() . '/dist/assets/main.js'),
+				true
+			);
+		}
+		add_action('wp_enqueue_scripts', '_mghd_enqueue_assets');
+
+		// Return an asset's path
+		function asset($path) {
+			return trailingslashit(get_template_directory_uri()) . $path;
+		}
+
+		// Disable Gutenberg
+		add_filter('use_block_editor_for_post', '__return_false', 10);
+
+		// Add the excerpt to pages
+		add_post_type_support('page', 'excerpt');
+
+		// Remove heading options from ALL text editors
+		// Source: https://support.advancedcustomfields.com/forums/topic/wysiwyg-formatselect/
+		add_filter('tiny_mce_before_init', function($settings) {
+			$settings['block_formats'] = 'Paragraph=p;Heading=h2;Subheading=h3';
+			return $settings;
+		});
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
