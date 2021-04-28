@@ -1,12 +1,6 @@
-{% set image = TimberImage(item.image) %}
-
 <p><mark>image.twig</mark></p>
 
-<img
-	src="{{ image.src }}"
-	alt="{{ image.alt }}"
-	loading="lazy"
-	{{ item.image_display_options == 'inline' ? 'width="600"' }}
-/>
+{% include 'includes/image.twig' with { image: TimberImage(item.image) } %}
 
 <p>{{ item.image_credit }}</p>
+<strong>{{ item.youtube_display_options == 'inline' ? 'on the grid' : 'full width' }}</strong>
