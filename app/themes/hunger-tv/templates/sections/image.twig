@@ -1,0 +1,12 @@
+<p><mark>image.twig</mark></p>
+
+{% set image = TimberImage(item.image) %}
+
+<img
+	src="{{ image.src }}"
+	alt="{{ image.alt }}"
+	loading="lazy"
+	{{ item.image_display_options == 'inline' ? 'width="600"' }}
+/>
+
+<p>{{ item.image_credit }}</p>
