@@ -1,0 +1,11 @@
+<p><mark>gallery.twig</mark></p>
+
+{% for image in TimberImage(item.image) %}
+
+	<img
+		src="{{ image.src }}"
+		alt="{{ image.alt }}"
+		loading="lazy"
+	/>
+
+{% endfor %}
