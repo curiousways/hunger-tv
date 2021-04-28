@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<h1>{{ post.title }}</h1>
+
+	{% for item in post.meta('article_builder') %}
+		{% include 'sections/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
+
+{% endblock %}
