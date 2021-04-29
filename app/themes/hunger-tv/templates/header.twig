@@ -1,6 +1,11 @@
 <header class="header">
-	{{ site.name }}
+
+	<img
+		src="{{ fn('asset', 'images/hunger-logo-white@2x.png') }}"
+		alt="{{ site.name }} logo"
+	/>
 	<nav>
 		{% include "includes/menu.twig" with {items: header_navigation.get_items} %}
 	</nav>
+
 </header>

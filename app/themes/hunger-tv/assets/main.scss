@@ -1,19 +1,45 @@
 @import "normalize.css/normalize";
 
 $flyout-width: 300px;
+$grid-width: 1024px;
+
+* {
+	box-sizing: border-box;
+}
 
 body {
 	padding-left: $flyout-width;
 }
 
 header {
+	background-color: lightgrey;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: $flyout-width;
 	height: 100vh;
+	padding: 2rem;
+
+	img {
+		filter: invert(1);
+	}
+}
+
+main {
+}
+
+section {
+	margin: 2rem 0;
 }
 
 img {
 	max-width: 100%;
+}
+
+.row {
+	max-width: $grid-width;
+}
+
+.col {
+	padding: 1rem;
 }
