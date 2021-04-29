@@ -2,7 +2,9 @@
 
 {% block content %}
 
-	{{ post.terms({ query: { taxonomy: 'section' } })|join(', ') }}
+	{% for item in post.terms('section') %}
+		<a href="{{ item.link }}">{{ item.name }}</a>
+	{% endfor %}
 
 	<h1>{{ post.title }}</h1>
 	<h2>{{ post.standfirst }}</h2>
@@ -17,6 +19,10 @@
 
 	{% for item in post.meta('article_builder') %}
 		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
+
+	{% for item in post.terms('tag') %}
+		<a href="{{ item.link }}">&num;{{ item.name }}</a>
 	{% endfor %}
 
 {% endblock %}
