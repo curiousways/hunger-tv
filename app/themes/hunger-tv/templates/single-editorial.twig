@@ -2,29 +2,46 @@
 
 {% block content %}
 
-	{% for item in post.terms('section') %}
-		<a href="{{ item.link }}">{{ item.name }}</a>
-	{% endfor %}
+	<header>
+		<div class="row">
+			<div class="col">
+				{% for item in post.terms('section') %}
+					<a href="{{ item.link }}">{{ item.name }}</a>
+				{% endfor %}
+				<h1>{{ post.title }}</h1>
+				Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
+				<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
+				<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+			</div>
+			<div class="col">
+				{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+			</div>
+		</div>
+	</header>
 
-	<h1>{{ post.title }}</h1>
-	<h2>{{ post.standfirst }}</h2>
-	<h2>{{ post.article_excerpt }}</h2>
-
-	{% include 'includes/image.twig' with { image: post.thumbnail } %}
-	<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
-
-	Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
-	<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
-	<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+	<section>
+		<div class="row">
+			<div class="col">
+				<h2>{{ post.standfirst }}</h2>
+				<h2>{{ post.article_excerpt }}</h2>
+			</div>
+		</div>
+	</section>
 
 	{% for item in post.meta('article_builder') %}
 		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 	{% endfor %}
 
-	{{ post.date|date }}
-
-	{% for item in post.terms('tag') %}
-		<a href="{{ item.link }}">&num;{{ item.name }}</a>
-	{% endfor %}
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ post.date|date }}
+				{% for item in post.terms('tag') %}
+					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

@@ -1,0 +1,27 @@
+// Button
+
+.button {
+	color: black;
+	background-color: transparent;
+	display: inline-block;
+	border: 1px solid black;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	padding: 1rem 2rem;
+
+	&:hover,
+	&:focus {
+		color: white;
+		background-color: black;
+	}
+
+	&:active {
+		color: lightgrey;
+	}
+
+	&.full {
+		width: 100%;
+	}
+}

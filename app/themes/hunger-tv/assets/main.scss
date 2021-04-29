@@ -1,4 +1,16 @@
-// @import "styles/variables";
-// @import "styles/mixins";
-// @import "styles/base";
-// @import "styles/print";
+@import "normalize.css/normalize";
+
+// Globals
+@import "styles/globals/variables";
+@import "styles/globals/mixins";
+@import "styles/globals/base";
+@import "styles/globals/grid";
+
+// Components
+@import "styles/components/button";
+@import "styles/components/embed";
+@import "styles/components/flyout";
+@import "styles/components/logo";
+
+// Trumps
+@import "styles/globals/print";

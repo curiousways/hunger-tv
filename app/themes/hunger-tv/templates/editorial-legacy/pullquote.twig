@@ -1,15 +1,27 @@
 <p><mark>pullquote.twig</mark></p>
 
-{{ item.pullquote }}
+<section>
+	<div class="row">
+		<div class="col">
 
-{% if item.add_tweet_this_quote == 'yes' %}
+			&ldquo;
+			{{ item.pullquote }}
+			&rdquo;
 
-	{% set quote = item.pullquote %}
-	{% set quote = quote|length > 140 ? quote|slice(0, 137) ~ '...' : quote %}
+			{% if item.add_tweet_this_quote == 'yes' %}
 
-	<a
-		href="https://twitter.com/intent/tweet?text={{ quote|url_encode }}&url={{ post.link|url_encode }}&via=hungermagazine"
-		target="_blank"
-	>Retweet this quote</a>
+				{% set quote = item.pullquote %}
+				{% set quote = quote|length > 140 ? quote|slice(0, 137) ~ '...' : quote %}
 
-{% endif %}
+				<br>
+				<br>
+				<a
+					href="https://twitter.com/intent/tweet?text={{ quote|url_encode }}&url={{ post.link|url_encode }}&via=hungermagazine"
+					target="_blank"
+				>Retweet this quote</a>
+
+			{% endif %}
+
+		</div>
+	</div>
+</section>

@@ -1,6 +1,23 @@
-<header class="header">
-	{{ site.name }}
+<header class="flyout">
+
+	<a
+		href="{{ site.link }}"
+		class="logo"
+	>
+		<img
+			src="{{ fn('asset', 'images/hunger-logo-white@2x.png') }}"
+			alt="{{ site.name }} logo"
+		/>
+	</a>
+
+	<a href="/shop/" class="button full">Shop</a>
+
+	{% include 'forms/search.twig' %}
+
 	<nav>
 		{% include "includes/menu.twig" with {items: header_navigation.get_items} %}
 	</nav>
+
+	{% include 'includes/social.twig' %}
+
 </header>
