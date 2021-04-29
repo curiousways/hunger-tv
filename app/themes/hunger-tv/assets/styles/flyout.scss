@@ -1,0 +1,15 @@
+// Flyout
+
+.flyout {
+	background-color: lightgrey;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: $flyout-width;
+	height: 100vh;
+	padding: 2rem;
+
+	img {
+		filter: invert(1);
+	}
+}
