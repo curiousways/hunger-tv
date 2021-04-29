@@ -21,6 +21,8 @@
 		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 	{% endfor %}
 
+	{{ post.date|date }}
+
 	{% for item in post.terms('tag') %}
 		<a href="{{ item.link }}">&num;{{ item.name }}</a>
 	{% endfor %}
