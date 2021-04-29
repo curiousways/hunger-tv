@@ -5,13 +5,17 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				{{ item.youtube_video }}
+				<div class="embed">
+					{{ item.youtube_video }}
+				</div>
 			</div>
 		</div>
 	</section>
 
 {% else %}
 
-	{{ item.youtube_video }}
+	<div class="embed">
+		{{ item.youtube_video }}
+	</div>
 
 {% endif %}
