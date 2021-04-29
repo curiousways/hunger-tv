@@ -12,7 +12,7 @@
 			<h4> replies </h4>
 			<div class="comments">
 				{% for cmt in comment.children %}
-					{% include "comment.twig" with {comment:cmt} %}
+					{% include "includes/comment.twig" with {comment:cmt} %}
 				{% endfor %}
 			</div>
 		{% endif %}
