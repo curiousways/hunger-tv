@@ -14,29 +14,16 @@
 		{{function('wp_head')}}
 	</head>
 
-	<body class="{{ body_class }}" data-template="base.twig">
+	<body class="{{ body_class }}">
 
 		{% include 'header.twig' %}
 
-		<section id="content" role="main" class="content-wrapper">
-			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="wrapper {{sidebar_class}}">
-				{% block content %}
-					Sorry, no content
-				{% endblock %}
-			</div>
-			{% if sidebar %}
-				<aside class="layout-sidebar">
-					{{sidebar}}
-				</aside>
-			{% endif %}
-		</section>
+		<main>
+			{% block content %}Sorry, no content{% endblock %}
+		</main>
 
-		{% block footer %}
-			<footer id="footer">
-				{% include 'footer.twig' %}
-			</footer>
-			{{ function('wp_footer') }}
-		{% endblock %}
+		{% include 'footer.twig' %}
+		{{ function('wp_footer') }}
+
 	</body>
 </html>
