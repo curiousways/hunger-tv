@@ -9,6 +9,7 @@
 	<h2>{{ post.article_excerpt }}</h2>
 
 	{% include 'includes/image.twig' with { image: post.thumbnail } %}
+	<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
 
 	{% for item in post.meta('article_builder') %}
 		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
