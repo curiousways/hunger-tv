@@ -1,0 +1,6 @@
+<p><mark>image.twig</mark></p>
+
+{% include 'includes/image.twig' with { image: Image(item.image) } %}
+
+<p>{{ item.image_credit }}</p>
+<strong>{{ item.youtube_display_options == 'inline' ? 'on the grid' : 'full width' }}</strong>

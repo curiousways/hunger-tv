@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	{{ post.terms({ query: { taxonomy: 'section' } })|join(', ') }}
+
+	<h1>{{ post.title }}</h1>
+	<h2>{{ post.standfirst }}</h2>
+	<h2>{{ post.article_excerpt }}</h2>
+
+	{% include 'includes/image.twig' with { image: post.thumbnail } %}
+	<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+
+	Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
+	<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
+	<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+
+	{% for item in post.meta('article_builder') %}
+		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
+
+{% endblock %}
