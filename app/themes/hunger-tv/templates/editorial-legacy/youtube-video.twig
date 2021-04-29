@@ -1,5 +1,17 @@
 <p><mark>youtube-video.twig</mark></p>
 
-{{ item.youtube_video }}
+{% if item.youtube_display_options == 'inline' %}
 
-<strong>{{ item.youtube_display_options == 'inline' ? 'on the grid' : 'full width' }}</strong>
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ item.youtube_video }}
+			</div>
+		</div>
+	</section>
+
+{% else %}
+
+	{{ item.youtube_video }}
+
+{% endif %}
