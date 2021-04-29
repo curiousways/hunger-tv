@@ -11,6 +11,10 @@
 	{% include 'includes/image.twig' with { image: post.thumbnail } %}
 	<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
 
+	Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
+	<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
+	<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+
 	{% for item in post.meta('article_builder') %}
 		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 	{% endfor %}
