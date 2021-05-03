@@ -1,11 +1,10 @@
 // Flyout
 
-.flyout {
-	background-color: lightgrey;
+#drawer {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: $flyout-width;
+	width: $drawer-width;
 	height: 100vh;
 	padding: 2rem;
 }
