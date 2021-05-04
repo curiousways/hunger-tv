@@ -13,7 +13,7 @@ register_post_type('editorial', [
 	'publicly_queryable' => true,
 	'menu_icon' => 'dashicons-media-document',
 	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions'],
-	'taxonomies' => ['section']
+	'taxonomies' => ['section', 'post_tag']
 ]);
 
 register_post_type('article', [
@@ -26,7 +26,7 @@ register_post_type('article', [
 	'menu_icon' => 'dashicons-images-alt2',
 	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions', 'comments', 'post-formats'],
 	'rewrite' => ['slug' => 'feature'],
-	'taxonomies' => ['section']
+	'taxonomies' => ['section', 'post_tag']
 ]);
 
 register_post_type('issue', [
