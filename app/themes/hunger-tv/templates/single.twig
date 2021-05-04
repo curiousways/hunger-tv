@@ -29,9 +29,7 @@
 		</div>
 	</section>
 
-	{% for item in post.meta('article_builder') %}
-		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
-	{% endfor %}
+	{% include 'includes/article-builder.twig' %}
 
 	<section>
 		<div class="row">
