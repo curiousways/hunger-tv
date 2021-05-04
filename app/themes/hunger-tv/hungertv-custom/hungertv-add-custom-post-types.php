@@ -93,7 +93,7 @@ if ( ! function_exists( 'hungertv_cposttype_init' ) ) {
       //'taxonomies' => array('section', 'post_tag')
     );
 
-    register_post_type('partnership', $args);
+    // register_post_type('partnership', $args);
 
     $args = array(
       'labels' => array(
