@@ -10,5 +10,16 @@ register_post_type('editorial', [
 	'public' => true,
 	'publicly_queryable' => true,
 	'menu_icon' => 'dashicons-media-document',
-	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions']
+	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions'],
+	'taxonomies' => ['section']
+]);
+
+register_taxonomy('section', ['editorial'], [
+	'publicly_queryable' => true,
+	'hierarchical' => true,
+	'rewrite' => [
+		'slug' => '/',
+		'hierarchical' => false,
+		'with_front' => false
+	]
 ]);
