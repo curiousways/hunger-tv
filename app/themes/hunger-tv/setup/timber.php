@@ -106,9 +106,6 @@ class StarterSite extends Timber\Site {
 		// Disable Gutenberg
 		add_filter('use_block_editor_for_post', '__return_false', 10);
 
-		// Add the excerpt to pages
-		add_post_type_support('page', 'excerpt');
-
 		// Remove heading options from ALL text editors
 		// Source: https://support.advancedcustomfields.com/forums/topic/wysiwyg-formatselect/
 		add_filter('tiny_mce_before_init', function($settings) {
@@ -216,7 +213,7 @@ class StarterSite extends Timber\Site {
 new StarterSite();
 
 // Legacy
-require __DIR__ . '/../hungertv-custom/hungertv-add-custom-post-types.php';
+// require __DIR__ . '/../hungertv-custom/hungertv-add-custom-post-types.php';
 
 // Source: hunger-tv-legacy theme
 function hungertv_parse_credits($credits, $wrap_in_aside="true") {
