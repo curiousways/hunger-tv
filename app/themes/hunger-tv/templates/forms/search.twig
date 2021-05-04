@@ -1,1 +1,17 @@
-search.twig
+<form
+	action="{{ site.link }}"
+	method="get"
+	role="search"
+>
+	<input
+		type="text"
+		name="s"
+		placeholder="Search"
+		aria-label="Search"
+		required
+	/>
+	<button
+		type="submit"
+		aria-label="Submit"
+	>{% include "icons/search.svg" %}</button>
+</form>
