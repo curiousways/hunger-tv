@@ -1,6 +1,16 @@
 {% extends "base.twig" %}
 
+{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
+	{% set article_version = 4 %}
+{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
+	{% set article_version = 3 %}
+{% else %}
+	{% set article_version = 2 %}
+{% endif %}
+
 {% block content %}
+
+	<strong>Article version: {{ article_version }}</strong>
 
 	<header>
 		<div class="row">
