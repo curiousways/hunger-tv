@@ -1,0 +1,19 @@
+<p><mark>image.twig</mark></p>
+
+{% if item.image_display_options == 'inline' %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				{% include 'includes/image.twig' with { image: Image(item.image) } %}
+				<p>{{ item.image_credit }}</p>
+			</div>
+		</div>
+	</section>
+
+{% else %}
+
+	{% include 'includes/image.twig' with { image: Image(item.image) } %}
+	<p>{{ item.image_credit }}</p>
+
+{% endif %}

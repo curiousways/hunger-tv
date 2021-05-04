@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				<h1>{{ title }}</h1>
+			</div>
+		</div>
+	</section>
+
+	{% if posts is not empty %}
+		{% for post in posts %}
+			{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+		{% endfor %}
+		{% include 'includes/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+	{% else %}
+		<p><em>Sorry, there's nothing to see here at the moment.</em></p>
+	{% endif %}
+
+{% endblock %}

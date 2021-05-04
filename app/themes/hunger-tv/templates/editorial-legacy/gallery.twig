@@ -1,0 +1,11 @@
+<p><mark>gallery.twig</mark></p>
+
+<section>
+	<div class="row">
+		<div class="col">
+			{% for image in Image(item.image) %}
+				{% include 'includes/image.twig' %}
+			{% endfor %}
+		</div>
+	</div>
+</section>

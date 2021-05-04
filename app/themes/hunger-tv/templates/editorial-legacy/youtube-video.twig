@@ -1,0 +1,21 @@
+<p><mark>youtube-video.twig</mark></p>
+
+{% if item.youtube_display_options == 'inline' %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				<div class="embed">
+					{{ item.youtube_video }}
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% else %}
+
+	<div class="embed">
+		{{ item.youtube_video }}
+	</div>
+
+{% endif %}

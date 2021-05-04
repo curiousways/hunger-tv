@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="no-js" {{ site.language_attributes }}>
+
+	<head>
+		<meta charset="{{ site.charset }}">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, minimal-ui">
+		<meta name="author" content="Curious Ways">
+		<meta name="theme-color" content="">
+		{{function('wp_head')}}
+	</head>
+
+	<body class="{{ body_class }}">
+
+		{% include 'header.twig' %}
+
+		<main>
+			{% block content %}Sorry, no content{% endblock %}
+		</main>
+
+		{% include 'footer.twig' %}
+		{{ function('wp_footer') }}
+
+	</body>
+</html>
