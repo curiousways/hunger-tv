@@ -72,9 +72,9 @@
                 "value": "htv_2"
             },
             {
-                "param": "options_page",
-                "operator": "!=",
-                "value": "acf-options-hunger-theme-settings"
+                "param": "post_type",
+                "operator": "==",
+                "value": "article"
             }
         ]
     ],
@@ -84,7 +84,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1529426693
+    "modified": 1620144260
 }

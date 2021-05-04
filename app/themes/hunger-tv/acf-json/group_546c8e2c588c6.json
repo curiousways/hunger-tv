@@ -69,31 +69,6 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
-            },
-            {
-                "param": "page_path",
-                "operator": "!=",
-                "value": "about"
-            },
-            {
-                "param": "page_path",
-                "operator": "!=",
-                "value": "about"
-            },
-            {
-                "param": "page_path",
-                "operator": "!=",
-                "value": "about"
-            },
-            {
-                "param": "page_path",
-                "operator": "!=",
-                "value": "video-player-endcards"
-            },
-            {
-                "param": "page_path",
-                "operator": "!=",
-                "value": "home-page"
             }
         ]
     ],
@@ -103,13 +78,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "the_content",
-        "custom_fields",
-        "discussion",
-        "comments",
-        "author"
+        "the_content"
     ],
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1529988243
+    "modified": 1620145028
 }
