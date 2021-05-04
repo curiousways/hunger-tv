@@ -31,7 +31,7 @@ register_post_type('article', [
 
 // Taxonomies
 
-register_taxonomy('section', ['editorial'], [
+register_taxonomy('section', ['article', 'editorial'], [
 	'publicly_queryable' => true,
 	'hierarchical' => true,
 	'rewrite' => [
