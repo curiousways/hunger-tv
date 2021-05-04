@@ -2,6 +2,14 @@
 
 {% block content %}
 
+	<section>
+		<div class="row">
+			<div class="col">
+				<h1>{{ title }}</h1>
+			</div>
+		</div>
+	</section>
+
 	{% if posts is not empty %}
 		{% for post in posts %}
 			{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
