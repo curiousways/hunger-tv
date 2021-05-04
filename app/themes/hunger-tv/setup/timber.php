@@ -77,6 +77,11 @@ class StarterSite extends Timber\Site {
 			acf_add_options_page();
 		}
 
+		// Move Yoast meta box below other fields
+		add_filter('wpseo_metabox_prio', function() {
+			return 'low';
+		});
+
 		// Enqueue assets
 		function _mghd_enqueue_assets() {
 			// Enqueue styles

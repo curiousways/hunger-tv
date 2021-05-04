@@ -549,7 +549,9 @@
                             "max_width": "",
                             "max_height": "",
                             "max_size": "",
-                            "mime_types": ""
+                            "mime_types": "",
+                            "return_format": "array",
+                            "preview_size": "medium"
                         }
                     ],
                     "min": "",
@@ -676,6 +678,11 @@
                 "param": "htv_post",
                 "operator": "==",
                 "value": "htv_4"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "article"
             }
         ],
         [
@@ -694,7 +701,7 @@
     "hide_on_screen": [
         "the_content"
     ],
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1533739197
+    "modified": 1620144317
 }
