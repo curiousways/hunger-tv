@@ -29,6 +29,17 @@ register_post_type('article', [
 	'taxonomies' => ['section']
 ]);
 
+register_post_type('issue', [
+	'labels' => [
+		'name' => __('Issues'),
+		'singular_name' => __('Issue')
+	],
+	'public' => true,
+	'publicly_queryable' => true,
+	'menu_icon' => 'dashicons-book',
+	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
+]);
+
 // Taxonomies
 
 register_taxonomy('section', ['article', 'editorial'], [
