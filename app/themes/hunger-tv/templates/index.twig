@@ -1,11 +1,11 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<h2>{{ foo }}</h2>
-	<p>{{ qux }}</p>
+
 	{% for post in posts %}
-		{% include ['includes/tease-' ~ post.post_type ~ '.twig', 'includes/tease.twig'] %}
+		{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 	{% endfor %}
 	
 	{% include 'includes/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+
 {% endblock %}
