@@ -216,7 +216,7 @@ class StarterSite extends Timber\Site {
 new StarterSite();
 
 // Legacy
-require 'hungertv-custom/hungertv-add-custom-post-types.php';
+require __DIR__ . '/../hungertv-custom/hungertv-add-custom-post-types.php';
 
 // Source: hunger-tv-legacy theme
 function hungertv_parse_credits($credits, $wrap_in_aside="true") {
