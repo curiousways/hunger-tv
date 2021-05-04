@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<header>
+		<div class="row">
+			<div class="col">
+				{% for item in post.terms('section') %}
+					<a href="{{ item.link }}">{{ item.name }}</a>
+				{% endfor %}
+				<h1>{{ post.title }}</h1>
+			</div>
+			<div class="col">
+				{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+			</div>
+		</div>
+	</header>
+
+	{% for item in post.meta('feature') %}
+		{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ post.date|date }}
+				{% for item in post.terms('tag') %}
+					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
