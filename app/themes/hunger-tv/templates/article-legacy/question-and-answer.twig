@@ -1,1 +1,12 @@
 <p><mark>question-and-answer.twig</mark></p>
+
+<section>
+	<div class="row">
+		<div class="col">
+			<details>
+				<summary>{{ item.question|striptags }}</summary>
+				{{ item.answer }}
+			</details>
+		</div>
+	</div>
+</section>
