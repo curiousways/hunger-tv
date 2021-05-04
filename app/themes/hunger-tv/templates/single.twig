@@ -1,39 +1,47 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				<a href="{{ post.link }}">{{ _e('edit') }}</a>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-				</p>
-				<div class="article-body">
-					{{post.content}}
-				</div>
-			</section>
 
-			<!-- comment box -->
-			<section class="comment-box">
-				<!-- comments -->
-				<div class="comments">
-				    {% if post.comments %}
-					<h3> comments </h3>
-					{% for cmt in post.comments %}
-					    {% include "includes/comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				    {% endif %}
-				</div>
+	<header>
+		<div class="row">
+			<div class="col">
+				{% for item in post.terms('section') %}
+					<a href="{{ item.link }}">{{ item.name }}</a>
+				{% endfor %}
+				<h1>{{ post.title }}</h1>
+				Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
+				<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
+				<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+			</div>
+			<div class="col">
+				{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+			</div>
+		</div>
+	</header>
 
-				{% if post.comment_status == "closed" %}
-					<p> comments for this post are closed </p>
-				{% else %}
-				    <!-- comment form -->
-				    {% include "forms/comment.twig" %}
-				{% endif %}
-			</section>
-		</article>
-	</div><!-- /content-wrapper -->
+	<section>
+		<div class="row">
+			<div class="col">
+				<h2>{{ post.standfirst }}</h2>
+				<h2>{{ post.article_excerpt }}</h2>
+			</div>
+		</div>
+	</section>
+
+	{% for item in post.meta('article_builder') %}
+		{% include 'editorial-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ post.date|date }}
+				{% for item in post.terms('tag') %}
+					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
 {% endblock %}
