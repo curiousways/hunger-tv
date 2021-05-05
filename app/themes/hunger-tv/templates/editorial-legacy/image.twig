@@ -5,7 +5,7 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				{% include 'includes/image.twig' with { image: item.image } %}
+				{% include 'includes/image.twig' %}
 				<p>{{ item.image_credit }}</p>
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 
 {% else %}
 
-	{% include 'includes/image.twig' with { image: item.image } %}
+	{% include 'includes/image.twig' %}
 	<p>{{ item.image_credit }}</p>
 
 {% endif %}

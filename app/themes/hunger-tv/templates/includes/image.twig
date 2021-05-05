@@ -1,3 +1,7 @@
+{% if not image %}
+	{% set image = item.image %}
+{% endif %}
+
 {% if image %}
 	<img
 		src="{{ Image(image).src }}"
