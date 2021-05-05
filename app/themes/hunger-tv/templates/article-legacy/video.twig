@@ -3,9 +3,13 @@
 <section>
 	<div class="row">
 		<div class="col">
-			<div class="embed">
-				{{ item.embed_url }}
-			</div>
+			{% if item.type == 'embed' %}
+				<div class="embed">
+					{{ item.embed_url }}
+				</div>
+			{% else %}
+				{% include 'includes/image.twig' with { image: item.poster } %}
+			{% endif %}
 		</div>
 	</div>
 </section>

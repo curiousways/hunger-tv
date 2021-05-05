@@ -1,7 +1,7 @@
 {% if image %}
 	<img
-		src="{{ image.src }}"
-		alt="{{ image.alt }}"
+		src="{{ Image(image).src }}"
+		alt="{{ Image(image).alt }}"
 		loading="lazy"
 	/>
 {% endif %}
