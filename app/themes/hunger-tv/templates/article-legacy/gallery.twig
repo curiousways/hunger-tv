@@ -3,7 +3,8 @@
 <section>
 	<div class="row">
 		<div class="col">
-			{% for image in item.image %}
+			<h2>{{ item.name }}</h2>
+			{% for image in item.gallery %}
 				{% include 'includes/image.twig' %}
 			{% endfor %}
 		</div>

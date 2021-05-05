@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	{% include 'includes/image.twig' with { image: post.hero_image } %}
+
+	<header>
+		<div class="row">
+			<div class="col">
+				{% for item in post.terms('section') %}
+					<a href="{{ item.link }}">{{ item.name }}</a>
+				{% endfor %}
+				<h1>{{ post.title }}</h1>
+			</div>
+			<div class="col">
+				{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+			</div>
+		</div>
+	</header>
+
+	{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
+		{# HTV 4.0 Article #}
+		{% include 'includes/article-builder.twig' %}
+	{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
+		{# HTV 3.0 Article #}
+		{% for item in post.meta('feature') %}
+			{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+		{% endfor %}
+	{% else %}
+		{# HTV 2.0 Article #}
+		<section>
+			<div class="row">
+				<div class="col">
+					{{ post.content }}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ post.date|date }}
+				{% for item in post.terms('tag') %}
+					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

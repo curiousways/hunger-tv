@@ -1,0 +1,16 @@
+<p><mark>video.twig</mark></p>
+
+<section>
+	<div class="row">
+		<div class="col">
+			{% if item.type == 'embed' %}
+				<div class="embed">
+					{{ item.embed_url }}
+				</div>
+			{% else %}
+				{# HTV Player #}
+				{% include 'includes/image.twig' with { image: item.poster } %}
+			{% endif %}
+		</div>
+	</div>
+</section>

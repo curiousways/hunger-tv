@@ -1,0 +1,17 @@
+<p><mark>embed-code.twig</mark></p>
+
+{% if item.embed_type %}
+	<section>
+		<div class="row">
+			<div class="col">
+				{% if item.embed_type == 'oEmbed' %}
+					<div class="embed">
+						{{ item.embed_oembed }}
+					</div>
+				{% elseif item.embed_type == 'embed' %}
+					{{ item.embed_code }}
+				{% endif %}
+			</div>
+		</div>
+	</section>
+{% endif %}
