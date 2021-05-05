@@ -10,11 +10,15 @@
 				{% for item in post.terms('section') %}
 					<a href="{{ item.link }}">{{ item.name }}</a>
 				{% endfor %}
-				<h1>{{ post.title }}</h1>
+				{{ post.date|date }}
 			</div>
 			<div class="col">
-				{% include 'includes/image.twig' with { image: post.thumbnail } %}
-				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+				{% include 'includes/share.twig' %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h1>{{ post.title }}</h1>
 			</div>
 		</div>
 	</header>
@@ -41,9 +45,11 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				{{ post.date|date }}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+				{% include 'includes/share.twig' %}
+				Tags:
 				{% for item in post.terms('tag') %}
-					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+					<a href="{{ item.link }}">&num;{{ item.name|title|replace({ ' ': '' }) }}</a>
 				{% endfor %}
 			</div>
 		</div>
