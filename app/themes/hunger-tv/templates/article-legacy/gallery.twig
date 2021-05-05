@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col">
 			<h2>{{ item.name }}</h2>
-			{% for image in Image(item.gallery) %}
+			{% for image in item.gallery %}
 				{% include 'includes/image.twig' %}
 			{% endfor %}
 		</div>

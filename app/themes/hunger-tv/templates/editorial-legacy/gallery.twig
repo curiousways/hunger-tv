@@ -3,7 +3,7 @@
 <section>
 	<div class="row">
 		<div class="col">
-			{% for image in Image(item.image) %}
+			{% for image in item.image %}
 				{% include 'includes/image.twig' %}
 			{% endfor %}
 		</div>

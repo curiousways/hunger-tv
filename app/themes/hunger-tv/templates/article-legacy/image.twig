@@ -3,7 +3,7 @@
 <section>
 	<div class="row">
 		<div class="col">
-			{% include 'includes/image.twig' with { image: Image(item.image) } %}
+			{% include 'includes/image.twig' with { image: item.image } %}
 			<p>{{ item.caption }}</p>
 		</div>
 	</div>
