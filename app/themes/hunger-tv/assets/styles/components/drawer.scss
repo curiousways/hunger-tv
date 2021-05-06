@@ -6,8 +6,8 @@
 	left: 0;
 	width: $drawer-width;
 	height: 100vh;
-	transform: translateX(-80%);
-	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	transform: translateX(calc(#{-$drawer-width} / 4 * 3));
+	transition: transform 0.5s $anim-curve;
 	padding: 2rem;
 
 	&.open {
