@@ -8,7 +8,10 @@
 
 				<div class="carousel__tray">
 					{% for image in item.gallery %}
-						{% include 'includes/image.twig' %}
+						<div class="carousel__item">
+							{% include 'includes/image.twig' %}
+							{{ Image(image).caption }}
+						</div>
 					{% endfor %}
 				</div>
 
