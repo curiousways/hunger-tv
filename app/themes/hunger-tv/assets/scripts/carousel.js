@@ -9,4 +9,13 @@ jQuery(".carousel__tray").slick({
 	touchThreshold: 10
 });
 
+jQuery(".carousel__tray").on(
+	"init reInit afterChange",
+	function (event, slick, currentSlide, nextSlide) {
+		// currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+		var i = (currentSlide ? currentSlide : 0) + 1;
+		jQuery(".carousel__counter .current").text(i);
+	}
+);
+
 console.log("%ccarousel running", "color:green;");
