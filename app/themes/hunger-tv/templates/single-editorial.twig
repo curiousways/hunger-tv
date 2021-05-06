@@ -2,20 +2,23 @@
 
 {% block content %}
 
+	{% include 'includes/image.twig' with { image: post.thumbnail } %}
+
 	<header>
 		<div class="row">
 			<div class="col">
 				{% for item in post.terms('section') %}
 					<a href="{{ item.link }}">{{ item.name }}</a>
 				{% endfor %}
-				<h1>{{ post.title }}</h1>
-				Evergreen: {{ 'yes' in post.evergreen ? 'yes' : 'no' }}
-				<br>Sponsored: {{ 'yes' in post.sponsored ? 'yes' : 'no' }}
-				<br>Hungry for more: {{ 'yes' in post.hungry_for_more ? 'yes' : 'no' }}
+				{{ post.date|date }}
 			</div>
 			<div class="col">
-				{% include 'includes/image.twig' with { image: post.thumbnail } %}
-				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+				{% include 'includes/share.twig' %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h1>{{ post.title }}</h1>
 			</div>
 		</div>
 	</header>
@@ -34,9 +37,11 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				{{ post.date|date }}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+				{% include 'includes/share.twig' %}
+				Tags:
 				{% for item in post.terms('tag') %}
-					<a href="{{ item.link }}">&num;{{ item.name }}</a>
+					<a href="{{ item.link }}">&num;{{ item.name|title|replace({ ' ': '' }) }}</a>
 				{% endfor %}
 			</div>
 		</div>
