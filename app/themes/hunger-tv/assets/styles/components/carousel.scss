@@ -2,3 +2,10 @@
 
 .carousel {
 }
+
+.carousel__tray {
+}
+
+.carousel__control--prev svg {
+	transform: rotate(180deg);
+}
