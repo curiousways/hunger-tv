@@ -6,6 +6,15 @@ jQuery(".carousel--full .carousel__tray").slick({
 	speed: 500,
 	cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
 	touchThreshold: 10,
+	variableWidth: true,
+	responsive: [
+		{
+			breakpoint: 768,
+			settings: {
+				variableWidth: false,
+			},
+		},
+	],
 });
 
 jQuery(".carousel--full .carousel__tray").on(
