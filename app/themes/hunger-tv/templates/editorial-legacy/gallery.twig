@@ -4,9 +4,13 @@
 	<div class="row">
 		<div class="col">
 			<div class="carousel">
-				{% for image in item.image %}
-					{% include 'includes/image.twig' %}
-				{% endfor %}
+				<div class="carousel__tray">
+					{% for image in item.image %}
+						{% include 'includes/image.twig' %}
+					{% endfor %}
+				</div>
+				<button class="carousel__control carousel__control--prev">&larr;</button>
+				<button class="carousel__control carousel__control--next">&rarr;</button>
 			</div>
 		</div>
 	</div>
