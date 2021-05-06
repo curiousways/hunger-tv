@@ -8,5 +8,13 @@
 
 .col {
 	width: 100%;
-	padding: 1rem 2rem;
+	padding: 1rem;
+
+	&.half {
+		width: percentage(1/2);
+	}
+
+	&.third {
+		width: percentage(1/3);
+	}
 }

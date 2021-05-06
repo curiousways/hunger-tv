@@ -1,4 +1,4 @@
-<header id="drawer">
+<header id="drawer" class="open">
 
 	<a
 		href="{{ site.link }}"
@@ -11,12 +11,14 @@
 		/>
 	</a>
 
+	<button id="drawer__toggle">{% include 'icons/close.svg' %}</button>
+
 	<a href="/shop/" class="button full">Shop</a>
 
 	{% include 'forms/search.twig' %}
 
 	<nav>
-		{% include "includes/menu.twig" with {items: header_navigation.get_items} %}
+		{% include "includes/menu.twig" with { items: header_navigation.get_items } %}
 	</nav>
 
 	{% include 'includes/social.twig' %}
