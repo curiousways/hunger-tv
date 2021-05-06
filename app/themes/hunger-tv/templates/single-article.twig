@@ -6,13 +6,13 @@
 
 	<header>
 		<div class="row">
-			<div class="col">
+			<div class="col half">
 				{% for item in post.terms('section') %}
 					<a href="{{ item.link }}">{{ item.name }}</a>
 				{% endfor %}
 				{{ post.date|date }}
 			</div>
-			<div class="col">
+			<div class="col half">
 				{% include 'includes/share.twig' %}
 			</div>
 		</div>
