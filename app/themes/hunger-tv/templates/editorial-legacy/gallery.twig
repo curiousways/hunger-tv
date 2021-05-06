@@ -3,9 +3,11 @@
 <section>
 	<div class="row">
 		<div class="col">
-			{% for image in item.image %}
-				{% include 'includes/image.twig' %}
-			{% endfor %}
+			<div class="carousel">
+				{% for image in item.image %}
+					{% include 'includes/image.twig' %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </section>
