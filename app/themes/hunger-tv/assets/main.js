@@ -1,5 +1,5 @@
 // Scripts
-// import "./scripts/script";
+import "./scripts/carousel";
 
 // Styles
 import "./main.scss";

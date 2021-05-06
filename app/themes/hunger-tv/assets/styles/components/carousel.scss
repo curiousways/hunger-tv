@@ -1,0 +1,19 @@
+// Carousel
+
+.carousel {
+}
+
+.carousel__tray {
+}
+
+.carousel__control--prev svg {
+	transform: rotate(180deg);
+}
+
+// Variants
+
+.carousel--full img {
+	width: auto !important;
+	height: 548px;
+	margin-right: 2rem;
+}

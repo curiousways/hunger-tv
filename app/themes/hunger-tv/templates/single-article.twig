@@ -36,6 +36,7 @@
 		<section>
 			<div class="row">
 				<div class="col">
+					{{ post.custom_embed_code != 'none' ? post.embed_code }}
 					{{ post.content }}
 				</div>
 			</div>
@@ -47,10 +48,7 @@
 			<div class="col">
 				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
 				{% include 'includes/share.twig' %}
-				Tags:
-				{% for item in post.terms('tag') %}
-					<a href="{{ item.link }}">&num;{{ item.name|title|replace({ ' ': '' }) }}</a>
-				{% endfor %}
+				{% include 'includes/tags.twig' %}
 			</div>
 		</div>
 	</section>

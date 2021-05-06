@@ -22,6 +22,9 @@ const babelQuery = {
 
 // config.production = true
 const webpackConfig = {
+  externals: {
+    jquery: 'jQuery'
+  },
   mode: production ? 'production' : 'development',
   output: {
     path: path.join(__dirname, 'dist'),

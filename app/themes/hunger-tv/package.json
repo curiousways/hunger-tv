@@ -163,7 +163,9 @@
       }
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "slick-carousel": "^1.8.1"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
