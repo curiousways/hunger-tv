@@ -10,6 +10,15 @@ html {
 
 body {
 	padding-left: $drawer-width;
+	transition: padding-left 0.5s $anim-curve;
+
+	&.wide {
+		padding-left: $drawer-width/4;
+
+		&.archive .row {
+			max-width: calc(#{$grid-width} + calc(#{$drawer-width} / 4 * 3));
+		}
+	}
 }
 
 main {
