@@ -39,10 +39,7 @@
 			<div class="col">
 				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
 				{% include 'includes/share.twig' %}
-				Tags:
-				{% for item in post.terms('tag') %}
-					<a href="{{ item.link }}">&num;{{ item.name|title|replace({ ' ': '' }) }}</a>
-				{% endfor %}
+				{% include 'includes/tags.twig' %}
 			</div>
 		</div>
 	</section>

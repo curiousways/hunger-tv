@@ -1,0 +1,6 @@
+{% if post.terms('tag') %}
+	Tags:
+	{% for item in post.terms('tag') %}
+		<a href="{{ item.link }}">&num;{{ item.name|title|replace({ ' ': '' }) }}</a>
+	{% endfor %}
+{% endif %}
