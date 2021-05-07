@@ -4,6 +4,14 @@
 	@return ($line-height/4 / $font-size) * $height + rem;
 }
 
+@function setActiveColor($color) {
+	@if (lightness($color) <= 30) {
+		@return lighten($color, 10);
+	} @else {
+		@return darken($color, 10);
+	}
+}
+
 // Usage: @include link($primary, $secondary, true);
 @mixin link($color: inherit, $hover-color: $primary, $underline: false) {
 	@if $color {
