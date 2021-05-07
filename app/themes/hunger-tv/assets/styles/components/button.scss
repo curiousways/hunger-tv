@@ -1,12 +1,13 @@
 // Button
 
+$button-border-width: 1px;
+
 .button {
-	color: black;
+	@extend .uppercase;
+	color: $black;
 	background-color: transparent;
 	display: inline-block;
-	border: 1px solid black;
-	font-weight: bold;
-	text-transform: uppercase;
+	border: $button-border-width solid $black;
 	text-decoration: none;
 	text-align: center;
 	padding: rhythm(2) rhythm();
@@ -14,7 +15,7 @@
 
 	&:hover,
 	&:focus {
-		background-color: black;
+		background-color: $black;
 	}
 }
 

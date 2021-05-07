@@ -12,6 +12,10 @@
 	transition: transform 0.5s $anim-curve;
 	padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
+	form {
+		margin: rhythm(8) 0;
+	}
+
 	&.open {
 		transform: none;
 	}

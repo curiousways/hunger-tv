@@ -1,0 +1,21 @@
+// Input
+
+.input {
+	position: relative;
+	border-bottom: $button-border-width solid $black;
+
+	input {
+		border: none;
+		outline: none;
+		padding: rhythm(2) 0;
+	}
+
+	button {
+		background: none;
+		border: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: rhythm(1);
+	}
+}
