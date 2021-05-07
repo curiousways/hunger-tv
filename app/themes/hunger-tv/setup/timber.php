@@ -134,6 +134,13 @@ class StarterSite extends Timber\Site {
 			}
 		}
 		add_action('pre_get_posts', 'cpts_on_tag_archives');
+
+		// Hide admin menus
+		function _mghd_hide_admin_menus() {
+		    remove_menu_page('edit-comments.php'); // Comments
+		    remove_menu_page('edit.php'); // Posts
+		}
+		add_action('admin_menu', '_mghd_hide_admin_menus');
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
