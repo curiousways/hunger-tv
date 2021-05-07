@@ -13,10 +13,12 @@ body {
 	transition: padding-left 0.5s $anim-curve;
 
 	&.wide {
-		padding-left: $drawer-width/4;
+		padding-left: rhythm(18);
 
 		&.archive .row {
-			max-width: calc(#{$grid-width} + calc(#{$drawer-width} / 4 * 3));
+			max-width: calc(
+				#{$grid-width} + calc(#{$drawer-width} - #{rhythm(18)})
+			);
 		}
 	}
 }
@@ -25,7 +27,7 @@ main {
 }
 
 section {
-	margin: 2rem 0;
+	margin: rhythm(8) 0;
 }
 
 img,

@@ -6,9 +6,9 @@
 	left: 0;
 	width: $drawer-width;
 	height: 100vh;
-	transform: translateX(calc(#{-$drawer-width} / 4 * 3));
+	transform: translateX(calc(#{-$drawer-width} + #{rhythm(18)}));
 	transition: transform 0.5s $anim-curve;
-	padding: 2rem;
+	padding: rhythm(8) rhythm(18) rhythm(8) rhythm(10);
 
 	&.open {
 		transform: none;
@@ -17,6 +17,6 @@
 
 #drawer__toggle {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: rhythm(6);
+	right: rhythm(6);
 }

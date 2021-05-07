@@ -1,7 +1,10 @@
 // Burger
 
-$hamburger-padding-x: 1rem;
-$hamburger-padding-y: 1rem;
+$hamburger-padding-x: $line-height/2 + px;
+$hamburger-padding-y: $line-height/2 + px;
+$hamburger-layer-width: $line-height + px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 4px;
 $hamburger-layer-color: $black;
 $hamburger-layer-border-radius: 0;
 $hamburger-hover-opacity: 1;
