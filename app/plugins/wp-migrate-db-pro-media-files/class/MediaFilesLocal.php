@@ -189,7 +189,7 @@ class MediaFilesLocal
             $file_list = $this->transfer_util->get_remote_files([$folder], 'wpmdbmf_respond_to_get_remote_media', $excludes, $date, $timezone);
         } else {
             // Push = get local files
-            $abs_path = WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'uploads';
+            $abs_path = \DeliciousBrains\WPMDB\Pro\Transfers\Files\Util::get_wp_uploads_dir();
             $abs_path = apply_filters('wpmdb_mf_local_uploads_folder', $abs_path, $state_data);
             $items    = $this->plugin_helper->get_top_level_items($abs_path);
 
