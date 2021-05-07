@@ -5,6 +5,7 @@
 {% if image %}
 	<img
 		src="{{ Image(image).src }}"
+		{{ classes ? 'class="' ~ classes ~ '"' }}
 		alt="{{ Image(image).alt }}"
 		loading="lazy"
 	/>

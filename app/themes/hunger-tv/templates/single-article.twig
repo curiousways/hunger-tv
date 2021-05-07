@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	{% include 'includes/image.twig' with { image: post.hero_image } %}
+	{% include 'includes/hero.twig' with { image: post.thumbnail } %}
 	{% include 'includes/single-header.twig' %}
 
 	{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
