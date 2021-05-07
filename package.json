@@ -5,7 +5,8 @@
   "author": "Matthew Dixon <matthewdixondev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "setup": "composer install && cd app/themes/hunger-tv && composer install && yarn install",
+    "setup:dev": "composer install && cd app/themes/hunger-tv && composer install && yarn install",
+    "setup:prod": "composer install && cd app/themes/hunger-tv && composer install",
     "watch": "cd app/themes/hunger-tv && yarn watch"
   }
 }

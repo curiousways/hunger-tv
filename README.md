@@ -8,9 +8,15 @@
 2. Rename theme in style.css
 3. Update `project-name` paths to new theme directory in ./package.json
 
-## Run
+## Development
 
 ```sh
-$ yarn setup
+$ yarn setup:dev
 $ yarn watch
+```
+
+## Production
+
+```sh
+$ yarn setup:prod
 ```
