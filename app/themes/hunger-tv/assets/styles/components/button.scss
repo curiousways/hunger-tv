@@ -15,12 +15,7 @@ button {
 	text-decoration: none;
 	text-align: center;
 	padding: rhythm(2) rhythm();
-	@include link($black, $white);
-
-	&:hover,
-	&:focus {
-		background-color: $black;
-	}
+	@include link;
 }
 
 // Variants

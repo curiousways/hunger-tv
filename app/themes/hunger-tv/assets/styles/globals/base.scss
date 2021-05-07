@@ -15,7 +15,8 @@ body {
 	&.wide {
 		padding-left: rhythm($drawer-width-closed);
 
-		&.archive .row {
+		&.archive .row,
+		&.home .row {
 			/* prettier-ignore */
 			max-width: calc(#{$grid-width} + calc(#{$drawer-width-open} - #{rhythm($drawer-width-closed)}));
 		}
