@@ -117,6 +117,33 @@ class StarterSite extends Timber\Site {
 			$settings['block_formats'] = 'Paragraph=p;Heading=h2;Subheading=h3';
 			return $settings;
 		});
+
+		// Add default tags to custom post types
+		// Source: https://wordpress.stackexchange.com/a/163785
+		function add_tags_to_cpts() {
+			register_taxonomy_for_object_type('post_tag', 'article');
+			register_taxonomy_for_object_type('post_tag', 'editorial');
+		};
+		add_action('init', 'add_tags_to_cpts');
+
+		// Return custom post types on tag archives
+		// Source: https://wordpress.stackexchange.com/a/108069
+		function cpts_on_tag_archives($query) {
+			if ($query->is_tag() && $query->is_main_query()) {
+				$query->set('post_type', ['editorial', 'article']);
+			}
+		}
+		add_action('pre_get_posts', 'cpts_on_tag_archives');
+
+		// Hide admin menus
+		function _mghd_hide_admin_menus() {
+		    remove_menu_page('edit-comments.php'); // Comments
+		    remove_menu_page('edit.php'); // Posts
+		}
+		add_action('admin_menu', '_mghd_hide_admin_menus');
+
+		// Source: https://codex.wordpress.org/Links_Manager
+		update_option('link_manager_enabled', 0);
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
