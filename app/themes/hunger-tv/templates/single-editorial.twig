@@ -2,19 +2,23 @@
 
 {% block content %}
 
-	{% include 'includes/hero.twig' with { image: post.thumbnail } %}
-	{% include 'includes/single-header.twig' %}
+	<article>
 
-	<section>
-		<div class="row">
-			<div class="col">
-				<h2><code>post.standfirst</code><br>{{ post.standfirst }}</h2>
-				<h2><code>post.article_excerpt</code><br>{{ post.article_excerpt }}</h2>
+		{% include 'includes/hero.twig' with { image: post.thumbnail } %}
+		{% include 'includes/single-header.twig' %}
+
+		<section>
+			<div class="row">
+				<div class="col">
+					<h2><code>post.standfirst</code><br>{{ post.standfirst }}</h2>
+					<h2><code>post.article_excerpt</code><br>{{ post.article_excerpt }}</h2>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	{% include 'includes/article-builder.twig' %}
-	{% include 'includes/single-footer.twig' %}
+		{% include 'includes/article-builder.twig' %}
+		{% include 'includes/single-footer.twig' %}
+
+	</article>
 
 {% endblock %}

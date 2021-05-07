@@ -1,0 +1,8 @@
+// Article
+
+article {
+	header,
+	footer {
+		@extend section;
+	}
+}

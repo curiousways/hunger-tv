@@ -2,29 +2,33 @@
 
 {% block content %}
 
-	{% include 'includes/hero.twig' with { image: post.thumbnail } %}
-	{% include 'includes/single-header.twig' %}
+	<article>
 
-	{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
-		{# HTV 4.0 Article #}
-		{% include 'includes/article-builder.twig' %}
-	{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
-		{# HTV 3.0 Article #}
-		{% for item in post.meta('feature') %}
-			{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
-		{% endfor %}
-	{% else %}
-		{# HTV 2.0 Article #}
-		<section>
-			<div class="row">
-				<div class="col">
-					{{ post.custom_embed_code != 'none' ? post.embed_code }}
-					{{ post.content }}
+		{% include 'includes/hero.twig' with { image: post.thumbnail } %}
+		{% include 'includes/single-header.twig' %}
+
+		{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
+			{# HTV 4.0 Article #}
+			{% include 'includes/article-builder.twig' %}
+		{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
+			{# HTV 3.0 Article #}
+			{% for item in post.meta('feature') %}
+				{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+			{% endfor %}
+		{% else %}
+			{# HTV 2.0 Article #}
+			<section>
+				<div class="row">
+					<div class="col">
+						{{ post.custom_embed_code != 'none' ? post.embed_code }}
+						{{ post.content }}
+					</div>
 				</div>
-			</div>
-		</section>
-	{% endif %}
+			</section>
+		{% endif %}
 
-	{% include 'includes/single-footer.twig' %}
+		{% include 'includes/single-footer.twig' %}
+
+	</article>
 
 {% endblock %}
