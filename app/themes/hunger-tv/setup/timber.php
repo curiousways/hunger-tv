@@ -125,6 +125,15 @@ class StarterSite extends Timber\Site {
 			register_taxonomy_for_object_type('post_tag', 'editorial');
 		};
 		add_action('init', 'add_tags_to_cpts');
+
+		// Return custom post types on tag archives
+		// Source: https://wordpress.stackexchange.com/a/108069
+		function cpts_on_tag_archives($query) {
+			if ($query->is_tag() && $query->is_main_query()) {
+				$query->set('post_type', ['editorial', 'article']);
+			}
+		}
+		add_action('pre_get_posts', 'cpts_on_tag_archives');
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
