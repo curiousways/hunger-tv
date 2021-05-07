@@ -9,16 +9,15 @@ html {
 }
 
 body {
-	padding-left: $drawer-width;
+	padding-left: $drawer-width-open;
 	transition: padding-left 0.5s $anim-curve;
 
 	&.wide {
-		padding-left: rhythm(18);
+		padding-left: rhythm($drawer-width-closed);
 
 		&.archive .row {
-			max-width: calc(
-				#{$grid-width} + calc(#{$drawer-width} - #{rhythm(18)})
-			);
+			/* prettier-ignore */
+			max-width: calc(#{$grid-width} + calc(#{$drawer-width-open} - #{rhythm($drawer-width-closed)}));
 		}
 	}
 }

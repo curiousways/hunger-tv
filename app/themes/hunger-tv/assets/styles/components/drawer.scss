@@ -4,11 +4,13 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: $drawer-width;
+	width: $drawer-width-open;
 	height: 100vh;
-	transform: translateX(calc(#{-$drawer-width} + #{rhythm(18)}));
+	transform: translateX(
+		calc(#{-$drawer-width-open} + #{rhythm($drawer-width-closed)})
+	);
 	transition: transform 0.5s $anim-curve;
-	padding: rhythm(8) rhythm(18) rhythm(8) rhythm(10);
+	padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
 	&.open {
 		transform: none;
