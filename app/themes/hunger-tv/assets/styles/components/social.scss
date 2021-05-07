@@ -1,0 +1,16 @@
+// Social
+
+ul.social {
+	display: flex;
+	margin: rhythm(-3);
+
+	a {
+		display: block;
+		padding: rhythm(3);
+	}
+
+	svg {
+		width: rhythm();
+		height: rhythm();
+	}
+}

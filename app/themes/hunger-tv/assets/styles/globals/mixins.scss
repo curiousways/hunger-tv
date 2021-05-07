@@ -1,1 +1,5 @@
 // Mixins
+
+@function rhythm($height: 4) {
+	@return ($line-height/4 / $font-size) * $height + rem;
+}

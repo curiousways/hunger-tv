@@ -28,6 +28,15 @@ section {
 	margin: 2rem 0;
 }
 
-img {
+img,
+svg {
 	max-width: 100%;
+	vertical-align: top;
+}
+
+ul[class],
+ol[class] {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
