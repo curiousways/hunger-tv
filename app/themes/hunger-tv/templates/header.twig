@@ -10,15 +10,23 @@
 			loading="lazy"
 		/>
 	</a>
+	
+	<button
+		id="drawer__toggle"
+		class="hamburger hamburger--collapse is-active"
+		aria-label="Menu"
+	>
+		<span class="hamburger-box">
+			<span class="hamburger-inner"></span>
+		</span>
+	</button>
 
-	<button id="drawer__toggle">{% include 'icons/close.svg' %}</button>
-
-	<a href="/shop/" class="button full">Shop</a>
+	<a href="/shop/" class="button button--full">Shop</a>
 
 	{% include 'forms/search.twig' %}
 
 	<nav>
-		{% include "includes/menu.twig" with { items: header_navigation.get_items } %}
+		{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
 	</nav>
 
 	{% include 'includes/social.twig' %}

@@ -9,14 +9,16 @@ html {
 }
 
 body {
-	padding-left: $drawer-width;
+	padding-left: $drawer-width-open;
 	transition: padding-left 0.5s $anim-curve;
 
 	&.wide {
-		padding-left: $drawer-width/4;
+		padding-left: rhythm($drawer-width-closed);
 
-		&.archive .row {
-			max-width: calc(#{$grid-width} + calc(#{$drawer-width} / 4 * 3));
+		&.archive .row,
+		&.home .row {
+			/* prettier-ignore */
+			max-width: calc(#{$grid-width} + calc(#{$drawer-width-open} - #{rhythm($drawer-width-closed)}));
 		}
 	}
 }
@@ -25,9 +27,23 @@ main {
 }
 
 section {
-	margin: 2rem 0;
+	margin: rhythm(8) 0;
 }
 
-img {
+img,
+svg {
 	max-width: 100%;
+	vertical-align: top;
+}
+
+ul[class],
+ol[class] {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	@include link;
 }

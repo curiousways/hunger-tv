@@ -3,16 +3,20 @@
 	method="get"
 	role="search"
 >
-	<input
-		type="text"
-		name="s"
-		value="{{ fn('get_search_query') }}"
-		placeholder="Search"
-		aria-label="Search"
-		required
-	/>
-	<button
-		type="submit"
-		aria-label="Submit"
-	>{% include "icons/search.svg" %}</button>
+
+	<div class="input">
+		<input
+			type="text"
+			name="s"
+			value="{{ fn('get_search_query') }}"
+			placeholder="Search"
+			aria-label="Search"
+			required
+		/>
+		<button
+			type="submit"
+			aria-label="Submit"
+		>{% include "icons/search.svg" %}</button>
+	</div>
+
 </form>

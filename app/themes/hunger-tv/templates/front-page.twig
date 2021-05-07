@@ -2,17 +2,48 @@
 
 {% block content %}
 
+	<div class="hero" role="banner">
+		<img
+			src="https://via.placeholder.com/1806x630"
+			class="hero__image"
+			alt=""
+			loading="lazy"
+		/>
+	</div>
+
 	<section>
 		<div class="row">
-			<div class="col">
+			<div class="col center">
 				<h2>Categories Spotlight</h2>
 			</div>
+		</div>
+		<div class="row">
+			{% if spotlight is not empty %}
+				{% for post in spotlight %}
+					<div class="col third">
+						{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+					</div>
+				{% endfor %}
+				<div class="col">
+					{% include 'includes/pagination.twig' with {
+						pagination: posts.pagination({
+							show_all: false,
+							mid_size: 3,
+							end_size: 2
+						})
+					} %}
+				</div>
+			{% else %}
+				<div class="col">
+					<p><em>Sorry, there's nothing to see here at the moment.</em></p>
+				</div>
+			{% endif %}
 		</div>
 	</section>
 
 	<section>
 		<div class="row">
-			<div class="col">
+			<div class="col center">
 				<h2>Most Popular</h2>
 			</div>
 		</div>

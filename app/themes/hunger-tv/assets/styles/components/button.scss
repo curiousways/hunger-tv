@@ -1,27 +1,25 @@
 // Button
 
+$button-border-width: 1px;
+
+button {
+	cursor: pointer;
+}
+
 .button {
-	color: black;
+	@extend .uppercase;
+	color: $black;
 	background-color: transparent;
 	display: inline-block;
-	border: 1px solid black;
-	font-weight: bold;
-	text-transform: uppercase;
+	border: $button-border-width solid $black;
 	text-decoration: none;
 	text-align: center;
-	padding: 1rem 2rem;
+	padding: rhythm(2) rhythm();
+	@include link;
+}
 
-	&:hover,
-	&:focus {
-		color: white;
-		background-color: black;
-	}
+// Variants
 
-	&:active {
-		color: lightgrey;
-	}
-
-	&.full {
-		width: 100%;
-	}
+.button--full {
+	width: 100%;
 }

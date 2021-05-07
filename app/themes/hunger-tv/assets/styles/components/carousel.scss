@@ -14,6 +14,6 @@
 
 .carousel--full img {
 	width: auto !important;
-	height: 548px;
-	margin-right: 2rem;
+	max-height: 548px;
+	margin-right: rhythm();
 }

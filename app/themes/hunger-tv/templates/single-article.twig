@@ -2,55 +2,33 @@
 
 {% block content %}
 
-	{% include 'includes/image.twig' with { image: post.hero_image } %}
+	<article>
 
-	<header>
-		<div class="row">
-			<div class="col half">
-				{% for item in post.terms('section') %}
-					<a href="{{ item.link }}">{{ item.name }}</a>
-				{% endfor %}
-				{{ post.date|date }}
-			</div>
-			<div class="col half">
-				{% include 'includes/share.twig' %}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<h1>{{ post.title }}</h1>
-			</div>
-		</div>
-	</header>
+		{% include 'includes/hero.twig' with { image: post.thumbnail } %}
+		{% include 'includes/single-header.twig' %}
 
-	{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
-		{# HTV 4.0 Article #}
-		{% include 'includes/article-builder.twig' %}
-	{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
-		{# HTV 3.0 Article #}
-		{% for item in post.meta('feature') %}
-			{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
-		{% endfor %}
-	{% else %}
-		{# HTV 2.0 Article #}
-		<section>
-			<div class="row">
-				<div class="col">
-					{{ post.custom_embed_code != 'none' ? post.embed_code }}
-					{{ post.content }}
+		{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
+			{# HTV 4.0 Article #}
+			{% include 'includes/article-builder.twig' %}
+		{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
+			{# HTV 3.0 Article #}
+			{% for item in post.meta('feature') %}
+				{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+			{% endfor %}
+		{% else %}
+			{# HTV 2.0 Article #}
+			<section>
+				<div class="row">
+					<div class="col">
+						{{ post.custom_embed_code != 'none' ? post.embed_code }}
+						{{ post.content }}
+					</div>
 				</div>
-			</div>
-		</section>
-	{% endif %}
+			</section>
+		{% endif %}
 
-	<section>
-		<div class="row">
-			<div class="col">
-				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
-				{% include 'includes/share.twig' %}
-				{% include 'includes/tags.twig' %}
-			</div>
-		</div>
-	</section>
+		{% include 'includes/single-footer.twig' %}
+
+	</article>
 
 {% endblock %}

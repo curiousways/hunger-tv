@@ -2,23 +2,27 @@
 
 {% block content %}
 
-	<header>
-		<div class="row">
-			<div class="col">
-				<h1>{{ post.title }}</h1>
-			</div>
-			<div class="col">
-				{% include 'includes/image.twig' with { image: post.thumbnail } %}
-			</div>
-		</div>
-	</header>
+	<article>
 
-	<section>
-		<div class="row">
-			<div class="col">
-				{{ post.content }}
+		<header>
+			<div class="row">
+				<div class="col">
+					<h1>{{ post.title }}</h1>
+				</div>
+				<div class="col">
+					{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				</div>
 			</div>
-		</div>
-	</section>
+		</header>
+
+		<section>
+			<div class="row">
+				<div class="col">
+					{{ post.content }}
+				</div>
+			</div>
+		</section>
+
+	</article>
 
 {% endblock %}

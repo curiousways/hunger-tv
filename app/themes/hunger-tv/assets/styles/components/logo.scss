@@ -3,14 +3,5 @@
 .logo {
 	display: block;
 	filter: invert(1);
-	margin-bottom: 2rem;
-
-	&:hover,
-	&:focus {
-		opacity: 0.5;
-	}
-
-	&:active {
-		opacity: 1;
-	}
+	margin-bottom: rhythm(8);
 }

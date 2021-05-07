@@ -173,7 +173,8 @@ function get_plugin_basedir_path()
  */
 function get_asset_uri($asset_path, $base_url)
 {
-    if (strpos($asset_path, '://') !== false) {
+    // If it has a URL scheme, or is a relative URL as defined via WP_CONTENT_DIR or similar.
+    if (strpos($asset_path, '://') !== false || plugins_url() === substr($asset_path, 0, strlen(plugins_url()))) {
         return $asset_path;
     }
 

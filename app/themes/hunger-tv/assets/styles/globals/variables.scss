@@ -1,12 +1,25 @@
 // Variables
 
+// Colours
+$black: black;
 $blue: #00ffe7;
 $brown-lightest: #faf6f3;
 $green: #00ff03;
 $grey-lightest: #f8f8f8;
 $pink: #ff56ce;
+$white: white;
 $yellow: #ffe203;
 
-$drawer-width: 326px;
+$primary: $pink;
+
+// Layout
 $grid-width: 840px;
+$drawer-width-open: 326px;
+$drawer-width-closed: 18;
+
+// Typography
+$font-size: 16;
+$line-height: 22;
+
+// Transitions
 $anim-curve: cubic-bezier(0.4, 0, 0.2, 1);

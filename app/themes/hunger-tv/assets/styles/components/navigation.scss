@@ -1,0 +1,10 @@
+// Navigation
+
+ul.navigation {
+	@extend .uppercase;
+
+	a {
+		display: inline-block;
+		padding-bottom: rhythm();
+	}
+}
