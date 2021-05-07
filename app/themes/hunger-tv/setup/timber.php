@@ -141,6 +141,9 @@ class StarterSite extends Timber\Site {
 		    remove_menu_page('edit.php'); // Posts
 		}
 		add_action('admin_menu', '_mghd_hide_admin_menus');
+
+		// Source: https://codex.wordpress.org/Links_Manager
+		update_option('link_manager_enabled', 0);
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
