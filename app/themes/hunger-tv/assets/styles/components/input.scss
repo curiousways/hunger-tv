@@ -3,11 +3,14 @@
 .input {
 	position: relative;
 	border-bottom: $button-border-width solid $black;
+	padding-right: rhythm(8);
 
 	input {
 		border: none;
 		outline: none;
-		padding: rhythm(2) 0;
+		width: 100%;
+		line-height: inherit;
+		padding: rhythm(1) 0;
 	}
 
 	button {
@@ -15,7 +18,17 @@
 		border: none;
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: rhythm(-1);
 		padding: rhythm(1);
+		@include link;
+
+		svg {
+			width: rhythm();
+			height: rhythm();
+		}
+	}
+
+	&:focus-within {
+		border-color: $primary;
 	}
 }
