@@ -1,13 +1,19 @@
 <div class="card">
 
-	{% for category in post.terms('section') %}
-		<a href="{{ category.link }}">{{ category.name }}</a>
-	{% endfor %}
+	<img src="https://via.placeholder.com/333x500" alt="" />
 
-	<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-	
-	{% if post.thumbnail %}
-		<img src="{{ post.thumbnail.src }}" alt="" />
-	{% endif %}
+	<div class="card__content">
+		{% if post.terms('section') %}
+			<div class="card__cats">
+				{% for category in post.terms('section') %}
+					<a href="{{ category.link }}">{{ category.name }}</a>
+				{% endfor %}
+			</div>
+		{% endif %}
+		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+		{# {% if post.thumbnail %}
+			<img src="{{ post.thumbnail.src }}" alt="" />
+		{% endif %} #}
+	</div>
 
 </div>
