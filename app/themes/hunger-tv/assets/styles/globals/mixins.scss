@@ -3,3 +3,31 @@
 @function rhythm($height: 4) {
 	@return ($line-height/4 / $font-size) * $height + rem;
 }
+
+// Usage: @include link($primary, $secondary, true);
+@mixin link($color: inherit, $hover-color: $primary, $underline: false) {
+	@if $color {
+		color: $color;
+	}
+
+	@if $underline {
+		text-decoration: underline;
+	}
+
+	&:hover,
+	&:focus {
+		color: $hover-color;
+
+		@if $underline {
+			text-decoration: none;
+		}
+	}
+
+	&:active {
+		@if $hover-color {
+			color: setActiveColor($hover-color);
+		} @else {
+			color: setActiveColor($color);
+		}
+	}
+}
