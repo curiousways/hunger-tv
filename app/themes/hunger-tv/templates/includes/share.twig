@@ -1,1 +1,5 @@
-<p><mark>share.twig</mark></p>
+<ul class="social">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}">{% include 'icons/facebook.svg' %}</a></li>
+	<li><a href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}">{% include 'icons/twitter.svg' %}</a></li>
+	<li><a href="https://pinterest.com">{% include 'icons/pinterest.svg' %}</a></li>
+</ul>
