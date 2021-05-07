@@ -1,8 +1,7 @@
 // Article
 
-article {
-	header,
-	footer {
-		@extend section;
-	}
+main header,
+article header,
+article footer {
+	@extend section;
 }
