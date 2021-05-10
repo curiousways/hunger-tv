@@ -8,7 +8,7 @@
 	<li><a href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}">
 		{% include 'icons/twitter.svg' %}
 	</a></li>
-	<li><a href="https://pinterest.com">
+	<li><a href="https://pinterest.com/pin/create/link/?url={{ post.link|url_encode }}&description={{ post.title|url_encode }}">
 		{% include 'icons/pinterest.svg' %}
 	</a></li>
 	<li><a href="mailto:?subject={{ subject|url_encode }}&body={{ body|url_encode }}">
