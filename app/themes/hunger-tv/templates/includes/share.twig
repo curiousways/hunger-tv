@@ -2,16 +2,32 @@
 {% set body = post.title ~ ' (' ~ post.link ~ ')' %}
 
 <ul class="social">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}">
+	<li><a
+			href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
 		{% include 'icons/facebook.svg' %}
 	</a></li>
-	<li><a href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}">
+	<li><a
+			href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
 		{% include 'icons/twitter.svg' %}
 	</a></li>
-	<li><a href="https://pinterest.com/pin/create/link/?url={{ post.link|url_encode }}&description={{ post.title|url_encode }}">
+	<li><a
+			href="https://pinterest.com/pin/create/link/?url={{ post.link|url_encode }}&description={{ post.title|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
 		{% include 'icons/pinterest.svg' %}
 	</a></li>
-	<li><a href="mailto:?subject={{ subject|url_encode }}&body={{ body|url_encode }}">
+	<li><a
+			href="mailto:?subject={{ subject|url_encode }}&body={{ body|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
 		{% include 'icons/email.svg' %}
 	</a></li>
 	<li><a href="">
