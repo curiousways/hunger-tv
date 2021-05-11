@@ -17,7 +17,8 @@
 		{% include 'icons/twitter.svg' %}
 	</a></li>
 	<li><a
-			href="https://pinterest.com/pin/create/link/?url={{ post.link|url_encode }}&description={{ post.title|url_encode }}"
+			{# Source: https://blog.hubspot.com/marketing/pinterest-custom-pin-it-url #}
+			href="https://www.pinterest.com/pin/create/button/?url={{ post.link|url_encode }}&media={{ post.hero_image ? post.hero_image.src|url_encode : post.thumbnail.src|url_encode }}&description={{ post.title|url_encode }}"
 			target="_blank"
 			rel="noopener"
 		>
@@ -30,7 +31,7 @@
 		>
 		{% include 'icons/email.svg' %}
 	</a></li>
-	<li><a href="">
+	<li><a>
 		{% include 'icons/link.svg' %}
 	</a></li>
 </ul>
