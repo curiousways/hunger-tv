@@ -39,7 +39,7 @@
                     "key": "5b239d821976b",
                     "name": "paragraphs",
                     "label": "Paragraphs",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b239d9a79863",
@@ -68,7 +68,7 @@
                     "key": "5b23a20628da5",
                     "name": "youtube_video",
                     "label": "YouTube Video",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a26e28de5",
@@ -76,7 +76,7 @@
                             "name": "youtube_video",
                             "type": "oembed",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -92,7 +92,7 @@
                             "name": "youtube_display_options",
                             "type": "select",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -103,12 +103,12 @@
                                 "inline": "Inline",
                                 "full-width": "Full Width"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
-                            "ajax": 0,
                             "return_format": "value",
+                            "ajax": 0,
                             "placeholder": ""
                         }
                     ],
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620735674
+    "modified": 1620735841
 }
