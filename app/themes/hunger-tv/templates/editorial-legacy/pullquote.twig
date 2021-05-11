@@ -15,7 +15,7 @@
 					{% set quote = quote|length > 140 ? quote|slice(0, 137) ~ '...' : quote %}
 
 					<a
-						href="https://twitter.com/intent/tweet?text={{ quote|url_encode }}&url={{ post.link|url_encode }}&via={{ options.twitter ? options.twitter }}"
+						href="https://twitter.com/intent/tweet?text={{ quote|url_encode }}&url={{ post.link|url_encode }}&via={{ options.twitter }}"
 						target="_blank"
 					>Retweet this quote</a>
 
