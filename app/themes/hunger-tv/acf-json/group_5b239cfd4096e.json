@@ -234,7 +234,7 @@
                             "name": "call_to_action",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620736362
+    "modified": 1620737483
 }
