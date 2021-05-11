@@ -156,7 +156,7 @@
                             "name": "image",
                             "type": "image",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -173,6 +173,31 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_5b23a37260baf",
+                            "label": "Image Display Options",
+                            "name": "image_display_options",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "inline": "Inline",
+                                "full-bleed": "Full Bleed"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         },
                         {
                             "key": "field_5b23a36660bae",
@@ -192,31 +217,6 @@
                             "prepend": "",
                             "append": "",
                             "maxlength": ""
-                        },
-                        {
-                            "key": "field_5b23a37260baf",
-                            "label": "Image Display Options",
-                            "name": "image_display_options",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "inline": "Inline",
-                                "full-bleed": "Full Bleed"
-                            },
-                            "default_value": [],
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "return_format": "value",
-                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620736265
+    "modified": 1620736362
 }
