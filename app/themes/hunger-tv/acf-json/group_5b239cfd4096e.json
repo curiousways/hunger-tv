@@ -127,7 +127,7 @@
                             "name": "spotify_audio",
                             "type": "text",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620736043
+    "modified": 1620736265
 }
