@@ -1,9 +1,11 @@
 <p><mark>subheader.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			<h2>{{ item.subheader }}</h2>
+{% if item.subheader %}
+	<section>
+		<div class="row">
+			<div class="col">
+				<h2>{{ item.subheader }}</h2>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}

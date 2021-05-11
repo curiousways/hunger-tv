@@ -442,7 +442,7 @@
                             "name": "freeform_html",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -451,8 +451,8 @@
                             },
                             "default_value": "",
                             "tabs": "text",
-                            "toolbar": "full",
                             "media_upload": 1,
+                            "toolbar": "full",
                             "delay": 0
                         }
                     ],
@@ -471,7 +471,7 @@
                             "name": "subheader",
                             "type": "text",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -500,7 +500,7 @@
                             "name": "ad_unit",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -700,5 +700,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620753278
+    "modified": 1620753547
 }
