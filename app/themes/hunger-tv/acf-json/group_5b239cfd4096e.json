@@ -119,7 +119,7 @@
                     "key": "5b23a23028dbc",
                     "name": "spotify_audio",
                     "label": "Spotify Audio",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a23128dc0",
@@ -148,7 +148,7 @@
                     "key": "5b23a23e28dd2",
                     "name": "image",
                     "label": "Image",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a35460bad",
@@ -226,7 +226,7 @@
                     "key": "5b23a34760b9b",
                     "name": "call_to_action",
                     "label": "Call To Action",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a34760ba0",
@@ -255,7 +255,7 @@
                     "key": "5b23a976ba35c",
                     "name": "pullquote",
                     "label": "Pullquote",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a9f8ba377",
@@ -334,7 +334,7 @@
                     "key": "5b23a994ba36a",
                     "name": "tweet_embed",
                     "label": "Tweet Embed",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a994ba370",
@@ -363,7 +363,7 @@
                     "key": "5b23aa9aba37b",
                     "name": "instagram_embed",
                     "label": "Instagram Embed",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23aa9bba37d",
@@ -389,7 +389,7 @@
                     "key": "5b23aab8ba383",
                     "name": "button",
                     "label": "Button",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23aae2ba390",
@@ -437,7 +437,7 @@
                     "key": "5b23ab0aba392",
                     "name": "freeform_html",
                     "label": "Freeform HTML",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23ab0aba394",
@@ -466,7 +466,7 @@
                     "key": "5b2b91c648bbe",
                     "name": "subheader",
                     "label": "Subheader",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b2b91d248bbf",
@@ -495,7 +495,7 @@
                     "key": "5b2b925076822",
                     "name": "ad_unit",
                     "label": "Ad unit",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b2b926c76823",
@@ -524,7 +524,7 @@
                     "key": "5b5315e5fec3b",
                     "name": "gallery",
                     "label": "Gallery",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b531610fec3c",
@@ -558,7 +558,7 @@
                     "max": ""
                 }
             },
-            "button_label": "Add Row",
+            "button_label": "Add layout",
             "min": "",
             "max": ""
         },
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620735841
+    "modified": 1620736043
 }
