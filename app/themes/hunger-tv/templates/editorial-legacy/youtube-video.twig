@@ -1,6 +1,6 @@
 <p><mark>youtube-video.twig</mark></p>
 
-{% if item.youtube_display_options == 'inline' %}
+{% if item.youtube_video and item.youtube_display_options == 'inline' %}
 
 	<section>
 		<div class="row">
@@ -12,7 +12,7 @@
 		</div>
 	</section>
 
-{% else %}
+{% elseif item.youtube_video %}
 
 	<div class="embed">
 		{{ item.youtube_video }}
