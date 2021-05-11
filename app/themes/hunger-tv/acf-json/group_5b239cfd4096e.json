@@ -392,6 +392,22 @@
                     "display": "row",
                     "sub_fields": [
                         {
+                            "key": "field_5b23aae9ba391",
+                            "label": "Button Link",
+                            "name": "button_link",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_5b23aae2ba390",
                             "label": "Button Text",
                             "name": "button_text",
@@ -405,26 +421,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5b23aae9ba391",
-                            "label": "Button Link",
-                            "name": "button_link",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
+                            "placeholder": "Read more",
                             "prepend": "",
                             "append": "",
                             "maxlength": ""
@@ -703,5 +700,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620752078
+    "modified": 1620753278
 }
