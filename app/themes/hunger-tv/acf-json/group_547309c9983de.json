@@ -85,7 +85,7 @@
         },
         {
             "key": "field_547309d970848",
-            "label": "Feature",
+            "label": "Feature Builder",
             "name": "feature",
             "type": "flexible_content",
             "instructions": "",
@@ -96,11 +96,8 @@
                 "class": "",
                 "id": ""
             },
-            "button_label": "Add Paragraph",
-            "min": 1,
-            "max": "",
-            "layouts": [
-                {
+            "layouts": {
+                "547309e2b1a4d": {
                     "key": "547309e2b1a4d",
                     "name": "copy",
                     "label": "Copy",
@@ -112,7 +109,7 @@
                             "name": "copy",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -129,7 +126,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731bd813316": {
                     "key": "54731bd813316",
                     "name": "image",
                     "label": "Image",
@@ -141,7 +138,7 @@
                             "name": "image",
                             "type": "image",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -149,14 +146,14 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "preview_size": "tiny",
+                            "preview_size": "thumbnail",
                             "library": "uploadedTo",
-                            "min_width": 0,
-                            "min_height": 0,
-                            "min_size": 0,
-                            "max_width": 0,
-                            "max_height": 0,
-                            "max_size": 0,
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
                             "mime_types": ""
                         },
                         {
@@ -184,7 +181,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731cb31331c": {
                     "key": "54731cb31331c",
                     "name": "gallery",
                     "label": "Gallery",
@@ -242,7 +239,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731db813322": {
                     "key": "54731db813322",
                     "name": "video",
                     "label": "Video",
@@ -332,7 +329,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731c1313318": {
                     "key": "54731c1313318",
                     "name": "question_and_answer",
                     "label": "Question and Answer",
@@ -382,7 +379,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731d1913320": {
                     "key": "54731d1913320",
                     "name": "embed_code",
                     "label": "Embed Code",
@@ -469,7 +466,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "54731cf11331e": {
                     "key": "54731cf11331e",
                     "name": "quote",
                     "label": "Quote",
@@ -500,7 +497,10 @@
                     "min": "",
                     "max": ""
                 }
-            ]
+            },
+            "button_label": "Add layout",
+            "min": 1,
+            "max": ""
         }
     ],
     "location": [
@@ -530,5 +530,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620755150
+    "modified": 1620755352
 }
