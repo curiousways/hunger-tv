@@ -11,12 +11,12 @@
 ## Development
 
 ```sh
-$ yarn build:dev
+$ yarn setup:dev
 $ yarn watch
 ```
 
 ## Production
 
 ```sh
-$ yarn build:production
+$ yarn setup:production
 ```
