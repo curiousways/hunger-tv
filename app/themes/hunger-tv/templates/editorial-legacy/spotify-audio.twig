@@ -1,9 +1,11 @@
 <p><mark>spotify-audio.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			{{ item.spotify_audio }}
+{% if item.spotify_audio %}
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ item.spotify_audio }}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}

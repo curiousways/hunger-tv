@@ -1,23 +1,25 @@
 <p><mark>gallery.twig</mark></p>
 
-<section>
-	<div class="carousel carousel--full">
+{% if item.image %}
+	<section>
+		<div class="carousel carousel--full">
 
-		<div class="carousel__tray">
-			{% for image in item.image %}
-				<div>
-					{% include 'includes/image.twig' %}
-					<p>{{ Image(image).caption }}</p>
-				</div>
-			{% endfor %}
+			<div class="carousel__tray">
+				{% for image in item.image %}
+					<div>
+						{% include 'includes/image.twig' %}
+						<p>{{ Image(image).caption }}</p>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
+
+			<button
+				class="carousel__control carousel__control--next"
+				aria-label="Next item"
+			>{% include 'icons/arrow.svg' %}</button>
+
 		</div>
-
-		<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
-
-		<button
-			class="carousel__control carousel__control--next"
-			aria-label="Next item"
-		>{% include 'icons/arrow.svg' %}</button>
-
-	</div>
-</section>
+	</section>
+{% endif %}

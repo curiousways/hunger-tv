@@ -1,0 +1,100 @@
+{
+    "key": "group_609a9e8a90129",
+    "title": "Social",
+    "fields": [
+        {
+            "key": "field_609a9eefe6d55",
+            "label": "Instagram",
+            "name": "instagram",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "hungermagazine",
+            "placeholder": "",
+            "prepend": "https:\/\/www.instagram.com\/",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_609a9f56e6d56",
+            "label": "Facebook",
+            "name": "facebook",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hungertv",
+            "placeholder": "",
+            "prepend": "https:\/\/www.facebook.com\/",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_609a9e8ee6d54",
+            "label": "Twitter",
+            "name": "twitter",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "HungerMagazine",
+            "placeholder": "",
+            "prepend": "https:\/\/twitter.com\/",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_609a9fd8e6d57",
+            "label": "Pinterest",
+            "name": "pinterest",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "hungermagazine",
+            "placeholder": "",
+            "prepend": "https:\/\/www.pinterest.co.uk\/",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1620749433
+}

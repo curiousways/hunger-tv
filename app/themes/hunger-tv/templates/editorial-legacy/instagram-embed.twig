@@ -1,9 +1,11 @@
 <p><mark>instagram-embed.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			{{ item.instagram_embed }}
+{% if item.instagram_embed %}
+	<section>
+		<div class="row">
+			<div class="col">
+				{{ item.instagram_embed }}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}
