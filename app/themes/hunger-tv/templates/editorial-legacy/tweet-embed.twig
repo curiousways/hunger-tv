@@ -1,16 +1,34 @@
 <p><mark>tweet-embed.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			<blockquote
-				class="twitter-tweet"
-				data-lang="en"
-			>
-				<a href="{{ item.tweet_embed }}"></a>
-			</blockquote>
+{% if item.tweet_embed %}
+	<section>
+		<div class="row">
+			<div class="col">
+				<blockquote
+					class="twitter-tweet"
+					data-lang="en"
+				>
+					<a href="{{ item.tweet_embed }}"></a>
+				</blockquote>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<script async src="//platform.twitter.com/widgets.js"></script>
+	{# Source: https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/set-up-twitter-for-websites #}
+	<script>window.twttr = (function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0],
+	    t = window.twttr || {};
+	  if (d.getElementById(id)) return t;
+	  js = d.createElement(s);
+	  js.id = id;
+	  js.src = "https://platform.twitter.com/widgets.js";
+	  fjs.parentNode.insertBefore(js, fjs);
+
+	  t._e = [];
+	  t.ready = function(f) {
+	    t._e.push(f);
+	  };
+
+	  return t;
+	}(document, "script", "twitter-wjs"));</script>
+{% endif %}

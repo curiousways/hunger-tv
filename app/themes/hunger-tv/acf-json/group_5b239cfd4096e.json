@@ -342,7 +342,7 @@
                             "name": "tweet_embed",
                             "type": "text",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620745746
+    "modified": 1620749646
 }
