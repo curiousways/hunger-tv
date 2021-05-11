@@ -204,35 +204,33 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_54731cb91331d",
-                            "label": "Image",
+                            "label": "Images",
                             "name": "gallery",
                             "type": "gallery",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "insert": "append",
+                            "library": "uploadedTo",
                             "min": "",
                             "max": "",
-                            "preview_size": "tiny",
-                            "library": "uploadedTo",
-                            "return_format": "array",
-                            "insert": "append",
-                            "min_width": 0,
-                            "min_height": 0,
-                            "min_size": 0,
-                            "max_width": 0,
-                            "max_height": 0,
-                            "max_size": 0,
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
                             "mime_types": ""
                         }
                     ],
@@ -530,5 +528,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620755352
+    "modified": 1620755493
 }
