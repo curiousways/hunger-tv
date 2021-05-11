@@ -1,1 +1,37 @@
-<p><mark>share.twig</mark></p>
+{% set subject = 'I thought you might be interested in this article on the ' ~ site.title ~ ' website' %}
+{% set body = post.title ~ ' (' ~ post.link ~ ')' %}
+
+<ul class="social">
+	<li><a
+			href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
+		{% include 'icons/facebook.svg' %}
+	</a></li>
+	<li><a
+			href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
+		{% include 'icons/twitter.svg' %}
+	</a></li>
+	<li><a
+			{# Source: https://blog.hubspot.com/marketing/pinterest-custom-pin-it-url #}
+			href="https://www.pinterest.com/pin/create/button/?url={{ post.link|url_encode }}&media={{ post.hero_image ? post.hero_image.src|url_encode : post.thumbnail.src|url_encode }}&description={{ post.title|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
+		{% include 'icons/pinterest.svg' %}
+	</a></li>
+	<li><a
+			href="mailto:?subject={{ subject|url_encode }}&body={{ body|url_encode }}"
+			target="_blank"
+			rel="noopener"
+		>
+		{% include 'icons/email.svg' %}
+	</a></li>
+	<li><a>
+		{% include 'icons/link.svg' %}
+	</a></li>
+</ul>
