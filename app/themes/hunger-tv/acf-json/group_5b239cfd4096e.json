@@ -92,7 +92,7 @@
                             "name": "youtube_display_options",
                             "type": "select",
                             "instructions": "",
-                            "required": 1,
+                            "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -180,7 +180,7 @@
                             "name": "image_display_options",
                             "type": "select",
                             "instructions": "",
-                            "required": 1,
+                            "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -263,7 +263,7 @@
                             "name": "pullquote",
                             "type": "text",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -293,12 +293,12 @@
                                 "yes": "Yes",
                                 "no": "No"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
-                            "ajax": 0,
                             "return_format": "value",
+                            "ajax": 0,
                             "placeholder": ""
                         },
                         {
@@ -318,12 +318,12 @@
                                 "full-width": "Full Width",
                                 "right-col": "Right Column"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
-                            "ajax": 0,
                             "return_format": "value",
+                            "ajax": 0,
                             "placeholder": ""
                         }
                     ],
@@ -703,5 +703,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620737483
+    "modified": 1620745746
 }
