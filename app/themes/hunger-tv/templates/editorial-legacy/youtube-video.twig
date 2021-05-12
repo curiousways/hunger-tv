@@ -5,17 +5,13 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				<div class="embed">
-					{{ item.youtube_video }}
-				</div>
+				{% include 'includes/embed.twig' with { embed: item.youtube_video } %}
 			</div>
 		</div>
 	</section>
 
 {% elseif item.youtube_video %}
 
-	<div class="embed">
-		{{ item.youtube_video }}
-	</div>
+	{% include 'includes/embed.twig' with { embed: item.youtube_video } %}
 
 {% endif %}
