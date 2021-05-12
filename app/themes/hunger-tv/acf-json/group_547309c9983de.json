@@ -189,11 +189,11 @@
                     "sub_fields": [
                         {
                             "key": "field_54735436d265f",
-                            "label": "Name",
+                            "label": "Title",
                             "name": "name",
                             "type": "text",
                             "instructions": "",
-                            "required": 1,
+                            "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -528,5 +528,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620755493
+    "modified": 1620827806
 }
