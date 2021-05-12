@@ -1,14 +1,14 @@
 <p><mark>embed-code.twig</mark></p>
 
-{% if item.embed_type %}
+{% if item.embed_oembed or item.embed_code %}
 	<section>
 		<div class="row">
 			<div class="col">
-				{% if item.embed_type == 'oEmbed' %}
+				{% if item.embed_type == 'oEmbed' and item.embed_oembed %}
 					<div class="embed">
 						{{ item.embed_oembed }}
 					</div>
-				{% elseif item.embed_type == 'embed' %}
+				{% elseif item.embed_type == 'embed' and item.embed_code %}
 					{{ item.embed_code }}
 				{% endif %}
 			</div>
