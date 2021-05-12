@@ -1,12 +1,16 @@
 <p><mark>question-and-answer.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			<details>
-				<summary>{{ item.question|striptags }}</summary>
-				{{ item.answer }}
-			</details>
+{% if item.question or item.answer %}
+	<section>
+		<div class="row">
+			<div class="col">
+				<details>
+					{% if item.question %}
+						<summary>{{ item.question|striptags }}</summary>
+					{% endif %}
+					{{ item.answer ? item.answer }}
+				</details>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}

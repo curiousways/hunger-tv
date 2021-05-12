@@ -339,7 +339,7 @@
                             "name": "question",
                             "type": "textarea",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -349,10 +349,8 @@
                             "default_value": "",
                             "placeholder": "",
                             "maxlength": "",
-                            "rows": "",
-                            "new_lines": "wpautop",
-                            "readonly": 0,
-                            "disabled": 0
+                            "rows": 4,
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_54731c6f1331b",
@@ -360,7 +358,7 @@
                             "name": "answer",
                             "type": "wysiwyg",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -528,5 +526,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620828491
+    "modified": 1620828567
 }
