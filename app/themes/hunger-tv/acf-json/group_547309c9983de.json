@@ -126,6 +126,83 @@
                     "min": "",
                     "max": ""
                 },
+                "54731c1313318": {
+                    "key": "54731c1313318",
+                    "name": "question_and_answer",
+                    "label": "Question and Answer",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54731c3f1331a",
+                            "label": "Question",
+                            "name": "question",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": 4,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "field_54731c6f1331b",
+                            "label": "Answer",
+                            "name": "answer",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "54731cf11331e": {
+                    "key": "54731cf11331e",
+                    "name": "quote",
+                    "label": "Quote",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54731cf71331f",
+                            "label": "Quote",
+                            "name": "quote",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": 250,
+                            "rows": 4,
+                            "new_lines": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "54731bd813316": {
                     "key": "54731bd813316",
                     "name": "image",
@@ -327,54 +404,6 @@
                     "min": "",
                     "max": ""
                 },
-                "54731c1313318": {
-                    "key": "54731c1313318",
-                    "name": "question_and_answer",
-                    "label": "Question and Answer",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_54731c3f1331a",
-                            "label": "Question",
-                            "name": "question",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": 4,
-                            "new_lines": "wpautop"
-                        },
-                        {
-                            "key": "field_54731c6f1331b",
-                            "label": "Answer",
-                            "name": "answer",
-                            "type": "wysiwyg",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "basic",
-                            "media_upload": 0,
-                            "delay": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
                 "54731d1913320": {
                     "key": "54731d1913320",
                     "name": "embed_code",
@@ -459,39 +488,10 @@
                     ],
                     "min": "",
                     "max": ""
-                },
-                "54731cf11331e": {
-                    "key": "54731cf11331e",
-                    "name": "quote",
-                    "label": "Quote",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_54731cf71331f",
-                            "label": "Quote",
-                            "name": "quote",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": 250,
-                            "rows": 4,
-                            "new_lines": ""
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
                 }
             },
             "button_label": "Add layout",
-            "min": 1,
+            "min": "",
             "max": ""
         }
     ],
@@ -515,12 +515,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "the_content",
-        "format",
-        "page_attributes",
-        "send-trackbacks"
+        "the_content"
     ],
     "active": true,
     "description": "",
-    "modified": 1620829795
+    "modified": 1620830009
 }
