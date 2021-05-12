@@ -1,6 +1,6 @@
 {
     "key": "group_547309c9983de",
-    "title": "Article\/Feature 3.0",
+    "title": "Feature 3.0",
     "fields": [
         {
             "key": "field_5475ba8893b08",
@@ -519,5 +519,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620830009
+    "modified": 1620831860
 }

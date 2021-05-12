@@ -1,6 +1,6 @@
 {
     "key": "group_54730bfd51a3b",
-    "title": "Article\/Feature 2.0",
+    "title": "Feature 2.0",
     "fields": [
         {
             "key": "field_3",
@@ -78,13 +78,13 @@
             }
         ]
     ],
-    "menu_order": -11,
+    "menu_order": 0,
     "position": "normal",
     "style": "default",
-    "label_placement": "top",
+    "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620144260
+    "modified": 1620832899
 }

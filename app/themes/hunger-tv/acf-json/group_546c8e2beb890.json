@@ -1,6 +1,6 @@
 {
     "key": "group_546c8e2beb890",
-    "title": "Article\/Feature All",
+    "title": "Feature (All)",
     "fields": [
         {
             "key": "field_5984aaeb3c4fb",
@@ -256,16 +256,15 @@
             }
         ]
     ],
-    "menu_order": -5,
+    "menu_order": 1,
     "position": "normal",
     "style": "default",
-    "label_placement": "top",
+    "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "custom_fields",
-        "author"
+        "the_content"
     ],
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1532434091
+    "modified": 1620832008
 }
