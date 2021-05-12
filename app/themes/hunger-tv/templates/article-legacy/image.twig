@@ -1,10 +1,12 @@
 <p><mark>image.twig</mark></p>
 
-<section>
-	<div class="row">
-		<div class="col">
-			{% include 'includes/image.twig' %}
-			<p>{{ item.caption }}</p>
+{% if item.image %}
+	<section>
+		<div class="row">
+			<div class="col">
+				{% include 'includes/image.twig' %}
+				{{ item.caption ? item.caption|wpautop }}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}
