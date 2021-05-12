@@ -472,7 +472,7 @@
                             "name": "quote",
                             "type": "textarea",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -482,10 +482,8 @@
                             "default_value": "",
                             "placeholder": "",
                             "maxlength": 250,
-                            "rows": "",
-                            "new_lines": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "rows": 4,
+                            "new_lines": ""
                         }
                     ],
                     "min": "",
@@ -524,5 +522,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620829713
+    "modified": 1620829795
 }
