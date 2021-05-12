@@ -273,7 +273,7 @@
                             "name": "embed_url",
                             "type": "oembed",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": [
                                 [
                                     {
@@ -528,5 +528,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620827806
+    "modified": 1620828491
 }
