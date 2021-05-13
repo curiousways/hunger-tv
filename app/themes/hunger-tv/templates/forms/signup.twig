@@ -1,11 +1,12 @@
-<p><mark>signup.twig</mark></p>
-
-<form action="">
+<form
+	action=""
+	method="post"
+>
 
 	<div class="input">
 		<input
 			type="text"
-			name="NAME"
+			name="FNAME"
 			placeholder="Name*"
 			aria-label="Name"
 			required
@@ -22,7 +23,16 @@
 		/>
 	</div>
 
-	consent
+	<div>
+		<input
+			type="checkbox"
+			id="permission"
+			name="gdpr[]"
+			value="Y"
+			required
+		/>
+		<label for="permission">I consent to joining the Hunger mailing list. <a>Read more</a></label>
+	</div>
 
 	<button
 		type="submit"
