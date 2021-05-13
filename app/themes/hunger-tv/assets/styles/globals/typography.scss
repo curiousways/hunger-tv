@@ -20,3 +20,35 @@ p {
 		margin-bottom: 0;
 	}
 }
+
+.omega {
+	@include type($omega, 11);
+}
+
+h1 {
+	@include type($alpha, 8);
+}
+
+h2 {
+	@include type($beta, 7);
+}
+
+h3 {
+	@include type($gamma, 6);
+}
+
+h4 {
+	@include type($delta, 5);
+}
+
+h5 {
+	@include type($epsilon, 5);
+}
+
+h6 {
+	@include type($zeta);
+}
+
+.iota {
+	@include type($iota, 3);
+}
