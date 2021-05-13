@@ -12,6 +12,12 @@
 	}
 }
 
+@mixin type($size, $rhythm: 4) {
+	font-size: $size * 1px;
+	font-size: ($size / $font-size) * 1rem;
+	line-height: rhythm($rhythm);
+}
+
 // Usage: @include link($primary, $secondary, true);
 @mixin link($color: inherit, $hover-color: $primary, $underline: false) {
 	@if $color {

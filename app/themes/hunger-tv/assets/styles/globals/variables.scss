@@ -19,7 +19,19 @@ $drawer-width-closed: 18;
 
 // Typography
 $font-size: 16;
-$line-height: 22;
+$line-height: 24; // The result of this when divided by 4 should be a whole numnber
+$body-font: "National", system-ui, sans-serif;
+$headings-font: $body-font;
+
+$omega: 60;
+$alpha: 42;
+$beta: 32;
+$gamma: 28;
+$delta: 22;
+$epsilon: 20;
+$zeta: 18;
+$eta: 16;
+$iota: 14;
 
 // Transitions
 $anim-curve: cubic-bezier(0.4, 0, 0.2, 1);

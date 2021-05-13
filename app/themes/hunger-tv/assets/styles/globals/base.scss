@@ -5,7 +5,15 @@
 }
 
 html {
-	font-family: system-ui, sans-serif;
+	font-family: $body-font;
+	font-size: $font-size + px;
+	line-height: $line-height / $font-size;
+	overflow-x: hidden;
+
+	// Source: https://medium.com/@MateMarschalko/improving-font-rendering-with-css-3383fc358cbc
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: antialiased;
 }
 
 body {

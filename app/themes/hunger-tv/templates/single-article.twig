@@ -15,15 +15,15 @@
 		{% include 'includes/single-header.twig' %}
 
 		{% if post.id > constant('HTV_LAST_V3_POST_ID') %}
-			{# HTV 4.0 Article #}
+			{# Feature 4.0 #}
 			{% include 'includes/article-builder.twig' %}
 		{% elseif post.id > constant('HTV_LAST_V2_POST_ID') and post.id <= constant('HTV_LAST_V3_POST_ID') %}
-			{# HTV 3.0 Article #}
+			{# Feature 3.0 #}
 			{% for item in post.meta('feature') %}
 				{% include 'article-legacy/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 			{% endfor %}
 		{% else %}
-			{# HTV 2.0 Article #}
+			{# Feature 2.0 #}
 			<section>
 				{% if post.embed_code %}
 					<div class="row">
