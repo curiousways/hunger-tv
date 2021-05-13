@@ -9,7 +9,7 @@
 
 .col {
 	width: 100%;
-	padding: rhythm(2);
+	padding: rhythm() $gutter-width/2;
 
 	&.half {
 		width: percentage(1/2);
