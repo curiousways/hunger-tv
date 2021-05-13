@@ -1,5 +1,13 @@
 // Input
 
+input[type="checkbox"] {
+	cursor: pointer;
+}
+
+label {
+	cursor: pointer;
+}
+
 .input {
 	position: relative;
 	border-bottom: $button-border-width solid $black;

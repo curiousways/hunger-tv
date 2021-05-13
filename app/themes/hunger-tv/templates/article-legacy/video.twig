@@ -5,9 +5,7 @@
 		<div class="row">
 			<div class="col">
 				{% if item.type == 'embed' %}
-					<div class="embed">
-						{{ item.embed_url }}
-					</div>
+					{% include 'includes/embed.twig' with { embed: item.embed_url } %}
 				{% else %}
 					{# HTV Player (legacy, no idea what it's meant to do) #}
 					{% include 'includes/image.twig' with { image: item.poster } %}
