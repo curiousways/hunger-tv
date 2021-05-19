@@ -9,6 +9,14 @@
 	font-weight: bold;
 }
 
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
 .rhythm {
 	background-image: linear-gradient(to bottom, cyan 0, transparent 1px),
 		linear-gradient(to bottom, lightgrey 0, transparent 1px);

@@ -6,9 +6,11 @@
 		<div class="row">
 			<div class="col">
 				<h1>{{ post.title }}</h1>
-				<div class="rte">
-					{{ post.content }}
-				</div>
+				{% if post.content %}
+					<div class="rte">
+						{{ post.content }}
+					</div>
+				{% endif %}
 			</div>
 		</div>
 	</section>

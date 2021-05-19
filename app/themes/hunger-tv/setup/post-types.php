@@ -40,6 +40,17 @@ register_post_type('issue', [
 	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
 ]);
 
+register_post_type('team_member', [
+	'labels' => [
+		'name' => __('Team'),
+		'singular_name' => __('Team Member')
+	],
+	'public' => true,
+	'publicly_queryable' => false,
+	'menu_icon' => 'dashicons-groups',
+	'supports' => ['revisions', 'thumbnail', 'title']
+]);
+
 // Taxonomies
 
 register_taxonomy('section', ['article', 'editorial'], [
@@ -50,4 +61,12 @@ register_taxonomy('section', ['article', 'editorial'], [
 		'hierarchical' => false,
 		'with_front' => false
 	]
+]);
+
+register_taxonomy('department', 'team_member', [
+	'labels' => [
+		'name' => __('Department')
+	],
+	'publicly_queryable' => true,
+	'hierarchical' => true
 ]);

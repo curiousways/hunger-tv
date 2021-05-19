@@ -5,6 +5,7 @@
 define('HTV_LAST_V2_POST_ID', 86950);
 define('HTV_LAST_V3_POST_ID', 228985);
 
+// Handle legacy field groups
 require __DIR__ . '/../hungertv-custom/hungertv-custom-article-acf-location-rule.php';
 
 // Source: hunger-tv-legacy theme
@@ -25,3 +26,7 @@ function hungertv_parse_credits($credits, $wrap_in_aside="true") {
 
   }
 }
+
+// Fix page 404s
+// Source: hungertv-custom/hungertv-add-custom-post-types.php
+$wp_rewrite->page_structure = 'pages/%pagename%';
