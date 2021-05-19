@@ -25,3 +25,7 @@ function hungertv_parse_credits($credits, $wrap_in_aside="true") {
 
   }
 }
+
+// Fix page 404s
+// Source: hungertv-custom/hungertv-add-custom-post-types.php
+$wp_rewrite->page_structure = 'pages/%pagename%';
