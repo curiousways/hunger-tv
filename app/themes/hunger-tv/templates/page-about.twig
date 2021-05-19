@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col">
 					<h2>{{ department.name }}</h2>
-					{% for member in department.posts %}
+					{% for member in department.posts('orderby=menu_order&order=ASC') %}
 						<h3>{{ member.title }}</h3>
 					{% endfor %}
 				</div>
