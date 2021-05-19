@@ -174,6 +174,11 @@ class StarterSite extends Timber\Site {
 		$context['footer_navigation'] = new Timber\Menu('footer-navigation');
 		$context['options'] = get_fields('option');
 
+		$context['departments'] = Timber::get_terms('department', [
+			'orderby' => 'name',
+			'hide_empty' => true
+		]);
+
 		return $context;
 	}
 
