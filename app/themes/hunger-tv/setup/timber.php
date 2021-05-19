@@ -144,6 +144,16 @@ class StarterSite extends Timber\Site {
 
 		// Source: https://codex.wordpress.org/Links_Manager
 		update_option('link_manager_enabled', 0);
+
+		// Custom title placeholder
+		// Source: https://www.wpbeginner.com/wp-tutorials/how-to-replace-enter-title-here-text-in-wordpress/
+		function _mghd_cpt_title_placeholder($title){
+			if (get_post_type() == 'team_member') {
+				$title = 'Name';
+			}
+			return $title;
+		}
+		add_filter('enter_title_here', '_mghd_cpt_title_placeholder');
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
