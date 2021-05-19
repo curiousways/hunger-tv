@@ -46,9 +46,9 @@ register_post_type('team_member', [
 		'singular_name' => __('Team Member')
 	],
 	'public' => true,
-	'publicly_queryable' => true,
+	'publicly_queryable' => false,
 	'menu_icon' => 'dashicons-groups',
-	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
+	'supports' => ['revisions', 'thumbnail', 'title']
 ]);
 
 // Taxonomies
@@ -61,4 +61,12 @@ register_taxonomy('section', ['article', 'editorial'], [
 		'hierarchical' => false,
 		'with_front' => false
 	]
+]);
+
+register_taxonomy('department', 'team_member', [
+	'labels' => [
+		'name' => __('Department')
+	],
+	'publicly_queryable' => true,
+	'hierarchical' => true
 ]);
