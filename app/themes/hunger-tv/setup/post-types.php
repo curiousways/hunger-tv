@@ -40,6 +40,17 @@ register_post_type('issue', [
 	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
 ]);
 
+register_post_type('team_member', [
+	'labels' => [
+		'name' => __('Team'),
+		'singular_name' => __('Team Member')
+	],
+	'public' => true,
+	'publicly_queryable' => true,
+	'menu_icon' => 'dashicons-groups',
+	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
+]);
+
 // Taxonomies
 
 register_taxonomy('section', ['article', 'editorial'], [
