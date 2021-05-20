@@ -4,6 +4,14 @@
 
 	<article>
 
+		<header>
+			<div class="row">
+				<div class="col half">
+					<a href="{{ fn('get_post_type_archive_link', 'issue') }}">Shop</a> - {{ post.buy_now_title ? post.buy_now_title : post.title }}
+				</div>
+			</div>
+		</header>
+
 		<section>
 			<div class="row">
 				<div class="col half">
