@@ -38,7 +38,8 @@ register_post_type('issue', [
 	'publicly_queryable' => true,
 	'has_archive' => true,
 	'menu_icon' => 'dashicons-book',
-	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
+	'supports' => ['title', 'editor', 'thumbnail', 'revisions'],
+	'rewrite' => ['slug' => 'shop']
 ]);
 
 register_post_type('team_member', [
