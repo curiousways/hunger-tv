@@ -36,6 +36,7 @@ register_post_type('issue', [
 	],
 	'public' => true,
 	'publicly_queryable' => true,
+	'has_archive' => true,
 	'menu_icon' => 'dashicons-book',
 	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
 ]);
