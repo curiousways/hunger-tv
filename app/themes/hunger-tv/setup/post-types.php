@@ -12,7 +12,7 @@ register_post_type('editorial', [
 	'public' => true,
 	'publicly_queryable' => true,
 	'menu_icon' => 'dashicons-media-document',
-	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions'],
+	'supports' => ['editor', 'revisions', 'thumbnail', 'title'],
 	'taxonomies' => ['section', 'post_tag']
 ]);
 
@@ -24,20 +24,22 @@ register_post_type('article', [
 	'public' => true,
 	'publicly_queryable' => true,
 	'menu_icon' => 'dashicons-images-alt2',
-	'supports' => ['title', 'editor', 'thumbnail', 'slug', 'revisions', 'comments', 'post-formats'],
+	'supports' => ['editor', 'revisions', 'thumbnail', 'title'],
 	'rewrite' => ['slug' => 'feature'],
 	'taxonomies' => ['section', 'post_tag']
 ]);
 
 register_post_type('issue', [
 	'labels' => [
-		'name' => __('Issues'),
+		'name' => __('Shop'),
 		'singular_name' => __('Issue')
 	],
 	'public' => true,
 	'publicly_queryable' => true,
+	'has_archive' => true,
 	'menu_icon' => 'dashicons-book',
-	'supports' => ['title', 'editor', 'thumbnail', 'revisions']
+	'supports' => ['editor', 'excerpt', 'revisions', 'thumbnail', 'title'],
+	'rewrite' => ['slug' => 'shop']
 ]);
 
 register_post_type('team_member', [

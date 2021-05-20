@@ -6,22 +6,26 @@
 
 		<header>
 			<div class="row">
-				<div class="col">
+				<div class="col half">
 					<h1>{{ post.title }}</h1>
 				</div>
-				<div class="col">
+				<div class="col half">
 					{% include 'includes/image.twig' with { image: post.thumbnail } %}
 				</div>
 			</div>
 		</header>
 
-		<section>
-			<div class="row">
-				<div class="col">
-					{{ post.content }}
+		{% if post.content %}
+			<section>
+				<div class="row">
+					<div class="col">
+						<div class="rte">
+							{{ post.content }}
+						</div>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		{% endif %}
 
 	</article>
 

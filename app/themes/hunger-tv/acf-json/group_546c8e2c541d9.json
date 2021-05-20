@@ -3,38 +3,11 @@
     "title": "Issue",
     "fields": [
         {
-            "key": "field_1",
-            "label": "Featured Features",
-            "name": "featured_features",
-            "type": "relationship",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "article"
-            ],
-            "taxonomy": [],
-            "max": 6,
-            "filters": [
-                "search",
-                "post_type",
-                "taxonomy"
-            ],
-            "elements": [],
-            "return_format": "object",
-            "min": 0
-        },
-        {
             "key": "field_58cac398c75b8",
-            "label": "Buy Now Title",
+            "label": "Breadcrumbs Title",
             "name": "buy_now_title",
             "type": "text",
-            "instructions": "E.g.: HUNGER ISSUE 12",
+            "instructions": "Falls back to the post title.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -43,16 +16,14 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
+            "placeholder": "HUNGER ISSUE ##",
             "prepend": "",
             "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
+            "maxlength": ""
         },
         {
             "key": "field_58cac385c75b7",
-            "label": "Buy Now URL",
+            "label": "Purchase Link",
             "name": "buy_now_url",
             "type": "url",
             "instructions": "",
@@ -65,30 +36,6 @@
             },
             "default_value": "",
             "placeholder": ""
-        },
-        {
-            "key": "field_58cac3bfc75b9",
-            "label": "Buy Now GIF",
-            "name": "buy_now_gif",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
         }
     ],
     "location": [
@@ -108,5 +55,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620833513
+    "modified": 1621512893
 }

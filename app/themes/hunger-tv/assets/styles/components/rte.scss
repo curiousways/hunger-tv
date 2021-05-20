@@ -1,0 +1,9 @@
+// Rich Text Editor
+
+.rte {
+	margin-bottom: rhythm();
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}

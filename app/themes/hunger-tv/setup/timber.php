@@ -179,6 +179,11 @@ class StarterSite extends Timber\Site {
 			'hide_empty' => true
 		]);
 
+		$context['latest_issue'] = Timber::get_posts([
+			'post_type' => 'issue',
+			'posts_per_page' => 1
+		]);
+
 		return $context;
 	}
 

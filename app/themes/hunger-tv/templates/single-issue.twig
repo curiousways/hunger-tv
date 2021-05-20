@@ -1,0 +1,59 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<article>
+
+		<header>
+			<div class="row">
+				<div class="col">
+					<a href="{{ fn('get_post_type_archive_link', 'issue') }}">Shop</a> - {{ post.buy_now_title ? post.buy_now_title : post.title }}
+				</div>
+			</div>
+			{% if post.post_excerpt %}
+				<div class="row">
+					<div class="col">
+						{{ post.post_excerpt|wpautop }}
+					</div>
+				</div>
+			{% endif %}
+		</header>
+
+		<section>
+			<div class="row">
+				<div class="col half">
+					{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				</div>
+				<div class="col half">
+					<h1>{{ post.title }}</h1>
+					{% if post.content %}
+						<div class="rte">
+							{{ post.content }}
+						</div>
+					{% endif %}
+					{% if post.buy_now_url %}
+						<a
+							href="{{ post.buy_now_url }}"
+							class="button"
+							target="_blank"
+							rel="noopener"
+						>
+							Purchase
+							{% include 'icons/external-link.svg' %}
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+		{% for issue in latest_issue %}
+			{% if issue.id != post.id %}
+				<section>
+					<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
+				</section>
+			{% endif %}
+		{% endfor %}
+
+	</article>
+
+{% endblock %}
