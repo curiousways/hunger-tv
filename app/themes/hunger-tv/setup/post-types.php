@@ -31,7 +31,7 @@ register_post_type('article', [
 
 register_post_type('issue', [
 	'labels' => [
-		'name' => __('Issues'),
+		'name' => __('Shop'),
 		'singular_name' => __('Issue')
 	],
 	'public' => true,
