@@ -6,10 +6,17 @@
 
 		<header>
 			<div class="row">
-				<div class="col half">
+				<div class="col">
 					<a href="{{ fn('get_post_type_archive_link', 'issue') }}">Shop</a> - {{ post.buy_now_title ? post.buy_now_title : post.title }}
 				</div>
 			</div>
+			{% if post.post_excerpt %}
+				<div class="row">
+					<div class="col">
+						{{ post.post_excerpt|wpautop }}
+					</div>
+				</div>
+			{% endif %}
 		</header>
 
 		<section>
