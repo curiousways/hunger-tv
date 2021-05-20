@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<article>
+
+		<section>
+			<div class="row">
+				<div class="col half">
+					{% include 'includes/image.twig' with { image: post.thumbnail } %}
+				</div>
+				<div class="col half">
+					<h1>{{ post.title }}</h1>
+					{% if post.content %}
+						<div class="rte">
+							{{ post.content }}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+	</article>
+
+{% endblock %}
