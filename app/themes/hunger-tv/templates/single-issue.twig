@@ -32,7 +32,10 @@
 						</div>
 					{% endif %}
 					{% if post.buy_now_url %}
-						<a href="{{ post.buy_now_url }}" class="button">Purchase</a>
+						<a href="{{ post.buy_now_url }}" class="button">
+							Purchase
+							{% include 'icons/external-link.svg' %}
+						</a>
 					{% endif %}
 				</div>
 			</div>
