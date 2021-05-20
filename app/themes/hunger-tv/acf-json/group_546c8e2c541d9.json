@@ -3,33 +3,6 @@
     "title": "Issue",
     "fields": [
         {
-            "key": "field_1",
-            "label": "Featured Features",
-            "name": "featured_features",
-            "type": "relationship",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "article"
-            ],
-            "taxonomy": [],
-            "max": 6,
-            "filters": [
-                "search",
-                "post_type",
-                "taxonomy"
-            ],
-            "elements": [],
-            "return_format": "object",
-            "min": 0
-        },
-        {
             "key": "field_58cac398c75b8",
             "label": "Buy Now Title",
             "name": "buy_now_title",
@@ -65,30 +38,6 @@
             },
             "default_value": "",
             "placeholder": ""
-        },
-        {
-            "key": "field_58cac3bfc75b9",
-            "label": "Buy Now GIF",
-            "name": "buy_now_gif",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
         }
     ],
     "location": [
@@ -108,5 +57,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620833513
+    "modified": 1621512646
 }
