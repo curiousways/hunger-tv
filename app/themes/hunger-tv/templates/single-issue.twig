@@ -33,7 +33,7 @@
 
 		<section>
 			{% for issue in latest_issue %}
-				<h2>{{ issue.title }} - Latest Magazine</h2>
+				<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
 			{% endfor %}
 		</section>
 
