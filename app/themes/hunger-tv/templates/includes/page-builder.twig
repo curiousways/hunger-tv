@@ -1,0 +1,3 @@
+{% for item in post.meta('sections') %}
+	{% include 'page-builder/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+{% endfor %}
