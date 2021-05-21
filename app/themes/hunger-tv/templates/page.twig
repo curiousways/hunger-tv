@@ -2,19 +2,7 @@
 
 {% block content %}
 
-	<section>
-		<div class="row">
-			<div class="col">
-				<h1>{{ post.title }}</h1>
-				{% if post.content %}
-					<div class="rte">
-						{{ post.content }}
-					</div>
-				{% endif %}
-			</div>
-		</div>
-	</section>
-
+	{% include 'includes/page-header.twig' %}
 	{% include 'includes/page-builder.twig' %}
 
 {% endblock %}
