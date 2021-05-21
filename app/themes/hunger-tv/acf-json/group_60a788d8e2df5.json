@@ -97,6 +97,32 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_60a7918aacc8f": {
+                    "key": "layout_60a7918aacc8f",
+                    "name": "oembed",
+                    "label": "oEmbed",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60a7918facc90",
+                            "label": "oEmbed",
+                            "name": "oembed",
+                            "type": "oembed",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "",
+                            "height": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -126,5 +152,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621594324
+    "modified": 1621595151
 }
