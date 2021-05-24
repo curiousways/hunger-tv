@@ -5,29 +5,33 @@
 	flex-flow: row wrap;
 	max-width: $grid-width;
 	transition: max-width 0.5s $anim-curve;
-
-	&.reverse {
-		flex-direction: row-reverse;
-	}
 }
 
 .col {
 	width: 100%;
 	padding: rhythm() $gutter-width/2;
+}
 
-	&.half {
-		width: percentage(1/2);
+@media (min-width: 768px) {
+	.row.reverse {
+		flex-direction: row-reverse;
 	}
 
-	&.third {
-		width: percentage(1/3);
-	}
+	.col {
+		&.half {
+			width: percentage(1/2);
+		}
 
-	&.lg\:1-3 {
-		width: percentage(1/3);
-	}
+		&.third {
+			width: percentage(1/3);
+		}
 
-	&.lg\:2-3 {
-		width: percentage(2/3);
+		&.lg\:1-3 {
+			width: percentage(1/3);
+		}
+
+		&.lg\:2-3 {
+			width: percentage(2/3);
+		}
 	}
 }
