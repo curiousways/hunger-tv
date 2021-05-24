@@ -100,10 +100,36 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_60ab99761c95a": {
+                    "key": "layout_60ab99761c95a",
+                    "name": "oembed",
+                    "label": "oEmbed",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab997b1c95b",
+                            "label": "oEmbed",
+                            "name": "oembed",
+                            "type": "oembed",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "",
+                            "height": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_60ab9383f8df0": {
                     "key": "layout_60ab9383f8df0",
-                    "name": "video",
-                    "label": "Video",
+                    "name": "looping_video",
+                    "label": "Looping Video",
                     "display": "row",
                     "sub_fields": [
                         {
@@ -135,7 +161,7 @@
                             "label": "Video",
                             "name": "video",
                             "type": "file",
-                            "instructions": "",
+                            "instructions": "This should be no longer than 20 seconds, at a resolution of 1920 x 1080 (FHD) and as small as possible (max 5MB).",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -146,7 +172,7 @@
                             "return_format": "array",
                             "library": "all",
                             "min_size": "",
-                            "max_size": 3,
+                            "max_size": 5,
                             "mime_types": ".mp4"
                         }
                     ],
@@ -178,5 +204,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1621857998
+    "modified": 1621858931
 }
