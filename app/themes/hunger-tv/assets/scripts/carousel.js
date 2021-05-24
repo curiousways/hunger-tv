@@ -8,6 +8,7 @@ jQuery(".carousel--full .carousel__tray").slick({
 	cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
 	touchThreshold: 10,
 	variableWidth: true,
+	centerMode: true,
 	responsive: [
 		{
 			breakpoint: 768,

@@ -13,12 +13,13 @@
 				{% endfor %}
 			</div>
 
-			<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
-
-			<button
-				class="carousel__control carousel__control--next"
-				aria-label="Next item"
-			>{% include 'icons/arrow.svg' %}</button>
+			<div class="center">
+				<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
+				<button
+					class="carousel__control carousel__control--next"
+					aria-label="Next item"
+				>{% include 'icons/arrow.svg' %}</button>
+			</div>
 
 		</div>
 	</section>
