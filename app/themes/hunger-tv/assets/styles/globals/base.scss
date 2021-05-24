@@ -39,6 +39,10 @@ main {
 
 section {
 	margin: rhythm(8) 0;
+
+	&[style*="background"] {
+		margin: 0;
+	}
 }
 
 img,
