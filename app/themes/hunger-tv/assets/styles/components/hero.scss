@@ -2,13 +2,26 @@
 
 .hero {
 	position: relative;
-	height: 630px;
-	overflow: hidden;
+	// height: 630px;
+	// overflow: hidden;
 }
 
-.hero__image {
+// .hero__image {
+// 	position: absolute;
+// 	width: 100%;
+// 	height: 100%;
+// 	object-fit: cover;
+// }
+
+.hero__logo {
+	color: white;
 	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
 	width: 100%;
-	height: 100%;
-	object-fit: cover;
+}
+
+.hero__logo svg {
+	min-height: rhythm(8);
+	height: calc(300px - calc(var(--scroll) * 1px));
 }
