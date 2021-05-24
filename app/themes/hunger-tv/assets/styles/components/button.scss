@@ -11,7 +11,7 @@ button {
 	color: $black;
 	background-color: transparent;
 	display: inline-block;
-	border: $button-border-width solid $black;
+	border: $button-border-width solid;
 	text-decoration: none;
 	text-align: center;
 	padding: rhythm(2) rhythm();
