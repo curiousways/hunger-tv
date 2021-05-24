@@ -49,14 +49,9 @@
 		</div>
 	</section>
 
-	<section>
-		<div class="row">
-			<div class="col">
-				<h2>Sign up to the Hunger weekly newsletter including the latest articles and news about events</h2>
-				{% include 'forms/signup.twig' %}
-			</div>
-		</div>
-	</section>
+	{% for item in post.meta('sections') %}
+		{% include 'home-builder/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
 
 	<p><mark>vertical rhythm</mark></p>
 
