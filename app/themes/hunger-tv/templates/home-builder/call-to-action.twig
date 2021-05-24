@@ -3,8 +3,17 @@
 	background-color: {{ item.background_colour }};
 ">
 	<div class="row">
-		<div class="col">
+		<div class="col center">
+
 			<h2>{{ item.title }}</h2>
+
+			<div class="rte">
+				{{ item.body }}
+			</div>
+
+			{% include 'includes/image.twig' %}
+			{% include 'includes/button.twig' %}
+
 		</div>
 	</div>
 </section>
