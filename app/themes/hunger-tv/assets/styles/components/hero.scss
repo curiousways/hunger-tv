@@ -1,10 +1,10 @@
 // Hero
 
-// .hero {
-// 	position: relative;
-// 	height: 630px;
-// 	overflow: hidden;
-// }
+.hero {
+	position: relative;
+	// height: 630px;
+	// overflow: hidden;
+}
 
 // .hero__image {
 // 	position: absolute;
@@ -12,3 +12,11 @@
 // 	height: 100%;
 // 	object-fit: cover;
 // }
+
+.hero__logo {
+	color: white;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+}
