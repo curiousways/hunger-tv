@@ -1,0 +1,227 @@
+{
+    "key": "group_60ab813dbfbfc",
+    "title": "Home Builder",
+    "fields": [
+        {
+            "key": "field_60ab83f61b2d0",
+            "label": "Sections",
+            "name": "sections",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_60ab841379ab6": {
+                    "key": "layout_60ab841379ab6",
+                    "name": "signup",
+                    "label": "Signup",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab89ce16c91",
+                            "label": "Colours",
+                            "name": "colours",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_60ab8568cecc8"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_60ab844f1b2d1",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Sign up to the Hunger weekly newsletter including the latest articles and news about events",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_60ab8ae67565c": {
+                    "key": "layout_60ab8ae67565c",
+                    "name": "featured_article",
+                    "label": "Featured Article",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab8b107565d",
+                            "label": "Image align",
+                            "name": "image_align",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "left": "Left",
+                                "right": "Right"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_60ab99761c95a": {
+                    "key": "layout_60ab99761c95a",
+                    "name": "oembed",
+                    "label": "oEmbed",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab9d55fb049",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_60ab997b1c95b",
+                            "label": "oEmbed",
+                            "name": "oembed",
+                            "type": "oembed",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "",
+                            "height": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_60ab9383f8df0": {
+                    "key": "layout_60ab9383f8df0",
+                    "name": "looping_video",
+                    "label": "Looping Video",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab93cbf8df2",
+                            "label": "Poster",
+                            "name": "poster",
+                            "type": "image",
+                            "instructions": "This image will be displayed until the video loads.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_60ab9388f8df1",
+                            "label": "Video",
+                            "name": "video",
+                            "type": "file",
+                            "instructions": "This should be no longer than 20 seconds, at a resolution of 1920 x 1080 (FHD) and as small as possible (max 5MB).",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": 5,
+                            "mime_types": ".mp4"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "",
+    "modified": 1621859737
+}

@@ -1,0 +1,10 @@
+<section>
+	{% if item.title %}
+		<div class="row">
+			<div class="col">
+				<h2>{{ item.title }}</h2>
+			</div>
+		</div>
+	{% endif %}
+	{% include 'includes/embed.twig' %}
+</section>

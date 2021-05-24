@@ -13,56 +13,43 @@
 
 	<section>
 		<div class="row">
-			<div class="col center">
+			<div class="col">
 				<h2>Categories Spotlight</h2>
 			</div>
 		</div>
 		<div class="row">
-			{% if spotlight is not empty %}
-				{% for post in spotlight %}
-					<div class="col third">
-						{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
-					</div>
-				{% endfor %}
-				<div class="col">
-					{% include 'includes/pagination.twig' with {
-						pagination: posts.pagination({
-							show_all: false,
-							mid_size: 3,
-							end_size: 2
-						})
-					} %}
+			{% for post in spotlight %}
+				<div class="col md:1-2 lg:1-3">
+					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
-			{% else %}
-				<div class="col">
-					<p><em>Sorry, there's nothing to see here at the moment.</em></p>
-				</div>
-			{% endif %}
-		</div>
-	</section>
-
-	<section>
-		<div class="row">
-			<div class="col center">
-				<h2>Most Popular</h2>
-			</div>
+			{% endfor %}
 		</div>
 	</section>
 
 	<section>
 		<div class="row">
 			<div class="col">
-				<h2>Sign up to the Hunger weekly newsletter including the latest articles and news about events</h2>
-				{% include 'forms/signup.twig' %}
+				<h2>Most Popular</h2>
 			</div>
 		</div>
+		<div class="row">
+			{% for post in spotlight|slice(0, 3) %}
+				<div class="col md:1-2 lg:1-3">
+					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+				</div>
+			{% endfor %}
+		</div>
 	</section>
+
+	{% for item in post.meta('sections') %}
+		{% include 'home-builder/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
+	{% endfor %}
 
 	<p><mark>vertical rhythm</mark></p>
 
 	<section class="rhythm">
 		<div class="row">
-			<div class="col half">
+			<div class="col lg:1-2">
 				<p class="omega">omega: Lorem ipsum dolor sit</p>
 				<h1>alpha: Lorem ipsum dolor sit amet</h1>
 				<h2>beta: Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
@@ -71,7 +58,7 @@
 				<h5>epsilon: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</h5>
 				<h6>zeta: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</h6>
 			</div>
-			<div class="col half">
+			<div class="col lg:1-2">
 				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
 				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
 				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>

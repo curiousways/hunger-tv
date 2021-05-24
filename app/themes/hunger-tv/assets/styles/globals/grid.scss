@@ -4,18 +4,39 @@
 	display: flex;
 	flex-flow: row wrap;
 	max-width: $grid-width;
-	transition: max-width 0.5s $anim-curve;
+	// transition: max-width 0.5s $anim-curve;
+	margin: auto;
 }
 
 .col {
 	width: 100%;
 	padding: rhythm() $gutter-width/2;
+}
 
-	&.half {
-		width: percentage(1/2);
+@media (min-width: 600px) {
+	.row.reverse {
+		flex-direction: row-reverse;
 	}
 
-	&.third {
-		width: percentage(1/3);
+	.col {
+		&.md\:1-2 {
+			width: percentage(1/2);
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.col {
+		&.lg\:1-2 {
+			width: percentage(1/2);
+		}
+
+		&.lg\:1-3 {
+			width: percentage(1/3);
+		}
+
+		&.lg\:2-3 {
+			width: percentage(2/3);
+		}
 	}
 }

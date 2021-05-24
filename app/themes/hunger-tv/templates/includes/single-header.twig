@@ -1,12 +1,12 @@
 <header>
 	<div class="row">
-		<div class="col half">
+		<div class="col lg:1-2">
 			{% for item in post.terms('section') %}
 				<a href="{{ item.link }}">{{ item.name }}</a>
 			{% endfor %}
 			{{ post.date|date }}
 		</div>
-		<div class="col half">
+		<div class="col lg:1-2">
 			{% include 'includes/share.twig' %}
 		</div>
 	</div>
