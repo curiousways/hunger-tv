@@ -1,8 +1,10 @@
 <section>
-	<div class="row">
-		<div class="col">
-			<h2>Video of the week</h2>
+	{% if item.title %}
+		<div class="row">
+			<div class="col">
+				<h2>{{ item.title }}</h2>
+			</div>
 		</div>
-	</div>
+	{% endif %}
 	{% include 'includes/embed.twig' %}
 </section>
