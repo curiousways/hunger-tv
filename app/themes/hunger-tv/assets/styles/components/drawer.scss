@@ -10,6 +10,7 @@
 		calc(#{-$drawer-width-open} + #{rhythm($drawer-width-closed)})
 	);
 	transition: transform 0.5s $anim-curve;
+	z-index: 100;
 	padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
 	form {

@@ -4,7 +4,8 @@
 	display: flex;
 	flex-flow: row wrap;
 	max-width: $grid-width;
-	transition: max-width 0.5s $anim-curve;
+	// transition: max-width 0.5s $anim-curve;
+	margin: auto;
 }
 
 .col {
