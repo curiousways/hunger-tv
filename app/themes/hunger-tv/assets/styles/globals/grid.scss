@@ -5,6 +5,10 @@
 	flex-flow: row wrap;
 	max-width: $grid-width;
 	transition: max-width 0.5s $anim-curve;
+
+	&.reverse {
+		flex-direction: row-reverse;
+	}
 }
 
 .col {
