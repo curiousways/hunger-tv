@@ -20,3 +20,8 @@
 	transform: translateY(-50%);
 	width: 100%;
 }
+
+.hero__logo svg {
+	min-height: rhythm(8);
+	height: calc(300px - calc(var(--scroll) * 1px));
+}
