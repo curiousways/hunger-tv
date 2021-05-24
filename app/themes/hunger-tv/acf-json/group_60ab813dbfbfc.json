@@ -99,6 +99,59 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_60ab9383f8df0": {
+                    "key": "layout_60ab9383f8df0",
+                    "name": "video",
+                    "label": "Video",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60ab93cbf8df2",
+                            "label": "Poster",
+                            "name": "poster",
+                            "type": "image",
+                            "instructions": "This image will be displayed until the video loads.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_60ab9388f8df1",
+                            "label": "Video",
+                            "name": "video",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": 3,
+                            "mime_types": ".mp4"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -123,5 +176,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621855083
+    "modified": 1621857897
 }
