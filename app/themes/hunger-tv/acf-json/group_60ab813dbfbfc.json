@@ -23,6 +23,27 @@
                     "display": "row",
                     "sub_fields": [
                         {
+                            "key": "field_60ab89ce16c91",
+                            "label": "Colours",
+                            "name": "colours",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_60ab8568cecc8"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
                             "key": "field_60ab844f1b2d1",
                             "label": "Title",
                             "name": "title",
@@ -68,5 +89,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621853320
+    "modified": 1621854696
 }
