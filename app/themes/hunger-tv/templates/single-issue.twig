@@ -21,10 +21,10 @@
 
 		<section>
 			<div class="row">
-				<div class="col half">
+				<div class="col lg:1-2">
 					{% include 'includes/image.twig' with { image: post.thumbnail } %}
 				</div>
-				<div class="col half">
+				<div class="col lg:1-2">
 					<h1>{{ post.title }}</h1>
 					{% if post.content %}
 						<div class="rte">

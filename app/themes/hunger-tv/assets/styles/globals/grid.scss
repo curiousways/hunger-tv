@@ -18,12 +18,8 @@
 	}
 
 	.col {
-		&.half {
+		&.lg\:1-2 {
 			width: percentage(1/2);
-		}
-
-		&.third {
-			width: percentage(1/3);
 		}
 
 		&.lg\:1-3 {
