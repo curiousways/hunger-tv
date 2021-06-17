@@ -41,7 +41,7 @@ $total-cols: 12;
 			width: percentage(8 / $total-cols);
 		}
 
-		&.lg\:push-2 {
+		&.lg\:offset-2 {
 			margin-left: percentage(2 / $total-cols);
 		}
 	}
