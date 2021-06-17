@@ -9,6 +9,7 @@ jQuery(".carousel--full .carousel__tray").slick({
 	touchThreshold: 10,
 	variableWidth: true,
 	// centerMode: true,
+	asNavFor: ".carousel--full .carousel__captions",
 	responsive: [
 		{
 			breakpoint: 840,
@@ -17,6 +18,12 @@ jQuery(".carousel--full .carousel__tray").slick({
 			},
 		},
 	],
+});
+
+jQuery(".carousel--full .carousel__captions").slick({
+	arrows: false,
+	fade: true,
+	asNavFor: ".carousel--full .carousel__tray",
 });
 
 jQuery(".carousel--full .carousel__tray").on(

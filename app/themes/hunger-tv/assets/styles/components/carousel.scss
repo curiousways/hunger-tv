@@ -1,24 +1,14 @@
 // Carousel
 
 .carousel {
+	overflow: hidden;
+
 	.col {
 		position: relative;
 	}
 
 	img {
 		cursor: grab;
-	}
-
-	p {
-		display: flex;
-		margin-top: rhythm(2);
-		@extend .eta;
-
-		span {
-			// Source: https://stackoverflow.com/questions/9769587/set-div-to-have-its-siblings-width/37034774
-			flex-grow: 1;
-			width: 0;
-		}
 	}
 }
 
@@ -41,10 +31,14 @@
 .carousel__counter {
 	color: $white;
 	position: absolute;
-	top: 460px;
-	// bottom: rhythm(8);
+	bottom: rhythm(8);
 	left: rhythm(8);
 	text-shadow: 0 0 1em $black;
+}
+
+.carousel__captions {
+	margin-top: rhythm(-6);
+	@extend .eta;
 }
 
 // Variants
