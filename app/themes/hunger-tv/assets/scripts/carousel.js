@@ -11,7 +11,7 @@ jQuery(".carousel--full .carousel__tray").slick({
 	// centerMode: true,
 	responsive: [
 		{
-			breakpoint: 768,
+			breakpoint: 840,
 			settings: {
 				variableWidth: false,
 			},

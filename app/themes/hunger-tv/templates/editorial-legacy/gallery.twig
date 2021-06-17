@@ -10,15 +10,15 @@
 						{% for image in item.image %}
 							<div>
 								<img src="https://via.placeholder.com/780x480" alt="" />
-								{# <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> #}
+								<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
 							</div>
 							<div>
 								{% include 'includes/image.twig' %}
-								<p>{{ Image(image).caption }}</p>
+								<p><span>{{ Image(image).caption }}</span></p>
 							</div>
 							<div>
 								<img src="https://via.placeholder.com/300x480" alt="" />
-								{# <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> #}
+								<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
 							</div>
 						{% endfor %}
 					</div>

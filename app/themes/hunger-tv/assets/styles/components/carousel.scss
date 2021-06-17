@@ -8,6 +8,18 @@
 	img {
 		cursor: grab;
 	}
+
+	p {
+		display: flex;
+		margin-top: rhythm(2);
+		@extend .eta;
+
+		span {
+			// Source: https://stackoverflow.com/questions/9769587/set-div-to-have-its-siblings-width/37034774
+			flex-grow: 1;
+			width: 0;
+		}
+	}
 }
 
 .carousel__tray {
@@ -29,7 +41,8 @@
 .carousel__counter {
 	color: $white;
 	position: absolute;
-	bottom: rhythm(8);
+	top: 460px;
+	// bottom: rhythm(8);
 	left: rhythm(8);
 	text-shadow: 0 0 1em $black;
 }
@@ -52,7 +65,6 @@
 	img {
 		width: auto !important;
 		height: 480px;
-		margin-right: $gutter-width/2;
 	}
 }
 
@@ -64,4 +76,8 @@
 
 .slick-list {
 	overflow: visible;
+}
+
+.slick-slide {
+	margin-right: $gutter-width/2;
 }

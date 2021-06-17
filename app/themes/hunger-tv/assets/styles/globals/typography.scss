@@ -49,6 +49,10 @@ h6 {
 	@include type($zeta);
 }
 
+.eta {
+	@include type($eta, 3);
+}
+
 .iota {
 	@include type($iota, 3);
 }
