@@ -2,7 +2,7 @@ import slick from "slick-carousel";
 import "slick-carousel/slick/slick.scss";
 
 jQuery(".carousel--full .carousel__tray").slick({
-	prevArrow: false,
+	prevArrow: ".carousel--full .carousel__control--prev",
 	nextArrow: ".carousel--full .carousel__control--next",
 	speed: 500,
 	cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
