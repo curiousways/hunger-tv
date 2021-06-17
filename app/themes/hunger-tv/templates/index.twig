@@ -23,7 +23,7 @@
 		<div class="row">
 			{% if posts is not empty %}
 				{% for post in posts %}
-					<div class="col md:1-2 lg:1-3">
+					<div class="col md:6 lg:4">
 						{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 					</div>
 				{% endfor %}
