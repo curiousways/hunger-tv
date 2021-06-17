@@ -1,6 +1,9 @@
 // Carousel
 
 .carousel {
+	.col {
+		position: relative;
+	}
 }
 
 .carousel__tray {
@@ -10,10 +13,24 @@
 	transform: rotate(180deg);
 }
 
+.carousel__counter {
+	position: absolute;
+	bottom: rhythm(8);
+	left: rhythm(8);
+}
+
 // Variants
 
-.carousel--full img {
-	width: auto !important;
-	max-height: 548px;
-	margin-right: rhythm();
+.carousel--full {
+	img {
+		width: auto !important;
+		height: 480px;
+		margin-right: $gutter-width/2;
+	}
+}
+
+// Slick
+
+.slick-list {
+	overflow: visible;
 }
