@@ -9,8 +9,11 @@
 .carousel__tray {
 }
 
-.carousel__control--prev svg {
-	transform: rotate(180deg);
+.carousel__control {
+	background: none;
+	border: none;
+	padding: 0;
+	@include link(white);
 }
 
 .carousel__counter {
@@ -22,11 +25,27 @@
 // Variants
 
 .carousel--full {
+	.carousel__control--prev {
+		position: absolute;
+		top: 50%;
+		left: -$gutter-width;
+	}
+
+	.carousel__control--next {
+		position: absolute;
+		top: 50%;
+		right: -$gutter-width;
+	}
+
 	img {
 		width: auto !important;
 		height: 480px;
 		margin-right: $gutter-width/2;
 	}
+}
+
+.carousel__control--prev svg {
+	transform: rotate(180deg);
 }
 
 // Slick
