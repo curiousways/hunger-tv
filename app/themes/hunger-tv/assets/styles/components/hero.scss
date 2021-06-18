@@ -4,6 +4,7 @@
 	position: relative;
 	// height: 630px;
 	// overflow: hidden;
+	text-align: center;
 }
 
 // .hero__image {
@@ -15,6 +16,7 @@
 
 .hero__logo {
 	color: white;
+	display: none;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -27,9 +29,22 @@
 }
 
 .hero__content {
+	@extend .col, .card__content;
 	color: $white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	position: absolute;
-	bottom: rhythm();
-	width: 100%;
-	text-align: center;
+	top: 0;
+	height: 100%;
+}
+
+@media (min-width: 1024px) {
+	.hero__logo {
+		display: block;
+	}
+
+	.hero__content {
+		justify-content: flex-end;
+	}
 }
