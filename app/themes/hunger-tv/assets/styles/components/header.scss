@@ -6,4 +6,9 @@
 	top: 0;
 	width: 100%;
 	z-index: 500;
+
+	.col {
+		display: flex;
+		justify-content: space-between;
+	}
 }

@@ -1,10 +1,9 @@
 // Logo
 
 .logo {
-	display: block;
-	margin-bottom: rhythm(8);
+	height: rhythm();
 
 	svg {
-		height: auto;
+		height: 100%;
 	}
 }

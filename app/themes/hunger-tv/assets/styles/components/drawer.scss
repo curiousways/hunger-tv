@@ -1,6 +1,8 @@
 // Flyout
 
 #drawer {
+	color: $white;
+	background-color: $black;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -13,17 +15,13 @@
 	z-index: 100;
 	padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
-	form {
-		margin: rhythm(8) 0;
-	}
-
 	&.open {
 		transform: none;
 	}
 }
 
-#drawer__toggle {
-	position: absolute;
-	top: rhythm(6);
-	right: rhythm(6);
-}
+// #drawer__toggle {
+// position: absolute;
+// top: rhythm(6);
+// right: rhythm(6);
+// }
