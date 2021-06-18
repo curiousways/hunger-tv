@@ -25,3 +25,11 @@
 	min-height: rhythm(8);
 	height: calc(300px - calc(var(--scroll) * 1px));
 }
+
+.hero__content {
+	color: $white;
+	position: absolute;
+	bottom: rhythm();
+	width: 100%;
+	text-align: center;
+}

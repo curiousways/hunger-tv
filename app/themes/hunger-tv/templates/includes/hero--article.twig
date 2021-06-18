@@ -1,10 +1,12 @@
 <div class="hero" role="banner">
+
 	<img
 		src="https://via.placeholder.com/1920x800"
 		class="hero__image"
 		alt=""
 		loading="lazy"
 	/>
+
 	<div class="hero__logo">
 		<div class="row">
 			<div class="col">
@@ -12,8 +14,16 @@
 			</div>
 		</div>
 	</div>
-	<h2>{{ article.title }}</h2>
-	{% for category in article.terms('section') %}
-		<a href="{{ category.link }}">{{ category.name }}</a>
-	{% endfor %}
+
+	<div class="hero__content">
+		<div class="row">
+			<div class="col">
+				<h2><a href="{{ article.link }}">{{ article.title }}</a></h2>
+				{% for category in article.terms('section') %}
+					<a href="{{ category.link }}">{{ category.name }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
 </div>
