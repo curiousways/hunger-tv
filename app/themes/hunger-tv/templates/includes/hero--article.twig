@@ -7,13 +7,15 @@
 		loading="lazy"
 	/>
 
-	<div class="hero__logo">
-		<div class="row">
-			<div class="col">
-				{% include 'icons/hunger_logo.svg' %}
+	{% if fn('is_front_page') %}
+		<div class="hero__logo">
+			<div class="row">
+				<div class="col">
+					{% include 'icons/hunger_logo.svg' %}
+				</div>
 			</div>
 		</div>
-	</div>
+	{% endif %}
 
 	<div class="hero__content">
 		<div class="row">
