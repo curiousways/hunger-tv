@@ -4,7 +4,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
-	z-index: 500;
+	z-index: $z-6;
 }
 
 .header__bar {
@@ -20,6 +20,10 @@
 		&:last-child {
 			justify-content: flex-end;
 		}
+	}
+
+	.button {
+		margin-right: rhythm();
 	}
 }
 

@@ -42,3 +42,16 @@ $md-min: 600px;
 $sm-max: $md-min - 1;
 $lg-min: 1024px;
 $md-max: $lg-min - 1;
+
+// z-index
+$z-0: 0; // Page
+$z-1: 100; // Page
+$z-2: 200; // Page
+$z-3: 300; // Page
+$z-4: 400; // Alerts
+$z-5: 500; // Navigation
+$z-6: 600; // Header
+$z-7: 700; // Takeover
+$z-8: 800; // Flyout
+$z-9: 900; // Toast
+$z-10: 9999; // System
