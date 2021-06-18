@@ -21,11 +21,11 @@
 	<section>
 		<div class="row">
 			<div class="col">
-				<h2>Categories Spotlight</h2>
+				<h2>Categories</h2>
 			</div>
 		</div>
 		<div class="row">
-			{% for post in spotlight %}
+			{% for post in spotlight|slice(0, 6) %}
 				<div class="col md:6 lg:4">
 					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="row">
-			{% for post in spotlight|slice(0, 3) %}
+			{% for post in spotlight|slice(6, 3) %}
 				<div class="col md:6 lg:4">
 					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
