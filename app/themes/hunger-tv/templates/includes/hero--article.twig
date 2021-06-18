@@ -19,9 +19,11 @@
 		<div class="row">
 			<div class="col">
 				<h2><a href="{{ article.link }}">{{ article.title }}</a></h2>
-				{% for category in article.terms('section') %}
-					<a href="{{ category.link }}">{{ category.name }}</a>
-				{% endfor %}
+				<div class="uppercase">
+					{% for category in article.terms('section') %}
+						<a href="{{ category.link }}">{{ category.name }}</a>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>
