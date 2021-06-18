@@ -1,5 +1,5 @@
-const drawer = document.getElementById("drawer");
-const toggle = document.getElementById("drawer__toggle");
+const drawer = document.getElementById("drawer--nav");
+const toggle = document.getElementById("drawer--nav__toggle");
 
 toggle.addEventListener("click", function () {
 	this.classList.toggle("is-active");
