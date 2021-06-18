@@ -46,5 +46,10 @@
 
 	.hero__content {
 		justify-content: flex-end;
+
+		.uppercase {
+			order: 1;
+			margin: rhythm() 0;
+		}
 	}
 }

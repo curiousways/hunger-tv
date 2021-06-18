@@ -1,11 +1,18 @@
 <div class="hero" role="banner">
 
-	<img
-		src="https://via.placeholder.com/1920x800"
-		class="hero__image"
-		alt=""
-		loading="lazy"
-	/>
+	{% if article.thumbnail %}
+		{% include 'includes/image.twig' with {
+			image: article.thumbnail,
+			classes: 'hero__image'
+		} %}
+	{% else %}
+		<img
+			src="https://via.placeholder.com/1920x800"
+			class="hero__image"
+			alt=""
+			loading="lazy"
+		/>
+	{% endif %}
 
 	{% if fn('is_front_page') %}
 		<div class="hero__logo">
