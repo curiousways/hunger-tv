@@ -17,7 +17,7 @@ html {
 }
 
 body {
-	padding-top: rhythm(15);
+	padding-top: rhythm($header-height);
 	// 	padding-left: $drawer-width-open;
 	// 	transition: padding-left 0.5s $anim-curve;
 
