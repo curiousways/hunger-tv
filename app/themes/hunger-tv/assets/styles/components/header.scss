@@ -1,14 +1,21 @@
 // Header
 
 .header {
-	background-color: $white;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	z-index: 500;
+}
+
+.header__bar {
+	background-color: $white;
+	position: relative;
+	height: rhythm(15);
+	z-index: 1;
 
 	.col {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 }

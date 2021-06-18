@@ -1,33 +1,35 @@
 <header class="header">
 
-	<div class="row">
-		<div class="col">
+	<div class="header__bar">
+		<div class="row">
+			<div class="col">
 
-			<button
-				id="drawer__toggle"
-				class="hamburger hamburger--collapse"
-				aria-label="Menu"
-			>
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</button>
+				<button
+					id="drawer__toggle"
+					class="hamburger hamburger--collapse"
+					aria-label="Menu"
+				>
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</button>
 
-			<a
-				href="{{ site.link }}"
-				class="logo"
-				aria-label="Home"
-			>
-				{% include 'icons/hunger_logo.svg' %}
-			</a>
+				<a
+					href="{{ site.link }}"
+					class="logo"
+					aria-label="Home"
+				>
+					{% include 'icons/hunger_logo.svg' %}
+				</a>
 
-			<a
-				href="{{ fn('get_post_type_archive_link', 'issue') }}"
-				class="button"
-			>Shop</a>
+				<a
+					href="{{ fn('get_post_type_archive_link', 'issue') }}"
+					class="button"
+				>Shop</a>
 
-			{% include 'forms/search.twig' %}
+				{% include 'forms/search.twig' %}
 
+			</div>
 		</div>
 	</div>
 
