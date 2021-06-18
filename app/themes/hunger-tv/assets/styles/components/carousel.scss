@@ -13,6 +13,9 @@
 }
 
 .carousel__tray {
+	> div:not(:first-child) {
+		display: none;
+	}
 }
 
 .carousel__control {
@@ -39,6 +42,10 @@
 .carousel__captions {
 	margin-top: rhythm(-6);
 	@extend .eta;
+
+	> div:not(:first-child) {
+		display: none;
+	}
 }
 
 // Variants
