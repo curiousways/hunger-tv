@@ -15,7 +15,10 @@
 
 	.col {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+
+		&:last-child {
+			justify-content: flex-end;
+		}
 	}
 }
