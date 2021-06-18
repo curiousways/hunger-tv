@@ -15,12 +15,24 @@ $total-cols: 12;
 	padding: rhythm() $gutter-width/2;
 }
 
-@media (min-width: $md-min) {
+@media (max-width: $sm-max) {
+	.col {
+		&.sm\:4 {
+			width: percentage(4 / $total-cols);
+		}
+	}
+}
+
+@media (min-width: $md-min) and (max-width: $md-max) {
 	.row.reverse {
 		flex-direction: row-reverse;
 	}
 
 	.col {
+		&.md\:4 {
+			width: percentage(4 / $total-cols);
+		}
+
 		&.md\:6 {
 			width: percentage(6 / $total-cols);
 		}

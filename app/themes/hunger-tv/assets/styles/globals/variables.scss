@@ -38,6 +38,7 @@ $iota: 14;
 $anim-curve: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Breakpoints
-
 $md-min: 600px;
+$sm-max: $md-min - 1;
 $lg-min: 1024px;
+$md-max: $lg-min - 1;
