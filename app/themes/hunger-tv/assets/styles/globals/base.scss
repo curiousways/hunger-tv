@@ -16,23 +16,24 @@ html {
 	font-smoothing: antialiased;
 }
 
-// body {
-// 	padding-left: $drawer-width-open;
-// 	transition: padding-left 0.5s $anim-curve;
+body {
+	padding-top: rhythm(15);
+	// 	padding-left: $drawer-width-open;
+	// 	transition: padding-left 0.5s $anim-curve;
 
-// 	&.wide {
-// 		padding-left: rhythm($drawer-width-closed);
+	// 	&.wide {
+	// 		padding-left: rhythm($drawer-width-closed);
 
-// 		&.archive,
-// 		&.home,
-// 		&.search-results {
-// 			.row {
-// 				/* prettier-ignore */
-// 				max-width: calc(#{$grid-width} + calc(#{$drawer-width-open} - #{rhythm($drawer-width-closed)}));
-// 			}
-// 		}
-// 	}
-// }
+	// 		&.archive,
+	// 		&.home,
+	// 		&.search-results {
+	// 			.row {
+	// 				/* prettier-ignore */
+	// 				max-width: calc(#{$grid-width} + calc(#{$drawer-width-open} - #{rhythm($drawer-width-closed)}));
+	// 			}
+	// 		}
+	// 	}
+}
 
 main {
 }

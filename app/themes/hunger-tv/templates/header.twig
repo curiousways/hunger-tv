@@ -1,34 +1,45 @@
-<header id="drawer">
+<header class="header">
 
-	<a
-		href="{{ site.link }}"
-		class="logo"
-		aria-label="Home"
-	>
-		{% include 'icons/hunger_logo.svg' %}
-	</a>
-	
-	<button
-		id="drawer__toggle"
-		class="hamburger hamburger--collapse"
-		aria-label="Menu"
-	>
-		<span class="hamburger-box">
-			<span class="hamburger-inner"></span>
-		</span>
-	</button>
+	<div class="row">
+		<div class="col">
 
-	<a
-		href="{{ fn('get_post_type_archive_link', 'issue') }}"
-		class="button button--full"
-	>Shop</a>
+			<button
+				id="drawer__toggle"
+				class="hamburger hamburger--collapse"
+				aria-label="Menu"
+			>
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
 
-	{% include 'forms/search.twig' %}
+			<a
+				href="{{ site.link }}"
+				class="logo"
+				aria-label="Home"
+			>
+				{% include 'icons/hunger_logo.svg' %}
+			</a>
 
-	<nav>
-		{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
-	</nav>
+			<a
+				href="{{ fn('get_post_type_archive_link', 'issue') }}"
+				class="button button--full"
+			>Shop</a>
 
-	{% include 'includes/social.twig' %}
+			{% include 'forms/search.twig' %}
+
+		</div>
+	</div>
+
+	<div id="drawer">
+		<div class="row">
+			<div class="col">
+				<nav>
+					{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
+				</nav>
+				{% include 'includes/social.twig' %}
+			</div>
+		</div>
+	</div>
 
 </header>
