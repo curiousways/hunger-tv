@@ -2,8 +2,8 @@
 
 	<div class="header__bar">
 		<div class="row">
-			<div class="col">
 
+			<div class="col lg:4">
 				<button
 					id="drawer__toggle"
 					class="hamburger hamburger--collapse"
@@ -13,7 +13,9 @@
 						<span class="hamburger-inner"></span>
 					</span>
 				</button>
+			</div>
 
+			<div class="col lg:4">
 				<a
 					href="{{ site.link }}"
 					class="logo"
@@ -21,24 +23,27 @@
 				>
 					{% include 'icons/hunger_logo.svg' %}
 				</a>
+			</div>
 
+			<div class="col lg:4">
 				<a
 					href="{{ fn('get_post_type_archive_link', 'issue') }}"
 					class="button"
 				>Shop</a>
-
 				{% include 'forms/search.twig' %}
-
 			</div>
+
 		</div>
 	</div>
 
 	<div id="drawer">
 		<div class="row">
-			<div class="col">
+			<div class="col lg:8">
 				<nav>
 					{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
 				</nav>
+			</div>
+			<div class="col lg:4">
 				{% include 'includes/social.twig' %}
 			</div>
 		</div>
