@@ -1,29 +1,28 @@
 // Flyout
 
-#drawer {
-	position: fixed;
-	top: 0;
+.drawer {
+	color: $white;
+	background-color: $black;
+	position: absolute;
+	top: rhythm(15);
 	left: 0;
-	width: $drawer-width-open;
-	height: 100vh;
-	transform: translateX(
-		calc(#{-$drawer-width-open} + #{rhythm($drawer-width-closed)})
-	);
+	width: 100%;
+	// width: $drawer-width-open;
+	// height: 100vh;
+	// transform: translateX(
+	// 	calc(#{-$drawer-width-open} + #{rhythm($drawer-width-closed)})
+	// );
+	transform: translateY(-100%);
 	transition: transform 0.5s $anim-curve;
-	z-index: 100;
-	padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
-
-	form {
-		margin: rhythm(8) 0;
-	}
+	// padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
 	&.open {
 		transform: none;
 	}
 }
 
-#drawer__toggle {
-	position: absolute;
-	top: rhythm(6);
-	right: rhythm(6);
-}
+// #drawer__toggle {
+// position: absolute;
+// top: rhythm(6);
+// right: rhythm(6);
+// }

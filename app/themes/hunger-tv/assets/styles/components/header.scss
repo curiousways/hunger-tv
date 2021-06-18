@@ -1,0 +1,33 @@
+// Header
+
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: $z-6;
+}
+
+.header__bar {
+	background-color: $white;
+	position: relative;
+	height: rhythm(15);
+	z-index: 1;
+
+	.col {
+		display: flex;
+		align-items: center;
+
+		&:last-child {
+			justify-content: flex-end;
+		}
+	}
+
+	.button {
+		margin-right: rhythm();
+	}
+}
+
+.hamburger {
+	position: relative;
+	left: rhythm(-2);
+}

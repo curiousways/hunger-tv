@@ -23,3 +23,8 @@ button {
 .button--full {
 	width: 100%;
 }
+
+.button--small {
+	padding: rhythm(1) rhythm(2);
+	@extend .iota;
+}

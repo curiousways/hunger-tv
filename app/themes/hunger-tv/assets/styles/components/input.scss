@@ -10,10 +10,12 @@ label {
 
 .input {
 	position: relative;
-	border-bottom: $button-border-width solid $black;
+	border-bottom: $button-border-width solid;
 	padding-right: rhythm(8);
 
 	input {
+		color: inherit;
+		background: none;
 		border: none;
 		outline: none;
 		width: 100%;

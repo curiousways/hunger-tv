@@ -1,34 +1,66 @@
-<header id="drawer">
+<header class="header">
 
-	<a
-		href="{{ site.link }}"
-		class="logo"
-		aria-label="Home"
-	>
-		{% include 'icons/hunger_logo.svg' %}
-	</a>
-	
-	<button
-		id="drawer__toggle"
-		class="hamburger hamburger--collapse"
-		aria-label="Menu"
-	>
-		<span class="hamburger-box">
-			<span class="hamburger-inner"></span>
-		</span>
-	</button>
+	<div class="header__bar">
+		<div class="row">
 
-	<a
-		href="{{ fn('get_post_type_archive_link', 'issue') }}"
-		class="button button--full"
-	>Shop</a>
+			<div class="col sm:4 md:4 lg:4">
+				<button
+					id="drawer--nav__toggle"
+					class="hamburger hamburger--collapse"
+					aria-label="Menu"
+				>
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</button>
+			</div>
 
-	{% include 'forms/search.twig' %}
+			<div class="col sm:4 md:4 lg:4">
+				<a
+					href="{{ site.link }}"
+					class="logo"
+					aria-label="Home"
+				>
+					{% include 'icons/hunger_logo.svg' %}
+				</a>
+			</div>
 
-	<nav>
-		{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
-	</nav>
+			<div class="col sm:4 md:4 lg:4">
+				<a
+					href="{{ fn('get_post_type_archive_link', 'issue') }}"
+					class="button button--small"
+				>Shop</a>
+				<button
+					id="drawer--search__toggle"
+					aria-label="Show search"
+				>
+					{% include 'icons/search.svg' %}
+				</button>
+			</div>
 
-	{% include 'includes/social.twig' %}
+		</div>
+	</div>
+
+	<div id="drawer--nav" class="drawer">
+		<div class="row">
+			<div class="col lg:8">
+				<nav>
+					{% include "includes/navigation.twig" with { items: header_navigation.get_items } %}
+				</nav>
+			</div>
+			<div class="col lg:4">
+				{% include 'includes/social.twig' %}
+			</div>
+		</div>
+	</div>
+
+
+	<div id="drawer--search" class="drawer">
+		<div class="row">
+			<div class="col lg:8 lg:offset-2">
+				{% include 'forms/search.twig' %}
+			</div>
+		</div>
+	</div>
 
 </header>

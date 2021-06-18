@@ -1,9 +1,20 @@
-const drawer = document.getElementById("drawer");
-const toggle = document.getElementById("drawer__toggle");
+const navToggle = document.getElementById("drawer--nav__toggle");
+const navDrawer = document.getElementById("drawer--nav");
+const searchToggle = document.getElementById("drawer--search__toggle");
+const searchDrawer = document.getElementById("drawer--search");
 
-toggle.addEventListener("click", function () {
+navToggle.addEventListener("click", function () {
 	this.classList.toggle("is-active");
-	drawer.classList.toggle("open");
+	searchDrawer.classList.remove("open");
+	navDrawer.classList.toggle("open");
+	document.body.classList.toggle("wide");
+});
+
+searchToggle.addEventListener("click", function () {
+	this.classList.toggle("is-active");
+	navToggle.classList.remove("is-active");
+	navDrawer.classList.remove("open");
+	searchDrawer.classList.toggle("open");
 	document.body.classList.toggle("wide");
 });
 
