@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_60cc78931a8ee",
-            "label": "Featured article",
-            "name": "featured_article",
+            "label": "Hero article",
+            "name": "hero_article",
             "type": "post_object",
             "instructions": "",
             "required": 1,
@@ -15,7 +15,9 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": "",
+            "post_type": [
+                "editorial"
+            ],
             "taxonomy": "",
             "allow_null": 0,
             "multiple": 0,
@@ -42,5 +44,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624013102
+    "modified": 1624013292
 }
