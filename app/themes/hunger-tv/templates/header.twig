@@ -30,7 +30,12 @@
 					href="{{ fn('get_post_type_archive_link', 'issue') }}"
 					class="button button--small"
 				>Shop</a>
-				{% include 'forms/search.twig' %}
+				<button
+					id="drawer--search__toggle"
+					aria-label="Show search"
+				>
+					{% include 'icons/search.svg' %}
+				</button>
 			</div>
 
 		</div>
@@ -45,6 +50,15 @@
 			</div>
 			<div class="col lg:4">
 				{% include 'includes/social.twig' %}
+			</div>
+		</div>
+	</div>
+
+
+	<div id="drawer--search" class="drawer">
+		<div class="row">
+			<div class="col lg:8 lg:offset-2">
+				{% include 'forms/search.twig' %}
 			</div>
 		</div>
 	</div>
