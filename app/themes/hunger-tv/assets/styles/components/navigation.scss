@@ -10,8 +10,6 @@ ul.navigation {
 @media (min-width: $md-min) {
 	ul.navigation {
 		columns: 3;
-		margin-top: rhythm(8);
-		margin-bottom: rhythm(6);
 		@include beta;
 	}
 }

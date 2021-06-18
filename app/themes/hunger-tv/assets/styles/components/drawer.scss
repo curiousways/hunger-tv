@@ -23,6 +23,13 @@
 	}
 }
 
+// Variants
+
+#drawer--nav {
+	padding-top: rhythm(8);
+	padding-bottom: rhythm(6);
+}
+
 @media (min-width: $lg-min) {
 	.drawer .social {
 		justify-content: flex-end;
