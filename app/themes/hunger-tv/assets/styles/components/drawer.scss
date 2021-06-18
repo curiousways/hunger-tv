@@ -2,7 +2,7 @@
 
 .drawer {
 	color: $white;
-	background-color: $black;
+	background-color: rgba($black, 0.92);
 	position: absolute;
 	top: rhythm($header-height);
 	left: 0;
