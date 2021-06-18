@@ -11,8 +11,8 @@
 .block__element--modifier {
 }
 
-@media (min-width: 600px) {
+@media (min-width: $md-min) {
 }
 
-@media (min-width: 1024px) {
+@media (min-width: $lg-min) {
 }

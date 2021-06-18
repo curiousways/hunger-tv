@@ -39,7 +39,7 @@
 	height: 100%;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: $lg-min) {
 	.hero__logo {
 		display: block;
 	}
