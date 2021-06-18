@@ -1,10 +1,15 @@
 // Navigation
 
 ul.navigation {
-	@extend .uppercase;
-
 	a {
 		display: inline-block;
-		padding-bottom: rhythm();
+		padding-bottom: rhythm(2);
+	}
+}
+
+@media (min-width: $md-min) {
+	ul.navigation {
+		columns: 3;
+		@include beta;
 	}
 }

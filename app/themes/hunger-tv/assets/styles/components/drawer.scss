@@ -4,9 +4,10 @@
 	color: $white;
 	background-color: $black;
 	position: absolute;
-	top: rhythm(15);
+	top: rhythm($header-height);
 	left: 0;
 	width: 100%;
+	max-height: calc(100vh - #{rhythm($header-height)});
 	// width: $drawer-width-open;
 	// height: 100vh;
 	// transform: translateX(
@@ -14,6 +15,7 @@
 	// );
 	transform: translateY(-100%);
 	transition: transform 0.5s $anim-curve;
+	overflow: auto;
 	// padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
 	&.open {
@@ -21,8 +23,15 @@
 	}
 }
 
-// #drawer__toggle {
-// position: absolute;
-// top: rhythm(6);
-// right: rhythm(6);
-// }
+// Variants
+
+#drawer--nav {
+	padding-top: rhythm(8);
+	padding-bottom: rhythm(6);
+}
+
+@media (min-width: $lg-min) {
+	.drawer .social {
+		justify-content: flex-end;
+	}
+}

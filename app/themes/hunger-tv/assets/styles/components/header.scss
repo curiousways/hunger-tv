@@ -10,7 +10,7 @@
 .header__bar {
 	background-color: $white;
 	position: relative;
-	height: rhythm(15);
+	height: rhythm($header-height);
 	z-index: 1;
 
 	.col {

@@ -22,37 +22,37 @@ p {
 }
 
 .omega {
-	@include type($omega, 11);
+	@include omega;
 }
 
 h1 {
-	@include type($alpha, 8);
+	@include alpha;
 }
 
 h2 {
-	@include type($beta, 7);
+	@include beta;
 }
 
 h3 {
-	@include type($gamma, 6);
+	@include gamma;
 }
 
 h4 {
-	@include type($delta, 5);
+	@include delta;
 }
 
 h5 {
-	@include type($epsilon, 5);
+	@include epsilon;
 }
 
 h6 {
-	@include type($zeta);
+	@include zeta;
 }
 
 .eta {
-	@include type($eta, 3);
+	@include eta;
 }
 
 .iota {
-	@include type($iota, 3);
+	@include iota;
 }
