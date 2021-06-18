@@ -21,18 +21,6 @@
 	}
 }
 
-// #drawer__toggle {
-// position: absolute;
-// top: rhythm(6);
-// right: rhythm(6);
-// }
-
-// Variants
-
-#drawer--nav {
-	padding-top: rhythm(2);
-}
-
 @media (min-width: $lg-min) {
 	.drawer .social {
 		justify-content: flex-end;

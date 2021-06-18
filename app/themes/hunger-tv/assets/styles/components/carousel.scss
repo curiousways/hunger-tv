@@ -41,7 +41,7 @@
 
 .carousel__captions {
 	margin-top: rhythm(-6);
-	@extend .eta;
+	@include eta;
 
 	> div:not(:first-child) {
 		display: none;

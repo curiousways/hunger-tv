@@ -7,7 +7,7 @@
 .uppercase {
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	@extend .eta;
+	@include eta;
 }
 
 .no-padding {
