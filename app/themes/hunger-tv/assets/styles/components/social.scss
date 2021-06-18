@@ -2,16 +2,15 @@
 
 ul.social {
 	display: flex;
-	justify-content: space-between;
-	margin: rhythm(2) rhythm(-2) rhythm(-2);
+	margin: rhythm(-2.5);
 
 	a {
 		display: block;
-		padding: rhythm(2);
+		padding: rhythm(2.5);
 	}
 
 	svg {
-		width: rhythm();
-		height: rhythm();
+		width: rhythm(3);
+		height: rhythm(3);
 	}
 }
