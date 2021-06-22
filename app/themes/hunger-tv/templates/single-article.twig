@@ -4,13 +4,17 @@
 
 	<article>
 
-		{% if post.hero_type == 'video' %}
-			{% include 'includes/embed.twig' with { embed: post.hero_video } %}
-		{% elseif post.hero_type == 'image' %}
-			{% include 'includes/hero.twig' with { image: post.hero_image } %}
-		{% elseif post.thumbnail %}
-			{% include 'includes/hero.twig' with { image: post.thumbnail } %}
-		{% endif %}
+		<div class="row">
+			<div class="col">
+				{% if post.hero_type == 'video' %}
+					{% include 'includes/embed.twig' with { embed: post.hero_video } %}
+				{% elseif post.hero_type == 'image' %}
+					{% include 'includes/hero.twig' with { image: post.hero_image } %}
+				{% elseif post.thumbnail %}
+					{% include 'includes/hero.twig' with { image: post.thumbnail } %}
+				{% endif %}
+			</div>
+		</div>
 
 		{% include 'includes/single-header.twig' %}
 
@@ -34,7 +38,9 @@
 				{% endif %}
 				<div class="row">
 					<div class="col">
-						{{ post.content }}
+						<div class="rte">
+							{{ post.content }}
+						</div>
 					</div>
 				</div>
 			</section>
