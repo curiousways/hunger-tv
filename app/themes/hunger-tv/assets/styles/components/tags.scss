@@ -1,0 +1,36 @@
+// Tags
+
+.tags {
+	@extend .uppercase;
+	display: flex;
+	@include iota;
+
+	ul {
+		display: inline-flex;
+		flex-wrap: wrap;
+	}
+
+	li,
+	span {
+		margin-right: rhythm();
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	a {
+		&:hover,
+		&:focus {
+			color: inherit;
+			text-decoration: underline $grey-light;
+			text-decoration-thickness: rhythm(1);
+			text-underline-offset: -0.3em;
+			text-decoration-skip-ink: none;
+		}
+
+		&:active {
+			color: $grey;
+		}
+	}
+}

@@ -1,9 +1,11 @@
 <footer>
 	<div class="row">
-		<div class="col">
-			<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+		<div class="col lg:8 lg:offset-2">
+
+			{{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }}
 			{% include 'includes/share.twig' %}
 			{% include 'includes/tags.twig' %}
+
 		</div>
 	</div>
 </footer>
