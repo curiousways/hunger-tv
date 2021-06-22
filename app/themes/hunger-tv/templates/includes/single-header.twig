@@ -1,4 +1,5 @@
 <header>
+
 	<div class="row">
 		<div class="col lg:6">
 			<div class="uppercase">
@@ -12,11 +13,16 @@
 			{% include 'includes/share.twig' %}
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col lg:9 lg:offset-2">
 			<h1 class="omega">{{ post.title }}</h1>
-			<p class="beta"><code>post.standfirst</code><br>{{ post.standfirst }}</p>
-			<p class="beta"><code>post.article_excerpt</code><br>{{ post.article_excerpt }}</p>
+			{% if post.standfirst %}
+				<p class="beta">{{ post.standfirst }}</p>
+			{% elseif post.article_excerpt %}
+				<p class="beta">{{ post.article_excerpt }}</p>
+			{% endif %}
 		</div>
 	</div>
+
 </header>
