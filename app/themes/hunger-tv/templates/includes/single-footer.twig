@@ -1,9 +1,14 @@
 <footer>
 	<div class="row">
 		<div class="col">
-			<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+
+			{% if post.article_info %}
+				<p>{{ fn('hungertv_parse_credits', post.article_info) }}</p>
+			{% endif %}
+
 			{% include 'includes/share.twig' %}
 			{% include 'includes/tags.twig' %}
+
 		</div>
 	</div>
 </footer>
