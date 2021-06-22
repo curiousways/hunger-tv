@@ -15,7 +15,7 @@ function hungertv_parse_credits($credits, $wrap_in_aside="true") {
     $lines = explode("\n", str_replace("\n\n", "\n", trim($credits)));
     for ($i = 0; $i < count($lines); $i++) {
       if (strpos($credits, '@@@') !== false && trim($lines[$i]) != "") {
-        $lines[$i] = '<b>' . str_replace("@@@", '</b> ', $lines[$i]);
+        $lines[$i] = '<em>' . str_replace("@@@", '</em> ', $lines[$i]);
       }
     }
     if ($wrap_in_aside){
