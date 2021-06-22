@@ -18,8 +18,13 @@ ul.social {
 // Variants
 
 footer .social {
-	margin-top: rhythm(6);
-	margin-bottom: rhythm();
+	&:not(:first-child) {
+		margin-top: rhythm(6);
+	}
+
+	&:not(:last-child) {
+		margin-bottom: rhythm();
+	}
 }
 
 @media (min-width: $lg-min) {
