@@ -6,6 +6,7 @@
 			href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}"
 			target="_blank"
 			rel="noopener"
+			aria-label="Share this article on Facebook"
 		>
 		{% include 'icons/facebook.svg' %}
 	</a></li>
@@ -13,6 +14,7 @@
 			href="https://twitter.com/intent/tweet/?url={{ post.link|url_encode }}"
 			target="_blank"
 			rel="noopener"
+			aria-label="Share this article on Twitter"
 		>
 		{% include 'icons/twitter.svg' %}
 	</a></li>
@@ -21,6 +23,7 @@
 			href="https://www.pinterest.com/pin/create/button/?url={{ post.link|url_encode }}&media={{ post.hero_image ? post.hero_image.src|url_encode : post.thumbnail.src|url_encode }}&description={{ post.title|url_encode }}"
 			target="_blank"
 			rel="noopener"
+			aria-label="Share this article on Pinterest"
 		>
 		{% include 'icons/pinterest.svg' %}
 	</a></li>
@@ -28,10 +31,13 @@
 			href="mailto:?subject={{ subject|url_encode }}&body={{ body|url_encode }}"
 			target="_blank"
 			rel="noopener"
+			aria-label="Share this article via email"
 		>
 		{% include 'icons/email.svg' %}
 	</a></li>
-	<li><a>
+	<li><a
+			aria-label="Copy article link"
+		>
 		{% include 'icons/link.svg' %}
 	</a></li>
 </ul>
