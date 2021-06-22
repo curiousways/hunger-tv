@@ -4,17 +4,19 @@
 
 	<article>
 
-		<div class="row">
-			<div class="col">
-				{% if post.hero_type == 'video' %}
-					{% include 'includes/embed.twig' with { embed: post.hero_video } %}
-				{% elseif post.hero_type == 'image' %}
-					{% include 'includes/hero.twig' with { image: post.hero_image } %}
-				{% elseif post.thumbnail %}
-					{% include 'includes/hero.twig' with { image: post.thumbnail } %}
-				{% endif %}
+		{% if post.hero_type != 'none' %}
+			<div class="row">
+				<div class="col">
+					{% if post.hero_type == 'video' %}
+						{% include 'includes/embed.twig' with { embed: post.hero_video } %}
+					{% elseif post.hero_type == 'image' %}
+						{% include 'includes/image.twig' with { image: post.hero_image } %}
+					{% elseif post.thumbnail %}
+						{% include 'includes/image.twig' with { image: post.thumbnail } %}
+					{% endif %}
+				</div>
 			</div>
-		</div>
+		{% endif %}
 
 		{% include 'includes/single-header.twig' %}
 
