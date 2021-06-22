@@ -1,5 +1,21 @@
 // Tags
 
-ul.tags {
-	@extend .cats;
+.tags {
+	@extend .uppercase;
+	display: flex;
+	@include iota;
+
+	ul {
+		display: inline-flex;
+		flex-wrap: wrap;
+	}
+
+	li,
+	span {
+		margin-right: rhythm();
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
