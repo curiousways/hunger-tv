@@ -2,5 +2,16 @@
 
 ul.cats {
 	@extend .uppercase;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	margin-bottom: rhythm();
+
+	li {
+		margin-right: rhythm(2);
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
