@@ -534,7 +534,7 @@ class ProPluginManager extends PluginManagerBase
 
         wp_add_inline_script(
             'wp-migrate-db-pro-plugin-update-script',
-            sprintf('var wpmdbAPIBase = %s;', wp_json_encode(get_home_url() . '/wp-json/' . $this->props->rest_api_base)),
+            sprintf('var wpmdbAPIBase = %s;', wp_json_encode($this->util->rest_url())),
             'before'
         );
     }
