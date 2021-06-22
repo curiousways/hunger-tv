@@ -2,11 +2,7 @@
 
 	<div class="row">
 		<div class="col lg:6">
-			<div class="cats">
-				{% for item in post.terms('section') %}
-					<a href="{{ item.link }}">{{ item.name }}</a>
-				{% endfor %}
-			</div>
+			{% include 'includes/cats.twig' %}
 			<div class="eta">{{ post.date|date }}</div>
 		</div>
 		<div class="col lg:6">
