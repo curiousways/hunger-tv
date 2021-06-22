@@ -14,3 +14,9 @@ ul.social {
 		height: rhythm(3);
 	}
 }
+
+@media (min-width: $lg-min) {
+	header .social {
+		justify-content: flex-end;
+	}
+}
