@@ -25,7 +25,7 @@
 	{% endif %}
 
 	<div class="hero__content">
-		<div class="uppercase">
+		<div class="cats">
 			{% for category in article.terms('section') %}
 				<a href="{{ category.link }}">{{ category.name }}</a>
 			{% endfor %}

@@ -3,7 +3,7 @@
 	<img src="https://via.placeholder.com/360x540" alt="" />
 
 	<div class="card__content">
-		<div class="uppercase">
+		<div class="cats">
 			{% for category in post.terms('section') %}
 				<a href="{{ category.link }}">{{ category.name }}</a>
 			{% endfor %}
