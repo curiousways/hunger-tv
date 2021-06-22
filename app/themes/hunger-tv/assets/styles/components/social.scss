@@ -15,6 +15,13 @@ ul.social {
 	}
 }
 
+// Variants
+
+footer .social {
+	margin-top: rhythm(6);
+	margin-bottom: rhythm();
+}
+
 @media (min-width: $lg-min) {
 	header .social {
 		justify-content: flex-end;
