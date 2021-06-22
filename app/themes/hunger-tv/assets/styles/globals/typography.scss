@@ -6,6 +6,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-weight: normal;
 	margin: 0 0 rhythm();
 
 	&:last-child {
@@ -25,27 +26,33 @@ p {
 	@include omega;
 }
 
-h1 {
+h1,
+.alpha {
 	@include alpha;
 }
 
-h2 {
+h2,
+.beta {
 	@include beta;
 }
 
-h3 {
+h3,
+.gamma {
 	@include gamma;
 }
 
-h4 {
+h4,
+.delta {
 	@include delta;
 }
 
-h5 {
+h5,
+.epsilon {
 	@include epsilon;
 }
 
-h6 {
+h6,
+.zeta {
 	@include zeta;
 }
 
@@ -55,4 +62,8 @@ h6 {
 
 .iota {
 	@include iota;
+}
+
+blockquote {
+	@extend p, .beta;
 }

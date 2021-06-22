@@ -53,6 +53,10 @@ $total-cols: 12;
 			width: percentage(8 / $total-cols);
 		}
 
+		&.lg\:9 {
+			width: percentage(9 / $total-cols);
+		}
+
 		&.lg\:offset-2 {
 			margin-left: percentage(2 / $total-cols);
 		}

@@ -25,11 +25,7 @@
 	{% endif %}
 
 	<div class="hero__content">
-		<div class="uppercase">
-			{% for category in article.terms('section') %}
-				<a href="{{ category.link }}">{{ category.name }}</a>
-			{% endfor %}
-		</div>
+		{% include 'includes/cats.twig' with { post: article } %}
 		<h2><a href="{{ article.link }}">{{ article.title }}</a></h2>
 	</div>
 

@@ -1,18 +1,24 @@
 <header>
+
 	<div class="row">
-		<div class="col lg:1-2">
-			{% for item in post.terms('section') %}
-				<a href="{{ item.link }}">{{ item.name }}</a>
-			{% endfor %}
-			{{ post.date|date }}
+		<div class="col {{ fn('is_singular', 'editorial') ? 'lg:6' : 'lg:4 lg:offset-2' }}">
+			{% include 'includes/cats.twig' %}
+			<div class="eta">{{ post.date|date }}</div>
 		</div>
-		<div class="col lg:1-2">
+		<div class="col {{ fn('is_singular', 'editorial') ? 'lg:6' : 'lg:4' }}">
 			{% include 'includes/share.twig' %}
 		</div>
 	</div>
+
 	<div class="row">
-		<div class="col">
-			<h1>{{ post.title }}</h1>
+		<div class="col lg:9 lg:offset-2">
+			<h1 class="omega">{{ post.title }}</h1>
+			{% if post.standfirst %}
+				<p class="beta">{{ post.standfirst }}</p>
+			{% elseif post.article_excerpt %}
+				<p class="beta">{{ post.article_excerpt }}</p>
+			{% endif %}
 		</div>
 	</div>
+
 </header>

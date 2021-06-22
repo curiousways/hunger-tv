@@ -3,11 +3,7 @@
 	<img src="https://via.placeholder.com/360x540" alt="" />
 
 	<div class="card__content">
-		<div class="uppercase">
-			{% for category in post.terms('section') %}
-				<a href="{{ category.link }}">{{ category.name }}</a>
-			{% endfor %}
-		</div>
+		{% include 'includes/cats.twig' %}
 		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
 		{# {% if post.thumbnail %}
 			<img src="{{ post.thumbnail.src }}" alt="" />

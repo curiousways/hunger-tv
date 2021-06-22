@@ -1,0 +1,5 @@
+<ul class="cats">
+	{% for item in post.terms('section') %}
+		<li><a href="{{ item.link }}">{{ item.name }}</a></li>
+	{% endfor %}
+</ul>
