@@ -10,4 +10,14 @@
 	a {
 		text-decoration: underline;
 	}
+
+	ul,
+	ol {
+		padding-left: 1em;
+		margin: 0 0 rhythm();
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
