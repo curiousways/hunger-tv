@@ -21,3 +21,10 @@
 .cta__image {
 	margin-bottom: rhythm();
 }
+
+@media (min-width: $md-min) {
+	section.cta--tall {
+		padding-top: rhythm(12);
+		padding-bottom: rhythm(12);
+	}
+}
