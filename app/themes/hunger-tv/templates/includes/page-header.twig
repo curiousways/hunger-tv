@@ -1,11 +1,14 @@
 <header>
 	<div class="row">
-		<div class="col">
+		<div class="col lg:8 lg:offset-2">
 			<h1>{{ post.title }}</h1>
 			{% if post.content %}
 				<div class="rte">
 					{{ post.content }}
 				</div>
+			{% endif %}
+			{% if subtitle %}
+				<p class="beta">{{ subtitle }}</p>
 			{% endif %}
 		</div>
 	</div>
