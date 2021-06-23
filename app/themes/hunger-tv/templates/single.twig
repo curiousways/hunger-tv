@@ -4,13 +4,7 @@
 
 	<article>
 
-		<header>
-			<div class="row">
-				<div class="col">
-					<h1>{{ post.title }}</h1>
-				</div>
-			</div>
-		</header>
+		{% include 'includes/single-header.twig' %}
 
 		{% if post.content %}
 			<section>
