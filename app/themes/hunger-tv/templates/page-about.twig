@@ -4,26 +4,18 @@
 
 	{% include 'includes/page-header.twig' %}
 
-	<section>
-		<div class="row">
-			<div class="col">
-				<h2>The Team</h2>
-				<div class="rte">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	{% for department in departments %}
 		<section>
 			<div class="row">
-				<div class="col">
-					<h2>{{ department.name }}</h2>
+				<div class="col lg:8 lg:offset-2">
+
+					<h2 class="gamma">{{ department.name }}</h2>
+
 					{% for member in department.posts('orderby=menu_order&order=ASC') %}
-						<h3 class="no-margin">{{ member.title }}</h3>
-						<p>Job Title</p>
+						<p class="grey no-margin">Job Title</p>
+						<h3 class="base">{{ member.title }}</h3>
 					{% endfor %}
+
 				</div>
 			</div>
 		</section>

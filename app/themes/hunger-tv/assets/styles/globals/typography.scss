@@ -64,6 +64,10 @@ h6,
 	@include iota;
 }
 
+.base {
+	@include type($font-size);
+}
+
 blockquote {
 	@extend p, .beta;
 }
