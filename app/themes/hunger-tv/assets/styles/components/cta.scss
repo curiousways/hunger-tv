@@ -1,0 +1,30 @@
+// CTA
+
+.cta {
+	position: relative;
+
+	.row {
+		position: relative;
+	}
+}
+
+.cta__background {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	mix-blend-mode: multiply;
+	opacity: 0.1;
+}
+
+.cta__image {
+	margin-bottom: rhythm();
+}
+
+@media (min-width: $md-min) {
+	section.cta--tall {
+		padding-top: rhythm(12);
+		padding-bottom: rhythm(12);
+	}
+}

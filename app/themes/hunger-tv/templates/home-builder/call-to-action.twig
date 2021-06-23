@@ -1,19 +1,24 @@
-<section style="
-	color: {{ item.copy_colour }};
-	background-color: {{ item.background_colour }};
-">
+<section
+	class="cta{{ item.background_image ? ' cta--tall' }}"
+	style="color: {{ item.copy_colour }}; background-color: {{ item.background_colour }};"
+>
+
+	{% if item.background_image %}
+		{% include 'includes/image.twig' with {
+			image: item.background_image,
+			classes: 'cta__background'
+		} %}
+	{% endif %}
+
 	<div class="row">
-		<div class="col center">
-
+		<div class="col lg:8 lg:offset-2 center">
 			<h2>{{ item.title }}</h2>
-
 			<div class="rte">
 				{{ item.body }}
 			</div>
-
-			{% include 'includes/image.twig' %}
+			{% include 'includes/image.twig' with { classes: 'cta__image' } %}
 			{% include 'includes/button.twig' %}
-
 		</div>
 	</div>
+
 </section>
