@@ -1,12 +1,13 @@
 <header>
 	<div class="row">
-		<div class="col">
+		<div class="col lg:9 lg:offset-2">
+
 			<h1>{{ post.title }}</h1>
-			{% if post.content %}
-				<div class="rte">
-					{{ post.content }}
-				</div>
+
+			{% if post.post_excerpt %}
+				<p class="beta">{{ post.post_excerpt }}</p>
 			{% endif %}
+
 		</div>
 	</div>
 </header>
