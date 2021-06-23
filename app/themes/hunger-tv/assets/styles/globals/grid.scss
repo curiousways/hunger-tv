@@ -41,8 +41,16 @@ $total-cols: 12;
 
 @media (min-width: $lg-min) {
 	.col {
+		&.lg\:3 {
+			width: percentage(3 / $total-cols);
+		}
+
 		&.lg\:4 {
 			width: percentage(4 / $total-cols);
+		}
+
+		&.lg\:5 {
+			width: percentage(5 / $total-cols);
 		}
 
 		&.lg\:6 {
