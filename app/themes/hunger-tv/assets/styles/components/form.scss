@@ -4,9 +4,7 @@
 }
 
 @media (min-width: $md-min) {
-	.form--signup {
-		.button {
-			float: right;
-		}
+	.form--signup .row:last-child() .col:last-child {
+		text-align: right;
 	}
 }
