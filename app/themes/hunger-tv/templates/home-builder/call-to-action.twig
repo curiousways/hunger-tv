@@ -1,7 +1,15 @@
-<section style="
-	color: {{ item.copy_colour }};
-	background-color: {{ item.background_colour }};
-">
+<section
+	class="cta"
+	style="color: {{ item.copy_colour }}; background-color: {{ item.background_colour }};"
+>
+
+	{% if item.background_image %}
+		{% include 'includes/image.twig' with {
+			image: item.background_image,
+			classes: 'cta__background'
+		} %}
+	{% endif %}
+
 	<div class="row">
 		<div class="col lg:8 lg:offset-2 center">
 
