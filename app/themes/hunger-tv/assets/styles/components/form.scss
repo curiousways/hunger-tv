@@ -1,0 +1,12 @@
+// Form
+
+.form {
+}
+
+@media (min-width: $md-min) {
+	.form--signup {
+		.button {
+			float: right;
+		}
+	}
+}
