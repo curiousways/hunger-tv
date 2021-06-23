@@ -3,40 +3,51 @@
 	method="post"
 >
 
-	<div class="input">
-		<input
-			type="text"
-			name="FNAME"
-			placeholder="Name*"
-			aria-label="Name"
-			required
-		/>
+	<div class="row">
+		<div class="col lg:6 md:6">
+			<div class="input">
+				<input
+					type="text"
+					name="FNAME"
+					placeholder="Name*"
+					aria-label="Name"
+					required
+				/>
+			</div>
+		</div>
+		<div class="col lg:6 md:6">
+			<div class="input">
+				<input
+					type="email"
+					name="EMAIL"
+					placeholder="Email*"
+					aria-label="Email"
+					required
+				/>
+			</div>
+		</div>
 	</div>
 
-	<div class="input">
-		<input
-			type="email"
-			name="EMAIL"
-			placeholder="Email*"
-			aria-label="Email"
-			required
-		/>
-	</div>
 
-	<div>
-		<input
-			type="checkbox"
-			id="permission"
-			name="gdpr[]"
-			value="Y"
-			required
-		/>
-		<label for="permission">I consent to joining the Hunger mailing list. <a>Read more</a></label>
+	<div class="row">
+		<div class="col lg:6 md:6">
+			<div>
+				<input
+					type="checkbox"
+					id="permission"
+					name="gdpr[]"
+					value="Y"
+					required
+				/>
+				<label for="permission">I consent to joining the Hunger mailing list. <a>Read more</a></label>
+			</div>
+		</div>
+		<div class="col lg:6 md:6">
+			<button
+				type="submit"
+				class="button"
+			>Sign Up</button>
+		</div>
 	</div>
-
-	<button
-		type="submit"
-		class="button"
-	>Sign Up</button>
 
 </form>
