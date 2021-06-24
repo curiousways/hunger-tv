@@ -53,12 +53,19 @@
 
 .hero__content {
 	@extend .col, .card__content;
+	color: $white;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	position: absolute;
 	top: 0;
 	height: 100%;
+}
+
+// Variants
+
+.hero[style*="background-color"] .hero__image {
+	mix-blend-mode: multiply;
 }
 
 @media (min-width: $lg-min) {

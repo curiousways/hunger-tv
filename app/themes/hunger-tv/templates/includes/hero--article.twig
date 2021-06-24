@@ -1,4 +1,8 @@
-<div class="hero" role="banner">
+<div
+	class="hero"
+	role="banner"
+	style="background-color: {{ home.background_colour }}"
+>
 
 	{% if article.thumbnail %}
 		{% include 'includes/image.twig' with {
