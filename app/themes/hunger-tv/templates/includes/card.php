@@ -2,13 +2,9 @@
 
 	<img src="https://via.placeholder.com/360x540" alt="" />
 
-	{# {% if post.thumbnail %}
-		<img src="{{ post.thumbnail.src }}" alt="" />
-	{% endif %} #}
-
 	<div class="card__content">
 		{% include 'includes/cats.twig' %}
-		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+		<h3><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h3>
 	</div>
 
 </div>

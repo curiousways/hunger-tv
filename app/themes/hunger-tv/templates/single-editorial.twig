@@ -14,6 +14,21 @@
 		{% include 'includes/article-builder.twig' %}
 		{% include 'includes/single-footer.twig' %}
 
+		<section>
+			<div class="row">
+				<div class="col center">
+					<h2>Related Content</h2>
+				</div>
+			</div>
+			<div class="row">
+				{% for post in related %}
+					<div class="col md:6 lg:4">
+						{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+
 	</article>
 
 {% endblock %}
