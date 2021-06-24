@@ -16,8 +16,8 @@ html {
 	font-smoothing: antialiased;
 }
 
-body {
-	// padding-top: rhythm($header-height);
+body:not(.home) {
+	padding-top: rhythm($header-height);
 	// 	padding-left: $drawer-width-open;
 	// 	transition: padding-left 0.5s $anim-curve;
 
