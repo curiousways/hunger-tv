@@ -59,8 +59,8 @@ main {
 }
 
 section {
-	margin-top: rhythm(8);
-	margin-bottom: rhythm(8);
+	// margin-top: rhythm();
+	// margin-bottom: rhythm();
 
 	&[style*="background"] {
 		padding-top: rhythm();
@@ -91,5 +91,10 @@ a {
 @media (min-width: $lg-min) {
 	body.home {
 		padding-top: 0;
+	}
+
+	section {
+		margin-top: rhythm(8);
+		margin-bottom: rhythm(8);
 	}
 }
