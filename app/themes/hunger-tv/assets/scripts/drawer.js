@@ -7,7 +7,7 @@ navToggle.addEventListener("click", function () {
 	this.classList.toggle("is-active");
 	searchDrawer.classList.remove("open");
 	navDrawer.classList.toggle("open");
-	document.body.classList.toggle("wide");
+	// document.body.classList.toggle("wide");
 });
 
 searchToggle.addEventListener("click", function () {
@@ -15,7 +15,7 @@ searchToggle.addEventListener("click", function () {
 	navToggle.classList.remove("is-active");
 	navDrawer.classList.remove("open");
 	searchDrawer.classList.toggle("open");
-	document.body.classList.toggle("wide");
+	// document.body.classList.toggle("wide");
 });
 
 console.log("%cdrawer running", "color:green;");

@@ -15,7 +15,7 @@
 // }
 
 .hero__logo {
-	display: flex;
+	display: none;
 	align-items: center;
 	position: absolute;
 	top: 30%;
@@ -93,7 +93,7 @@
 
 @media (min-width: $lg-min) {
 	.hero__logo {
-		// display: block;
+		display: flex;
 	}
 
 	.hero__content {

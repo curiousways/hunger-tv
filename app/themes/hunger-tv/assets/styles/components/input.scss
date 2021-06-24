@@ -24,18 +24,10 @@ label {
 	}
 
 	button {
-		background: none;
-		border: none;
 		position: absolute;
 		top: 0;
 		right: rhythm(-1);
-		padding: rhythm(1);
-		@include link;
-
-		svg {
-			width: rhythm();
-			height: rhythm();
-		}
+		@include icon-button;
 	}
 
 	&:focus-within {

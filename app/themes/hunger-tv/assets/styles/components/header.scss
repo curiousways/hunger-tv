@@ -33,15 +33,23 @@
 	left: rhythm(-2);
 }
 
-// Variants
+@media (max-width: $sm-max) {
+	.header {
+		.button--small {
+			display: none;
+		}
+	}
+}
 
-.home .header__bar {
-	opacity: 0;
-	visibility: hidden;
-	transition: all 0.5s $anim-curve;
+@media (min-width: $lg-min) {
+	.home .header__bar {
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s $anim-curve;
 
-	&.visible {
-		opacity: 1;
-		visibility: visible;
+		&.visible {
+			opacity: 1;
+			visibility: visible;
+		}
 	}
 }

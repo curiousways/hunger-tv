@@ -7,3 +7,9 @@
 		height: 100%;
 	}
 }
+
+@media (min-width: $lg-min) {
+	.home .logo {
+		display: none;
+	}
+}
