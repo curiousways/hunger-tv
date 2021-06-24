@@ -20,7 +20,7 @@ html {
 	}
 }
 
-body:not(.home) {
+body {
 	padding-top: rhythm($header-height);
 	// 	padding-left: $drawer-width-open;
 	// 	transition: padding-left 0.5s $anim-curve;
@@ -37,6 +37,22 @@ body:not(.home) {
 	// 			}
 	// 		}
 	// 	}
+}
+
+body.dark {
+}
+
+body.light {
+	.header,
+	.hero__logo {
+		color: $white;
+	}
+
+	.hamburger-inner,
+	.hamburger-inner:before,
+	.hamburger-inner:after {
+		background-color: $white;
+	}
 }
 
 main {
@@ -70,4 +86,10 @@ ol[class] {
 a {
 	text-decoration: none;
 	@include link;
+}
+
+@media (min-width: $lg-min) {
+	body.home {
+		padding-top: 0;
+	}
 }

@@ -1,17 +1,23 @@
-<div class="hero" role="banner">
+<div
+	class="hero{{ post.hero_display ? ' hero--' ~ post.hero_display }}"
+	role="banner"
+	style="background-color: {{ home.background_colour }}"
+>
 
-	{% if article.thumbnail %}
-		{% include 'includes/image.twig' with {
-			image: article.thumbnail,
-			classes: 'hero__image'
-		} %}
-	{% else %}
-		<img
-			src="https://via.placeholder.com/1920x800"
-			class="hero__image"
-			alt=""
-			loading="lazy"
-		/>
+	{% if post.hero_display != 'solid-colour' %}
+		{% if article.thumbnail %}
+			{% include 'includes/image.twig' with {
+				image: article.thumbnail,
+				classes: 'hero__image'
+			} %}
+		{% else %}
+			<img
+				src="https://via.placeholder.com/1920x800"
+				class="hero__image"
+				alt=""
+				loading="lazy"
+			/>
+		{% endif %}
 	{% endif %}
 
 	{% if fn('is_front_page') %}
