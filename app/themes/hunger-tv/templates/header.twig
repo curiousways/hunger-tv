@@ -16,13 +16,15 @@
 			</div>
 
 			<div class="col sm:4 md:4 lg:4">
-				<a
-					href="{{ site.link }}"
-					class="logo"
-					aria-label="Home"
-				>
-					{% include 'icons/hunger_logo.svg' %}
-				</a>
+				{% if not fn('is_front_page') %}
+					<a
+						href="{{ site.link }}"
+						class="logo"
+						aria-label="Home"
+					>
+						{% include 'icons/hunger_logo.svg' %}
+					</a>
+				{% endif %}
 			</div>
 
 			<div class="col sm:4 md:4 lg:4">
