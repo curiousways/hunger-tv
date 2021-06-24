@@ -14,8 +14,9 @@ $timber_post     = Timber::get_post();
 $context['post'] = $timber_post;
 
 $context['related'] = Timber::get_posts([
-    'post_type' => ['article', 'editorial'],
-    'posts_per_page' => 6
+    'post_type' => get_post_type(),
+    'posts_per_page' => 6,
+    'post__not_in' => [get_the_ID()]
 ]);
 
 if ( post_password_required( $timber_post->ID ) ) {
