@@ -3,6 +3,27 @@
     "title": "Hero",
     "fields": [
         {
+            "key": "field_60d4812aefebb",
+            "label": "Colours",
+            "name": "colours",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_60ab8568cecc8"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+        },
+        {
             "key": "field_60cc78931a8ee",
             "label": "Hero article",
             "name": "hero_article",
@@ -44,5 +65,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624013292
+    "modified": 1624539465
 }
