@@ -28,6 +28,10 @@
 	}
 }
 
+#drawer--search__toggle {
+	@include icon-button;
+}
+
 // Variants
 
 #drawer--nav {

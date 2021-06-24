@@ -81,3 +81,15 @@
 @mixin iota {
 	@include type($iota, 3);
 }
+
+@mixin icon-button {
+	background: none;
+	border: none;
+	padding: rhythm(1);
+	@include link;
+
+	svg {
+		width: rhythm();
+		height: rhythm();
+	}
+}
