@@ -13,12 +13,16 @@
 	// transform: translateX(
 	// 	calc(#{-$drawer-width-open} + #{rhythm($drawer-width-closed)})
 	// );
-	transform: translateY(-200%);
-	transition: transform 0.5s $anim-curve;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-100%);
+	transition: all 0.5s $anim-curve;
 	overflow: auto;
 	// padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 
 	&.open {
+		opacity: 1;
+		visibility: visible;
 		transform: none;
 	}
 }
