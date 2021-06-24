@@ -89,13 +89,13 @@
 			object-fit: cover;
 		}
 	}
+
+	.hero__logo {
+		display: none;
+	}
 }
 
 @media (min-width: $lg-min) {
-	.hero__logo {
-		// display: block;
-	}
-
 	.hero__content {
 		justify-content: flex-end;
 
