@@ -36,9 +36,11 @@
 
 .home .header__bar {
 	opacity: 0;
-	transition: opacity 0.5s $anim-curve;
+	visibility: hidden;
+	transition: all 0.5s $anim-curve;
 
 	&.visible {
 		opacity: 1;
+		visibility: visible;
 	}
 }
