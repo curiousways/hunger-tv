@@ -1,0 +1,26 @@
+// Section
+
+section {
+	// margin-top: rhythm();
+	// margin-bottom: rhythm();
+
+	&[style*="background"] {
+		padding-top: rhythm();
+		padding-bottom: rhythm();
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+// Variants
+
+section.light {
+	color: $white;
+}
+
+@media (min-width: $lg-min) {
+	section {
+		margin-top: rhythm(8);
+		margin-bottom: rhythm(8);
+	}
+}

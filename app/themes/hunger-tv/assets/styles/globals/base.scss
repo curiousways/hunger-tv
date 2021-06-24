@@ -58,18 +58,6 @@ body.light {
 main {
 }
 
-section {
-	// margin-top: rhythm();
-	// margin-bottom: rhythm();
-
-	&[style*="background"] {
-		padding-top: rhythm();
-		padding-bottom: rhythm();
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-}
-
 img,
 svg {
 	max-width: 100%;
@@ -91,10 +79,5 @@ a {
 @media (min-width: $lg-min) {
 	body.home {
 		padding-top: 0;
-	}
-
-	section {
-		margin-top: rhythm(8);
-		margin-bottom: rhythm(8);
 	}
 }
