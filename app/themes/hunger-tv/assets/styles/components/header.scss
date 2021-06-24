@@ -12,6 +12,7 @@
 	position: relative;
 	height: rhythm($header-height);
 	z-index: 1;
+	box-shadow: 0 0 rhythm() $grey-light;
 
 	.col {
 		display: flex;
