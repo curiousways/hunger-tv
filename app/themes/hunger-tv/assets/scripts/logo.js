@@ -15,6 +15,7 @@ window.addEventListener("scroll", () => {
 
 setTimeout(() => {
 	document.querySelector(".hero__logo").classList.add("mini");
+	document.documentElement.classList.remove("no-scroll");
 }, 3000);
 
 console.log("%clogo running", "color:green;");
