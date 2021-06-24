@@ -7,4 +7,12 @@ window.addEventListener(
 	false
 );
 
+window.addEventListener("scroll", () => {
+	if (window.scrollY > 0) {
+		document.querySelector(".header__bar").classList.add("visible");
+	} else {
+		document.querySelector(".header__bar").classList.remove("visible");
+	}
+});
+
 console.log("%clogo running", "color:green;");

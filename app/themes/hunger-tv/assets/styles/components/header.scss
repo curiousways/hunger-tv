@@ -8,10 +8,10 @@
 }
 
 .header__bar {
-	background-color: $white;
 	position: relative;
 	height: rhythm($header-height);
 	z-index: 1;
+	transition: background-color 0.5s $anim-curve;
 
 	.col {
 		display: flex;
@@ -24,6 +24,10 @@
 
 	.button {
 		margin-right: rhythm();
+	}
+
+	&.visible {
+		background-color: $white;
 	}
 }
 
