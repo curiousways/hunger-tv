@@ -35,23 +35,10 @@
 // Variants
 
 .home .header__bar {
-	background-color: transparent;
-	transition: background-color 0.5s $anim-curve;
-
-	.hamburger,
-	.button,
-	button {
-		opacity: 0;
-		transition: opacity 0.5s $anim-curve;
-	}
+	opacity: 0;
+	transition: opacity 0.5s $anim-curve;
 
 	&.visible {
-		background-color: $white;
-
-		.hamburger,
-		.button,
-		button {
-			opacity: 1;
-		}
+		opacity: 1;
 	}
 }
