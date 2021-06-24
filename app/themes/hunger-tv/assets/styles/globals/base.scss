@@ -14,9 +14,13 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-smoothing: antialiased;
+
+	&.no-scroll {
+		overflow: hidden;
+	}
 }
 
-body {
+body:not(.home) {
 	padding-top: rhythm($header-height);
 	// 	padding-left: $drawer-width-open;
 	// 	transition: padding-left 0.5s $anim-curve;

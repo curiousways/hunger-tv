@@ -15,18 +15,41 @@
 // }
 
 .hero__logo {
-	color: white;
-	display: none;
+	display: flex;
+	align-items: center;
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	top: 30%;
+	right: 0;
+	left: 0;
 	width: 100%;
+	// height: 100%;
+	transition: all 0.5s $anim-curve;
+	margin: auto;
+
+	svg {
+		width: $grid-width - $gutter-width;
+		transition: all 0.5s $anim-curve;
+		margin: auto;
+	}
+
+	&.mini {
+		position: fixed;
+		top: 0;
+		width: fit-content;
+		height: rhythm($header-height);
+		z-index: $z-7;
+
+		svg {
+			width: auto;
+			height: rhythm(5);
+		}
+	}
 }
 
-.hero__logo svg {
-	min-height: rhythm(8);
-	height: calc(300px - calc(var(--scroll) * 1px));
-}
+// .hero__logo svg {
+// min-height: rhythm(8);
+// height: calc(300px - calc(var(--scroll) * 1px));
+// }
 
 .hero__content {
 	@extend .col, .card__content;
@@ -41,7 +64,7 @@
 
 @media (min-width: $lg-min) {
 	.hero__logo {
-		display: block;
+		// display: block;
 	}
 
 	.hero__content {
