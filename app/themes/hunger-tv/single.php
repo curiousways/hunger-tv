@@ -13,6 +13,11 @@ $context         = Timber::context();
 $timber_post     = Timber::get_post();
 $context['post'] = $timber_post;
 
+$context['related'] = Timber::get_posts([
+    'post_type' => ['article', 'editorial'],
+    'posts_per_page' => 6
+]);
+
 if ( post_password_required( $timber_post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {
