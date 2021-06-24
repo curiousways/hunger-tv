@@ -39,6 +39,22 @@ body:not(.home) {
 	// 	}
 }
 
+body.dark {
+}
+
+body.light {
+	.header,
+	.hero {
+		color: $white;
+	}
+
+	.hamburger-inner,
+	.hamburger-inner:before,
+	.hamburger-inner:after {
+		background-color: $white;
+	}
+}
+
 main {
 }
 
