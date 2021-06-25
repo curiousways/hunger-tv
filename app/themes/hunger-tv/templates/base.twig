@@ -6,7 +6,20 @@
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, minimal-ui">
 		<meta name="author" content="Curious Ways">
 		<meta name="theme-color" content="{{ home.background_colour }}">
-		{{function('wp_head')}}
+
+		<style>
+			@font-face {
+				font-family: 'Founders Grotesk Text';
+				src: url("{{ fn('get_template_directory_uri') }}/assets/fonts/founders-grotesk-text-web-regular.woff2") format('woff2'),
+					 url("{{ fn('get_template_directory_uri') }}/assets/fonts/founders-grotesk-text-web-regular.woff") format('woff');
+				font-weight: normal;
+				font-style: normal;
+				font-display: swap;
+			}
+		</style>
+
+		{{ function('wp_head') }}
+
 	</head>
 
 	<body class="{{ body_class }} {{ home.copy_colour }}">
