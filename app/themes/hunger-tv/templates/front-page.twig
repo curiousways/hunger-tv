@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="row">
-			{% for post in spotlight|slice(0, 6) if post.id not in ignore_ids %}
+			{% for post in spotlight|slice(0, 6) %}
 				<div class="col md:6 lg:4">
 					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
