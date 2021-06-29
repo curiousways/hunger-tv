@@ -1,16 +1,20 @@
-<div class="card{{ not post.hero_image and not post.thumbnail ? ' no-image' }}">
+<div class="
+	card
+	{{ post.card_image_orientation ? 'card--portrait' }}
+	{{ not post.hero_image and not post.thumbnail ? 'no-image' }}
+">
 
 	{% if post.hero_image %}
 		{% include 'includes/image.twig' with {
 			image: post.hero_image,
 			classes: 'card__image',
-			size: 'portrait'
+			size: post.card_image_orientation ? 'portrait' : 'thumbnail'
 		} %}
 	{% elseif post.thumbnail %}
 		{% include 'includes/image.twig' with {
 			image: post.thumbnail,
 			classes: 'card__image',
-			size: 'portrait'
+			size: post.card_image_orientation ? 'portrait' : thumbnail
 		} %}
 	{% endif %}
 

@@ -1,8 +1,9 @@
 <div
 	class="
-		hero hero--article
-		{{ post.hero_display ? ' hero--' ~ post.hero_display }}
-		{{ not article.hero_image ? ' no-image' }}
+		hero
+		hero--article
+		{{ post.hero_display ? 'hero--' ~ post.hero_display }}
+		{{ not article.hero_image ? 'no-image' }}
 	"
 	role="banner"
 	style="background-color: {{ home.background_colour }}"

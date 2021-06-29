@@ -25,6 +25,25 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_60db124b79b55",
+            "label": "Card image orientation",
+            "name": "card_image_orientation",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Portrait",
+            "ui_off_text": "Landscape"
         }
     ],
     "location": [
@@ -47,5 +66,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624965947
+    "modified": 1624972636
 }
