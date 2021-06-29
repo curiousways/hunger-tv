@@ -1,22 +1,25 @@
-<div class="card{{ not post.hero_image and not post.thumbnail ? ' no-image' }}">
+<div class="
+	card
+	card--{{ post.card_image_orientation ? 'portrait' : 'landscape' }}
+">
+
+	<div class="card__content">
+		{% include 'includes/cats.twig' %}
+		<h3 class="card__title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
+	</div>
 
 	{% if post.hero_image %}
 		{% include 'includes/image.twig' with {
 			image: post.hero_image,
 			classes: 'card__image',
-			size: 'portrait'
+			size: post.card_image_orientation ? 'portrait' : 'thumbnail'
 		} %}
 	{% elseif post.thumbnail %}
 		{% include 'includes/image.twig' with {
 			image: post.thumbnail,
 			classes: 'card__image',
-			size: 'portrait'
+			size: post.card_image_orientation ? 'portrait' : thumbnail
 		} %}
 	{% endif %}
-
-	<div class="card__content">
-		{% include 'includes/cats.twig' %}
-		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-	</div>
 
 </div>
