@@ -68,7 +68,8 @@
 	mix-blend-mode: multiply;
 }
 
-.hero--solid-colour {
+.hero--solid-colour,
+.hero.no-image {
 	padding-bottom: percentage(9/16);
 
 	h2 {
