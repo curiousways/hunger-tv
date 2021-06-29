@@ -1,10 +1,16 @@
 <div class="card">
 
-	<img src="https://via.placeholder.com/360x540" alt="" />
-
-	{# {% if post.thumbnail %}
-		<img src="{{ post.thumbnail.src }}" alt="" />
-	{% endif %} #}
+	{% if post.hero_image %}
+		{% include 'includes/image.twig' with {
+			image: post.hero_image,
+			classes: 'card__image'
+		} %}
+	{% elseif post.thumbnail %}
+		{% include 'includes/image.twig' with {
+			image: post.thumbnail,
+			classes: 'card__image'
+		} %}
+	{% endif %}
 
 	<div class="card__content">
 		{% include 'includes/cats.twig' %}
