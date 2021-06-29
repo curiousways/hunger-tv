@@ -3,12 +3,14 @@
 	{% if post.hero_image %}
 		{% include 'includes/image.twig' with {
 			image: post.hero_image,
-			classes: 'card__image'
+			classes: 'card__image',
+			size: 'portrait'
 		} %}
 	{% elseif post.thumbnail %}
 		{% include 'includes/image.twig' with {
 			image: post.thumbnail,
-			classes: 'card__image'
+			classes: 'card__image',
+			size: 'portrait'
 		} %}
 	{% endif %}
 
