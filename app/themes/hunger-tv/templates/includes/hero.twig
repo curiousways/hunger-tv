@@ -9,11 +9,17 @@
 
 {% elseif post.thumbnail %}
 
-	<div class="hero" role="banner">
-		{% include 'includes/image.twig' with {
-			image: post.thumbnail,
-			classes: 'hero__image'
-		} %}
-	</div>
+	<section>
+		<div class="hero" role="banner">
+			<div class="row">
+				<div class="col lg:8 lg:offset-2">
+					{% include 'includes/image.twig' with {
+						image: post.thumbnail,
+						classes: 'hero__image'
+					} %}
+				</div>
+			</div>
+		</div>
+	</section>
 
 {% endif %}

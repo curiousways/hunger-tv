@@ -1,11 +1,11 @@
 <header>
 
 	<div class="row">
-		<div class="col {{ fn('is_singular', 'editorial') ? 'lg:6' : 'lg:4 lg:offset-2' }}">
+		<div class="col {% if post.hero_image %}lg:6{% elseif post.thumbnail %}lg:4 lg:offset-2{% else %}lg:6{% endif %}">
 			{% include 'includes/cats.twig' %}
 			<div class="eta">{{ post.date|date }}</div>
 		</div>
-		<div class="col {{ fn('is_singular', 'editorial') ? 'lg:6' : 'lg:4' }}">
+		<div class="col {% if post.hero_image %}lg:6{% elseif post.thumbnail %}lg:4{% else %}lg:6{% endif %}">
 			{% include 'includes/share.twig' %}
 		</div>
 	</div>
