@@ -1,11 +1,36 @@
 // Card
 
 .card {
+	background-color: $brown-lightest;
 	position: relative;
 	text-align: center;
+	height: 100%;
+
+	a {
+		position: relative;
+		z-index: 1;
+	}
+
+	h3 a {
+		position: static;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.card__image {
+	width: 100%;
 }
 
 .card__content {
+	color: $white;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -14,4 +39,11 @@
 	width: 100%;
 	height: 100%;
 	padding: rhythm();
+}
+
+// Variants
+
+.card.no-image .card__content {
+	color: inherit;
+	position: static;
 }

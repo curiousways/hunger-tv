@@ -24,5 +24,6 @@ function filtered_posts($ignore_ids) {
 }
 
 include_once 'setup/timber.php';
+include_once 'setup/images.php';
 include_once 'setup/post-types.php';
 include_once 'setup/legacy.php';
