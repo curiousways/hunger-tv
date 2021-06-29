@@ -5,18 +5,16 @@
 >
 
 	{% if post.hero_display != 'solid-colour' %}
-		{% if article.thumbnail %}
+		{% if article.hero_image %}
+			{% include 'includes/image.twig' with {
+				image: article.hero_image,
+				classes: 'hero__image'
+			} %}
+		{% elseif article.thumbnail %}
 			{% include 'includes/image.twig' with {
 				image: article.thumbnail,
 				classes: 'hero__image'
 			} %}
-		{% else %}
-			<img
-				src="https://via.placeholder.com/1920x800"
-				class="hero__image"
-				alt=""
-				loading="lazy"
-			/>
 		{% endif %}
 	{% endif %}
 
