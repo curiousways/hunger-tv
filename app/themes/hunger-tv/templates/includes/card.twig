@@ -1,7 +1,6 @@
 <div class="
 	card
-	{{ post.card_image_orientation ? 'card--portrait' }}
-	{{ not post.hero_image and not post.thumbnail ? 'no-image' }}
+	card--{{ post.card_image_orientation ? 'portrait' : 'landscape' }}
 ">
 
 	<div class="card__content">

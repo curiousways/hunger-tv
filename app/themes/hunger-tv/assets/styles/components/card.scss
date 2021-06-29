@@ -29,9 +29,7 @@
 }
 
 .card__image {
-	width: calc(100% + #{rhythm()});
-	max-width: none;
-	margin: 0 rhythm(-2) rhythm(2);
+	width: 100%;
 }
 
 .card__content {
@@ -44,9 +42,12 @@
 
 // Variants
 
-.card.no-image .card__content {
-	color: inherit;
-	position: static;
+.card--landscape {
+	.card__image {
+		width: calc(100% + #{rhythm()});
+		max-width: none;
+		margin: 0 rhythm(-2) rhythm(2);
+	}
 }
 
 .card--portrait {
@@ -56,10 +57,5 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-	}
-
-	.card__image {
-		width: 100%;
-		margin: 0;
 	}
 }
