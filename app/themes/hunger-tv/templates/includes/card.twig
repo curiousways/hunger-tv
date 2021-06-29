@@ -4,6 +4,11 @@
 	{{ not post.hero_image and not post.thumbnail ? 'no-image' }}
 ">
 
+	<div class="card__content">
+		{% include 'includes/cats.twig' %}
+		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+	</div>
+
 	{% if post.hero_image %}
 		{% include 'includes/image.twig' with {
 			image: post.hero_image,
@@ -17,10 +22,5 @@
 			size: post.card_image_orientation ? 'portrait' : thumbnail
 		} %}
 	{% endif %}
-
-	<div class="card__content">
-		{% include 'includes/cats.twig' %}
-		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-	</div>
 
 </div>

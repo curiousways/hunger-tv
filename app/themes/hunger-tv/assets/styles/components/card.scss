@@ -3,6 +3,9 @@
 .card {
 	background-color: $brown-lightest;
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	text-align: center;
 	height: 100%;
 
@@ -30,14 +33,10 @@
 }
 
 .card__content {
-	color: $white;
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	justify-content: space-between;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
 	padding: rhythm();
 }
 
@@ -46,4 +45,14 @@
 .card.no-image .card__content {
 	color: inherit;
 	position: static;
+}
+
+.card--portrait {
+	.card__content {
+		color: $white;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
 }
