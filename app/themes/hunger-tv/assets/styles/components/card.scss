@@ -11,20 +11,7 @@
 
 	a {
 		position: relative;
-		z-index: 1;
-	}
-
-	h3 a {
-		position: static;
-
-		&:after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-		}
+		z-index: $z-1;
 	}
 }
 
@@ -40,9 +27,26 @@
 	padding: rhythm();
 }
 
+.card__title a {
+	position: static;
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
 // Variants
 
 .card--landscape {
+	.card__title {
+		margin: auto !important;
+	}
+
 	.card__image {
 		width: calc(100% + #{rhythm()});
 		max-width: none;

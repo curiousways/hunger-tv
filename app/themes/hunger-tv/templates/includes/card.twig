@@ -5,7 +5,7 @@
 
 	<div class="card__content">
 		{% include 'includes/cats.twig' %}
-		<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+		<h3 class="card__title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
 	</div>
 
 	{% if post.hero_image %}
