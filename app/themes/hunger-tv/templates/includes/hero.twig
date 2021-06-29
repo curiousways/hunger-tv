@@ -1,5 +1,15 @@
-{% if image %}
+{% if post.hero_imag %}
 	<div class="hero" role="banner">
-		{% include 'includes/image.twig' with { classes: 'hero__image' } %}
+		{% include 'includes/image.twig' with {
+			image: post.hero_image,
+			classes: 'hero__image'
+		} %}
+	</div>
+{% elseif post.thumbnail %}
+	<div class="hero" role="banner">
+		{% include 'includes/image.twig' with {
+			image: post.thumbnail,
+			classes: 'hero__image'
+		} %}
 	</div>
 {% endif %}

@@ -4,12 +4,7 @@
 
 	<article>
 
-		{% if post.hero_image %}
-			{% include 'includes/hero.twig' with { image: post.hero_image } %}
-		{% elseif post.thumbnail %}
-			{% include 'includes/hero.twig' with { image: post.thumbnail } %}
-		{% endif %}
-
+		{% include 'includes/hero.twig' %}
 		{% include 'includes/single-header.twig' %}
 		{% include 'includes/article-builder.twig' %}
 		{% include 'includes/single-footer.twig' %}
