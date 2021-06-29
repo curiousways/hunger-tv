@@ -22,6 +22,15 @@ $drawer-width-closed: 18;
 $header-height: 15;
 
 // Typography
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
+
+strong {
+	font-family: "Nunito", system-ui, sans-serif;
+	// font-size: 0.9em;
+	// font-weight: 700;
+}
+
 $font-size: 18;
 $line-height: 24; // The result of this when divided by 4 should be a whole numnber
 $body-font: "Founders Grotesk Text", system-ui, sans-serif;
