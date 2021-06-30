@@ -44,3 +44,21 @@
 .grey {
 	color: $grey;
 }
+
+@media (max-width: $sm-max) {
+	.hide-sm {
+		display: none !important;
+	}
+}
+
+@media (min-width: $md-min) and (max-width: $md-max) {
+	.hide-md {
+		display: none !important;
+	}
+}
+
+@media (min-width: $lg-min) {
+	.hide-lg {
+		display: none !important;
+	}
+}

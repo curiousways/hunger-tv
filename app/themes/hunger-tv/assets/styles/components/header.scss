@@ -33,14 +33,6 @@
 	left: rhythm(-2);
 }
 
-@media (max-width: $sm-max) {
-	.header {
-		.button--small {
-			display: none;
-		}
-	}
-}
-
 @media (min-width: $lg-min) {
 	.home .header__bar {
 		opacity: 0;
