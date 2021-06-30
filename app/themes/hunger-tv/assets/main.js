@@ -5,3 +5,5 @@ import "./scripts/logo";
 
 // Styles
 import "./main.scss";
+
+document.documentElement.classList.remove("no-js");
