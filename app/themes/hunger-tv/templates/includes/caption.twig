@@ -1,3 +1,7 @@
-{% if image.caption %}
-	<p class="caption">{{ image.caption }}</p>
+{% if not caption %}
+	{% set caption = image.caption %}
+{% endif %}
+
+{% if caption %}
+	<p class="caption">{{ caption }}</p>
 {% endif %}
