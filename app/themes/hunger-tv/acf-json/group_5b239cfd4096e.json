@@ -560,77 +560,6 @@
             "max": ""
         },
         {
-            "key": "field_5b23cec643c3b",
-            "label": "Evergreen",
-            "name": "evergreen",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "yes": "Yes"
-            },
-            "allow_custom": 0,
-            "save_custom": 0,
-            "default_value": [
-                "yes"
-            ],
-            "layout": "vertical",
-            "toggle": 0,
-            "return_format": "value"
-        },
-        {
-            "key": "field_5b23cf1c2cdfa",
-            "label": "Sponsored",
-            "name": "sponsored",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "yes": "Yes"
-            },
-            "allow_custom": 0,
-            "save_custom": 0,
-            "default_value": [],
-            "layout": "vertical",
-            "toggle": 0,
-            "return_format": "value"
-        },
-        {
-            "key": "field_5b2d0db29b8b1",
-            "label": "Hungry for more?",
-            "name": "hungry_for_more",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "enabled": "Enabled"
-            },
-            "allow_custom": 0,
-            "save_custom": 0,
-            "default_value": [],
-            "layout": "vertical",
-            "toggle": 0,
-            "return_format": "value"
-        },
-        {
             "key": "field_5b391b52ed8d8",
             "label": "Credits",
             "name": "article_info",
@@ -700,5 +629,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624965789
+    "modified": 1625064029
 }
