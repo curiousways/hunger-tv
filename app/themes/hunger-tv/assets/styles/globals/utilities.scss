@@ -22,6 +22,14 @@
 	margin-bottom: rhythm(8);
 }
 
+.object-fit {
+	padding: 0 !important;
+
+	img {
+		object-fit: cover;
+	}
+}
+
 .rhythm {
 	background-image: linear-gradient(to bottom, cyan 0, transparent 1px),
 		linear-gradient(to bottom, lightgrey 0, transparent 1px);
