@@ -10,18 +10,12 @@
 					<div class="carousel__tray">
 						{% for image in item.image %}
 							<div>
-								<img src="https://via.placeholder.com/780x480" alt="" loading="lazy" />
-							</div>
-							<div>
-								<img src="https://via.placeholder.com/300x480" alt="" loading="lazy" />
-							</div>
-							<div>
 								{% include 'includes/image.twig' %}
 							</div>
 						{% endfor %}
 					</div>
 
-					<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length * 3 }}</div>
+					<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
 					
 					<button
 						class="carousel__control carousel__control--prev"
@@ -40,12 +34,6 @@
 				<div class="col lg:8 lg:offset-2">
 					<div class="carousel__captions">
 						{% for image in item.image %}
-							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-							</div>
-							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
 							<div>
 								{{ Image(image).caption ? Image(image).caption|wpautop }}
 							</div>
