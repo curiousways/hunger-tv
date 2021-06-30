@@ -7,3 +7,4 @@ import "./scripts/logo";
 import "./main.scss";
 
 document.documentElement.classList.remove("no-js");
+document.documentElement.setAttribute("data-useragent", navigator.userAgent);
