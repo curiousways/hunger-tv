@@ -5,13 +5,10 @@ ul.cats {
 	display: inline-flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin-bottom: rhythm();
+	margin: rhythm(-1) rhythm(-1) rhythm(3);
 
-	li {
-		margin-right: rhythm(2);
-
-		&:last-child {
-			margin-right: 0;
-		}
+	a {
+		display: block;
+		padding: rhythm(1);
 	}
 }
