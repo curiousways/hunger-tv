@@ -51,28 +51,16 @@
 	.sm\:hide {
 		display: none !important;
 	}
-
-	.sm\:justify-end {
-		justify-content: flex-end;
-	}
 }
 
 @media (min-width: $md-min) and (max-width: $md-max) {
 	.md\:hide {
 		display: none !important;
 	}
-
-	.md\:justify-end {
-		justify-content: flex-end;
-	}
 }
 
 @media (min-width: $lg-min) {
 	.lg\:hide {
 		display: none !important;
-	}
-
-	.lg\:justify-end {
-		justify-content: flex-end;
 	}
 }
