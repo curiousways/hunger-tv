@@ -1,3 +1,6 @@
+const container = document.querySelector(".header__bar");
+const logo = document.querySelector(".hero__logo");
+
 // Source: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/
 // window.addEventListener(
 // 	"scroll",
@@ -7,15 +10,20 @@
 // 	false
 // );
 
-window.addEventListener("scroll", () => {
-	if (window.scrollY > 0) {
-		document.querySelector(".header__bar").classList.add("visible");
-	}
-});
+if (window.scrollY === 0) {
+	container.classList.add("animate");
+	logo.classList.add("animate");
 
-setTimeout(() => {
-	document.querySelector(".hero__logo").classList.add("mini");
-	// document.documentElement.classList.remove("no-scroll");
-}, 1500);
+	window.addEventListener("scroll", () => {
+		container.classList.add("visible");
+	});
+
+	setTimeout(() => {
+		logo.classList.add("mini");
+	}, 1500);
+} else {
+	container.classList.add("visible");
+	logo.classList.add("mini");
+}
 
 console.log("%clogo running", "color:green;");
