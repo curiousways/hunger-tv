@@ -4,7 +4,7 @@
 		<div class="col lg:8 lg:offset-2">
 
 			<div class="carousel__tray">
-				{% for image in item.image %}
+				{% for image in images %}
 					<div>
 						{# {% include 'includes/image.twig' %} #}
 						<img
@@ -16,7 +16,7 @@
 				{% endfor %}
 			</div>
 
-			<div class="carousel__counter"><span class="current">1</span> / {{ item.image|length }}</div>
+			<div class="carousel__counter"><span class="current">1</span> / {{ images|length }}</div>
 			
 			<button
 				class="carousel__control carousel__control--prev"
@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col lg:8 lg:offset-2">
 			<div class="carousel__captions">
-				{% for image in item.image %}
+				{% for image in images %}
 					<div>
 						{% include 'includes/caption.twig' %}
 					</div>

@@ -2,6 +2,6 @@
 
 {% if item.image %}
 	<section>
-		{% include 'includes/carousel.twig' %}
+		{% include 'includes/carousel.twig' with { images: item.image } %}
 	</section>
 {% endif %}
