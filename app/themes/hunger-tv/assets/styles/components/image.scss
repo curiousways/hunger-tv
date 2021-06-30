@@ -12,3 +12,9 @@
 		height: 100%;
 	}
 }
+
+// Variants
+
+.image--full ~ .caption {
+	padding: 0 rhythm(1);
+}
