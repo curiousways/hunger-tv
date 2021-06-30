@@ -10,7 +10,12 @@
 					<div class="carousel__tray">
 						{% for image in item.image %}
 							<div>
-								{% include 'includes/image.twig' %}
+								{# {% include 'includes/image.twig' %} #}
+								<img
+									src="{{ Image(image).src('slideshow') }}"
+									alt="{{ image.alt }}"
+									loading="lazy"
+								/>
 							</div>
 						{% endfor %}
 					</div>
@@ -35,7 +40,7 @@
 					<div class="carousel__captions">
 						{% for image in item.image %}
 							<div>
-								{{ Image(image).caption ? Image(image).caption|wpautop }}
+								{% include 'includes/caption.twig' %}
 							</div>
 						{% endfor %}
 					</div>
