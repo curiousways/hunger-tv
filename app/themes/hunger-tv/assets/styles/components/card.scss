@@ -11,7 +11,7 @@
 
 	a {
 		position: relative;
-		z-index: $z-1;
+		z-index: $z-2;
 	}
 }
 
@@ -27,16 +27,20 @@
 	padding: rhythm();
 }
 
-.card__title a {
-	position: static;
+.card__title {
+	z-index: $z-1;
 
-	&:after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+	a {
+		position: static;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 
