@@ -31,8 +31,8 @@
 	@include link($white);
 
 	svg {
-		width: 40px;
-		height: 40px;
+		width: rhythm(8);
+		height: rhythm(8);
 	}
 }
 
@@ -46,16 +46,14 @@
 
 // Variants
 
-.carousel--full {
-	.carousel__control--prev {
-		left: 0;
-		transform: translateX(-100%);
-	}
+.carousel__control--prev {
+	left: 0;
+	transform: translateX(-100%);
+}
 
-	.carousel__control--next {
-		right: 0;
-		transform: translateX(100%);
-	}
+.carousel__control--next {
+	right: 0;
+	transform: translateX(100%);
 }
 
 .carousel__control--prev svg {
