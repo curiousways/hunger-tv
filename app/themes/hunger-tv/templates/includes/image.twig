@@ -2,11 +2,19 @@
 	{% set image = item.image %}
 {% endif %}
 
-{% if image %}
-	<img
-		src="{{ Image(image).src(size) }}"
-		{{ classes ? 'class="' ~ classes ~ '"' }}
-		alt="{{ Image(image).alt }}"
-		loading="lazy"
-	/>
+{% set image = Image(image) %}
+{% set width = fn('wp_get_attachment_image_src', image.id, size)[1] %}
+{% set height = fn('wp_get_attachment_image_src', image.id, size)[2] %}
+
+{% if image is not empty %}
+	<div
+		class="image{{ classes ? ' ' ~ classes }}"
+		style="padding-bottom: {{ height / width * 100 }}%"
+	>
+		<img
+			src="{{ image.src(size) }}"
+			alt="{{ image.alt }}"
+			loading="lazy"
+		/>
+	</div>
 {% endif %}
