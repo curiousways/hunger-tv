@@ -7,6 +7,7 @@ navToggle.addEventListener("click", function () {
 	this.classList.toggle("is-active");
 	searchDrawer.classList.remove("open");
 	navDrawer.classList.toggle("open");
+	document.documentElement.classList.toggle("sm:no-scroll");
 	// document.body.classList.toggle("wide");
 });
 

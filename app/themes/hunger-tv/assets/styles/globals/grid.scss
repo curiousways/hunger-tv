@@ -17,8 +17,12 @@ $total-cols: 12;
 
 @media (max-width: $sm-max) {
 	.col {
-		&.sm\:4 {
-			width: percentage(4 / $total-cols);
+		&.sm\:6 {
+			width: percentage(6 / $total-cols);
+		}
+
+		&.sm\:justify-end {
+			justify-content: flex-end;
 		}
 	}
 }
@@ -35,6 +39,14 @@ $total-cols: 12;
 
 		&.md\:6 {
 			width: percentage(6 / $total-cols);
+		}
+
+		&.md\:justify-center {
+			justify-content: center;
+		}
+
+		&.md\:justify-end {
+			justify-content: flex-end;
 		}
 	}
 }
@@ -71,6 +83,14 @@ $total-cols: 12;
 
 		&.lg\:offset-2 {
 			margin-left: percentage(2 / $total-cols);
+		}
+
+		&.lg\:justify-center {
+			justify-content: center;
+		}
+
+		&.lg\:justify-end {
+			justify-content: flex-end;
 		}
 	}
 }

@@ -14,10 +14,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-smoothing: antialiased;
-
-	&.no-scroll {
-		overflow: hidden;
-	}
 }
 
 body {
@@ -74,6 +70,12 @@ ol[class] {
 a {
 	text-decoration: none;
 	@include link;
+}
+
+@media (max-width: $sm-max) {
+	html.sm\:no-scroll {
+		overflow: hidden;
+	}
 }
 
 @media (min-width: $lg-min) {

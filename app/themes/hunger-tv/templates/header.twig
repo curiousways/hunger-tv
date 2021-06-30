@@ -3,7 +3,7 @@
 	<div class="header__bar" style="background-color: {{ home.background_colour }}">
 		<div class="row">
 
-			<div class="col sm:4 md:4 lg:4">
+			<div class="col lg:4 md:4 sm:6">
 				<button
 					id="drawer--nav__toggle"
 					class="hamburger hamburger--collapse"
@@ -15,7 +15,7 @@
 				</button>
 			</div>
 
-			<div class="col sm:4 md:4 lg:4">
+			<div class="col lg:4 lg:justify-center md:4 md:justify-center sm:6 sm:justify-end">
 				<a
 					href="{{ site.link }}"
 					class="logo"
@@ -25,7 +25,7 @@
 				</a>
 			</div>
 
-			<div class="col sm:4 md:4 lg:4">
+			<div class="col lg:4 lg:justify-end md:4 md:justify-end sm:hide">
 				<a
 					href="{{ fn('get_post_type_archive_link', 'issue') }}"
 					class="button button--small"
@@ -49,11 +49,13 @@
 				</nav>
 			</div>
 			<div class="col lg:4">
+				<div class="lg:hide md:hide margin-bottom">
+					{% include 'forms/search.twig' %}
+				</div>
 				{% include 'includes/social.twig' %}
 			</div>
 		</div>
 	</div>
-
 
 	<div id="drawer--search" class="drawer">
 		<div class="row">

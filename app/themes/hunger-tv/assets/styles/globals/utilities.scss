@@ -18,6 +18,10 @@
 	margin: 0 !important;
 }
 
+.margin-bottom {
+	margin-bottom: rhythm(8);
+}
+
 .rhythm {
 	background-image: linear-gradient(to bottom, cyan 0, transparent 1px),
 		linear-gradient(to bottom, lightgrey 0, transparent 1px);
@@ -43,4 +47,24 @@
 
 .grey {
 	color: $grey;
+}
+
+// Responsive
+
+@media (max-width: $sm-max) {
+	.sm\:hide {
+		display: none !important;
+	}
+}
+
+@media (min-width: $md-min) and (max-width: $md-max) {
+	.md\:hide {
+		display: none !important;
+	}
+}
+
+@media (min-width: $lg-min) {
+	.lg\:hide {
+		display: none !important;
+	}
 }

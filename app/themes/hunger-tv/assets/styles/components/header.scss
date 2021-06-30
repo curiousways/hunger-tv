@@ -17,10 +17,6 @@
 	.col {
 		display: flex;
 		align-items: center;
-
-		&:last-child {
-			justify-content: flex-end;
-		}
 	}
 
 	.button {
@@ -31,14 +27,6 @@
 .hamburger {
 	position: relative;
 	left: rhythm(-2);
-}
-
-@media (max-width: $sm-max) {
-	.header {
-		.button--small {
-			display: none;
-		}
-	}
 }
 
 @media (min-width: $lg-min) {
