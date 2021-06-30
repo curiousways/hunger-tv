@@ -1,15 +1,15 @@
 import slick from "slick-carousel";
 import "slick-carousel/slick/slick.scss";
 
-jQuery(".carousel .carousel__tray").slick({
-	prevArrow: ".carousel .carousel__control--prev",
-	nextArrow: ".carousel .carousel__control--next",
+jQuery(".carousel__tray").slick({
+	prevArrow: ".carousel__control--prev",
+	nextArrow: ".carousel__control--next",
 	speed: 500,
 	cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
 	touchThreshold: 10,
 	variableWidth: true,
 	// centerMode: true,
-	asNavFor: ".carousel .carousel__captions",
+	asNavFor: ".carousel__captions",
 	responsive: [
 		{
 			breakpoint: 840,
@@ -20,13 +20,13 @@ jQuery(".carousel .carousel__tray").slick({
 	],
 });
 
-jQuery(".carousel .carousel__captions").slick({
+jQuery(".carousel__captions").slick({
 	arrows: false,
 	fade: true,
-	asNavFor: ".carousel .carousel__tray",
+	asNavFor: ".carousel__tray",
 });
 
-jQuery(".carousel .carousel__tray").on(
+jQuery(".carousel__tray").on(
 	"init reInit afterChange",
 	function (event, slick, currentSlide, nextSlide) {
 		// currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
