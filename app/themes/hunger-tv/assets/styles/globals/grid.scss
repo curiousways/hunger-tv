@@ -17,8 +17,8 @@ $total-cols: 12;
 
 @media (max-width: $sm-max) {
 	.col {
-		&.sm\:4 {
-			width: percentage(4 / $total-cols);
+		&.sm\:6 {
+			width: percentage(6 / $total-cols);
 		}
 	}
 }
