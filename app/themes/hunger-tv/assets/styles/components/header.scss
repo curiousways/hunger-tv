@@ -17,10 +17,6 @@
 	.col {
 		display: flex;
 		align-items: center;
-
-		&:last-child {
-			justify-content: flex-end;
-		}
 	}
 
 	.button {

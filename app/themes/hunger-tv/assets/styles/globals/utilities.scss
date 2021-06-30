@@ -45,20 +45,34 @@
 	color: $grey;
 }
 
+// Responsive
+
 @media (max-width: $sm-max) {
-	.hide-sm {
+	.sm\:hide {
 		display: none !important;
+	}
+
+	.sm\:justify-end {
+		justify-content: flex-end;
 	}
 }
 
 @media (min-width: $md-min) and (max-width: $md-max) {
-	.hide-md {
+	.md\:hide {
 		display: none !important;
+	}
+
+	.md\:justify-end {
+		justify-content: flex-end;
 	}
 }
 
 @media (min-width: $lg-min) {
-	.hide-lg {
+	.lg\:hide {
 		display: none !important;
+	}
+
+	.lg\:justify-end {
+		justify-content: flex-end;
 	}
 }
