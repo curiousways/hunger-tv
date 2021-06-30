@@ -1,6 +1,7 @@
 // Image
 
 .image {
+	background-color: $grey-light;
 	position: relative;
 
 	img {
@@ -10,4 +11,10 @@
 		width: 100%;
 		height: 100%;
 	}
+}
+
+// Variants
+
+.image--full ~ .caption {
+	padding: 0 rhythm(1);
 }

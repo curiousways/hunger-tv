@@ -1,0 +1,12 @@
+<p><mark>images.twig</mark></p>
+
+<section>
+	<div class="row">
+		{% for image in item.images %}
+			<div class="col lg:6 md:6">
+				{% include 'includes/image.twig' %}
+				{% include 'includes/caption.twig' %}
+			</div>
+		{% endfor %}
+	</div>
+</section>

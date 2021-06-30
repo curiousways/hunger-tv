@@ -1,0 +1,46 @@
+<div class="carousel">
+			
+	<div class="row">
+		<div class="col lg:8 lg:offset-2">
+
+			<div class="carousel__tray">
+				{% for image in images %}
+					<div>
+						{# {% include 'includes/image.twig' %} #}
+						<img
+							src="{{ Image(image).src('slideshow') }}"
+							alt="{{ image.alt }}"
+							loading="lazy"
+						/>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="carousel__counter"><span class="current">1</span> / {{ images|length }}</div>
+			
+			<button
+				class="carousel__control carousel__control--prev"
+				aria-label="Previous item"
+			>{% include 'icons/arrow.svg' %}</button>
+			
+			<button
+				class="carousel__control carousel__control--next"
+				aria-label="Next item"
+			>{% include 'icons/arrow.svg' %}</button>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col lg:8 lg:offset-2">
+			<div class="carousel__captions">
+				{% for image in images %}
+					<div>
+						{% include 'includes/caption.twig' %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+</div>
