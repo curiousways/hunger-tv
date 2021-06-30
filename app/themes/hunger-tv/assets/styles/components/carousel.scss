@@ -36,17 +36,8 @@
 	}
 }
 
-.carousel__counter {
-	color: $white;
-	position: absolute;
-	bottom: rhythm(8);
-	left: rhythm(8);
-	text-shadow: 0 0 1em $black;
-}
-
 .carousel__captions {
-	margin-top: rhythm(-6);
-	@include eta;
+	margin-top: rhythm(-8);
 
 	> div:not(:first-child) {
 		display: none;
@@ -64,11 +55,6 @@
 	.carousel__control--next {
 		right: 0;
 		transform: translateX(100%);
-	}
-
-	img {
-		width: auto !important;
-		height: 480px;
 	}
 }
 
@@ -89,5 +75,13 @@
 @media (min-width: $lg-min) {
 	.carousel__control {
 		display: block;
+	}
+
+	.carousel__counter {
+		color: $white;
+		position: absolute;
+		bottom: rhythm(8);
+		left: rhythm(8);
+		text-shadow: 0 0 1em $black;
 	}
 }
