@@ -8,12 +8,11 @@
 
 {% if image is not empty %}
 	<div
-		class="image"
+		class="image{{ classes ? ' ' ~ classes }}"
 		style="padding-bottom: {{ height / width * 100 }}%"
 	>
 		<img
 			src="{{ image.src(size) }}"
-			{{ classes ? 'class="' ~ classes ~ '"' }}
 			alt="{{ image.alt }}"
 			loading="lazy"
 		/>
