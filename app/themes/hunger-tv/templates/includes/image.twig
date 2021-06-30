@@ -6,7 +6,7 @@
 {% set width = fn('wp_get_attachment_image_src', image.id, size)[1] %}
 {% set height = fn('wp_get_attachment_image_src', image.id, size)[2] %}
 
-{% if image %}
+{% if image is not empty %}
 	<div
 		class="image"
 		style="padding-bottom: {{ height / width * 100 }}%"
