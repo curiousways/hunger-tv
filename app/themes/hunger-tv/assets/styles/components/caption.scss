@@ -3,4 +3,8 @@
 .caption {
 	@extend .eta;
 	margin-top: rhythm(1);
+
+	&:first-child {
+		margin-top: 0;
+	}
 }
