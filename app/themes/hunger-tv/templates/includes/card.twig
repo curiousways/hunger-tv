@@ -12,13 +12,13 @@
 		{% include 'includes/image.twig' with {
 			image: post.hero_image,
 			classes: 'card__image',
-			size: post.card_image_orientation ? 'portrait' : 'thumbnail'
+			size: post.card_image_orientation ? 'portrait' : 'card'
 		} %}
 	{% elseif post.thumbnail %}
 		{% include 'includes/image.twig' with {
 			image: post.thumbnail,
 			classes: 'card__image',
-			size: post.card_image_orientation ? 'portrait' : thumbnail
+			size: post.card_image_orientation ? 'portrait' : 'card'
 		} %}
 	{% endif %}
 

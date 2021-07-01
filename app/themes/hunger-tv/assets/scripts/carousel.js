@@ -12,7 +12,7 @@ jQuery(".carousel__tray").slick({
 	asNavFor: ".carousel__captions",
 	responsive: [
 		{
-			breakpoint: 840,
+			breakpoint: 1024,
 			settings: {
 				variableWidth: false,
 			},

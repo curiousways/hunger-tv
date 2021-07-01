@@ -1,24 +1,37 @@
+{% set post = item.article %}
+
 <section>
 	<div class="row{{ item.image_align == 'right' ? ' reverse' }}">
+
 		{% if item.image_align %}
 			<div class="col md:6 lg:8">
-				<img src="https://via.placeholder.com/780x480" alt="" />
+				{# <img src="https://via.placeholder.com/780x480" alt="" /> #}
+				{% include 'includes/image.twig' with {
+					image: post.hero_image ? post.hero_image : post.thumbnail,
+					size: 'grid--two-thirds'
+				} %}
 			</div>
 			<div class="col md:6 lg:4">
-				<p class="uppercase">Category</p>
-				<h3>Title</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
 		{% else %}
 			<div class="col">
 				<h2>Featured Article</h2>
-				<img src="https://via.placeholder.com/1200x600" alt="" />
+				{# <img src="https://via.placeholder.com/1200x600" alt="" /> #}
+				{% include 'includes/image.twig' with {
+					image: post.hero_image ? post.hero_image : post.thumbnail,
+					size: 'grid'
+				} %}
 			</div>
 			<div class="col md:6 lg:8">
-				<p class="uppercase">Category</p>
-				<h3>Title</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
 		{% endif %}
+
+			{% include 'includes/cats.twig' %}
+			<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+			{% if post.standfirst %}
+				<p>{{ post.standfirst }}</p>
+			{% elseif post.article_excerpt %}
+				<p>{{ post.article_excerpt }}</p>
+			{% endif %}
+
+		</div>
 	</div>
 </section>

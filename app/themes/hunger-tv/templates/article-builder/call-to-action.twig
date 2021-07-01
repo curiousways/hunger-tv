@@ -1,11 +1,17 @@
 <p><mark>call-to-action.twig</mark></p>
 
 {% if item.call_to_action %}
-	<section>
-		<div class="row">
-			<div class="col">
-				{{ item.call_to_action }}
-			</div>
+	<div class="row">
+		<div class="col">
+			<section class="cta">
+				<div class="row">
+					<div class="col lg:8 lg:offset-2 center">
+						<div class="rte">
+							{{ item.call_to_action }}
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
-	</section>
+	</div>
 {% endif %}

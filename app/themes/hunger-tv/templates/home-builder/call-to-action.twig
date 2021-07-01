@@ -21,7 +21,10 @@
 				<div class="rte">
 					{{ item.body }}
 				</div>
-				{% include 'includes/image.twig' with { classes: 'cta__image' } %}
+				{% include 'includes/image.twig' with {
+					classes: 'cta__image',
+					size: 'grid--two-thirds'
+				} %}
 				{% include 'includes/button.twig' %}
 			</div>
 		</div>
