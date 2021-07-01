@@ -77,6 +77,28 @@
                     "display": "row",
                     "sub_fields": [
                         {
+                            "key": "field_60dd841695484",
+                            "label": "Article",
+                            "name": "article",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "editorial"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "object",
+                            "ui": 1
+                        },
+                        {
                             "key": "field_60ab8b107565d",
                             "label": "Image align",
                             "name": "image_align",
@@ -289,5 +311,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625129352
+    "modified": 1625130061
 }
