@@ -2,33 +2,28 @@
 
 <section>
 	<div class="row{{ item.image_align == 'right' ? ' reverse' }}">
+
 		{% if item.image_align %}
 			<div class="col md:6 lg:8">
 				<img src="https://via.placeholder.com/780x480" alt="" />
 			</div>
 			<div class="col md:6 lg:4">
-				{% include 'includes/cats.twig' %}
-				<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-				{% if post.standfirst %}
-					<p>{{ post.standfirst }}</p>
-				{% elseif post.article_excerpt %}
-					<p>{{ post.article_excerpt }}</p>
-				{% endif %}
-			</div>
 		{% else %}
 			<div class="col">
 				<h2>Featured Article</h2>
 				<img src="https://via.placeholder.com/1200x600" alt="" />
 			</div>
 			<div class="col md:6 lg:8">
-				{% include 'includes/cats.twig' %}
-				<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
-				{% if post.standfirst %}
-					<p>{{ post.standfirst }}</p>
-				{% elseif post.article_excerpt %}
-					<p>{{ post.article_excerpt }}</p>
-				{% endif %}
-			</div>
 		{% endif %}
+
+			{% include 'includes/cats.twig' %}
+			<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+			{% if post.standfirst %}
+				<p>{{ post.standfirst }}</p>
+			{% elseif post.article_excerpt %}
+				<p>{{ post.article_excerpt }}</p>
+			{% endif %}
+
+		</div>
 	</div>
 </section>
