@@ -16,6 +16,60 @@
                 "id": ""
             },
             "layouts": {
+                "layout_60dd813380369": {
+                    "key": "layout_60dd813380369",
+                    "name": "cards",
+                    "label": "Cards",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60dd813d8036a",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_60dd81478036b",
+                            "label": "Cards",
+                            "name": "cards",
+                            "type": "relationship",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "editorial"
+                            ],
+                            "taxonomy": "",
+                            "filters": [
+                                "search"
+                            ],
+                            "elements": "",
+                            "min": 3,
+                            "max": 6,
+                            "return_format": "object"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_60ab8ae67565c": {
                     "key": "layout_60ab8ae67565c",
                     "name": "featured_article",
@@ -235,5 +289,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624433839
+    "modified": 1625129352
 }
