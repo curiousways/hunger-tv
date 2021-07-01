@@ -59,7 +59,8 @@
                             ],
                             "taxonomy": "",
                             "filters": [
-                                "search"
+                                "search",
+                                "taxonomy"
                             ],
                             "elements": "",
                             "min": 3,
@@ -311,5 +312,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625130061
+    "modified": 1625149336
 }
