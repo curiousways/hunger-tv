@@ -1,3 +1,5 @@
+{% set post = item.article %}
+
 <section>
 	<div class="row{{ item.image_align == 'right' ? ' reverse' }}">
 		{% if item.image_align %}
@@ -5,9 +7,13 @@
 				<img src="https://via.placeholder.com/780x480" alt="" />
 			</div>
 			<div class="col md:6 lg:4">
-				<p class="uppercase">Category</p>
-				<h3>{{ item.article.title }}</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				{% include 'includes/cats.twig' %}
+				<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+				{% if post.standfirst %}
+					<p>{{ post.standfirst }}</p>
+				{% elseif post.article_excerpt %}
+					<p>{{ post.article_excerpt }}</p>
+				{% endif %}
 			</div>
 		{% else %}
 			<div class="col">
@@ -15,9 +21,13 @@
 				<img src="https://via.placeholder.com/1200x600" alt="" />
 			</div>
 			<div class="col md:6 lg:8">
-				<p class="uppercase">Category</p>
-				<h3>{{ item.article.title }}</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				{% include 'includes/cats.twig' %}
+				<h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+				{% if post.standfirst %}
+					<p>{{ post.standfirst }}</p>
+				{% elseif post.article_excerpt %}
+					<p>{{ post.article_excerpt }}</p>
+				{% endif %}
 			</div>
 		{% endif %}
 	</div>
