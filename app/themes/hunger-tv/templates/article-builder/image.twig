@@ -5,7 +5,7 @@
 	<section>
 		<div class="row">
 			<div class="col lg:8 lg:offset-2">
-				{% include 'includes/image.twig' %}
+				{% include 'includes/image.twig' with { size: 'grid--two-thirds' } %}
 				{% include 'includes/caption.twig' with { caption: item.image_credit ? item.image_credit : item.image.caption } %}
 			</div>
 		</div>

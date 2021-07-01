@@ -3,9 +3,9 @@
 {% if item.image %}
 	<section>
 		<div class="row">
-			<div class="col">
-				{% include 'includes/image.twig' %}
-				{{ item.caption ? item.caption|wpautop }}
+			<div class="col lg:8 lg:offset-2">
+				{% include 'includes/image.twig' with { size: 'grid--two-thirds' } %}
+				{% include 'includes/caption.twig' with { caption: item.caption ? item.caption : item.image.caption } %}
 			</div>
 		</div>
 	</section>
