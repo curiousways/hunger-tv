@@ -9,11 +9,12 @@
 
 	img {
 		max-height: 460px;
-		cursor: grab;
 	}
 }
 
 .carousel__tray {
+	cursor: grab;
+
 	> div:not(:first-child) {
 		display: none;
 	}
