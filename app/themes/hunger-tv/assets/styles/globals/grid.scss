@@ -52,6 +52,10 @@ $total-cols: 12;
 }
 
 @media (min-width: $lg-min) {
+	.row.reverse {
+		flex-direction: row-reverse;
+	}
+
 	.col {
 		&.lg\:3 {
 			width: percentage(3 / $total-cols);
