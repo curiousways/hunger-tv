@@ -2,16 +2,17 @@
 
 {% block content %}
 
-	<h1 class="visually-hidden">{{ title }}</h1>
-
-	<div class="hero" role="banner">
-		<img
-			src="https://via.placeholder.com/1920x800"
-			class="hero__image"
-			alt=""
-			loading="lazy"
-		/>
-	</div>
+	{% if fn('is_tag') %}
+		<header>
+			<div class="row">
+				<div class="col">
+					<h1>{{ title }}</h1>
+				</div>
+			</div>
+		</header>
+	{% else %}
+		<h1 class="visually-hidden">{{ title }}</h1>
+	{% endif %}
 
 	<section>
 		<div class="row">
