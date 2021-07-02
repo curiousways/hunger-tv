@@ -17,8 +17,8 @@
             },
             "default_value": "",
             "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
+            "toolbar": "basic",
+            "media_upload": 0,
             "delay": 0
         },
         {
@@ -69,13 +69,15 @@
             }
         ]
     ],
-    "menu_order": 1,
+    "menu_order": 2,
     "position": "normal",
     "style": "default",
     "label_placement": "left",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
     "description": "",
-    "modified": 1625228656
+    "modified": 1625228851
 }
