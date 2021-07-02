@@ -3,89 +3,8 @@
     "title": "Feature 3.0",
     "fields": [
         {
-            "key": "field_5475ba8893b08",
-            "label": "Type",
-            "name": "hero_type",
-            "type": "radio",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "image": "Image or HTV video",
-                "video": "Video\/Embed (Youtube, Vimeo, SoundCloud, other)"
-            },
-            "allow_null": 0,
-            "other_choice": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "return_format": "value",
-            "save_other_choice": 0
-        },
-        {
-            "key": "field_5475bb3e93b0b",
-            "label": "Hero image",
-            "name": "hero_image",
-            "type": "image",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5475ba8893b08",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "uploadedTo",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5475bb4f93b0c",
-            "label": "Video URL",
-            "name": "hero_video",
-            "type": "oembed",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5475ba8893b08",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "width": "100%",
-            "height": "100%"
-        },
-        {
             "key": "field_547309d970848",
-            "label": "Feature Builder",
+            "label": "Sections",
             "name": "feature",
             "type": "flexible_content",
             "instructions": "",
@@ -488,7 +407,7 @@
                     "max": ""
                 }
             },
-            "button_label": "Add layout",
+            "button_label": "Add Section",
             "min": "",
             "max": ""
         }
@@ -507,9 +426,9 @@
             }
         ]
     ],
-    "menu_order": -10,
+    "menu_order": 4,
     "position": "normal",
-    "style": "default",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
@@ -517,5 +436,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625228060
+    "modified": 1625234882
 }
