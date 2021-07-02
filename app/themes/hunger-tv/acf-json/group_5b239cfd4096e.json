@@ -38,12 +38,12 @@
                 "5b239d821976b": {
                     "key": "5b239d821976b",
                     "name": "paragraphs",
-                    "label": "Paragraphs",
+                    "label": "Content",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b239d9a79863",
-                            "label": "Paragraphs",
+                            "label": "Body",
                             "name": "paragraphs",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -67,12 +67,12 @@
                 "5b2b91c648bbe": {
                     "key": "5b2b91c648bbe",
                     "name": "subheader",
-                    "label": "Subheader",
+                    "label": "Title",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b2b91d248bbf",
-                            "label": "Subheader",
+                            "label": "Title",
                             "name": "subheader",
                             "type": "text",
                             "instructions": "",
@@ -96,12 +96,12 @@
                 "5b23a976ba35c": {
                     "key": "5b23a976ba35c",
                     "name": "pullquote",
-                    "label": "Pullquote",
+                    "label": "Quote",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a9f8ba377",
-                            "label": "Pullquote",
+                            "label": "Quote",
                             "name": "pullquote",
                             "type": "text",
                             "instructions": "",
@@ -120,7 +120,7 @@
                         },
                         {
                             "key": "field_5b23aa04ba378",
-                            "label": "Add Tweet this quote",
+                            "label": "Add tweet this quote",
                             "name": "add_tweet_this_quote",
                             "type": "radio",
                             "instructions": "",
@@ -149,12 +149,12 @@
                 "5b23a34760b9b": {
                     "key": "5b23a34760b9b",
                     "name": "call_to_action",
-                    "label": "Call To Action",
+                    "label": "Call to action",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a34760ba0",
-                            "label": "Call To Action",
+                            "label": "Call to action",
                             "name": "call_to_action",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -183,7 +183,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5b23aae9ba391",
-                            "label": "Button Link",
+                            "label": "Button link",
                             "name": "button_link",
                             "type": "url",
                             "instructions": "",
@@ -199,7 +199,7 @@
                         },
                         {
                             "key": "field_5b23aae2ba390",
-                            "label": "Button Text",
+                            "label": "Button text",
                             "name": "button_text",
                             "type": "text",
                             "instructions": "",
@@ -252,7 +252,7 @@
                         },
                         {
                             "key": "field_5b23a37260baf",
-                            "label": "Image Display Options",
+                            "label": "Image display options",
                             "name": "image_display_options",
                             "type": "radio",
                             "instructions": "",
@@ -276,7 +276,7 @@
                         },
                         {
                             "key": "field_5b23a36660bae",
-                            "label": "Image Credit",
+                            "label": "Image credit",
                             "name": "image_credit",
                             "type": "text",
                             "instructions": "",
@@ -374,12 +374,12 @@
                 "5b23aa9aba37b": {
                     "key": "5b23aa9aba37b",
                     "name": "instagram_embed",
-                    "label": "Instagram Embed",
+                    "label": "Instagram embed",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23aa9bba37d",
-                            "label": "Instagram Embed",
+                            "label": "Instagram URL",
                             "name": "instagram_embed",
                             "type": "oembed",
                             "instructions": "",
@@ -400,12 +400,12 @@
                 "5b23a23028dbc": {
                     "key": "5b23a23028dbc",
                     "name": "spotify_audio",
-                    "label": "Spotify Audio",
+                    "label": "Spotify embed",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a23128dc0",
-                            "label": "Spotify Audio",
+                            "label": "Spotify iframe",
                             "name": "spotify_audio",
                             "type": "text",
                             "instructions": "",
@@ -429,12 +429,12 @@
                 "5b23a994ba36a": {
                     "key": "5b23a994ba36a",
                     "name": "tweet_embed",
-                    "label": "Tweet Embed",
+                    "label": "Twitter embed",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a994ba370",
-                            "label": "Tweet Embed",
+                            "label": "Tweet URL",
                             "name": "tweet_embed",
                             "type": "text",
                             "instructions": "",
@@ -458,12 +458,12 @@
                 "5b23a20628da5": {
                     "key": "5b23a20628da5",
                     "name": "youtube_video",
-                    "label": "YouTube Video",
+                    "label": "YouTube embed",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5b23a26e28de5",
-                            "label": "YouTube Video",
+                            "label": "Youtube URL",
                             "name": "youtube_video",
                             "type": "oembed",
                             "instructions": "",
@@ -479,7 +479,7 @@
                         },
                         {
                             "key": "field_5b23a28228de6",
-                            "label": "YouTube Display Options",
+                            "label": "YouTube display options",
                             "name": "youtube_display_options",
                             "type": "radio",
                             "instructions": "",
@@ -638,5 +638,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625227078
+    "modified": 1625227940
 }
