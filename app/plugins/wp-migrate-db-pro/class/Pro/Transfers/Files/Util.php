@@ -90,7 +90,7 @@ class Util
         $ajax_url         = trailingslashit($state_data['url']) . 'wp-admin/admin-ajax.php';
         $response         = $this->remote_post->post($ajax_url, $data, __FUNCTION__);
         $response         = $this->remote_post->verify_remote_post_response($response);
-        $response['data'] = json_decode(ZipAndEncode::decode($response['data']), true);
+        $response['data'] = unserialize(ZipAndEncode::decode($response['data']));
 
         if (isset($response['wpmdb_error'])) {
             return $response;

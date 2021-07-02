@@ -197,7 +197,7 @@ class PluginHelper
         $files = $this->file_processor->get_local_files($items, $slashed, unserialize($state_data['excludes']), $stage, $date, $timezone, 'pull');
 
 
-        $files = ZipAndEncode::encode(json_encode($files));
+        $files = ZipAndEncode::encode(serialize($files));
 
         return $this->http->end_ajax($files);
     }
