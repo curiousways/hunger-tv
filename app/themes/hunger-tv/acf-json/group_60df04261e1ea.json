@@ -3,6 +3,25 @@
     "title": "Article Summary",
     "fields": [
         {
+            "key": "field_60df04a6b8b78",
+            "label": "Excerpt",
+            "name": "article_excerpt",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_60df044db8b76",
             "label": "Standfirst",
             "name": "standfirst",
@@ -18,7 +37,7 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": "",
+            "rows": 4,
             "new_lines": ""
         },
         {
@@ -37,27 +56,8 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": "",
+            "rows": 4,
             "new_lines": ""
-        },
-        {
-            "key": "field_60df04a6b8b78",
-            "label": "Excerpt",
-            "name": "article_excerpt",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
         }
     ],
     "location": [
@@ -77,5 +77,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1625228588
+    "modified": 1625228656
 }
