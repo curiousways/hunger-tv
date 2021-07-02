@@ -7,7 +7,7 @@
             <span class="pagination__prev" disabled>{% include 'icons/arrow.svg' %}</span>
         {% endif %}
 
-        <p class="no-margin">Page {{ posts.pagination.current }} of {{ posts.pagination.total }}</p>
+        <p class="eta no-margin">Page {{ posts.pagination.current }} of {{ posts.pagination.total }}</p>
 
         {% if posts.pagination.next %}
             <a href="{{ posts.pagination.next.link }}" class="pagination__next">{% include 'icons/arrow.svg' %}</a>

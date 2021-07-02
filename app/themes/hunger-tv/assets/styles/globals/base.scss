@@ -72,6 +72,10 @@ a {
 	@include link;
 }
 
+[disabled] {
+	color: $grey-light;
+}
+
 @media (max-width: $sm-max) {
 	html.sm\:no-scroll {
 		overflow: hidden;
