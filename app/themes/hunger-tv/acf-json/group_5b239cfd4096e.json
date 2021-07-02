@@ -122,9 +122,9 @@
                             "key": "field_5b23aa04ba378",
                             "label": "Add Tweet this quote",
                             "name": "add_tweet_this_quote",
-                            "type": "select",
+                            "type": "radio",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -135,13 +135,12 @@
                                 "yes": "Yes",
                                 "no": "No"
                             },
-                            "default_value": false,
                             "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
                             "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
+                            "save_other_choice": 0
                         }
                     ],
                     "min": "",
@@ -346,7 +345,7 @@
                             "label": "Images",
                             "name": "image",
                             "type": "gallery",
-                            "instructions": "",
+                            "instructions": "Recommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -355,7 +354,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "preview_size": "medium",
+                            "preview_size": "thumbnail",
                             "insert": "append",
                             "library": "all",
                             "min": "",
@@ -482,9 +481,9 @@
                             "key": "field_5b23a28228de6",
                             "label": "YouTube Display Options",
                             "name": "youtube_display_options",
-                            "type": "select",
+                            "type": "radio",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -495,13 +494,12 @@
                                 "inline": "Inline",
                                 "full-width": "Full Width"
                             },
-                            "default_value": false,
                             "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
                             "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
+                            "save_other_choice": 0
                         }
                     ],
                     "min": "",
@@ -640,5 +638,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625226303
+    "modified": 1625227078
 }
