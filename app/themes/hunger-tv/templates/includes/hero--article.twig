@@ -12,7 +12,8 @@
 	{% if post.hero_display != 'solid-colour' and article.hero_image %}
 		{% include 'includes/image.twig' with {
 			image: article.hero_image,
-			classes: 'hero__image'
+			classes: 'hero__image',
+			size: 'hero'
 		} %}
 	{% endif %}
 

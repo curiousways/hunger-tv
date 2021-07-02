@@ -7,13 +7,19 @@
 		{% if post.hero_video or post.hero_image or post.thumbnail %}
 			<section>
 				<div class="row">
-					<div class="col">
+					<div class="col lg:8 lg:offset-2">
 						{% if post.hero_type == 'video' %}
 							{% include 'includes/embed.twig' with { embed: post.hero_video } %}
 						{% elseif post.hero_type == 'image' %}
-							{% include 'includes/image.twig' with { image: post.hero_image } %}
+							{% include 'includes/image.twig' with {
+								image: post.hero_image,
+								size: 'grid--two-thirds'
+							} %}
 						{% elseif post.thumbnail %}
-							{% include 'includes/image.twig' with { image: post.thumbnail } %}
+							{% include 'includes/image.twig' with {
+								image: post.thumbnail,
+								size: 'grid--two-thirds'
+							} %}
 						{% endif %}
 					</div>
 				</div>
