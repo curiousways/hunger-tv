@@ -3,7 +3,7 @@
 {% if item.embed_oembed or item.embed_code %}
 	<section>
 		<div class="row">
-			<div class="col">
+			<div class="col lg:8 lg:offset-2">
 				{% if item.embed_type == 'oEmbed' and item.embed_oembed %}
 					{% include 'includes/embed.twig' with { embed: item.embed_oembed } %}
 				{% elseif item.embed_type == 'embed' and item.embed_code %}
