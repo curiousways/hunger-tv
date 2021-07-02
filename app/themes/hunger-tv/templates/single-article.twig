@@ -38,22 +38,16 @@
 			{% endfor %}
 		{% else %}
 			{# Feature 2.0 #}
-			<section>
-				{% if post.embed_code %}
+			{% if post.embed_code %}
+				<section>
 					<div class="row">
-						<div class="col">
+						<div class="col lg:8 lg:offset-2">
 							{% include 'includes/embed.twig' with { embed: post.embed_code } %}
 						</div>
 					</div>
-				{% endif %}
-				<div class="row">
-					<div class="col lg:8 lg:offset-2">
-						<div class="rte">
-							{{ post.content }}
-						</div>
-					</div>
-				</div>
-			</section>
+				</section>
+			{% endif %}
+			{% include 'includes/the-content.twig' %}
 		{% endif %}
 
 		{% include 'includes/single-footer.twig' %}

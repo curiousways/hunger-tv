@@ -13,7 +13,10 @@
 
 {% elseif item.image %}
 
-	{% include 'includes/image.twig' with { classes: 'image--full' } %}
+	{% include 'includes/image.twig' with {
+		classes: 'image--full',
+		size: 'hero'
+	} %}
 	{% include 'includes/caption.twig' with { caption: item.image_credit ? item.image_credit : item.image.caption } %}
 
 {% endif %}

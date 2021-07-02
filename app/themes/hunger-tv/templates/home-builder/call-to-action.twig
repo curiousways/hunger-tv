@@ -11,7 +11,8 @@
 		{% if item.background_image %}
 			{% include 'includes/image.twig' with {
 				image: item.background_image,
-				classes: 'cta__background'
+				classes: 'cta__background',
+				size: 'grid'
 			} %}
 		{% endif %}
 

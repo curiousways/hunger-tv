@@ -5,18 +5,7 @@
 	<article>
 
 		{% include 'includes/single-header.twig' %}
-
-		{% if post.content %}
-			<section>
-				<div class="row">
-					<div class="col lg:8 lg:offset-2">
-						<div class="rte">
-							{{ post.content }}
-						</div>
-					</div>
-				</div>
-			</section>
-		{% endif %}
+		{% include 'includes/the-content.twig' %}
 
 	</article>
 

@@ -5,7 +5,6 @@
 
 		{% if item.image_align %}
 			<div class="col md:6 lg:8">
-				{# <img src="https://via.placeholder.com/780x480" alt="" /> #}
 				{% include 'includes/image.twig' with {
 					image: post.hero_image ? post.hero_image : post.thumbnail,
 					size: 'grid--two-thirds'
@@ -15,7 +14,6 @@
 		{% else %}
 			<div class="col">
 				<h2>Featured Article</h2>
-				{# <img src="https://via.placeholder.com/1200x600" alt="" /> #}
 				{% include 'includes/image.twig' with {
 					image: post.hero_image ? post.hero_image : post.thumbnail,
 					size: 'grid'
