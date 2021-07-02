@@ -255,9 +255,9 @@
                             "key": "field_5b23a37260baf",
                             "label": "Image Display Options",
                             "name": "image_display_options",
-                            "type": "select",
+                            "type": "radio",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
@@ -268,13 +268,12 @@
                                 "inline": "Inline",
                                 "full-bleed": "Full Bleed"
                             },
-                            "default_value": false,
                             "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
                             "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
+                            "save_other_choice": 0
                         },
                         {
                             "key": "field_5b23a36660bae",
@@ -641,5 +640,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625225934
+    "modified": 1625226303
 }
