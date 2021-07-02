@@ -142,31 +142,6 @@
                             "return_format": "value",
                             "ajax": 0,
                             "placeholder": ""
-                        },
-                        {
-                            "key": "field_5b23aa23ba379",
-                            "label": "Pullquote Display Options",
-                            "name": "pullquote_display_options",
-                            "type": "select",
-                            "instructions": "Note: If you select to add the pullquote to the right column, it will be added to the right of content above. Please make sure the content above is not full width.",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "full-width": "Full Width",
-                                "right-col": "Right Column"
-                            },
-                            "default_value": false,
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -666,5 +641,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625064754
+    "modified": 1625225934
 }
