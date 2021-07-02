@@ -1,6 +1,6 @@
 {
     "key": "group_60df04261e1ea",
-    "title": "Article Summary",
+    "title": "Summary",
     "fields": [
         {
             "key": "field_60df04a6b8b78",
@@ -79,5 +79,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625228851
+    "modified": 1625229023
 }

@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_5b239d6779861",
-            "label": "Article Builder",
+            "label": "Sections",
             "name": "article_builder",
             "type": "flexible_content",
             "instructions": "",
@@ -545,7 +545,7 @@
                     "max": ""
                 }
             },
-            "button_label": "Add layout",
+            "button_label": "Add Section",
             "min": "",
             "max": ""
         }
@@ -581,5 +581,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625228880
+    "modified": 1625229076
 }
