@@ -1,0 +1,16 @@
+// Pagination
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	svg {
+		width: rhythm(8);
+		height: rhythm(8);
+	}
+}
+
+.pagination__prev svg {
+	transform: rotate(180deg);
+}
