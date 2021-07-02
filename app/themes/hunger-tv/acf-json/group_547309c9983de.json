@@ -3,89 +3,8 @@
     "title": "Feature 3.0",
     "fields": [
         {
-            "key": "field_5475ba8893b08",
-            "label": "Has Hero Image or Video\/Embed",
-            "name": "hero_type",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "image": "Image or HTV video",
-                "video": "Video\/Embed (Youtube, Vimeo, SoundCloud, other)"
-            },
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "allow_null": 0,
-            "return_format": "value"
-        },
-        {
-            "key": "field_5475bb3e93b0b",
-            "label": "Hero Image",
-            "name": "hero_image",
-            "type": "image",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5475ba8893b08",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "uploadedTo",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_5475bb4f93b0c",
-            "label": "Hero Video\/Embed",
-            "name": "hero_video",
-            "type": "oembed",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5475ba8893b08",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "width": "100%",
-            "height": "100%"
-        },
-        {
             "key": "field_547309d970848",
-            "label": "Feature Builder",
+            "label": "Sections",
             "name": "feature",
             "type": "flexible_content",
             "instructions": "",
@@ -100,12 +19,12 @@
                 "547309e2b1a4d": {
                     "key": "547309e2b1a4d",
                     "name": "copy",
-                    "label": "Copy",
+                    "label": "Content",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_54731b9d13315",
-                            "label": "Copy",
+                            "label": "Body",
                             "name": "copy",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -129,7 +48,7 @@
                 "54731c1313318": {
                     "key": "54731c1313318",
                     "name": "question_and_answer",
-                    "label": "Question and Answer",
+                    "label": "Question and answer",
                     "display": "row",
                     "sub_fields": [
                         {
@@ -235,7 +154,7 @@
                         },
                         {
                             "key": "field_54731c3113319",
-                            "label": "Image Caption",
+                            "label": "Image caption",
                             "name": "caption",
                             "type": "textarea",
                             "instructions": "",
@@ -250,9 +169,7 @@
                             "placeholder": "",
                             "maxlength": "",
                             "rows": "",
-                            "new_lines": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": ""
                         }
                     ],
                     "min": "",
@@ -261,7 +178,7 @@
                 "54731cb31331c": {
                     "key": "54731cb31331c",
                     "name": "gallery",
-                    "label": "Gallery",
+                    "label": "Slideshow",
                     "display": "row",
                     "sub_fields": [
                         {
@@ -288,7 +205,7 @@
                             "label": "Images",
                             "name": "gallery",
                             "type": "gallery",
-                            "instructions": "",
+                            "instructions": "Recommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -317,7 +234,7 @@
                 "54731db813322": {
                     "key": "54731db813322",
                     "name": "video",
-                    "label": "Video",
+                    "label": "Video embed",
                     "display": "row",
                     "sub_fields": [
                         {
@@ -346,7 +263,7 @@
                         },
                         {
                             "key": "field_547359374be42",
-                            "label": "Embed URL (YouTube, Vimeo)",
+                            "label": "Video URL",
                             "name": "embed_url",
                             "type": "oembed",
                             "instructions": "",
@@ -407,12 +324,12 @@
                 "54731d1913320": {
                     "key": "54731d1913320",
                     "name": "embed_code",
-                    "label": "Embed Code",
+                    "label": "Embed",
                     "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5486e2a35ccc6",
-                            "label": "Embed Type",
+                            "label": "Type",
                             "name": "embed_type",
                             "type": "radio",
                             "instructions": "",
@@ -436,7 +353,7 @@
                         },
                         {
                             "key": "field_54731d2513321",
-                            "label": "Embed Code",
+                            "label": "Embed iframe",
                             "name": "embed_code",
                             "type": "textarea",
                             "instructions": "Please copy your embed code in here. Please ensure to configure the right dimensions. The embedded element should have a width of <b>100%<\/b>. Please make sure to also configure a height in px. E.g ... width=\"100%\" height=\"150\" ...",
@@ -463,7 +380,7 @@
                         },
                         {
                             "key": "field_5486e2e35ccc7",
-                            "label": "Embed via URL",
+                            "label": "Embed URL",
                             "name": "embed_oembed",
                             "type": "oembed",
                             "instructions": "",
@@ -490,7 +407,7 @@
                     "max": ""
                 }
             },
-            "button_label": "Add layout",
+            "button_label": "Add Section",
             "min": "",
             "max": ""
         }
@@ -509,9 +426,9 @@
             }
         ]
     ],
-    "menu_order": -10,
+    "menu_order": 4,
     "position": "normal",
-    "style": "default",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
@@ -519,5 +436,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620831860
+    "modified": 1625234882
 }
