@@ -18,4 +18,12 @@
 		display: block;
 		width: 100%;
 	}
+
+	@media (prefers-reduced-motion) {
+		padding-bottom: 50%;
+
+		video {
+			display: none;
+		}
+	}
 }
