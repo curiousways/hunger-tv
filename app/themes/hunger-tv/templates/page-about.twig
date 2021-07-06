@@ -13,7 +13,9 @@
 					<h2 class="gamma">{{ department.name }}</h2>
 
 					{% for member in department.posts('orderby=menu_order&order=ASC') %}
-						<p class="grey no-margin">Job Title</p>
+						{% if member.position %}
+							<p class="grey no-margin">{{ member.position }}</p>
+						{% endif %}
 						<h3 class="base">{{ member.title }}</h3>
 					{% endfor %}
 
