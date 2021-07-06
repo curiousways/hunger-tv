@@ -157,7 +157,7 @@ class StarterSite extends Timber\Site {
 
 		// Hide legacy layout options
 		function _mghd_hide_legacy_layouts() {
-			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/dist/assets/admin.css" type="text/css" media="all" />';
+			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/admin.css" type="text/css" media="all" />';
 		}
 		add_action('acf/input/admin_head', '_mghd_hide_legacy_layouts');
 	}
