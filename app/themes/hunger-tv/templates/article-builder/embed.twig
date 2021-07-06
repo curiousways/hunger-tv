@@ -1,5 +1,5 @@
 <section>
-	{% if 'youtube' in item.embed_url %}
+	{% if 'youtube' in item.embed_url or 'vimeo' in item.embed_url %}
 		{% include 'includes/embed.twig' %}
 	{% elseif 'soundcloud' in item.embed_url %}
 		<div class="row">
