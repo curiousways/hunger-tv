@@ -53,12 +53,10 @@
 
 	</article>
 
-	{% for issue in latest_issue %}
-		{% if issue.id != post.id %}
-			<section>
-				<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
-			</section>
-		{% endif %}
+	{% for issue in issues %}
+		<section>
+			<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
+		</section>
 	{% endfor %}
 
 {% endblock %}

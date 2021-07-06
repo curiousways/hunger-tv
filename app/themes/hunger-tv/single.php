@@ -19,6 +19,12 @@ $context['related'] = Timber::get_posts([
     'post__not_in' => [get_the_ID()]
 ]);
 
+$context['issues'] = Timber::get_posts([
+    'post_type' => 'issue',
+    'posts_per_page' => 3,
+    'post__not_in' => [get_the_ID()]
+]);
+
 if ( post_password_required( $timber_post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {

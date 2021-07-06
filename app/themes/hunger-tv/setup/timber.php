@@ -151,7 +151,7 @@ class StarterSite extends Timber\Site {
 			if (get_post_type() == 'team_member') {
 				$title = 'Name';
 			} elseif (get_post_type() == 'issue') {
-				$title = '#Issue1';
+				$title = 'Issue #21';
 			}
 			return $title;
 		}
@@ -186,11 +186,6 @@ class StarterSite extends Timber\Site {
 		$context['departments'] = Timber::get_terms('department', [
 			'orderby' => 'name',
 			'hide_empty' => true
-		]);
-
-		$context['latest_issue'] = Timber::get_posts([
-			'post_type' => 'issue',
-			'posts_per_page' => 1
 		]);
 
 		return $context;
