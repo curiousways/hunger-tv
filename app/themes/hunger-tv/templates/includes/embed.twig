@@ -2,16 +2,14 @@
 	{% set embed = item.embed_url %}
 {% endif %}
 
-{% if 'spotify' in embed %}
-	{% set platform = 'spotify' %}
+{% if 'youtube' in embed or 'vimeo' in embed %}
+	{% set variant = 'video' %}
 {% elseif 'soundcloud' in embed %}
-	{% set platform = 'soundcloud' %}
-{% elseif 'twitter' in embed %}
-	{% set platform = 'twitter' %}
+	{% set variant = 'soundcloud' %}
 {% endif %}
 
 {% if embed %}
-	<div class="embed{{ platform ? ' embed--' ~ platform }}">
+	<div class="embed{{ variant ? ' embed--' ~ variant }}">
 		{{ embed }}
 	</div>
 {% endif %}
