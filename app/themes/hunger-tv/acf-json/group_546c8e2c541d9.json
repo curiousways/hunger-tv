@@ -4,11 +4,11 @@
     "fields": [
         {
             "key": "field_58cac398c75b8",
-            "label": "Breadcrumbs Title",
+            "label": "Issue title",
             "name": "buy_now_title",
             "type": "text",
-            "instructions": "Falls back to the post title.",
-            "required": 0,
+            "instructions": "",
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -16,14 +16,14 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "HUNGER ISSUE ##",
+            "placeholder": "",
             "prepend": "",
             "append": "",
             "maxlength": ""
         },
         {
             "key": "field_58cac385c75b7",
-            "label": "Purchase Link",
+            "label": "Purchase link",
             "name": "buy_now_url",
             "type": "url",
             "instructions": "",
@@ -55,5 +55,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1621512893
+    "modified": 1625576608
 }
