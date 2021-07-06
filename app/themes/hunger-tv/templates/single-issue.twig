@@ -56,6 +56,15 @@
 	<section>
 		<div class="row">
 			<div class="col lg:8">
+				<h2>Featured in this issue</h2>
+			</div>
+		</div>
+		{% include 'includes/carousel.twig' with { images: post.slideshow } %}
+	</section>
+
+	<section>
+		<div class="row">
+			<div class="col lg:8">
 				<h2>More Issues</h2>
 			</div>
 		</div>
