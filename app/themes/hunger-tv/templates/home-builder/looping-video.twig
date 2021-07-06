@@ -1,1 +1,19 @@
-<p><mark>looping-video.twig</mark></p>
+<section class="video">
+
+	<img
+		src="{{ Image(item.poster).src('hero') }}"
+		alt=""
+		loading="lazy"
+	/>
+
+	<video
+		autoplay
+		muted
+		loop
+		playsinline
+	>
+		<source src="{{ item.video.url }}" type="video/webm">
+		<source src="{{ item.video.url }}" type="video/mp4">
+	</video>
+
+</section>
