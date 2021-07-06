@@ -1,0 +1,19 @@
+// Video
+
+.video {
+	position: relative;
+	z-index: -1;
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: -1;
+	}
+
+	video {
+		display: block;
+		width: 100%;
+	}
+}
