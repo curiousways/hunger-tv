@@ -53,10 +53,19 @@
 
 	</article>
 
-	{% for issue in issues %}
-		<section>
-			<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
-		</section>
-	{% endfor %}
+	<section>
+		<div class="row">
+			<div class="col lg:8">
+				<h2>More Issues</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% for post in issues %}
+				<div class="col lg:4 md:6">
+					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 
 {% endblock %}
