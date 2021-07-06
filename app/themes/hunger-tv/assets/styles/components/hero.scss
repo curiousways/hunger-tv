@@ -79,7 +79,7 @@
 	padding-bottom: percentage(9/16);
 
 	h2 {
-		@include type(100, 18);
+		@include omega;
 	}
 }
 

@@ -48,27 +48,47 @@
 
 @mixin omega {
 	font-weight: lighter;
-	@include type($omega, 11);
+	@include type($beta, 7);
+
+	@media (min-width: $lg-min) {
+		@include type($omega, 11);
+	}
 }
 
 @mixin alpha {
-	@include type($alpha, 8);
+	@include type($gamma, 6);
+
+	@media (min-width: $lg-min) {
+		@include type($alpha, 8);
+	}
 }
 
 @mixin beta {
-	@include type($beta, 7);
+	@include type($delta, 5);
+
+	@media (min-width: $lg-min) {
+		@include type($beta, 7);
+	}
 }
 
 @mixin gamma {
-	@include type($gamma, 6);
+	@include type($epsilon, 5);
+
+	@media (min-width: $lg-min) {
+		@include type($gamma, 6);
+	}
 }
 
 @mixin delta {
-	@include type($delta, 5);
+	@media (min-width: $lg-min) {
+		@include type($delta, 5);
+	}
 }
 
 @mixin epsilon {
-	@include type($epsilon, 5);
+	@media (min-width: $lg-min) {
+		@include type($epsilon, 5);
+	}
 }
 
 @mixin zeta {
