@@ -2,7 +2,9 @@
 	{% set embed = item.embed_url %}
 {% endif %}
 
-{% if 'soundcloud' in embed %}
+{% if 'spotify' in embed %}
+	{% set platform = 'spotify' %}
+{% elseif 'soundcloud' in embed %}
 	{% set platform = 'soundcloud' %}
 {% elseif 'twitter' in embed %}
 	{% set platform = 'twitter' %}
