@@ -2,6 +2,7 @@
 
 {% block content %}
 
+	<h1 class="visually-hidden">{{ post.title }}</h1>
 	{% include 'includes/hero--article.twig' with { article: Post(post.hero_article) } %}
 	{% set ignore_ids = [Post(post.hero_article).id] %}
 
