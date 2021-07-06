@@ -160,8 +160,8 @@
                 },
                 "layout_60ab99761c95a": {
                     "key": "layout_60ab99761c95a",
-                    "name": "oembed",
-                    "label": "oEmbed",
+                    "name": "embed",
+                    "label": "Embed",
                     "display": "row",
                     "sub_fields": [
                         {
@@ -185,8 +185,8 @@
                         },
                         {
                             "key": "field_60ab997b1c95b",
-                            "label": "oEmbed",
-                            "name": "oembed",
+                            "label": "Embed URL",
+                            "name": "embed_url",
                             "type": "oembed",
                             "instructions": "",
                             "required": 1,
@@ -312,5 +312,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625149336
+    "modified": 1625557461
 }
