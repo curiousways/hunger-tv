@@ -12,3 +12,13 @@
 		height: 100%;
 	}
 }
+
+// Variants
+
+.embed--soundcloud {
+	padding-bottom: 0;
+
+	iframe {
+		position: static;
+	}
+}

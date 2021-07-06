@@ -2,8 +2,12 @@
 	{% set embed = item.embed_url %}
 {% endif %}
 
+{% if 'soundcloud' in embed %}
+	{% set variant = 'soundcloud' %}
+{% endif %}
+
 {% if embed %}
-	<div class="embed">
+	<div class="embed{{ variant ? ' embed--' ~ variant }}">
 		{{ embed }}
 	</div>
 {% endif %}
