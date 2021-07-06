@@ -53,28 +53,32 @@
 
 	</article>
 
-	<section>
-		<div class="row">
-			<div class="col lg:8">
-				<h2>Featured in this issue</h2>
-			</div>
-		</div>
-		{% include 'includes/carousel.twig' with { images: post.slideshow } %}
-	</section>
-
-	<section>
-		<div class="row">
-			<div class="col lg:8">
-				<h2>More Issues</h2>
-			</div>
-		</div>
-		<div class="row">
-			{% for post in issues %}
-				<div class="col lg:4 md:6">
-					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+	{% if post.slideshow %}
+		<section>
+			<div class="row">
+				<div class="col lg:8">
+					<h2>Featured in this issue</h2>
 				</div>
-			{% endfor %}
-		</div>
-	</section>
+			</div>
+			{% include 'includes/carousel.twig' with { images: post.slideshow } %}
+		</section>
+	{% endif %}
+
+	{% if issues|length %}
+		<section>
+			<div class="row">
+				<div class="col lg:8">
+					<h2>More Issues</h2>
+				</div>
+			</div>
+			<div class="row">
+				{% for post in issues %}
+					<div class="col lg:4 md:6">
+						{% include 'includes/card--issue.twig' %}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
 
 {% endblock %}
