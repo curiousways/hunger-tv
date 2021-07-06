@@ -20,3 +20,7 @@ $ yarn watch
 ```sh
 $ yarn setup:production
 ```
+
+## Notes
+
+After updating core and plugin updates make sure the layout options styled in `assets/admin.css` are still hidden.
