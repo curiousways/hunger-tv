@@ -1,9 +1,15 @@
 {% if not embed %}
-	{% set embed = item.oembed %}
+	{% set embed = item.embed_url %}
+{% endif %}
+
+{% if 'youtube' in embed or 'vimeo' in embed %}
+	{% set variant = 'video' %}
+{% elseif 'soundcloud' in embed %}
+	{% set variant = 'soundcloud' %}
 {% endif %}
 
 {% if embed %}
-	<div class="embed">
+	<div class="embed{{ variant ? ' embed--' ~ variant }}">
 		{{ embed }}
 	</div>
 {% endif %}

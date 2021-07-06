@@ -154,6 +154,12 @@ class StarterSite extends Timber\Site {
 			return $title;
 		}
 		add_filter('enter_title_here', '_mghd_cpt_title_placeholder');
+
+		// Hide legacy layout options
+		function _mghd_hide_legacy_layouts() {
+			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/admin.css" type="text/css" media="all" />';
+		}
+		add_action('acf/input/admin_head', '_mghd_hide_legacy_layouts');
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {

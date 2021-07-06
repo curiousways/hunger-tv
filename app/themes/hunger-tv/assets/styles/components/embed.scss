@@ -1,6 +1,16 @@
 // Embed
 
-.embed {
+.embed iframe {
+	width: 100%;
+}
+
+// Variants
+
+.embed--soundcloud iframe {
+	height: auto;
+}
+
+.embed--video {
 	position: relative;
 	padding-bottom: percentage(9/16);
 
