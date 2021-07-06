@@ -71,162 +71,6 @@
                     "min": "",
                     "max": ""
                 },
-                "5b2b91c648bbe": {
-                    "key": "5b2b91c648bbe",
-                    "name": "subheader",
-                    "label": "Title",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_5b2b91d248bbf",
-                            "label": "Title",
-                            "name": "subheader",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
-                "5b23a976ba35c": {
-                    "key": "5b23a976ba35c",
-                    "name": "pullquote",
-                    "label": "Quote",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_5b23a9f8ba377",
-                            "label": "Quote",
-                            "name": "pullquote",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5b23aa04ba378",
-                            "label": "Add tweet this quote",
-                            "name": "add_tweet_this_quote",
-                            "type": "radio",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "yes": "Yes",
-                                "no": "No"
-                            },
-                            "allow_null": 0,
-                            "other_choice": 0,
-                            "default_value": "",
-                            "layout": "horizontal",
-                            "return_format": "value",
-                            "save_other_choice": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
-                "5b23a34760b9b": {
-                    "key": "5b23a34760b9b",
-                    "name": "call_to_action",
-                    "label": "Call to action",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_5b23a34760ba0",
-                            "label": "Call to action",
-                            "name": "call_to_action",
-                            "type": "wysiwyg",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "Like [first tag]? Join our <a href=\"https:\/\/hungertv.us5.list-manage.com\/subscribe?u=dfaed807bb259c614199d67a0&id=1b5d9b1f65\" target=\"_blank\">newsletter<\/a>",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
-                "5b23aab8ba383": {
-                    "key": "5b23aab8ba383",
-                    "name": "button",
-                    "label": "Button",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_5b23aae9ba391",
-                            "label": "Button link",
-                            "name": "button_link",
-                            "type": "url",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5b23aae2ba390",
-                            "label": "Button text",
-                            "name": "button_text",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "Read more",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
                 "5b23a23e28dd2": {
                     "key": "5b23a23e28dd2",
                     "name": "image",
@@ -373,6 +217,162 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "5b23a34760b9b": {
+                    "key": "5b23a34760b9b",
+                    "name": "call_to_action",
+                    "label": "Call to action",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5b23a34760ba0",
+                            "label": "Call to action",
+                            "name": "call_to_action",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Like [first tag]? Join our <a href=\"https:\/\/hungertv.us5.list-manage.com\/subscribe?u=dfaed807bb259c614199d67a0&id=1b5d9b1f65\" target=\"_blank\">newsletter<\/a>",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "5b23a976ba35c": {
+                    "key": "5b23a976ba35c",
+                    "name": "pullquote",
+                    "label": "Quote",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5b23a9f8ba377",
+                            "label": "Quote",
+                            "name": "pullquote",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_5b23aa04ba378",
+                            "label": "Add tweet this quote",
+                            "name": "add_tweet_this_quote",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "yes": "Yes",
+                                "no": "No"
+                            },
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "5b23aab8ba383": {
+                    "key": "5b23aab8ba383",
+                    "name": "button",
+                    "label": "Button",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5b23aae9ba391",
+                            "label": "Button link",
+                            "name": "button_link",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_5b23aae2ba390",
+                            "label": "Button text",
+                            "name": "button_text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "Read more",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "5b2b91c648bbe": {
+                    "key": "5b2b91c648bbe",
+                    "name": "subheader",
+                    "label": "Title",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5b2b91d248bbf",
+                            "label": "Title",
+                            "name": "subheader",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -607,5 +607,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625557386
+    "modified": 1625559571
 }
