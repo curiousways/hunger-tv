@@ -1,5 +1,11 @@
-<div class="video">
-	<img src="" alt="" loading="lazy" />
+<section class="video">
+
+	<img
+		src="{{ Image(item.poster).src('hero') }}"
+		alt=""
+		loading="lazy"
+	/>
+
 	<video
 		autoplay
 		muted
@@ -9,4 +15,5 @@
 		<source src="{{ item.video.url }}" type="video/webm">
 		<source src="{{ item.video.url }}" type="video/mp4">
 	</video>
-</div>
+
+</section>
