@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<article>
+	<article class="issue">
 
 		{# <header>
 			<div class="row">
@@ -12,7 +12,6 @@
 			</div>
 		</header> #}
 
-		<header>
 			<div class="row">
 				<div class="col lg:4">
 					{% include 'includes/image.twig' with {
@@ -21,10 +20,12 @@
 					} %}
 				</div>
 				<div class="col lg:8">
-					<h1>{{ post.title }}</h1>
-					{% if post.post_excerpt %}
-						<p class="beta">{{ post.post_excerpt }}</p>
-					{% endif %}
+					<header>
+						<h1>{{ post.title }}</h1>
+						{% if post.post_excerpt %}
+							<p class="beta">{{ post.post_excerpt }}</p>
+						{% endif %}
+					</header>
 					{% if post.content %}
 						<div class="rte">
 							{{ post.content }}
@@ -41,18 +42,19 @@
 							{% include 'icons/external-link.svg' %}
 						</a>
 					{% endif %}
+					{% include 'includes/share.twig' %}
 				</div>
 			</div>
 		</header>
 
-		{% for issue in latest_issue %}
-			{% if issue.id != post.id %}
-				<section>
-					<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
-				</section>
-			{% endif %}
-		{% endfor %}
-
 	</article>
+
+	{% for issue in latest_issue %}
+		{% if issue.id != post.id %}
+			<section>
+				<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
+			</section>
+		{% endif %}
+	{% endfor %}
 
 {% endblock %}
