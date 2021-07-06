@@ -150,6 +150,8 @@ class StarterSite extends Timber\Site {
 		function _mghd_cpt_title_placeholder($title){
 			if (get_post_type() == 'team_member') {
 				$title = 'Name';
+			} elseif (get_post_type() == 'issue') {
+				$title = '#Issue1';
 			}
 			return $title;
 		}
