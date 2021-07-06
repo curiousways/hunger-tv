@@ -3,7 +3,7 @@
 <section>
 	<div class="row">
 		{% for image in item.images %}
-			<div class="col lg:6 md:6">
+			<div class="col lg:5{{ loop.index is odd ? ' lg:offset-1' }} md:6">
 				{% include 'includes/image.twig' with { size: 'grid--half' } %}
 				{% include 'includes/caption.twig' %}
 			</div>
