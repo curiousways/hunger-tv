@@ -1,9 +1,15 @@
 // Issue
 
 .issue {
+	@extend section;
+
 	header {
 		margin-top: 0;
 		margin-bottom: rhythm();
+	}
+
+	footer {
+		margin-bottom: 0;
 	}
 }
 
