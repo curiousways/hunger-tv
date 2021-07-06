@@ -21,7 +21,10 @@
 			</div>
 			<div class="col lg:8">
 				<header>
-					<h1>{{ post.title }}</h1>
+					<h1>
+						{{ post.title }}
+						{{ post.buy_now_title ? '<br>' ~ post.buy_now_title }}
+					</h1>
 					{% if post.post_excerpt %}
 						<p class="beta">{{ post.post_excerpt }}</p>
 					{% endif %}
