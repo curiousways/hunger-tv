@@ -3,11 +3,13 @@
 {% endif %}
 
 {% if 'soundcloud' in embed %}
-	{% set variant = 'soundcloud' %}
+	{% set platform = 'soundcloud' %}
+{% elseif 'twitter' in embed %}
+	{% set platform = 'twitter' %}
 {% endif %}
 
 {% if embed %}
-	<div class="embed{{ variant ? ' embed--' ~ variant }}">
+	<div class="embed{{ platform ? ' embed--' ~ platform }}">
 		{{ embed }}
 	</div>
 {% endif %}
