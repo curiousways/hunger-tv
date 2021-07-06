@@ -12,15 +12,21 @@ const logo = document.querySelector(".hero__logo");
 
 if (window.scrollY === 0) {
 	container.classList.add("animate");
-	if (logo) logo.classList.add("animate");
 
 	window.addEventListener("scroll", () => {
 		container.classList.add("visible");
 	});
 
-	setTimeout(() => {
-		if (logo) logo.classList.add("mini");
-	}, 1500);
+	if (sessionStorage.getItem("meal") == null) {
+		if (logo) logo.classList.add("animate");
+		sessionStorage.setItem("meal", "devoured");
+
+		setTimeout(() => {
+			if (logo) logo.classList.add("mini");
+		}, 1500);
+	} else if (logo) {
+		logo.classList.add("mini");
+	}
 } else {
 	container.classList.add("visible");
 	if (logo) logo.classList.add("mini");
