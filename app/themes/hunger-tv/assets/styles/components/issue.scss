@@ -1,0 +1,28 @@
+// Issue
+
+.issue {
+	@extend section;
+
+	header {
+		margin-top: 0;
+		margin-bottom: rhythm();
+	}
+
+	footer {
+		margin-bottom: 0;
+	}
+}
+
+@media (min-width: $md-min) {
+	.issue {
+		footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.social {
+			margin-top: 0 !important;
+		}
+	}
+}

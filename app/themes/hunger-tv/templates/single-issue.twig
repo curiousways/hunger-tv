@@ -2,35 +2,39 @@
 
 {% block content %}
 
-	<article>
+	<article class="issue">
 
-		<header>
+		{# <header>
 			<div class="row">
 				<div class="col">
 					<a href="{{ fn('get_post_type_archive_link', 'issue') }}">Shop</a> - {{ post.buy_now_title ? post.buy_now_title : post.title }}
 				</div>
 			</div>
-			{% if post.post_excerpt %}
-				<div class="row">
-					<div class="col">
-						{{ post.post_excerpt|wpautop }}
-					</div>
-				</div>
-			{% endif %}
-		</header>
+		</header> #}
 
-		<section>
-			<div class="row">
-				<div class="col lg:6">
-					{% include 'includes/image.twig' with { image: post.thumbnail } %}
-				</div>
-				<div class="col lg:6">
-					<h1>{{ post.title }}</h1>
-					{% if post.content %}
-						<div class="rte">
-							{{ post.content }}
-						</div>
+		<div class="row">
+			<div class="col lg:4 md:6">
+				{% include 'includes/image.twig' with {
+					image: post.thumbnail,
+					size: 'portrait'
+				} %}
+			</div>
+			<div class="col lg:8">
+				<header>
+					<h1>
+						{{ post.title }}
+						{{ post.buy_now_title ? '<br>' ~ post.buy_now_title }}
+					</h1>
+					{% if post.post_excerpt %}
+						<p class="beta">{{ post.post_excerpt }}</p>
 					{% endif %}
+				</header>
+				{% if post.content %}
+					<div class="rte">
+						{{ post.content }}
+					</div>
+				{% endif %}
+				<footer>
 					{% if post.buy_now_url %}
 						<a
 							href="{{ post.buy_now_url }}"
@@ -38,22 +42,43 @@
 							target="_blank"
 							rel="noopener"
 						>
-							Purchase
+							Buy now
 							{% include 'icons/external-link.svg' %}
 						</a>
 					{% endif %}
-				</div>
+					{% include 'includes/share.twig' %}
+				</footer>
 			</div>
-		</section>
-
-		{% for issue in latest_issue %}
-			{% if issue.id != post.id %}
-				<section>
-					<h2><a href="{{ issue.link }}">{{ issue.title }} - Latest Magazine</a></h2>
-				</section>
-			{% endif %}
-		{% endfor %}
+		</div>
 
 	</article>
+
+	{% if post.slideshow %}
+		<section>
+			<div class="row">
+				<div class="col">
+					<h2>Featured in this issue</h2>
+				</div>
+			</div>
+			{% include 'includes/carousel.twig' with { images: post.slideshow } %}
+		</section>
+	{% endif %}
+
+	{% if issues|length %}
+		<section>
+			<div class="row">
+				<div class="col">
+					<h2>More Issues</h2>
+				</div>
+			</div>
+			<div class="row">
+				{% for post in issues %}
+					<div class="col lg:4 md:6">
+						{% include 'includes/card--issue.twig' %}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
 
 {% endblock %}
