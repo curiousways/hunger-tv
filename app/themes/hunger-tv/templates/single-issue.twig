@@ -12,25 +12,26 @@
 			</div>
 		</header> #}
 
-			<div class="row">
-				<div class="col lg:4">
-					{% include 'includes/image.twig' with {
-						image: post.thumbnail,
-						size: 'portrait'
-					} %}
-				</div>
-				<div class="col lg:8">
-					<header>
-						<h1>{{ post.title }}</h1>
-						{% if post.post_excerpt %}
-							<p class="beta">{{ post.post_excerpt }}</p>
-						{% endif %}
-					</header>
-					{% if post.content %}
-						<div class="rte">
-							{{ post.content }}
-						</div>
+		<div class="row">
+			<div class="col lg:4 md:6">
+				{% include 'includes/image.twig' with {
+					image: post.thumbnail,
+					size: 'portrait'
+				} %}
+			</div>
+			<div class="col lg:8">
+				<header>
+					<h1>{{ post.title }}</h1>
+					{% if post.post_excerpt %}
+						<p class="beta">{{ post.post_excerpt }}</p>
 					{% endif %}
+				</header>
+				{% if post.content %}
+					<div class="rte">
+						{{ post.content }}
+					</div>
+				{% endif %}
+				<footer>
 					{% if post.buy_now_url %}
 						<a
 							href="{{ post.buy_now_url }}"
@@ -43,9 +44,9 @@
 						</a>
 					{% endif %}
 					{% include 'includes/share.twig' %}
-				</div>
+				</footer>
 			</div>
-		</header>
+		</div>
 
 	</article>
 

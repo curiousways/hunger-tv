@@ -5,4 +5,14 @@
 		margin-top: 0;
 		margin-bottom: rhythm();
 	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.social {
+		margin-top: 0 !important;
+	}
 }
