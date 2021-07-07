@@ -46,8 +46,7 @@ $context['first_post'] = Timber::get_posts([
 	'tax_query' => [
 		[
 			'taxonomy' => get_queried_object()->taxonomy,
-			'field' => 'term_id',
-			'terms' => [get_queried_object()->term_id]
+			'terms' => get_queried_object()->term_id
 		]
 	]
 ]);
