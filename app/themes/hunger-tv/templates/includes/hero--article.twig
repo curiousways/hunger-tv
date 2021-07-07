@@ -3,18 +3,20 @@
 		hero
 		hero--article
 		{{ post.hero_display ? 'hero--' ~ post.hero_display }}
-		{{ not article.hero_image ? 'no-image' }}
+		{{ not article.hero_image and not article.thumbnail ? 'no-image' }}
 	"
 	role="banner"
 	style="background-color: {{ home.background_colour }}"
 >
 
-	{% if post.hero_display != 'solid-colour' and article.hero_image %}
-		{% include 'includes/image.twig' with {
-			image: article.hero_image,
-			classes: 'hero__image',
-			size: 'hero'
-		} %}
+	{% if post.hero_display != 'solid-colour' %}
+		{% if article.hero_image or article.thumbnail %}
+			{% include 'includes/image.twig' with {
+				image: article.hero_image ? article.hero_image : article.thumbnail,
+				classes: 'hero__image',
+				size: 'hero'
+			} %}
+		{% endif %}
 	{% endif %}
 
 	{% if fn('is_front_page') %}
