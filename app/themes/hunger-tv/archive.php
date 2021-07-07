@@ -40,4 +40,16 @@ if ( is_day() ) {
 
 $context['posts'] = new Timber\PostQuery();
 
+$context['first_post'] = Timber::get_posts([
+	'post_type' => get_post_type(),
+	'posts_per_page' => 1,
+	'tax_query' => [
+		[
+			'taxonomy' => get_queried_object()->taxonomy,
+			'field' => 'term_id',
+			'terms' => [get_queried_object()->term_id]
+		]
+	]
+]);
+
 Timber::render( $templates, $context );
