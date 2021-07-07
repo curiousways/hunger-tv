@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	{% for post in posts|slice(0, 1) %}
+	{% for post in posts|slice(0, 1) if posts.pagination.current == 1 %}
 		{% include 'includes/hero--article.twig' with { article: post } %}
 	{% endfor %}
 
@@ -27,13 +27,7 @@
 					</div>
 				{% endfor %}
 				<div class="col">
-					{% include 'includes/pagination.twig' with {
-						pagination: posts.pagination({
-							show_all: false,
-							mid_size: 3,
-							end_size: 2
-						})
-					} %}
+					{% include 'includes/pagination.twig' %}
 				</div>
 			{% else %}
 				<div class="col">
