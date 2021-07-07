@@ -41,7 +41,7 @@ if ( is_day() ) {
 $context['posts'] = new Timber\PostQuery();
 
 $context['first_post'] = Timber::get_posts([
-	'post_type' => get_post_type(),
+	'post_type' => ['article', 'editorial'],
 	'posts_per_page' => 1,
 	'tax_query' => [
 		[
