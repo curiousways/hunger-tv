@@ -3,7 +3,7 @@
 // Source: https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
 
 add_action('pre_get_posts', 'myprefix_query_offset', 1 );
-function myprefix_query_offset(&$query) {
+function myprefix_query_offset($query) {
 
     //Before anything else, make sure this is the right query...
     if ( is_admin() || ! $query->is_main_query() ) {
