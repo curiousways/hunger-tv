@@ -33,3 +33,17 @@ function myprefix_query_offset(&$query) {
 
     }
 }
+
+add_filter('found_posts', 'myprefix_adjust_offset_pagination', 1, 2 );
+function myprefix_adjust_offset_pagination($found_posts, $query) {
+
+    //Define our offset again...
+    $offset = 1;
+
+    //Ensure we're modifying the right query object...
+    if ( $query->is_main_query() ) {
+        //Reduce WordPress's found_posts count by the offset... 
+        return $found_posts - $offset;
+    }
+    return $found_posts;
+}
