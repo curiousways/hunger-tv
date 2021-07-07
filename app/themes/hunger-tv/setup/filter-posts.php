@@ -1,6 +1,6 @@
 <?php
 
-function filtered_posts($ignore_ids) {
+function _mghd_filtered_posts($ignore_ids) {
     // echo $ignore_ids;
     $context = Timber::context();
 
