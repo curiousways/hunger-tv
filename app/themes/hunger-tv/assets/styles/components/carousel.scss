@@ -30,7 +30,7 @@
 	height: calc(100% - #{rhythm(8)});
 	filter: drop-shadow(0 0 1em $black);
 	padding: 0;
-	@include link($white);
+	@include link($white, $yellow);
 
 	svg {
 		width: rhythm(8);
