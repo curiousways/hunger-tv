@@ -7,6 +7,15 @@
 
 		<div class="col md:6 lg:4">
 			<h2>{{ item.title }}</h2>
+			{% if item.body %}
+				<div class="rte">
+					{{ item.body }}
+				</div>
+			{% endif %}
+			<a
+				href="{{ item.button.link}}"
+				class="button"
+			>{{ item.button.title }}</a>
 		</div>
 
 	</div>
