@@ -1,4 +1,13 @@
 <section>
+
+	{% if heading %}
+		<div class="row">
+			<div class="col">
+				<h2>{{ heading }}</h2>
+			</div>
+		</div>
+	{% endif %}
+
 	<div class="row">
 		{% if posts is not empty %}
 			{% for post in posts %}
@@ -6,13 +15,12 @@
 					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
 			{% endfor %}
-			<div class="col">
-				{% include 'includes/pagination.twig' %}
-			</div>
+			{% include 'includes/pagination.twig' %}
 		{% else %}
 			<div class="col">
 				<p><em>Sorry, there's nothing to see here at the moment.</em></p>
 			</div>
 		{% endif %}
 	</div>
+
 </section>

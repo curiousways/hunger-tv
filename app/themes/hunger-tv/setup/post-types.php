@@ -1,7 +1,5 @@
 <?php
 
-add_post_type_support('page', 'excerpt');
-
 // Post types
 
 register_post_type('editorial', [
@@ -72,3 +70,14 @@ register_taxonomy('department', 'team_member', [
 	'publicly_queryable' => true,
 	'hierarchical' => true
 ]);
+
+// Add the excerpt to pages
+add_post_type_support('page', 'excerpt');
+
+// Add default tags to custom post types
+// Source: https://wordpress.stackexchange.com/a/163785
+function _mghd_add_tags_to_cpts() {
+	register_taxonomy_for_object_type('post_tag', 'article');
+	register_taxonomy_for_object_type('post_tag', 'editorial');
+};
+add_action('init', '_mghd_add_tags_to_cpts');

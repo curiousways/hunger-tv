@@ -10,7 +10,7 @@
 		{% include 'home-builder/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 	{% endfor %}
 
-	<section>
+	{# <section>
 		<div class="row">
 			<div class="col">
 				<h2>Latest News</h2>
@@ -19,34 +19,11 @@
 		<div class="row">
 			{{ fn('_mghd_filtered_posts', ignore_ids) }}
 		</div>
-	</section>
+	</section> #}
 
-	<p><mark>vertical rhythm</mark></p>
-
-	<section class="rhythm">
-		<div class="row">
-			<div class="col lg:6">
-				<p class="omega">omega: Lorem ipsum dolor sit</p>
-				<h1>alpha: Lorem ipsum dolor sit amet</h1>
-				<h2>beta: Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-				<h3>gamma: Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-				<h4>delta: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</h4>
-				<h5>epsilon: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</h5>
-				<h6>zeta: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</h6>
-			</div>
-			<div class="col lg:6">
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-				<p>base: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-			</div>
-		</div>
-	</section>
+	{% include 'includes/posts.twig' with {
+		heading: 'Latest News',
+		posts: latest_news
+	} %}
 
 {% endblock %}

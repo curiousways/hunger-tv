@@ -27,10 +27,11 @@
 			text-decoration-thickness: rhythm(1);
 			text-underline-offset: -0.3em;
 			text-decoration-skip-ink: none;
+			opacity: 1;
 		}
 
 		&:active {
-			color: $grey;
+			opacity: $active-opacity;
 		}
 	}
 }
