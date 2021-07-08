@@ -1,4 +1,13 @@
 <section>
+
+	{% if title %}
+		<div class="row">
+			<div class="col">
+				<h2>{{ title }}</h2>
+			</div>
+		</div>
+	{% endif %}
+
 	<div class="row">
 		{% if posts is not empty %}
 			{% for post in posts %}
@@ -15,4 +24,5 @@
 			</div>
 		{% endif %}
 	</div>
+
 </section>
