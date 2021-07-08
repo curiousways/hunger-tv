@@ -26,7 +26,7 @@
 					</h2>
 					{% if post.post_excerpt %}
 						<div class="rte">
-							<p>{{ post.post_excerpt }}</p>
+							{{ post.post_excerpt|wpautop }}
 						</div>
 					{% elseif post.content %}
 						<div class="rte">
