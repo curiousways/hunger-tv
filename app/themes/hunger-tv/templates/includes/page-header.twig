@@ -8,6 +8,10 @@
 				<p class="beta">{{ post.post_excerpt }}</p>
 			{% endif %}
 
+			{% if fn('is_page', 'Contact') %}
+				{% include 'includes/social.twig' %}
+			{% endif %}
+
 		</div>
 	</div>
 </header>
