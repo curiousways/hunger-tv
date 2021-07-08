@@ -4,9 +4,21 @@ $hamburger-padding-x: $line-height/2 + px;
 $hamburger-padding-y: $line-height/2 + px;
 $hamburger-layer-width: $line-height + px;
 $hamburger-layer-height: 2px;
-$hamburger-layer-spacing: 4px;
+$hamburger-layer-spacing: 6px;
 $hamburger-layer-border-radius: 0;
 $hamburger-hover-opacity: 1;
 $hamburger-types: (collapse);
 
 @import "hamburgers/_sass/hamburgers/hamburgers";
+
+.hamburger-inner,
+.hamburger-inner:after {
+	transition-property: all !important;
+}
+
+.hamburger:not(.is-active) {
+	.hamburger-inner,
+	.hamburger-inner:after {
+		width: rhythm(3);
+	}
+}
