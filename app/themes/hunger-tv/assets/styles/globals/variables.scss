@@ -2,15 +2,15 @@
 
 // Colours
 $black: black;
-$blue: #00ffe7;
+$blue: #36ffe7;
 $brown-lightest: #f9f6f3;
-$green: #42ff00;
+$green: #05fc00;
 $grey-lightest: #f8f8f8;
 $grey-light: rgba(black, 0.2);
 $grey: rgba(black, 0.5);
 $pink: #ff65ca;
 $white: white;
-$yellow: #ffe203;
+$yellow: #fce300;
 
 $primary: $pink;
 
@@ -38,6 +38,7 @@ $eta: 16;
 $iota: 14;
 
 // Transitions
+$anim-time: 0.1s;
 $anim-curve: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Breakpoints

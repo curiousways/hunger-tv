@@ -51,4 +51,9 @@ $context['first_post'] = Timber::get_posts([
 	]
 ]);
 
+$context['first_issue'] = Timber::get_posts([
+	'post_type' => 'issue',
+	'posts_per_page' => 1
+]);
+
 Timber::render( $templates, $context );

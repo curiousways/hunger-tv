@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<header>
+		<div class="row">
+			<div class="col">
+				<h1>Back Issues</h1>
+			</div>
+		</div>
+	</header>
+
+	{% for post in first_issue if posts.pagination.current == 1 %}
+		<section style="background-color: {{ home.background_colour }}">
+			<div class="row">
+				<div class="col lg:4 md:6">
+					{% include 'includes/image.twig' with {
+						image: post.thumbnail,
+						size: 'portrait'
+					} %}
+				</div>
+				<div class="col lg:8">
+					<h2 class="gamma">
+						{{ post.title }}
+						{{ post.buy_now_title ? '<br>' ~ post.buy_now_title }}
+					</h2>
+					{% if post.post_excerpt %}
+						<div class="rte">
+							{{ post.post_excerpt|wpautop }}
+						</div>
+					{% elseif post.content %}
+						<div class="rte">
+							{{ post.content }}
+						</div>
+					{% endif %}
+					<a
+						href="{{ post.link }}"
+						class="button"
+					>View now</a>
+				</div>
+			</div>
+		</section>
+	{% endfor %}
+
+	{% include 'includes/posts.twig' %}
+
+{% endblock %}

@@ -72,3 +72,7 @@ h6,
 blockquote {
 	@extend p, .beta;
 }
+
+mark {
+	background-color: $yellow;
+}

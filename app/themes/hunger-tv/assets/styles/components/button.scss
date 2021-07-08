@@ -8,14 +8,24 @@ button {
 
 .button {
 	@extend .uppercase;
-	color: $black;
+	color: inherit;
 	background-color: transparent;
 	display: inline-block;
 	border: $button-border-width solid;
 	text-decoration: none;
 	text-align: center;
+	text-underline-offset: 0.1em;
 	padding: rhythm(2) rhythm();
-	@include link;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+		opacity: 1;
+	}
+
+	&:active {
+		opacity: 0.8;
+	}
 }
 
 // Variants

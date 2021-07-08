@@ -19,10 +19,8 @@
 }
 
 // Usage: @include link($primary, $secondary, true);
-@mixin link($color: inherit, $hover-color: $primary, $underline: false) {
-	@if $color {
-		color: $color;
-	}
+@mixin link($color: inherit, $hover-color: false, $underline: false) {
+	color: $color;
 
 	@if $underline {
 		text-decoration: underline;
@@ -30,7 +28,12 @@
 
 	&:hover,
 	&:focus {
-		color: $hover-color;
+		@if $hover-color {
+			color: $hover-color;
+			opacity: 1;
+		} @else {
+			opacity: 0.6;
+		}
 
 		@if $underline {
 			text-decoration: none;
@@ -41,7 +44,7 @@
 		@if $hover-color {
 			color: setActiveColor($hover-color);
 		} @else {
-			color: setActiveColor($color);
+			opacity: 0.8;
 		}
 	}
 }
