@@ -15,6 +15,7 @@
 			<a
 				href="{{ item.button.link}}"
 				class="button"
+				{{ item.button.target ? 'target="' ~ item.button.target ~ '"' }}
 			>{{ item.button.title }}</a>
 		</div>
 
