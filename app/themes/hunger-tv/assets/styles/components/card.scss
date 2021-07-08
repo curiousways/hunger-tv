@@ -69,6 +69,10 @@
 }
 
 .card--portrait {
+	a {
+		@include link($hover-color: $yellow);
+	}
+
 	.card__content {
 		color: $white;
 		position: absolute;

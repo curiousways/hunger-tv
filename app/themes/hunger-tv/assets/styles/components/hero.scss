@@ -66,6 +66,10 @@
 	top: 0;
 	height: 100%;
 	@include content-gradient;
+
+	a {
+		@include link($hover-color: $yellow);
+	}
 }
 
 // Variants
