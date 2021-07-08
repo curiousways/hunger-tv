@@ -5,7 +5,7 @@ $timber_post = new Timber\Post();
 $context['post'] = $timber_post;
 
 $context['latest_news'] = Timber::get_posts([
-	'post_type' => ['article', 'editorial'],
+	'post_type' => 'editorial',
 	'posts_per_page' => 6,
 	'tax_query' => [
 		[
