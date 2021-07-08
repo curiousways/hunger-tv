@@ -64,6 +64,93 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_60e72dc294500": {
+                    "key": "layout_60e72dc294500",
+                    "name": "call_to_action",
+                    "label": "Call to action",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60e72dd494501",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "Minimum width: 780px",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 780,
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_60e72e0594502",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_60e72e0c94503",
+                            "label": "Body",
+                            "name": "body",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_60e72e3094504",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_60a7907381ac9": {
                     "key": "layout_60a7907381ac9",
                     "name": "image",
@@ -154,5 +241,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625557299
+    "modified": 1625763404
 }
