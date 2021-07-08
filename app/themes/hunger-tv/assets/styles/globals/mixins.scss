@@ -30,6 +30,7 @@
 	&:focus {
 		@if $hover-color {
 			color: $hover-color;
+			opacity: 1;
 		} @else {
 			opacity: 0.6;
 		}
