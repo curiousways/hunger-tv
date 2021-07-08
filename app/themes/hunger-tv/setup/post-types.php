@@ -39,7 +39,7 @@ register_post_type('issue', [
 	'has_archive' => true,
 	'menu_icon' => 'dashicons-book',
 	'supports' => ['editor', 'excerpt', 'revisions', 'thumbnail', 'title'],
-	'rewrite' => ['slug' => 'shop']
+	'rewrite' => ['slug' => 'shop/issues']
 ]);
 
 register_post_type('team_member', [
