@@ -8,7 +8,7 @@
 			<div class="eta">{{ post.date|date }}</div>
 		</div>
 		<div class="col {% if post.hero_image %}lg:6{% elseif post.thumbnail %}lg:4{% else %}lg:6{% endif %}">
-			{% include 'includes/share.twig' %}
+			{% include 'includes/social.twig' with { classes: 'lg:justify-end' } %}
 		</div>
 	</div>
 
