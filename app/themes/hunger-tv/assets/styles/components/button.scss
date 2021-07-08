@@ -24,7 +24,7 @@ button {
 	}
 
 	&:active {
-		opacity: 0.8;
+		opacity: $active-opacity;
 	}
 }
 
