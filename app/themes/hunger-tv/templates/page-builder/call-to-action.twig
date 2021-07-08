@@ -1,0 +1,28 @@
+<section>
+	<div class="row">
+
+		<div class="col md:6 lg:8">
+			{% include 'includes/image.twig' with { size: 'grid--two-thirds' } %}
+		</div>
+
+		<div class="col md:6 lg:4">
+			<h2>{{ item.title }}</h2>
+			{% if item.body %}
+				<div class="rte">
+					{{ item.body }}
+				</div>
+			{% endif %}
+			<a
+				href="{{ item.button.url }}"
+				class="button"
+				{{ item.button.target ? 'target="' ~ item.button.target ~ '"' }}
+			>
+				{{ item.button.title }}
+				{% if item.button.target == '_blank' %}
+					{% include 'icons/external-link.svg' %}
+				{% endif %}
+			</a>
+		</div>
+
+	</div>
+</section>
