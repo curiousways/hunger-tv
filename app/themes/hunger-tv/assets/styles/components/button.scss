@@ -14,7 +14,7 @@ button {
 	border: $button-border-width solid;
 	text-decoration: none;
 	text-align: center;
-	text-underline-offset: 0.1em;
+	text-underline-offset: 1px;
 	padding: rhythm(2) rhythm();
 
 	&:hover,

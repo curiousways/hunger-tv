@@ -1,12 +1,12 @@
 // Section
 
 section {
-	// margin-top: rhythm();
-	// margin-bottom: rhythm();
+	margin-top: rhythm();
+	margin-bottom: rhythm();
 
 	&[style*="background"] {
-		padding-top: rhythm();
-		padding-bottom: rhythm();
+		padding-top: rhythm(2);
+		padding-bottom: rhythm(2);
 		margin-top: 0;
 		margin-bottom: 0;
 	}
@@ -22,5 +22,10 @@ section.light {
 	section {
 		margin-top: rhythm(8);
 		margin-bottom: rhythm(8);
+
+		&[style*="background"] {
+			padding-top: rhythm(6);
+			padding-bottom: rhythm(6);
+		}
 	}
 }

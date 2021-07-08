@@ -26,9 +26,3 @@ footer .social {
 		margin-bottom: rhythm();
 	}
 }
-
-@media (min-width: $lg-min) {
-	header .social {
-		justify-content: flex-end;
-	}
-}

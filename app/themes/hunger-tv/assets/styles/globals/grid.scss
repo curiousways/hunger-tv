@@ -12,7 +12,7 @@ $total-cols: 12;
 
 .col {
 	width: 100%;
-	padding: rhythm() $gutter-width/2;
+	padding: rhythm(2) $gutter-width/2;
 }
 
 @media (max-width: $sm-max) {
@@ -20,10 +20,10 @@ $total-cols: 12;
 		&.sm\:6 {
 			width: percentage(6 / $total-cols);
 		}
+	}
 
-		&.sm\:justify-end {
-			justify-content: flex-end;
-		}
+	.sm\:justify-end {
+		justify-content: flex-end;
 	}
 }
 
@@ -40,14 +40,14 @@ $total-cols: 12;
 		&.md\:6 {
 			width: percentage(6 / $total-cols);
 		}
+	}
 
-		&.md\:justify-center {
-			justify-content: center;
-		}
+	.md\:justify-center {
+		justify-content: center;
+	}
 
-		&.md\:justify-end {
-			justify-content: flex-end;
-		}
+	.md\:justify-end {
+		justify-content: flex-end;
 	}
 }
 
@@ -96,13 +96,13 @@ $total-cols: 12;
 		&.lg\:offset-2 {
 			margin-left: percentage(2 / $total-cols);
 		}
+	}
 
-		&.lg\:justify-center {
-			justify-content: center;
-		}
+	.lg\:justify-center {
+		justify-content: center;
+	}
 
-		&.lg\:justify-end {
-			justify-content: flex-end;
-		}
+	.lg\:justify-end {
+		justify-content: flex-end;
 	}
 }

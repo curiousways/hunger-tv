@@ -27,7 +27,7 @@
 
 			<div class="col lg:4 lg:justify-end md:4 md:justify-end sm:hide">
 				<a
-					href="{{ fn('get_post_type_archive_link', 'issue') }}"
+					href="{{ Post(fn('get_page_by_title', 'Shop')).link }}"
 					class="button button--small"
 				>Shop</a>
 				<button
@@ -52,7 +52,7 @@
 				<div class="lg:hide md:hide margin-bottom">
 					{% include 'forms/search.twig' %}
 				</div>
-				{% include 'includes/social.twig' %}
+				{% include 'includes/social.twig' with { classes: 'lg:justify-end' } %}
 			</div>
 		</div>
 	</div>

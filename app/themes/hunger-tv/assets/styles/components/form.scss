@@ -1,6 +1,13 @@
 // Form
 
 .form {
+	.row {
+		margin-bottom: rhythm();
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 @media (min-width: $md-min) {

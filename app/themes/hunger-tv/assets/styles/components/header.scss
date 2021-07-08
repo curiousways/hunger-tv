@@ -13,6 +13,8 @@
 	height: rhythm($header-height);
 	z-index: 1;
 	box-shadow: 0 0 rhythm() $grey-light;
+	padding-top: rhythm(2);
+	padding-bottom: rhythm(2);
 
 	.col {
 		display: flex;
