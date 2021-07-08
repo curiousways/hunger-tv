@@ -9,9 +9,7 @@ label {
 }
 
 .input {
-	position: relative;
 	border-bottom: $button-border-width solid;
-	padding-right: rhythm(8);
 
 	input {
 		color: inherit;
@@ -24,13 +22,23 @@ label {
 	}
 
 	button {
-		position: absolute;
-		top: 0;
-		right: rhythm(-1);
 		@include icon-button;
 	}
 
 	&:focus-within {
 		border-color: $primary;
+	}
+}
+
+// Variants
+
+.input--button {
+	position: relative;
+	padding-right: rhythm(8);
+
+	button {
+		position: absolute;
+		top: 0;
+		right: rhythm(-1);
 	}
 }
