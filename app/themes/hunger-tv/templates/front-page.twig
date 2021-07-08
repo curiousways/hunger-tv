@@ -10,7 +10,7 @@
 		{% include 'home-builder/' ~ item.acf_fc_layout|replace({'_': '-'}) ~ '.twig' %}
 	{% endfor %}
 
-	<section>
+	{# <section>
 		<div class="row">
 			<div class="col">
 				<h2>Latest News</h2>
@@ -19,7 +19,7 @@
 		<div class="row">
 			{{ fn('_mghd_filtered_posts', ignore_ids) }}
 		</div>
-	</section>
+	</section> #}
 
 	{% include 'includes/posts.twig' with {
 		heading: 'Latest News',
