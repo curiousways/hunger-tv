@@ -15,9 +15,7 @@
 					{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 				</div>
 			{% endfor %}
-			<div class="col">
-				{% include 'includes/pagination.twig' %}
-			</div>
+			{% include 'includes/pagination.twig' %}
 		{% else %}
 			<div class="col">
 				<p><em>Sorry, there's nothing to see here at the moment.</em></p>
