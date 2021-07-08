@@ -10,7 +10,7 @@
 		</div>
 	</header>
 
-	{% for post in first_issue %}
+	{% for post in first_issue if posts.pagination.current == 1 %}
 		<section style="background-color: {{ home.background_colour }}">
 			<div class="row">
 				<div class="col lg:4 md:6">
