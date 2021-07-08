@@ -16,7 +16,12 @@
 				href="{{ item.button.link}}"
 				class="button"
 				{{ item.button.target ? 'target="' ~ item.button.target ~ '"' }}
-			>{{ item.button.title }}</a>
+			>
+				{{ item.button.title }}
+				{% if item.button.target == '_blank' %}
+					{% include 'icons/external-link.svg' %}
+				{% endif %}
+			</a>
 		</div>
 
 	</div>
