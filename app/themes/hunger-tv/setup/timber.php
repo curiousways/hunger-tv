@@ -118,14 +118,6 @@ class StarterSite extends Timber\Site {
 			return $settings;
 		});
 
-		// Add default tags to custom post types
-		// Source: https://wordpress.stackexchange.com/a/163785
-		function add_tags_to_cpts() {
-			register_taxonomy_for_object_type('post_tag', 'article');
-			register_taxonomy_for_object_type('post_tag', 'editorial');
-		};
-		add_action('init', 'add_tags_to_cpts');
-
 		// Return custom post types on tag archives
 		// Source: https://wordpress.stackexchange.com/a/108069
 		function cpts_on_tag_archives($query) {
