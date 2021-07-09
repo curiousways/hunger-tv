@@ -2,8 +2,7 @@
 	{% include 'includes/image.twig' with {
 		image: post.thumbnail,
 		size: 'portrait',
-		sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw',
-		classes: 'margin-bottom'
+		sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
 	} %}
 	<h3>{{ post.title }}</h3>
 	{{ post.post_excerpt ? post.post_excerpt|wpautop }}
