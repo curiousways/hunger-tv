@@ -8,17 +8,12 @@
 		<h3 class="card__title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
 	</div>
 
-	{% if post.hero_image %}
+	{% if post.hero_image or post.thumbnail %}
 		{% include 'includes/image.twig' with {
-			image: post.hero_image,
+			image: post.hero_image ? post.hero_image : post.thumbnail,
 			classes: 'card__image',
-			size: post.card_image_orientation ? 'portrait' : 'card'
-		} %}
-	{% elseif post.thumbnail %}
-		{% include 'includes/image.twig' with {
-			image: post.thumbnail,
-			classes: 'card__image',
-			size: post.card_image_orientation ? 'portrait' : 'card'
+			size: post.card_image_orientation ? 'portrait' : 'card',
+			sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
 		} %}
 	{% endif %}
 

@@ -19,7 +19,8 @@
 					{% include 'includes/image.twig' with {
 						image: post.thumbnail,
 						classes: 'hero__image',
-						size: 'grid--two-thirds'
+						size: 'grid--two-thirds',
+						sizes: '(min-width: 1024px) 66vw, 100vw'
 					} %}
 				</div>
 			</div>

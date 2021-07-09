@@ -1,7 +1,11 @@
+{% set poster = Image(item.poster) %}
+
 <section class="video">
 
 	<img
-		src="{{ Image(item.poster).src('hero') }}"
+		src="{{ poster.src('hero') }}"
+		srcset="{{ fn('wp_get_attachment_image_srcset', poster.id, 'hero') }}"
+		sizes="100vw"
 		alt=""
 		loading="lazy"
 	/>

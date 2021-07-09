@@ -13,6 +13,8 @@
 	>
 		<img
 			src="{{ image.src(size) }}"
+			srcset="{{ fn('wp_get_attachment_image_srcset', image.id, size) }}"
+			sizes="{{ sizes ? sizes : '100vw' }}"
 			alt="{{ image.alt }}"
 			loading="lazy"
 		/>
