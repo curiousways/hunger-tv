@@ -8,7 +8,8 @@
 					{# HTV Player (legacy, no idea what it's meant to do) #}
 					{% include 'includes/image.twig' with {
 						image: item.poster,
-						size: 'grid--two-thirds'
+						size: 'grid--two-thirds',
+						sizes: '(min-width: 1024px) 66vw, 100vw'
 					} %}
 				{% endif %}
 			</div>
