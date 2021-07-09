@@ -34,8 +34,10 @@
 	background-image: linear-gradient(to bottom, cyan 0, transparent 1px),
 		linear-gradient(to bottom, lightgrey 0, transparent 1px);
 	background-repeat: repeat-y;
-	background-size: 100% ($line-height / $font-size) * 1rem,
-		100% (($line-height / $font-size) / 4) * 1rem;
+	background-size: 100% ($line-height / 16) * 1rem,
+		100% (($line-height / 16) / 4) * 1rem;
+	padding-top: rhythm(2);
+	padding-bottom: rhythm(2);
 
 	.col * {
 		background-color: rgba($primary, 0.1);

@@ -1,7 +1,7 @@
 // Mixins
 
 @function rhythm($height: 4) {
-	@return ($line-height/4 / $font-size) * $height + rem;
+	@return ($line-height/4 / 16) * $height + rem;
 }
 
 @function setActiveColor($color) {
@@ -14,7 +14,7 @@
 
 @mixin type($size, $rhythm: 4) {
 	font-size: $size * 1px;
-	font-size: ($size / $font-size) * 1rem;
+	font-size: ($size / 16) * 1rem;
 	line-height: rhythm($rhythm);
 }
 
@@ -83,12 +83,16 @@
 }
 
 @mixin delta {
+	@include type($font-size);
+
 	@media (min-width: $md-min) {
 		@include type($delta, 5);
 	}
 }
 
 @mixin epsilon {
+	@include type($font-size);
+
 	@media (min-width: $md-min) {
 		@include type($epsilon, 5);
 	}
