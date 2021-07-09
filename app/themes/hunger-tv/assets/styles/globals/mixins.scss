@@ -51,7 +51,7 @@
 
 @mixin omega {
 	font-weight: lighter;
-	@include type($beta, 7);
+	@include type($alpha, 8);
 
 	@media (min-width: $md-min) {
 		@include type($omega, 11);
@@ -59,7 +59,7 @@
 }
 
 @mixin alpha {
-	@include type($gamma, 6);
+	@include type($beta, 7);
 
 	@media (min-width: $md-min) {
 		@include type($alpha, 8);
@@ -67,7 +67,7 @@
 }
 
 @mixin beta {
-	@include type($delta, 5);
+	@include type($gamma, 6);
 
 	@media (min-width: $md-min) {
 		@include type($beta, 7);
@@ -75,7 +75,7 @@
 }
 
 @mixin gamma {
-	@include type($epsilon, 5);
+	@include type($delta, 5);
 
 	@media (min-width: $md-min) {
 		@include type($gamma, 6);
@@ -83,7 +83,7 @@
 }
 
 @mixin delta {
-	@include type($font-size);
+	@include type($epsilon, 5);
 
 	@media (min-width: $md-min) {
 		@include type($delta, 5);
