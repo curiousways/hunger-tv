@@ -89,7 +89,7 @@
 
 @media (max-width: $sm-max) {
 	.hero--article {
-		height: 400px;
+		min-height: 300px;
 
 		.hero__image {
 			position: absolute;
