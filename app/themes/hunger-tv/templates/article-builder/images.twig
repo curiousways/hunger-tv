@@ -2,7 +2,10 @@
 	<div class="row">
 		{% for image in item.images %}
 			<div class="col lg:5{{ loop.index is odd ? ' lg:offset-1' }} md:6">
-				{% include 'includes/image.twig' with { size: 'grid--half' } %}
+				{% include 'includes/image.twig' with {
+					size: 'grid--half',
+					sizes: '(min-width: 1024px) 41vw, (min-width: 600px) 50vw, 100vw'
+				} %}
 				{% include 'includes/caption.twig' %}
 			</div>
 		{% endfor %}

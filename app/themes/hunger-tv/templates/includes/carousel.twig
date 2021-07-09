@@ -6,7 +6,6 @@
 			<div class="carousel__tray">
 				{% for image in images %}
 					<div>
-						{# {% include 'includes/image.twig' %} #}
 						<img
 							src="{{ Image(image).src('slideshow') }}"
 							alt="{{ image.alt }}"
