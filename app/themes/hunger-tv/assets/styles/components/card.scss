@@ -4,11 +4,6 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-
-	a {
-		position: relative;
-		z-index: $z-2;
-	}
 }
 
 .card__image {
@@ -25,7 +20,7 @@
 }
 
 .card__title a {
-	position: static;
+	position: static !important;
 
 	&:after {
 		content: "";
@@ -39,10 +34,11 @@
 
 // Variants
 
-.card--issue {
-	position: relative;
+.card--issue .button {
+	align-self: flex-start;
+	margin-top: auto;
 
-	.button:after {
+	&:after {
 		content: "";
 		position: absolute;
 		top: 0;
@@ -57,6 +53,11 @@
 	background-color: $brown-lightest;
 	justify-content: space-between;
 	text-align: center;
+
+	a {
+		position: relative;
+		z-index: $z-2;
+	}
 }
 
 .card--landscape {
