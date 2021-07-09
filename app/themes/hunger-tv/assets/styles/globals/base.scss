@@ -35,34 +35,6 @@ body {
 	// 	}
 }
 
-body.dark {
-}
-
-body.light {
-	.header,
-	.hero__logo {
-		color: $white;
-	}
-
-	.hamburger-inner,
-	.hamburger-inner:before,
-	.hamburger-inner:after,
-	.hamburger.is-active .hamburger-inner,
-	.hamburger.is-active .hamburger-inner:before,
-	.hamburger.is-active .hamburger-inner:after {
-		background-color: $white;
-	}
-
-	.drawer {
-		color: $black;
-		background-color: rgba($white, 0.95);
-	}
-}
-
-body.post-type-archive-issue {
-	background-color: $grey-lightest;
-}
-
 main {
 }
 
