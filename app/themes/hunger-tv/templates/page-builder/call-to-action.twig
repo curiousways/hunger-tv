@@ -1,14 +1,14 @@
 <section>
 	<div class="row">
 
-		<div class="col md:6 lg:8">
+		<div class="col lg:8 md:6">
 			{% include 'includes/image.twig' with {
 				size: 'grid--two-thirds',
 				sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
 			} %}
 		</div>
 
-		<div class="col md:6 lg:4">
+		<div class="col lg:4 md:6">
 			<h2>{{ item.title }}</h2>
 			{% if item.body %}
 				<div class="rte">
