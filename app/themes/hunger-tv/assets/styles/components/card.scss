@@ -1,12 +1,9 @@
 // Card
 
 .card {
-	background-color: $brown-lightest;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	text-align: center;
 
 	a {
 		position: relative;
@@ -53,6 +50,13 @@
 		width: 100%;
 		height: 100%;
 	}
+}
+
+.card--landscape,
+.card--portrait {
+	background-color: $brown-lightest;
+	justify-content: space-between;
+	text-align: center;
 }
 
 .card--landscape {
