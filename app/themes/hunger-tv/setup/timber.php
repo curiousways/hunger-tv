@@ -118,6 +118,28 @@ class StarterSite extends Timber\Site {
 			return $settings;
 		});
 
+		// Source: https://wordpress.stackexchange.com/questions/233450/how-do-you-add-custom-color-swatches-to-all-wysiwyg-editors
+		function my_mce4_options($init) {
+			$custom_colours = '
+				"000000", "Black",
+				"ffffff", "White",
+				"7E7F7F", "Hunger Grey",
+				"ff65ca", "Hunger Pink",
+				"05fc00", "Hunger Green",
+				"fce300", "Hunger Yellow"
+			';
+
+			// build colour grid default+custom colors
+			$init['textcolor_map'] = '['.$custom_colours.']';
+
+			// change the number of rows in the grid if the number of colors changes
+			// 8 swatches per row
+			$init['textcolor_rows'] = 1;
+
+			return $init;
+		}
+		add_filter('tiny_mce_before_init', 'my_mce4_options');
+
 		// Return custom post types on tag archives
 		// Source: https://wordpress.stackexchange.com/a/108069
 		function cpts_on_tag_archives($query) {
