@@ -1,8 +1,10 @@
 // CTA
 
 .cta {
-	position: relative;
 	background-color: $brown-lightest;
+	position: relative;
+	padding-top: rhythm(2);
+	padding-bottom: rhythm(2);
 
 	.row {
 		position: relative;
