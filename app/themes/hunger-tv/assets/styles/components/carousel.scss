@@ -21,7 +21,6 @@
 }
 
 .carousel__control {
-	display: none;
 	background: none;
 	border: none;
 	position: absolute;
@@ -55,7 +54,6 @@
 
 .carousel__control--next {
 	right: 0;
-	transform: translateX(100%);
 }
 
 .carousel__control--prev svg {
@@ -72,15 +70,21 @@
 	margin-right: $gutter-width/2;
 }
 
+@media (max-width: $md-max) {
+	.carousel__control--prev {
+		display: none !important;
+	}
+}
+
 @media (min-width: $lg-min) {
-	.carousel__control {
-		display: block;
+	.carousel__control--next {
+		transform: translateX(100%);
 	}
 
 	.carousel__counter {
 		color: $white;
 		position: absolute;
-		bottom: rhythm(8);
+		bottom: rhythm(6);
 		left: rhythm(8);
 		text-shadow: 0 0 1em $black;
 	}
