@@ -7,7 +7,8 @@
 			<div class="col md:6 lg:8">
 				{% include 'includes/image.twig' with {
 					image: post.hero_image ? post.hero_image : post.thumbnail,
-					size: 'grid--two-thirds'
+					size: 'grid--two-thirds',
+					sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
 				} %}
 			</div>
 			<div class="col md:6 lg:4">
