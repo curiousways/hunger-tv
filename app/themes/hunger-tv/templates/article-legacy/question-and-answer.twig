@@ -2,12 +2,10 @@
 	<section>
 		<div class="row">
 			<div class="col lg:8 lg:offset-2">
-				<details>
-					{% if item.question %}
-						<summary>{{ item.question|striptags }}</summary>
-					{% endif %}
-					{{ item.answer ? item.answer }}
-				</details>
+				{% if item.question %}
+					<p class="grey">{{ item.question|striptags }}</p>
+				{% endif %}
+				{{ item.answer ? item.answer }}
 			</div>
 		</div>
 	</section>
