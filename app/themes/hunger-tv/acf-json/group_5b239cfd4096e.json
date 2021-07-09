@@ -540,35 +540,6 @@
                     ],
                     "min": "",
                     "max": ""
-                },
-                "5b2b925076822": {
-                    "key": "5b2b925076822",
-                    "name": "ad_unit",
-                    "label": "Ad unit",
-                    "display": "row",
-                    "sub_fields": [
-                        {
-                            "key": "field_5b2b926c76823",
-                            "label": "Ad unit",
-                            "name": "ad_unit",
-                            "type": "wysiwyg",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -607,5 +578,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625559571
+    "modified": 1625850927
 }

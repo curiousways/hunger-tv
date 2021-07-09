@@ -6,7 +6,6 @@ a[data-layout="instagram_embed"],
 a[data-layout="spotify_audio"],
 a[data-layout="tweet_embed"],
 a[data-layout="youtube_video"],
-a[data-layout="freeform_html"],
-a[data-layout="ad_unit"] {
+a[data-layout="freeform_html"] {
 	display: none !important;
 }
