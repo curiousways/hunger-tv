@@ -13,8 +13,13 @@
 	</div>
 
 	<div class="row">
-		<div class="col lg:9 lg:offset-2">
+		<div class="col lg:8 lg:offset-2">
 			<h1 class="omega">{{ post.title }}</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col lg:9 lg:offset-2">
 			{% if post.standfirst %}
 				<p class="beta">{{ post.standfirst }}</p>
 			{% elseif post.article_excerpt %}
