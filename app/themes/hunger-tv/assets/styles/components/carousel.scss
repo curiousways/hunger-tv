@@ -24,12 +24,12 @@
 	background: none;
 	border: none;
 	position: absolute;
-	top: rhythm();
-	min-width: calc((100vw - #{$grid-width/3 * 2}) / 2);
-	height: calc(100% - #{rhythm(8)});
-	filter: drop-shadow(0 0 1em $black);
+	bottom: rhythm(-6);
+	// min-width: calc((100vw - #{$grid-width/3 * 2}) / 2);
+	// height: calc(100% - #{rhythm(8)});
+	// filter: drop-shadow(0 0 1em $black);
 	padding: 0;
-	@include link($white, $yellow);
+	@include link;
 
 	svg {
 		width: rhythm(8);
@@ -48,12 +48,12 @@
 // Variants
 
 .carousel__control--prev {
-	left: 0;
+	left: rhythm(-8);
 	transform: translateX(-100%);
 }
 
 .carousel__control--next {
-	right: 0;
+	left: rhythm(-16);
 }
 
 .carousel__control--prev svg {
