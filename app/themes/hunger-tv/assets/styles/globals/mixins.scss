@@ -103,7 +103,7 @@
 }
 
 @mixin eta {
-	font-weight: lighter;
+	// font-weight: lighter;
 	@include type($eta, 3);
 }
 
