@@ -79,10 +79,7 @@
 
 .hero--coloured-image .hero__image {
 	mix-blend-mode: multiply;
-
-	img {
-		filter: grayscale(1);
-	}
+	filter: grayscale(1);
 }
 
 .hero--solid-colour,
