@@ -23,17 +23,17 @@
 .carousel__control {
 	background: none;
 	border: none;
-	position: absolute;
-	bottom: rhythm(-6);
+	position: relative;
 	// min-width: calc((100vw - #{$grid-width/3 * 2}) / 2);
 	// height: calc(100% - #{rhythm(8)});
 	// filter: drop-shadow(0 0 1em $black);
-	padding: 0;
+	left: rhythm(-2);
+	padding: rhythm(2);
 	@include link;
 
 	svg {
-		width: rhythm(8);
-		height: rhythm(8);
+		width: rhythm();
+		height: rhythm();
 	}
 }
 
@@ -47,15 +47,6 @@
 
 // Variants
 
-.carousel__control--prev {
-	left: rhythm(-8);
-	transform: translateX(-100%);
-}
-
-.carousel__control--next {
-	left: rhythm(-16);
-}
-
 .carousel__control--prev svg {
 	transform: rotate(180deg);
 }
@@ -67,18 +58,29 @@
 }
 
 .slick-slide {
-	margin-right: $gutter-width/2;
+	padding-right: $gutter-width/2;
 }
 
 @media (max-width: $md-max) {
-	.carousel__control--prev {
-		display: none !important;
-	}
+	// .carousel__control--prev {
+	// display: none !important;
+	// }
 }
 
 @media (min-width: $lg-min) {
+	.carousel__control {
+		position: absolute;
+		bottom: rhythm(-5);
+		z-index: $z-1;
+	}
+
+	.carousel__control--prev {
+		left: rhythm(-7);
+	}
+
 	.carousel__control--next {
-		transform: translateX(100%);
+		right: rhythm(-7);
+		left: auto;
 	}
 
 	.carousel__counter {
