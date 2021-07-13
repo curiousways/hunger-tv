@@ -1,0 +1,14 @@
+{% if not image %}
+	{% set image = post.hero_image %}
+{% endif %}
+
+{% set image = Image(image) %}
+
+<img
+	src="{{ image.src('hero') }}"
+	srcset="{{ image.src('portrait') }} 400w, {{ image.src('hero--medium') }} 960w, {{ image.src('hero') }} 1920w"
+	sizes="100vw"
+	class="hero__image"
+	alt="{{ hero.alt }}"
+	loading="lazy"
+/>
