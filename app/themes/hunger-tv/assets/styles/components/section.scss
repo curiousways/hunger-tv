@@ -19,7 +19,7 @@ section.light {
 }
 
 @media (min-width: $lg-min) {
-	section {
+	body:not(.single) section {
 		margin-top: rhythm(8);
 		margin-bottom: rhythm(8);
 

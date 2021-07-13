@@ -12,7 +12,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	z-index: $z-1;
-	padding: rhythm();
+	padding: rhythm() 15%;
 }
 
 .card__title a {
@@ -95,5 +95,18 @@
 	.card {
 		height: calc(100% - #{rhythm()});
 		margin-bottom: rhythm();
+	}
+
+	.card--landscape,
+	.card--portrait {
+		min-height: 540px;
+	}
+
+	.card--portrait .image {
+		height: 100%;
+
+		img {
+			object-fit: cover;
+		}
 	}
 }

@@ -6,61 +6,6 @@
 		</div>
 	</div>
 
-	<form
-		action=""
-		method="post"
-		class="form form--signup"
-	>
-
-		<div class="row">
-			<div class="col lg:4 md:6">
-				<div class="input">
-					<input
-						type="text"
-						name="FNAME"
-						placeholder="Name"
-						aria-label="Name"
-					/>
-				</div>
-			</div>
-			<div class="col lg:5 md:6">
-				<div class="input">
-					<input
-						type="email"
-						name="EMAIL"
-						placeholder="Email*"
-						aria-label="Email"
-						required
-					/>
-				</div>
-			</div>
-			<div class="col lg:3 md:6">
-				<button
-					type="submit"
-					class="button button--full"
-				>Sign Up</button>
-			</div>
-		</div>
-
-		<div class="row eta">
-			<div class="col lg:6 md:6">
-				<div>
-					<input
-						type="checkbox"
-						id="footer-permission"
-						name="gdpr[]"
-						value="Y"
-						required
-					/>
-					<label for="footer-permission">I consent to joining the Hunger mailing list.</label>
-					<a href="https://mailchimp.com/legal/" target="_blank" rel="noopener">Read more</a>
-				</div>
-			</div>
-			<div class="col lg:6 md:6">
-				<p>Copyright. {{ "now"|date('Y') }} DAI, Hunger TV. View our <a href="{{ Post(fn('get_page_by_title', 'Terms & Conditions')).link }}">T+Cs</a> and <a href="{{ Post(fn('get_page_by_title', 'Privacy Policy')).link }}">Privacy + Cookie policy</a></p>
-			</div>
-		</div>
-
-	</form>
+	{% include 'forms/signup.twig' with { location: 'footer' } %}
 
 </footer>
