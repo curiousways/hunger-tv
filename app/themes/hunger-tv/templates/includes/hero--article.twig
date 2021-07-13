@@ -22,6 +22,8 @@
 
 		<img
 			src="{{ hero.src('hero') }}"
+			srcset="{{ hero.src('hero--medium') }} 960w, {{ hero.src('hero') }} 1920w"
+			sizes="100vw"
 			class="hero__image"
 			alt="{{ hero.alt }}"
 			loading="lazy"
