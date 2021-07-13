@@ -11,7 +11,9 @@
 
 	{% if post.hero_display != 'solid-colour' %}
 		{% if article.hero_image or article.thumbnail %}
-			{% include 'includes/image--hero.twig' with { image: article.hero_image ? article.hero_image : article.thumbnail } %}
+			{% include 'includes/image--hero.twig' with {
+				image: article.hero_image ? article.hero_image : article.thumbnail
+			} %}
 		{% endif %}
 	{% endif %}
 
