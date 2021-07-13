@@ -13,12 +13,11 @@
 {% elseif post.thumbnail %}
 
 	<section>
-		<div class="hero" role="banner">
+		<div role="banner">
 			<div class="row">
 				<div class="col lg:8 lg:offset-2">
 					{% include 'includes/image.twig' with {
 						image: post.thumbnail,
-						classes: 'hero__image',
 						size: 'grid--two-thirds',
 						sizes: '(min-width: 1024px) 66vw, 100vw'
 					} %}
