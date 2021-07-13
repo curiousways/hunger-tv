@@ -19,13 +19,21 @@ section.light {
 }
 
 @media (min-width: $lg-min) {
-	body:not(.single) section {
+	section {
 		margin-top: rhythm(8);
 		margin-bottom: rhythm(8);
 
 		&[style*="background"] {
 			padding-top: rhythm(6);
 			padding-bottom: rhythm(6);
+		}
+	}
+
+	.single-article,
+	.single-editorial {
+		section:not([style*="background"]) {
+			margin-top: rhythm();
+			margin-bottom: rhythm();
 		}
 	}
 }
