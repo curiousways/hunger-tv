@@ -3,8 +3,13 @@
 .hero {
 	position: relative;
 	height: 830px;
+	max-height: 90vh;
 	overflow: hidden;
 	text-align: center;
+
+	@media (max-height: 400px) {
+		height: 540px;
+	}
 }
 
 .hero__image {
