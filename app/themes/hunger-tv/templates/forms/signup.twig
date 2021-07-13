@@ -39,12 +39,12 @@
 			<div>
 				<input
 					type="checkbox"
-					id="permission"
+					id="{{ location ? location ~ '-' }}permission"
 					name="gdpr[]"
 					value="Y"
 					required
 				/>
-				<label for="permission">I consent to joining the Hunger mailing list.</label>
+				<label for="{{ location ? location ~ '-' }}permission">I consent to joining the Hunger mailing list.</label>
 				<a href="https://mailchimp.com/legal/" target="_blank" rel="noopener">Read more</a>
 			</div>
 		</div>
