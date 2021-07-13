@@ -96,4 +96,17 @@
 		height: calc(100% - #{rhythm()});
 		margin-bottom: rhythm();
 	}
+
+	.card--landscape,
+	.card--portrait {
+		min-height: 540px;
+	}
+
+	.card--portrait .image {
+		height: 100%;
+
+		img {
+			object-fit: cover;
+		}
+	}
 }
