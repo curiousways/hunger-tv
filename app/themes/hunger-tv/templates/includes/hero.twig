@@ -3,11 +3,7 @@
 {% if post.hero_image %}
 
 	<div class="hero" role="banner">
-		{% include 'includes/image.twig' with {
-			image: post.hero_image,
-			classes: 'hero__image',
-			size: 'hero'
-		} %}
+		{% include 'includes/image--hero.twig' %}
 	</div>
 
 {% elseif post.thumbnail %}
