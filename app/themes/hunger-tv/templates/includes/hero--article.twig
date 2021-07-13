@@ -10,13 +10,22 @@
 >
 
 	{% if post.hero_display != 'solid-colour' %}
-		{% if article.hero_image or article.thumbnail %}
+		{# {% if article.hero_image or article.thumbnail %}
 			{% include 'includes/image.twig' with {
 				image: article.hero_image ? article.hero_image : article.thumbnail,
 				classes: 'hero__image',
 				size: 'hero'
 			} %}
-		{% endif %}
+		{% endif %} #}
+
+		{% set hero = Image(article.hero_image) %}
+
+		<img
+			src="{{ hero.src('hero') }}"
+			class="hero__image"
+			alt="{{ hero.alt }}"
+			loading="lazy"
+		/>
 	{% endif %}
 
 	{% if fn('is_front_page') %}
