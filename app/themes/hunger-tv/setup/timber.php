@@ -114,7 +114,7 @@ class StarterSite extends Timber\Site {
 		// Remove heading options from ALL text editors
 		// Source: https://support.advancedcustomfields.com/forums/topic/wysiwyg-formatselect/
 		add_filter('tiny_mce_before_init', function($settings) {
-			$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
+			$settings['block_formats'] = 'Paragraph=p;Title 2=h2;Subtitle 3=h3';
 			return $settings;
 		});
 

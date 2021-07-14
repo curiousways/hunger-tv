@@ -8,7 +8,6 @@ navToggle.addEventListener("click", function () {
 	searchDrawer.classList.remove("open");
 	navDrawer.classList.toggle("open");
 	document.documentElement.classList.toggle("sm:no-scroll");
-	// document.body.classList.toggle("wide");
 });
 
 searchToggle.addEventListener("click", function () {
@@ -16,7 +15,10 @@ searchToggle.addEventListener("click", function () {
 	navToggle.classList.remove("is-active");
 	navDrawer.classList.remove("open");
 	searchDrawer.classList.toggle("open");
-	// document.body.classList.toggle("wide");
+
+	setTimeout(() => {
+		searchDrawer.querySelector("input").focus();
+	}, 500); // Timeout required due to element not being visible on click
 });
 
 console.log("%cdrawer running", "color:green;");

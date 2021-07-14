@@ -13,6 +13,15 @@ h6 {
 	&:last-child {
 		margin-bottom: 0;
 	}
+
+	b,
+	strong {
+		font-weight: normal;
+	}
+
+	[style*="underline"] {
+		text-decoration: none !important;
+	}
 }
 
 p {
