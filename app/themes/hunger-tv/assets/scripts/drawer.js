@@ -18,7 +18,7 @@ searchToggle.addEventListener("click", function () {
 
 	setTimeout(() => {
 		searchDrawer.querySelector("input").focus();
-	}, 500);
+	}, 500); // Timeout required due to element not being visible on click
 });
 
 console.log("%cdrawer running", "color:green;");
