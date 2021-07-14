@@ -5,32 +5,28 @@
 
 		{% if item.image_align %}
 			<div class="col lg:8 md:6">
-				<a
-					href="{{ post.link }}"
-					class="image-link"
-					style="background-color: {{ home.background_colour }}"
-				>
-					{% include 'includes/image.twig' with {
-						image: post.hero_image ? post.hero_image : post.thumbnail,
-						size: 'grid--two-thirds',
-						sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
-					} %}
-				</a>
+				<div style="background-color: {{ home.background_colour }}">
+					<a href="{{ post.link }}" class="block">
+						{% include 'includes/image.twig' with {
+							image: post.hero_image ? post.hero_image : post.thumbnail,
+							size: 'grid--two-thirds',
+							sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
+						} %}
+					</a>
+				</div>
 			</div>
 			<div class="col lg:4 md:6">
 		{% else %}
 			<div class="col">
 				<h2>Featured Article</h2>
-				<a
-					href="{{ post.link }}"
-					class="image-link"
-					style="background-color: {{ home.background_colour }}"
-				>
-					{% include 'includes/image.twig' with {
-						image: post.hero_image ? post.hero_image : post.thumbnail,
-						size: 'grid'
-					} %}
-				</a>
+				<div style="background-color: {{ home.background_colour }}">
+						<a href="{{ post.link }}" class="block">
+						{% include 'includes/image.twig' with {
+							image: post.hero_image ? post.hero_image : post.thumbnail,
+							size: 'grid'
+						} %}
+					</a>
+				</div>
 			</div>
 			<div class="col lg:8">
 		{% endif %}
