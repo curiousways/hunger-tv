@@ -3,7 +3,7 @@
 .hero {
 	position: relative;
 	height: 830px;
-	max-height: 100vh;
+	max-height: calc(var(--height) - #{rhythm($header-height)});
 	overflow: hidden;
 	text-align: center;
 }
@@ -114,7 +114,6 @@
 @media (max-height: $sm-max) {
 	.hero {
 		height: 540px;
-		max-height: 80vh;
 	}
 }
 
