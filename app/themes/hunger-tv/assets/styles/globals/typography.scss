@@ -18,6 +18,10 @@ h6 {
 	strong {
 		font-weight: normal;
 	}
+
+	[style*="underline"] {
+		text-decoration: none !important;
+	}
 }
 
 p {
