@@ -75,7 +75,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "Minimum width: 780px",
+                            "instructions": "Minimum width: 780",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -162,7 +162,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "Minimum width: 1920px",
+                            "instructions": "Minimum width: 1920",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -241,5 +241,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625763404
+    "modified": 1626342719
 }
