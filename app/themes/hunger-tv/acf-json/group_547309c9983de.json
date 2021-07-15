@@ -290,7 +290,7 @@
                             "label": "Poster",
                             "name": "poster",
                             "type": "image",
-                            "instructions": "Please make sure to add the needed vimeo data onto the poster image.",
+                            "instructions": "Minimum width: 780\r\n<br><br>\r\nThis image will be displayed until the video loads.",
                             "required": 0,
                             "conditional_logic": [
                                 [
@@ -309,12 +309,12 @@
                             "return_format": "array",
                             "preview_size": "thumbnail",
                             "library": "uploadedTo",
-                            "min_width": 0,
-                            "min_height": 0,
-                            "min_size": 0,
-                            "max_width": 0,
-                            "max_height": 0,
-                            "max_size": 0,
+                            "min_width": 780,
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
                             "mime_types": ""
                         }
                     ],
@@ -436,5 +436,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1626344054
+    "modified": 1626344402
 }

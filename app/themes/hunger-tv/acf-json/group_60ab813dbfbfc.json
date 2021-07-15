@@ -210,30 +210,6 @@
                     "display": "row",
                     "sub_fields": [
                         {
-                            "key": "field_60ab93cbf8df2",
-                            "label": "Poster",
-                            "name": "poster",
-                            "type": "image",
-                            "instructions": "Minimum width: 1920",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": 1920,
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
                             "key": "field_60ab9388f8df1",
                             "label": "Video",
                             "name": "video",
@@ -251,6 +227,30 @@
                             "min_size": "",
                             "max_size": 1,
                             "mime_types": ".mp4"
+                        },
+                        {
+                            "key": "field_60ab93cbf8df2",
+                            "label": "Poster",
+                            "name": "poster",
+                            "type": "image",
+                            "instructions": "Minimum dimensions: 1920 x 830\r\n<br><br>\r\nThis image will be displayed until the video loads.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 1920,
+                            "min_height": 830,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ],
                     "min": "",
@@ -312,5 +312,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1626342651
+    "modified": 1626344662
 }
