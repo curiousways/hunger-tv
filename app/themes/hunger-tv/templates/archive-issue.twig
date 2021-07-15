@@ -11,12 +11,12 @@
 	</header>
 
 	{% for post in first_issue if posts.pagination.current == 1 %}
-		<section style="background-color: {{ home.background_colour }}">
+		<section class="sm:no-padding-top" style="background-color: {{ home.background_colour }}">
 			<div class="row">
-				<div class="col lg:4 md:6">
+				<div class="col lg:4 md:6 sm:no-padding-top sm:no-padding-right sm:no-padding-left">
 					{% include 'includes/image.twig' with {
 						image: post.thumbnail,
-						size: 'grid--two-thirds'
+						size: 'two-thirds'
 					} %}
 				</div>
 				<div class="col lg:8 md:6">

@@ -4,19 +4,11 @@
 
 	<article class="issue">
 
-		{# <header>
-			<div class="row">
-				<div class="col">
-					<a href="{{ fn('get_post_type_archive_link', 'issue') }}">Shop</a> - {{ post.buy_now_title ? post.buy_now_title : post.title }}
-				</div>
-			</div>
-		</header> #}
-
 		<div class="row">
-			<div class="col lg:4 md:6">
+			<div class="col lg:4 md:6 sm:no-padding-top sm:no-padding-right sm:no-padding-left">
 				{% include 'includes/image.twig' with {
 					image: post.thumbnail,
-					size: 'portrait',
+					size: 'two-thirds',
 					sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
 				} %}
 			</div>

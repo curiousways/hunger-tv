@@ -16,5 +16,6 @@
 // Variants
 
 .image--full ~ .caption {
-	padding: 0 rhythm(1);
+	text-align: center;
+	padding: 0 $gutter-width/2;
 }

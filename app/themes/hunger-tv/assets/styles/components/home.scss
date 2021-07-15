@@ -1,0 +1,31 @@
+// Home
+
+@media (min-width: $md-min) {
+	.home .hero {
+		max-height: 100vh;
+	}
+}
+
+@media (min-width: $lg-min) {
+	.home {
+		padding-top: 0;
+	}
+
+	.home .header__bar {
+		opacity: 0;
+		visibility: hidden;
+
+		&.animate {
+			transition: all 0.5s $anim-curve;
+		}
+
+		&.visible {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.home .logo {
+		display: none;
+	}
+}

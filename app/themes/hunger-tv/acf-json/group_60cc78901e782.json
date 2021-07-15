@@ -24,6 +24,23 @@
             "prefix_name": 0
         },
         {
+            "key": "field_60f00d933a426",
+            "label": "ℹ️",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<em>Copy colour<\/em> affects the header elements and navigation drawer theme.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_60cc78931a8ee",
             "label": "Hero article",
             "name": "hero_article",
@@ -89,5 +106,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1624546156
+    "modified": 1626345590
 }

@@ -30,19 +30,3 @@
 	position: relative;
 	left: rhythm(-2);
 }
-
-@media (min-width: $lg-min) {
-	.home .header__bar {
-		opacity: 0;
-		visibility: hidden;
-
-		&.animate {
-			transition: all 0.5s $anim-curve;
-		}
-
-		&.visible {
-			opacity: 1;
-			visibility: visible;
-		}
-	}
-}

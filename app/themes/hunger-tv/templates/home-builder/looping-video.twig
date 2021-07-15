@@ -12,9 +12,10 @@
 
 	<video
 		autoplay
-		muted
 		loop
+		muted
 		playsinline
+		poster="{{ poster.src('hero') }}"
 	>
 		<source src="{{ item.video.url }}" type="video/webm">
 		<source src="{{ item.video.url }}" type="video/mp4">
