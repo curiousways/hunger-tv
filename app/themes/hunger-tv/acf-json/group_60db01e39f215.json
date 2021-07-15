@@ -7,7 +7,7 @@
             "label": "Hero image",
             "name": "hero_image",
             "type": "image",
-            "instructions": "Minimum width: 1920px",
+            "instructions": "Minimum dimensions: 1920 x 830",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -19,7 +19,7 @@
             "preview_size": "thumbnail",
             "library": "all",
             "min_width": 1920,
-            "min_height": "",
+            "min_height": 830,
             "min_size": "",
             "max_width": "",
             "max_height": "",
@@ -65,5 +65,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625220049
+    "modified": 1626342431
 }

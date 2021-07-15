@@ -214,7 +214,7 @@
                             "label": "Poster",
                             "name": "poster",
                             "type": "image",
-                            "instructions": "This image will be displayed until the video loads.",
+                            "instructions": "Minimum width: 1920",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -312,5 +312,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625589888
+    "modified": 1626342651
 }
