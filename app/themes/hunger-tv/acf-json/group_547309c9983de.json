@@ -133,7 +133,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "",
+                            "instructions": "Minimum width: 780",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -144,7 +144,7 @@
                             "return_format": "array",
                             "preview_size": "thumbnail",
                             "library": "uploadedTo",
-                            "min_width": "",
+                            "min_width": 780,
                             "min_height": "",
                             "min_size": "",
                             "max_width": "",
@@ -205,7 +205,7 @@
                             "label": "Images",
                             "name": "gallery",
                             "type": "gallery",
-                            "instructions": "Recommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
+                            "instructions": "Minimum height: 460\r\n<br><br>\r\nRecommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -220,7 +220,7 @@
                             "min": "",
                             "max": "",
                             "min_width": "",
-                            "min_height": "",
+                            "min_height": 460,
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
@@ -436,5 +436,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1625234882
+    "modified": 1626344054
 }
