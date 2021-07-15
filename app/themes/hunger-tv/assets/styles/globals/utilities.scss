@@ -69,6 +69,22 @@
 	.sm\:hide {
 		display: none !important;
 	}
+
+	.sm\:no-padding-top {
+		padding-top: 0 !important;
+	}
+
+	.sm\:no-padding-right {
+		padding-right: 0 !important;
+	}
+
+	.sm\:no-padding-bottom {
+		padding-bottom: 0 !important;
+	}
+
+	.sm\:no-padding-left {
+		padding-left: 0 !important;
+	}
 }
 
 @media (min-width: $md-min) and (max-width: $md-max) {
