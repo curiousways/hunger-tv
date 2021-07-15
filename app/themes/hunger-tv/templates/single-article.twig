@@ -13,13 +13,13 @@
 						{% elseif post.hero_type == 'image' %}
 							{% include 'includes/image.twig' with {
 								image: post.hero_image,
-								size: 'grid--two-thirds',
+								size: 'two-thirds',
 								sizes: '(min-width: 1024px) 66vw, 100vw'
 							} %}
 						{% elseif post.thumbnail %}
 							{% include 'includes/image.twig' with {
 								image: post.thumbnail,
-								size: 'grid--two-thirds',
+								size: 'two-thirds',
 								sizes: '(min-width: 1024px) 66vw, 100vw'
 							} %}
 						{% endif %}
