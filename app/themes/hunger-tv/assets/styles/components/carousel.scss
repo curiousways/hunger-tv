@@ -65,6 +65,11 @@
 	// .carousel__control--prev {
 	// display: none !important;
 	// }
+
+	.carousel .image {
+		width: auto !important;
+		height: auto !important;
+	}
 }
 
 @media (min-width: $lg-min) {
