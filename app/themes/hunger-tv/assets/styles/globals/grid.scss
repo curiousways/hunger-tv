@@ -57,6 +57,10 @@ $total-cols: 12;
 	}
 
 	.col {
+		&.lg\:2 {
+			width: percentage(2 / $total-cols);
+		}
+
 		&.lg\:3 {
 			width: percentage(3 / $total-cols);
 		}
