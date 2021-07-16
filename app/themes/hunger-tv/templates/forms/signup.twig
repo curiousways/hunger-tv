@@ -1,17 +1,29 @@
 <form
-	action=""
+	action="https://hungertv.us5.list-manage.com/subscribe/post?u=dfaed807bb259c614199d67a0&amp;id=1b5d9b1f65"
 	method="post"
 	class="form form--signup"
 >
 
 	<div class="row">
-		<div class="col lg:4 md:6">
+		<div class="col lg:2 md:6">
 			<div class="input">
 				<input
 					type="text"
 					name="FNAME"
-					placeholder="Name"
-					aria-label="Name"
+					placeholder="First name*"
+					aria-label="First name"
+					required
+				/>
+			</div>
+		</div>
+		<div class="col lg:2 md:6">
+			<div class="input">
+				<input
+					type="text"
+					name="LNAME"
+					placeholder="Last name*"
+					aria-label="Last name"
+					required
 				/>
 			</div>
 		</div>
@@ -37,15 +49,29 @@
 	<div class="row eta">
 		<div class="col lg:6 md:6">
 			<div>
+
+				{# real people should not fill this in and expect good things - do not remove this or risk form bot signups #}
+				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dfaed807bb259c614199d67a0_1b5d9b1f65" tabindex="-1" value=""></div>
+
+				{# ORIGIN field in Mailchimp #}
+				<input
+					type="hidden"
+					name="MERGE4"
+					value="{{ post.link }} ({{ location ? location : 'main' }})"
+					required
+				/>
+
 				<input
 					type="checkbox"
 					id="{{ location ? location ~ '-' }}permission"
-					name="gdpr[]"
+					name="gdpr[177]"
 					value="Y"
 					required
 				/>
+
 				<label for="{{ location ? location ~ '-' }}permission">I consent to joining the Hunger mailing list.</label>
 				<a href="https://mailchimp.com/legal/" target="_blank" rel="noopener">Read more</a>
+
 			</div>
 		</div>
 		{% if location == 'footer' %}
