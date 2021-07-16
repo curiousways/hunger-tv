@@ -4,11 +4,30 @@
 
 {% set image = Image(image) %}
 
-<img
+{# <img
 	src="{{ image.src('hero') }}"
 	srcset="{{ image.src('portrait') }} 400w, {{ image.src('hero--medium') }} 960w, {{ image.src('hero') }} 1920w"
 	sizes="100vw"
 	class="hero__image"
 	alt="{{ hero.alt }}"
 	loading="lazy"
-/>
+/> #}
+
+<picture class="hero__image">
+	<source
+		media="(max-width: 599px)"
+		srcset="{{ image.src('portrait') }}, {{ image.src('portrait--large') }} 2x"
+	>
+	<source
+		media="(min-width: 600px) and (max-width: 1023px)"
+		srcset="{{ image.src|resize(1023, 830) }}"
+	>
+	<source
+		media="(min-width: 1024px)"
+		srcset="{{ image.src|resize(1920, 830) }}"
+	>
+	<img
+		src="{{ image.src|resize(1920, 830) }}"
+		alt="{{ image.alt }}"
+	/>
+</picture>
