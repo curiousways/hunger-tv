@@ -62,9 +62,17 @@
 }
 
 @media (max-width: $md-max) {
-	// .carousel__control--prev {
-	// display: none !important;
-	// }
+	.carousel .image {
+		width: auto !important;
+		height: auto !important;
+		padding-bottom: 0 !important;
+
+		img {
+			position: static;
+			width: auto;
+			height: auto;
+		}
+	}
 }
 
 @media (min-width: $lg-min) {

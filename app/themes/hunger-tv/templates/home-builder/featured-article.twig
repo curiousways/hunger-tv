@@ -5,7 +5,7 @@
 
 		{% if item.image_align %}
 			<div class="col lg:8 md:6">
-				<div style="background-color: {{ home.background_colour }}">
+				<div style="background-color:{{ home.background_colour }}">
 					<a href="{{ post.link }}" class="block">
 						{% include 'includes/image.twig' with {
 							image: post.hero_image ? post.hero_image : post.thumbnail,
@@ -19,7 +19,7 @@
 		{% else %}
 			<div class="col">
 				<h2>Featured Article</h2>
-				<div style="background-color: {{ home.background_colour }}">
+				<div style="background-color:{{ home.background_colour }}">
 						<a href="{{ post.link }}" class="block">
 						{% include 'includes/image.twig' with {
 							image: post.hero_image ? post.hero_image : post.thumbnail,

@@ -6,11 +6,12 @@
 			<div class="carousel__tray">
 				{% for image in images %}
 					<div>
-						<img
+						{# <img
 							src="{{ Image(image).src('slideshow') }}"
 							alt="{{ image.alt }}"
 							loading="lazy"
-						/>
+						/> #}
+						{% include 'includes/image.twig' with { size: 'slideshow' } %}
 					</div>
 				{% endfor %}
 			</div>
