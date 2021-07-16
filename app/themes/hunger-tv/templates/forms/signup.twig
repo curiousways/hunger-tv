@@ -49,6 +49,17 @@
 	<div class="row eta">
 		<div class="col lg:6 md:6">
 			<div>
+
+				<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dfaed807bb259c614199d67a0_1b5d9b1f65" tabindex="-1" value=""></div>
+
+				<input
+					type="hidden"
+					name="MERGE4"
+					value="{{ site.link }}"
+					required
+				/>
+
 				<input
 					type="checkbox"
 					id="{{ location ? location ~ '-' }}permission"
@@ -56,11 +67,10 @@
 					value="Y"
 					required
 				/>
+
 				<label for="{{ location ? location ~ '-' }}permission">I consent to joining the Hunger mailing list.</label>
 				<a href="https://mailchimp.com/legal/" target="_blank" rel="noopener">Read more</a>
-				
-				<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dfaed807bb259c614199d67a0_1b5d9b1f65" tabindex="-1" value=""></div>
+
 			</div>
 		</div>
 		{% if location == 'footer' %}
