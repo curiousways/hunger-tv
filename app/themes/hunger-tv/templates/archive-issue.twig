@@ -16,7 +16,8 @@
 				<div class="col lg:4 md:6 sm:no-padding-top sm:no-padding-right sm:no-padding-left">
 					{% include 'includes/image.twig' with {
 						image: post.thumbnail,
-						size: 'two-thirds'
+						size: 'grid',
+						sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
 					} %}
 				</div>
 				<div class="col lg:8 md:6">
