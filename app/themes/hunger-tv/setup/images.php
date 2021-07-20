@@ -2,8 +2,8 @@
 
 // 16:9
 add_image_size('card', 1200, 675, true);
-add_image_size('card--desktop', 640, 360, true);
 add_image_size('card--large', 2400, 1350, true);
+add_image_size('card--small', 640, 360, true);
 
 // 192:83
 add_image_size('hero', 1920, 830, true);
