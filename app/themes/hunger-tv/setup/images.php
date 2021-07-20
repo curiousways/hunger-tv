@@ -16,3 +16,4 @@ add_image_size('portrait--large', 800, 1200, true);
 add_image_size('slideshow', false, 460);
 add_image_size('slideshow--large', false, 920);
 add_image_size('two-thirds', 780, false);
+add_image_size('two-thirds--large', 1560, false);
