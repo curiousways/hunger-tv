@@ -9,7 +9,7 @@
 					<a href="{{ post.link }}" class="block">
 						{% include 'includes/image.twig' with {
 							image: post.hero_image ? post.hero_image : post.thumbnail,
-							size: 'grid',
+							size: 'card',
 							sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
 						} %}
 					</a>
@@ -20,7 +20,7 @@
 			<div class="col">
 				<h2>Featured Article</h2>
 				<div style="background-color:{{ home.background_colour }}">
-						<a href="{{ post.link }}" class="block">
+					<a href="{{ post.link }}" class="block">
 						{% include 'includes/image.twig' with {
 							image: post.hero_image ? post.hero_image : post.thumbnail,
 							size: 'card'
