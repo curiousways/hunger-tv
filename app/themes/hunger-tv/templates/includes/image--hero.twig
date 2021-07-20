@@ -19,15 +19,11 @@
 		srcset="{{ image.src('portrait--large') }}"
 	>
 	<source
-		media="(min-width: 600px) and (max-width: 1023px)"
-		srcset="{{ image.src|resize(1023, 830) }}"
-	>
-	<source
-		media="(min-width: 1024px)"
-		srcset="{{ image.src|resize(1920, 830) }}"
+		media="(min-width: 600px)"
+		srcset="{{ image.src('hero') }}"
 	>
 	<img
-		src="{{ image.src|resize(1920, 830) }}"
+		src="{{ image.src('hero') }}"
 		alt="{{ image.alt }}"
 		loading="lazy"
 	/>
