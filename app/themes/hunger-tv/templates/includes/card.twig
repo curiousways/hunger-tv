@@ -9,11 +9,13 @@
 	</div>
 
 	{% if post.hero_image or post.thumbnail %}
-		{% include 'includes/image.twig' with {
-			image: post.hero_image ? post.hero_image : post.thumbnail,
-			size: post.card_image_orientation ? 'portrait' : 'card',
-			sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
-		} %}
+		<div class="card__image">
+			{% include 'includes/image.twig' with {
+				image: post.hero_image ? post.hero_image : post.thumbnail,
+				size: post.card_image_orientation ? 'portrait' : 'card',
+				sizes: '(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw'
+			} %}
+		</div>
 	{% endif %}
 
 </div>
