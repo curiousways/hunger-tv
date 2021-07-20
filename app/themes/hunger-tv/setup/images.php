@@ -2,7 +2,7 @@
 
 // 16:9
 add_image_size('card', 1200, 675, true);
-add_image_size('card--desktop', 384, 216, true);
+add_image_size('card--desktop', 640, 360, true);
 add_image_size('card--large', 2400, 1350, true);
 
 // 192:83
