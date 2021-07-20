@@ -6,7 +6,7 @@ add_image_size('grid', 1200, 675, true);
 
 // 192:83
 add_image_size('hero', 1920, 830, true);
-add_image_size('hero--medium', 960, 415, true);
+add_image_size('hero--small', 960, 415, true);
 
 // 2:3
 add_image_size('portrait', 400, 600, true);
