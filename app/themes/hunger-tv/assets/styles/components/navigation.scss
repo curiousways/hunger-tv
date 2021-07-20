@@ -10,6 +10,6 @@ ul.navigation {
 @media (min-width: $md-min) {
 	ul.navigation {
 		columns: 3;
-		@include beta;
+		@include gamma;
 	}
 }
