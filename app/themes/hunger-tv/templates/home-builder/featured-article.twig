@@ -9,7 +9,7 @@
 					<a href="{{ post.link }}" class="block">
 						{% include 'includes/image.twig' with {
 							image: post.hero_image ? post.hero_image : post.thumbnail,
-							size: 'two-thirds',
+							size: 'grid',
 							sizes: '(min-width: 1024px) 66vw, (min-width: 600px) 50vw, 100vw'
 						} %}
 					</a>
