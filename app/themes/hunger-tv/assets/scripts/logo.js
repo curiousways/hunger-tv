@@ -2,13 +2,13 @@ const container = document.querySelector(".header__bar");
 const logo = document.querySelector(".hero__logo");
 
 // Source: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/
-// window.addEventListener(
-// 	"scroll",
-// 	() => {
-// 		document.body.style.setProperty("--scroll", window.pageYOffset);
-// 	},
-// 	false
-// );
+window.addEventListener(
+	"scroll",
+	() => {
+		document.body.style.setProperty("--scroll", window.pageYOffset);
+	},
+	false
+);
 
 if (window.scrollY === 0) {
 	container.classList.add("animate");
@@ -18,8 +18,8 @@ if (window.scrollY === 0) {
 	});
 
 	if (sessionStorage.getItem("meal") == null) {
-		if (logo) logo.classList.add("animate");
-		sessionStorage.setItem("meal", "devoured");
+		// if (logo) logo.classList.add("animate");
+		// sessionStorage.setItem("meal", "devoured");
 
 		setTimeout(() => {
 			if (logo) logo.classList.add("mini");
