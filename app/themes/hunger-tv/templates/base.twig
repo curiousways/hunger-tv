@@ -2,7 +2,7 @@
 <html class="no-js{# {{ fn('is_front_page') ? ' no-scroll' }} #}" {{ site.language_attributes }}>
 
 	<head>
-		{% include "includes/analytics.twig" %}
+		{# {% include "includes/analytics.twig" %} #}
 		<meta charset="{{ site.charset }}">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, minimal-ui">
 		<meta name="author" content="Curious Ways">
@@ -13,7 +13,7 @@
 
 	<body class="{{ body_class }} {{ home.copy_colour }}">
 
-		{% include 'includes/analytics--noscript.twig' %}
+		{# {% include 'includes/analytics--noscript.twig' %} #}
 		{% include 'header.twig' %}
 
 		<main>
