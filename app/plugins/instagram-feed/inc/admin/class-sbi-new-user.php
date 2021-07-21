@@ -264,6 +264,7 @@ class SBI_New_User extends SBI_Notifications {
 
 		foreach ( $notifications as $notification ) {
 			$type = sanitize_text_field( $notification['id'] );
+			$close_href = add_query_arg( array( 'sbi_dismiss' => $type ) );
 			$img_src = SBI_PLUGIN_URL . 'img/' . sanitize_text_field( $notification['image'] );
 			$content = '';
 			if ( ! empty( $notification['content'] ) ) {
@@ -313,7 +314,7 @@ class SBI_New_User extends SBI_Notifications {
 					<?php endforeach; ?>
                 </p>
             </div>
-            <a class="sbi_notice_close" href="<?php echo add_query_arg( array( 'sbi_dismiss' => $type ) ); ?>"><i class="fa fa-close"></i></a>
+            <a class="sbi_notice_close" href="<?php echo esc_attr( $close_href ); ?>"><i class="fa fa-close"></i></a>
         </div>
 		<?php
 	}

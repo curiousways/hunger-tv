@@ -3,7 +3,7 @@
 Plugin Name: Smash Balloon Instagram Feed
 Plugin URI: https://smashballoon.com/instagram-feed
 Description: Display beautifully clean, customizable, and responsive Instagram feeds.
-Version: 2.9.1
+Version: 2.9.2
 Author: Smash Balloon
 Author URI: https://smashballoon.com/
 License: GPLv2 or later
@@ -23,7 +23,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 if ( ! defined( 'SBIVER' ) ) {
-	define( 'SBIVER', '2.9.1' );
+	define( 'SBIVER', '2.9.2' );
 }
 // Db version.
 if ( ! defined( 'SBI_DBVERSION' ) ) {
@@ -616,7 +616,7 @@ if ( function_exists( 'sb_instagram_feed_init' ) ) {
 
 		//If the user is preserving the settings then don't delete them
 		$options                        = get_option( 'sb_instagram_settings' );
-		$sb_instagram_preserve_settings = $options['sb_instagram_preserve_settings'];
+		$sb_instagram_preserve_settings = isset( $options['sb_instagram_preserve_settings'] ) ? $options['sb_instagram_preserve_settings'] : false;
 		if ( $sb_instagram_preserve_settings ) {
 			return;
 		}

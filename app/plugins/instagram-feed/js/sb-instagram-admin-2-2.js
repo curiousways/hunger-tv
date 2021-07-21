@@ -1135,6 +1135,9 @@ jQuery(document).ready(function($) {
         $('.sb_cross_install_modal .addons-container').load($get_plugins_url+'admin.php?page=sb-instagram-feed&tab=more #install_'+sb_get_plugin);
     });
 
+    //Add class to Pro menu item
+    $('.sbi_get_pro').parent().attr({'class':'sbi_get_pro_highlight', 'target':'_blank'});
+
     jQuery('.sbi-need-to-connect').on('click',function(e) {
         e.preventDefault();
 

@@ -2699,6 +2699,17 @@
 	z-index: 26;
 }
 
+/* Menu Pro link */
+#adminmenu .wp-submenu .sbi_get_pro_highlight{
+	background-color: #1da867;
+    color: #fff;
+}
+#adminmenu .wp-submenu .sbi_get_pro_highlight:hover,
+#adminmenu .wp-submenu .sbi_get_pro_highlight:active{
+	background-color: #2b9865;
+    color: #fff;
+}
+
 /* Install another plugin modal */
 .sb_cross_install_modal {
     position: fixed;

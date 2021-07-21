@@ -2,8 +2,8 @@
 Contributors: smashballoon, craig-at-smash-balloon
 Tags: Instagram, Instagram feed, Instagram photos, Instagram widget, Instagram gallery
 Requires at least: 3.4
-Tested up to: 5.7
-Stable tag: 2.9.1
+Tested up to: 5.8
+Stable tag: 2.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,6 @@ Display Instagram posts from your Instagram accounts, either in the same single 
 
 = Pro Version =
 In order to maintain the free version of the plugin on an ongoing basis, and to provide quick and effective support for free, we offer a Pro version of the plugin. The Pro version allows you to:
-
 * Display Hashtag feeds
 * View photos and videos in a popup lightbox directly on your site
 * View post comments for user feeds
@@ -333,8 +332,15 @@ We understand that sometimes you need help, have issues or just have questions. 
 * Plus more customization options added all the time!
 
 == Changelog ==
+= 2.9.2 =
+* Tested with WordPress 5.8 update.
+* Fix: PHP error "Uncaught Error: array_merge() does not accept unknown named parameters" when visiting the "About" page using PHP 8+.
+* Fix: About page was not recognizing that YouTube Feeds Pro was installed and active when prompting the user to activate a YouTube Feed plugin.
+* Fix: Fixed an issue with GDPR Cookie Consent by Web Toffee integration.
+
 = 2.9.1 =
-* Fix: Updated the Instagram authorization URL to work around an Instagram API issue and prevent problems with connecting personal accounts
+* Fix: Fixed several issues with GDPR Cookie Consent by Web Toffee integration.
+* Tweak: Changed how connected accounts errors display to prevent temporary, non-actionable errors from triggering a notice.
 
 = 2.9 =
 * New: Added support for IGTV posts. When creating an IGTV post, keep the "Post a Preview" setting enabled and the IGTV post will appear in your feed. IGTV posts are only available for connected Instagram business profiles and aren't available if you're using a personal Instagram profile in the plugin.

@@ -95,6 +95,15 @@ function sb_instagram_menu() {
 		'sbi_social_wall_page'
 	);
 
+	add_submenu_page(
+		'sb-instagram-feed',
+		__( 'Try the Pro Demo', 'instagram-feed' ),
+		__( '<span class="sbi_get_pro">Try the Pro Demo</span>', 'instagram-feed' ),
+		$cap,
+		'https://smashballoon.com/instagram-feed/demo/?utm_campaign=instagram-free&utm_source=menu-link&utm_medium=upgrade-link',
+		''
+	);
+
 
 }
 add_action('admin_menu', 'sb_instagram_menu');

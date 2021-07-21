@@ -19,19 +19,25 @@ class SB_Instagram_GDPR_Integrations {
 	 * needs to be done late.
 	 */
 	public static function init() {
-		add_filter( 'wt_cli_third_party_scripts', array( 'SB_Instagram_GDPR_Integrations', 'undo_script_blocking' ), 11 );
+		add_filter( 'wt_cli_third_party_scripts', array( 'SB_Instagram_GDPR_Integrations', 'undo_script_blocking' ), 11, 1 );
 	}
 
 	/**
 	 * Prevents changes made to how JavaScript file is added to
 	 * pages.
+	 *
+	 * @param array $blocking
+	 *
+	 * @return array
 	 */
-	public static function undo_script_blocking() {
+	public static function undo_script_blocking( $blocking ) {
 		$settings = sbi_get_database_settings();
 		if ( ! SB_Instagram_GDPR_Integrations::doing_gdpr( $settings ) ) {
-			return;
+			return $blocking;
 		}
 		remove_filter( 'wt_cli_third_party_scripts', 'wt_cli_instagram_feed_script' );
+
+		return $blocking;
 	}
 
 	/**
@@ -44,7 +50,7 @@ class SB_Instagram_GDPR_Integrations {
 		if ( class_exists( 'Cookie_Notice' ) ) {
 			return 'Cookie Notice by dFactory';
 		}
-		if ( function_exists( 'run_cookie_law_info' ) ) {
+		if ( function_exists( 'run_cookie_law_info' ) || class_exists( 'Cookie_Law_Info' ) ) {
 			return 'GDPR Cookie Consent by WebToffee';
 		}
 		if ( class_exists( 'Cookiebot_WP' ) ) {
@@ -145,6 +151,11 @@ class SB_Instagram_GDPR_Integrations {
 			update_option( 'sbi_statuses', $sbi_statuses_option );
 		}
 
+		if ( $retest ) {
+			global $sb_instagram_posts_manager;
+			$sb_instagram_posts_manager->add_action_log( 'Retesting GDPR features.' );
+		}
+
 		if ( ! $sbi_statuses_option['gdpr']['upload_dir']
 		     || ! $sbi_statuses_option['gdpr']['tables']
 		     || ! $sbi_statuses_option['gdpr']['image_editor'] ) {
@@ -169,7 +180,8 @@ class SB_Instagram_GDPR_Integrations {
 		}
 
 		if ( isset( $_GET['tab'] ) && $_GET['tab'] !== 'support' ) {
-			$errors[] = '<a href="?page=sb-instagram-feed&amp;tab=customize&amp;retest=1" class="button button-secondary">' . __( 'Retest', 'instagram-feed' ) . '</a>';
+			$tab = sbi_is_pro_version() ? 'customize-advanced' : 'customize';
+			$errors[] = '<a href="?page=sb-instagram-feed&amp;tab='.$tab.'&amp;retest=1" class="button button-secondary">' . __( 'Retest', 'instagram-feed' ) . '</a>';
 		}
 
 		return implode( '<br>', $errors );

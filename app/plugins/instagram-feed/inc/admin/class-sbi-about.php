@@ -138,7 +138,7 @@ class SB_Instagram_About {
 
 		// If the user tries to load an invalid view - fallback to About Us.
 		if (
-			! in_array( $this->view, call_user_func_array( 'array_merge', $this->views ), true ) &&
+			! in_array( $this->view, call_user_func_array( 'array_merge', array_values( $this->views ) ), true ) &&
 			! has_action( 'sbi_admin_about_display_tab_' . sanitize_key( $this->view ) )
 		) {
 			$this->view = self::DEFAULT_TAB;
@@ -847,7 +847,7 @@ class SB_Instagram_About {
 				),
 			),
 
-			'youtube-feed/youtube-feed.php' => array(
+			'feeds-for-youtube/youtube-feed.php' => array(
 				'icon' => $images_url . 'plugin-yt.png',
 				'name' => esc_html__( 'Feeds for YouTube', 'instagram-feed' ),
 				'desc' => esc_html__( 'Feeds for YouTube is a simple yet powerful way to display videos from YouTube on your website. Increase engagement with your channel while keeping visitors on your website.', 'instagram-feed' ),
@@ -872,7 +872,7 @@ class SB_Instagram_About {
                     'icon' => $images_url . 'plugin-wpforms.png',
                     'name' => esc_html__( 'WPForms', 'instagram-feed' ),
                     'desc' => esc_html__( 'The most beginner friendly drag & drop WordPress forms plugin allowing you to create beautiful contact forms, subscription forms, payment forms, and more in minutes, not hours!', 'instagram-feed' ),
-                    'url'  => 'https://wpforms.com/lite-upgrade/?utm_source=WordPress&utm_campaign=liteplugin&utm_medium=about-page',
+	                'url'  => 'https://wpforms.com/lite-upgrade/?utm_source=WordPress&utm_campaign=liteplugin&utm_medium=sbi-about-page',
                     'act'  => 'go-to-url',
                 ),
             ),

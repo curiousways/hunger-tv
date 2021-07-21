@@ -79,8 +79,10 @@ add_filter( "plugin_action_links_{$sbi_plugin_file}", 'sbi_add_settings_link', 1
 
 //modify the link by unshifting the array
 function sbi_add_settings_link( $links, $file ) {
+	$pro_link = '<a href="https://smashballoon.com/instagram-feed/demo/?utm_campaign=instagram-free&utm_source=plugins-page&utm_medium=upgrade-link" target="_blank" style="font-weight: bold; color: #1da867;">' . __( 'Try the Pro Demo', 'instagram-feed' ) . '</a>';
+
 	$sbi_settings_link = '<a href="' . admin_url( 'admin.php?page=sb-instagram-feed' ) . '">' . __( 'Settings', 'instagram-feed' ) . '</a>';
-	array_unshift( $links, $sbi_settings_link );
+	array_unshift( $links, $pro_link, $sbi_settings_link );
 
 	return $links;
 }

@@ -959,7 +959,14 @@ if(!sbi_js_exists) {
                 if (typeof CLI_Cookie !== "undefined") { // GDPR Cookie Consent by WebToffee
                     if (CLI_Cookie.read(CLI_ACCEPT_COOKIE_NAME) !== null)  {
 
-                        this.settings.consentGiven = CLI_Cookie.read('cookielawinfo-checkbox-non-necessary') === 'yes';
+                        // WebToffee no longer uses this cookie but being left here to maintain backwards compatibility
+                        if (CLI_Cookie.read('cookielawinfo-checkbox-non-necessary') !== null) {
+                            this.settings.consentGiven = CLI_Cookie.read('cookielawinfo-checkbox-non-necessary') === 'yes';
+                        }
+    
+                        if (CLI_Cookie.read('cookielawinfo-checkbox-necessary') !== null) {
+                            this.settings.consentGiven = CLI_Cookie.read('cookielawinfo-checkbox-necessary') === 'yes';
+                        }
                     }
 
                 } else if (typeof window.cnArgs !== "undefined") { // Cookie Notice by dFactory

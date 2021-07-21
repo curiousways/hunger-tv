@@ -48,7 +48,7 @@ $database_settings = sbi_get_database_settings();
 							$comma_separated = implode(', ', $display_terms );
 							$display = $comma_separated;
 							if ( strlen( $comma_separated ) > 31 ) {
-								$display = '<span class="sbi-condensed-wrap">' . substr( $comma_separated, 0, 30 ) . '<a class="sbi-locator-more" href="JavaScript:void(0);">...</a></span>';
+								$display = '<span class="sbi-condensed-wrap">' . esc_html( substr( $comma_separated, 0, 30 ) ) . '<a class="sbi-locator-more" href="JavaScript:void(0);">...</a></span>';
 								$comma_separated = '<span class="sbi-full-wrap">' . esc_html( $comma_separated ) . '</span>';
 							} else {
 								$comma_separated = '';

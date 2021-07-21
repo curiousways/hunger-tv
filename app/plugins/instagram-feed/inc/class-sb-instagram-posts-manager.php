@@ -850,7 +850,9 @@ class SB_Instagram_Posts_Manager
 		if ( ! empty( $this->errors['accounts'][ $account_id ] ) ) {
 			foreach ( $this->errors['accounts'][ $account_id ] as $error_key => $error_info ) {
 				if ( strpos( $error_key, 'hashtag' ) === false ) {
-					return true;
+					if ( $this->is_critical_error( $error_info ) ) {
+						return true;
+					}
 				}
 			}
 		}
