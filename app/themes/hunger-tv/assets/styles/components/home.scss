@@ -16,7 +16,8 @@
 		visibility: hidden;
 
 		&.animate {
-			transition: all $anim-time $anim-curve;
+			transition: opacity $anim-time $anim-curve,
+				visibility $anim-time $anim-curve;
 		}
 
 		&.visible {
