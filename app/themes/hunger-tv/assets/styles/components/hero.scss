@@ -3,7 +3,7 @@
 .hero {
 	position: relative;
 	height: 540px;
-	max-height: calc(var(--viewport-height) - #{rhythm($header-height)});
+	max-height: calc(var(--height) - #{rhythm($header-height)});
 	overflow: hidden;
 	text-align: center;
 }

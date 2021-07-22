@@ -1,8 +1,5 @@
 function setViewportHeight() {
-	document.body.style.setProperty(
-		"--viewport-height",
-		window.innerHeight + "px"
-	);
+	document.body.style.setProperty("--height", window.innerHeight + "px");
 }
 
 setViewportHeight();
