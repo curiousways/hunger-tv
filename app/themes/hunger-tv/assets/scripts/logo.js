@@ -25,7 +25,7 @@ if (window.scrollY == 0 && getCookie("meal") == null) {
 	});
 } else {
 	container.classList.add("visible");
-	if (logo) logo.classList.add("fixed");
+	// if (logo) logo.classList.add("fixed");
 }
 
 console.log("%clogo running", "color:green;");
