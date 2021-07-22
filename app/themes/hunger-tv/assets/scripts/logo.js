@@ -15,11 +15,11 @@ if (window.scrollY === 0) {
 	container.classList.add("animate");
 
 	window.addEventListener("scroll", () => {
-		container.classList.add("visible");
 		logo.classList.add("animating");
 
 		if (svg.getBoundingClientRect().top <= 24) {
 			logo.classList.add("fixed");
+			container.classList.add("visible");
 		}
 	});
 

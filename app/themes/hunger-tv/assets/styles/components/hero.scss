@@ -37,10 +37,10 @@ $logo-height: 260px;
 	padding-left: $gutter-width/2;
 
 	&.animate {
-		transition: all 0.5s $anim-curve;
+		transition: all $anim-time $anim-curve;
 
 		svg {
-			transition: all 0.5s $anim-curve;
+			transition: all $anim-time $anim-curve;
 		}
 	}
 
