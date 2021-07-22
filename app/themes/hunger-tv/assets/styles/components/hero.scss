@@ -49,7 +49,7 @@
 
 	&.fixed {
 		svg {
-			height: rhythm();
+			height: rhythm(); // Required to stop logo enlarging
 		}
 	}
 }
