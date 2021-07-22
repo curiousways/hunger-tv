@@ -16,7 +16,7 @@
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(-100%);
-	transition: all 0.5s $anim-curve;
+	transition: all $anim-time $anim-curve;
 	overflow: auto;
 	box-shadow: 0 0 rhythm() $grey-light;
 	// padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);

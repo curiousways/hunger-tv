@@ -26,10 +26,9 @@ if (window.scrollY === 0) {
 	if (sessionStorage.getItem("meal") == null) {
 		// if (logo) logo.classList.add("animate");
 		// sessionStorage.setItem("meal", "devoured");
-
-		setTimeout(() => {
-			if (logo) logo.classList.add("mini");
-		}, 1500);
+		// setTimeout(() => {
+		// 	if (logo) logo.classList.add("mini");
+		// }, 1500);
 	} else if (logo) {
 		logo.classList.add("mini");
 	}
