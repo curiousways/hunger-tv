@@ -1,5 +1,6 @@
 const container = document.querySelector(".header__bar");
 const logo = document.querySelector(".hero__logo");
+const svg = logo.querySelector("svg");
 
 // Source: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/
 window.addEventListener(
@@ -15,10 +16,9 @@ if (window.scrollY === 0) {
 
 	window.addEventListener("scroll", () => {
 		container.classList.add("visible");
+		logo.classList.add("animating");
 
-		console.log(logo.querySelector("svg").getBoundingClientRect().top);
-
-		if (logo.querySelector("svg").getBoundingClientRect().top <= 24) {
+		if (svg.getBoundingClientRect().top <= 24) {
 			logo.classList.add("top");
 		}
 	});
