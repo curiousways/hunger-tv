@@ -60,6 +60,11 @@
 		height: rhythm();
 	}
 	// }
+
+	&.top svg {
+		top: 0 !important;
+		height: rhythm() !important;
+	}
 }
 
 .hero__logo svg {
