@@ -22,6 +22,8 @@
 	}
 }
 
+$logo-height: 260px;
+
 .hero__logo {
 	display: none;
 	position: absolute;
@@ -44,7 +46,6 @@
 
 	// &.mini {
 	position: fixed;
-	top: 0;
 	top: (calc(var(--scroll) * -1px));
 	width: fit-content;
 	height: rhythm($header-height);
@@ -53,8 +54,8 @@
 	svg {
 		position: relative;
 		min-height: rhythm();
-		height: 250px;
-		top: 250px;
+		height: $logo-height;
+		top: calc(#{$logo-height} - #{rhythm()});
 		width: auto;
 		margin: auto;
 	}
@@ -62,14 +63,14 @@
 }
 
 .hero__logo.animating svg {
-	height: calc(250px - calc(var(--scroll) * 1px));
+	height: calc(#{$logo-height} - calc(var(--scroll) * 1px));
 }
 
 .hero__logo.fixed {
-	top: -250px !important;
+	top: -$logo-height !important;
 
 	svg {
-		top: 250px;
+		top: $logo-height;
 		height: rhythm() !important;
 	}
 }
