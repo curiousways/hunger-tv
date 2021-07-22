@@ -24,7 +24,6 @@
 
 .hero__logo {
 	display: none;
-	align-items: center;
 	position: absolute;
 	top: 20vh;
 	right: 0;
@@ -34,11 +33,6 @@
 	margin: auto;
 	padding-right: $gutter-width/2;
 	padding-left: $gutter-width/2;
-
-	svg {
-		// width: $grid-width;
-		margin: auto;
-	}
 
 	&.animate {
 		transition: all 0.5s $anim-curve;
@@ -57,31 +51,27 @@
 	z-index: $z-7;
 
 	svg {
+		position: relative;
+		min-height: rhythm();
+		height: 250px;
+		top: 250px;
 		width: auto;
-		height: rhythm();
+		margin: auto;
 	}
 	// }
-
-	&.fixed {
-		top: -264px !important;
-
-		svg {
-			top: 264px;
-			height: rhythm() !important;
-		}
-	}
-}
-
-.hero__logo svg {
-	position: relative;
-	min-height: rhythm();
-	height: 312px;
-	top: 288px;
 }
 
 .hero__logo.animating svg {
-	height: calc(312px - calc(var(--scroll) * 1px));
-	// top: calc(288px - calc(var(--scroll) * 1px));
+	height: calc(250px - calc(var(--scroll) * 1px));
+}
+
+.hero__logo.fixed {
+	top: -250px !important;
+
+	svg {
+		top: 250px;
+		height: rhythm() !important;
+	}
 }
 
 .hero__content {
