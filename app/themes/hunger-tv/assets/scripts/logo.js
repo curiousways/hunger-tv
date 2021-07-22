@@ -30,11 +30,12 @@ if (window.scrollY === 0) {
 		// 	if (logo) logo.classList.add("mini");
 		// }, 1500);
 	} else if (logo) {
-		logo.classList.add("mini");
+		container.classList.add("visible");
+		logo.classList.add("fixed");
 	}
 } else {
 	container.classList.add("visible");
-	if (logo) logo.classList.add("mini");
+	if (logo) logo.classList.add("fixed");
 }
 
 console.log("%clogo running", "color:green;");
