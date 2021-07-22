@@ -18,7 +18,7 @@
 	{% endif %}
 
 	{% if fn('is_front_page') %}
-		<div class="hero__logo">
+		<div class="hero__logo{{ disable_animation ? ' fixed' }}">
 			{% include 'icons/hunger_logo.svg' %}
 		</div>
 	{% endif %}
