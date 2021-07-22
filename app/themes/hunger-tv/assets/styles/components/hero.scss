@@ -23,56 +23,41 @@
 }
 
 // $logo-height: 830px / 3;
-$logo-height: 14vw;
+$logo-height: 14vw; // Better responsively
 
 .hero__logo {
 	display: none;
-	position: absolute;
-	top: 20vh;
-	right: 0;
-	left: 0;
-	width: 100%;
-	max-width: $grid-width;
-	margin: auto;
-	padding-right: $gutter-width/2;
-	padding-left: $gutter-width/2;
-
-	// &.animate {
-	// 	transition: all $anim-time $anim-curve;
-
-	// 	svg {
-	// 		transition: all $anim-time $anim-curve;
-	// 	}
-	// }
-
-	// &.mini {
 	position: fixed;
 	top: (calc(var(--scroll) * -1px));
-	width: fit-content;
+	right: 0;
+	left: 0;
 	height: rhythm($header-height);
+	max-width: $grid-width;
 	z-index: $z-7;
+	padding-right: $gutter-width/2;
+	padding-left: $gutter-width/2;
+	margin: auto;
 
 	svg {
 		position: relative;
-		min-height: rhythm();
-		height: $logo-height;
 		top: calc(#{$logo-height} - #{rhythm()});
 		width: auto;
+		height: $logo-height;
+		min-height: rhythm();
 		margin: auto;
 	}
-	// }
-}
 
-.hero__logo.animating svg {
-	height: calc(#{$logo-height} - calc(var(--scroll) * 1px));
-}
+	&.animating svg {
+		height: calc(#{$logo-height} - calc(var(--scroll) * 1px));
+	}
 
-.hero__logo.fixed {
-	top: -$logo-height !important;
+	&.fixed {
+		top: -$logo-height !important;
 
-	svg {
-		top: $logo-height;
-		height: rhythm() !important;
+		svg {
+			top: $logo-height;
+			height: rhythm();
+		}
 	}
 }
 
@@ -117,6 +102,8 @@ $logo-height: 14vw;
 @media (min-width: $lg-min) {
 	.hero__logo {
 		display: flex;
+		// align-items: center;
+		// justify-content: center;
 	}
 
 	.hero__content {
