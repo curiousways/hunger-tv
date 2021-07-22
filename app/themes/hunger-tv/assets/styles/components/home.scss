@@ -1,32 +1,30 @@
 // Home
 
 @media (min-width: $md-min) {
-	.home .hero {
-		max-height: 100vh;
-	}
-}
-
-@media (min-width: $lg-min) {
 	.home {
 		padding-top: 0;
-	}
 
-	.home .header__bar {
-		opacity: 0;
-		visibility: hidden;
-
-		&.animate {
-			transition: opacity $anim-time $anim-curve,
-				visibility $anim-time $anim-curve;
+		.hero {
+			max-height: 100vh;
 		}
 
-		&.visible {
-			opacity: 1;
-			visibility: visible;
-		}
-	}
+		.header__bar {
+			opacity: 0;
+			visibility: hidden;
 
-	.home .logo {
-		display: none;
+			&.animate {
+				transition: opacity $anim-time $anim-curve,
+					visibility $anim-time $anim-curve;
+			}
+
+			&.visible {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
+		.logo {
+			display: none;
+		}
 	}
 }

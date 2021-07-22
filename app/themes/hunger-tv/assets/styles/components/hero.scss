@@ -22,9 +22,6 @@
 	}
 }
 
-// $logo-height: 830px / 3;
-$logo-height: 14vw; // Better responsively
-
 .hero__logo {
 	display: none;
 	position: fixed;
@@ -37,25 +34,21 @@ $logo-height: 14vw; // Better responsively
 	padding-right: $gutter-width/2;
 	padding-left: $gutter-width/2;
 	margin: auto;
+	@include logo-height(30vh);
+
+	@media (min-height: 830px) {
+		@include logo-height(830px / 3);
+	}
 
 	svg {
 		position: relative;
-		top: calc(#{$logo-height} - #{rhythm()});
 		width: auto;
-		height: $logo-height;
 		min-height: rhythm();
 		margin: auto;
 	}
 
-	&.animating svg {
-		height: calc(#{$logo-height} - calc(var(--scroll) * 1px));
-	}
-
 	&.fixed {
-		top: -$logo-height !important;
-
 		svg {
-			top: $logo-height;
 			height: rhythm();
 		}
 	}
@@ -97,9 +90,7 @@ $logo-height: 14vw; // Better responsively
 	.hero {
 		height: 830px;
 	}
-}
 
-@media (min-width: $lg-min) {
 	.hero__logo {
 		display: flex;
 		// align-items: center;
