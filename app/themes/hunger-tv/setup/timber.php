@@ -196,6 +196,7 @@ class StarterSite extends Timber\Site {
 		$context['footer_navigation'] = new Timber\Menu('footer-navigation');
 		$context['options'] = get_fields('option');
 		$context['home'] = new Timber\Post(get_option('page_on_front'));
+		$context['disable_animation'] = isset($_COOKIE['meal']) ? true : false;
 
 		$context['departments'] = Timber::get_terms('department', [
 			'orderby' => 'name',

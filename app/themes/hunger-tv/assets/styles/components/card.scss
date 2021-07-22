@@ -102,8 +102,11 @@
 		min-height: 540px;
 	}
 
-	.card--portrait .image {
-		height: 100%;
+	.card--portrait {
+		.card__image,
+		.image {
+			height: 100%;
+		}
 
 		img {
 			object-fit: cover;

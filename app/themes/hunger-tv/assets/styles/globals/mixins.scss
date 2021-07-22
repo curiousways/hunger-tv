@@ -132,3 +132,22 @@
 		rgba(0, 0, 0, 0.2) 100%
 	);
 }
+
+@mixin logo-height($height) {
+	svg {
+		top: calc(#{$height} - #{rhythm()});
+		height: $height;
+	}
+
+	&.animating svg {
+		height: calc(#{$height} - calc(var(--scroll) * 1px));
+	}
+
+	&.fixed {
+		top: -$height !important;
+
+		svg {
+			top: $height;
+		}
+	}
+}

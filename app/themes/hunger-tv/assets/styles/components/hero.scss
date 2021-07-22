@@ -3,7 +3,7 @@
 .hero {
 	position: relative;
 	height: 540px;
-	max-height: calc(var(--viewport-height) - #{rhythm($header-height)});
+	max-height: calc(var(--height) - #{rhythm($header-height)});
 	overflow: hidden;
 	text-align: center;
 }
@@ -24,47 +24,35 @@
 
 .hero__logo {
 	display: none;
-	align-items: center;
-	position: absolute;
-	top: 20vh;
+	position: fixed;
+	top: (calc(var(--scroll) * -1px));
 	right: 0;
 	left: 0;
-	width: 100%;
-	margin: auto;
+	height: rhythm($header-height);
+	max-width: $grid-width;
+	z-index: $z-7;
 	padding-right: $gutter-width/2;
 	padding-left: $gutter-width/2;
+	margin: auto;
+	@include logo-height(33vh);
+
+	@media (min-height: 830px) {
+		@include logo-height(830px / 3);
+	}
 
 	svg {
-		width: $grid-width;
+		position: relative;
+		width: auto;
+		min-height: rhythm();
 		margin: auto;
 	}
 
-	&.animate {
-		transition: all 0.5s $anim-curve;
-
+	&.fixed {
 		svg {
-			transition: all 0.5s $anim-curve;
-		}
-	}
-
-	&.mini {
-		position: fixed;
-		top: 0;
-		width: fit-content;
-		height: rhythm($header-height);
-		z-index: $z-7;
-
-		svg {
-			width: auto;
-			height: rhythm();
+			height: rhythm(); // Required to stop logo enlarging
 		}
 	}
 }
-
-// .hero__logo svg {
-// min-height: rhythm(8);
-// height: calc(300px - calc(var(--scroll) * 1px));
-// }
 
 .hero__content {
 	@extend .col, .card__content;
@@ -102,11 +90,11 @@
 	.hero {
 		height: 830px;
 	}
-}
 
-@media (min-width: $lg-min) {
 	.hero__logo {
 		display: flex;
+		// align-items: center;
+		// justify-content: center;
 	}
 
 	.hero__content {

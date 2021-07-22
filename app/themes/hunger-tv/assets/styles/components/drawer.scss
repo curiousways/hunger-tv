@@ -16,17 +16,18 @@
 	opacity: 0;
 	visibility: hidden;
 	transform: translateY(-100%);
-	transition: all 0.5s $anim-curve;
 	overflow: auto;
 	box-shadow: 0 0 rhythm() $grey-light;
+	transition: opacity $anim-time $anim-curve, transform $anim-time $anim-curve,
+		visibility $anim-time $anim-curve;
 	// padding: rhythm(8) rhythm($drawer-width-closed) rhythm(8) rhythm(10);
 	padding-top: rhythm(2);
 	padding-bottom: rhythm(2);
 
 	&.open {
 		opacity: 1;
-		visibility: visible;
 		transform: none;
+		visibility: visible;
 	}
 }
 
