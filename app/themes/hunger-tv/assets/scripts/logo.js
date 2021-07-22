@@ -20,7 +20,7 @@ if (window.scrollY == 0 && getCookie("meal") == null) {
 		if (logo.querySelector("svg").getBoundingClientRect().top <= 24) {
 			logo.classList.add("fixed");
 			container.classList.add("visible");
-			// setCookie("meal", "devoured", 1);
+			setCookie("meal", "devoured", 1);
 		}
 	});
 } else {
