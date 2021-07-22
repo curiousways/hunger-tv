@@ -51,6 +51,7 @@
 	// &.mini {
 	position: fixed;
 	top: 0;
+	top: (calc(var(--scroll) * -1px));
 	width: fit-content;
 	height: rhythm($header-height);
 	z-index: $z-7;
@@ -61,9 +62,13 @@
 	}
 	// }
 
-	&.top svg {
-		top: 0 !important;
-		height: rhythm() !important;
+	&.fixed {
+		top: -264px !important;
+
+		svg {
+			top: 264px;
+			height: rhythm() !important;
+		}
 	}
 }
 
@@ -76,7 +81,7 @@
 
 .hero__logo.animating svg {
 	height: calc(312px - calc(var(--scroll) * 1px));
-	top: calc(288px - calc(var(--scroll) * 1px));
+	// top: calc(288px - calc(var(--scroll) * 1px));
 }
 
 .hero__content {

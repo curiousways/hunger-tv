@@ -19,7 +19,7 @@ if (window.scrollY === 0) {
 		logo.classList.add("animating");
 
 		if (svg.getBoundingClientRect().top <= 24) {
-			logo.classList.add("top");
+			logo.classList.add("fixed");
 		}
 	});
 
