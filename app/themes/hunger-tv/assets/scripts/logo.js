@@ -13,8 +13,6 @@ window.addEventListener(
 
 if (window.scrollY == 0 && getCookie("meal") == null) {
 	container.classList.add("animate");
-	// sessionStorage.setItem("meal", "devoured");
-	setCookie("meal", "devoured", 1);
 
 	window.addEventListener("scroll", () => {
 		logo.classList.add("animating");
@@ -22,6 +20,7 @@ if (window.scrollY == 0 && getCookie("meal") == null) {
 		if (logo.querySelector("svg").getBoundingClientRect().top <= 24) {
 			logo.classList.add("fixed");
 			container.classList.add("visible");
+			setCookie("meal", "devoured", 1);
 		}
 	});
 } else {
