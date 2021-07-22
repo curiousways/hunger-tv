@@ -15,6 +15,12 @@ if (window.scrollY === 0) {
 
 	window.addEventListener("scroll", () => {
 		container.classList.add("visible");
+
+		console.log(logo.querySelector("svg").getBoundingClientRect().top);
+
+		if (logo.querySelector("svg").getBoundingClientRect().top <= 24) {
+			logo.classList.add("top");
+		}
 	});
 
 	if (sessionStorage.getItem("meal") == null) {

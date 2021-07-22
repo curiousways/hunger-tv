@@ -63,8 +63,10 @@
 }
 
 .hero__logo svg {
+	position: relative;
 	min-height: rhythm();
 	height: calc(312px - calc(var(--scroll) * 1px));
+	top: calc(288px - calc(var(--scroll) * 1px));
 }
 
 .hero__content {
