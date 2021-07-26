@@ -3,6 +3,23 @@
     "title": "Hero",
     "fields": [
         {
+            "key": "field_60f00d933a426",
+            "label": "ℹ️",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<strong>Copy colour<\/strong> affects the header elements and navigation drawer theme.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_60d4812aefebb",
             "label": "Colours",
             "name": "colours",
@@ -22,23 +39,6 @@
             "layout": "block",
             "prefix_label": 0,
             "prefix_name": 0
-        },
-        {
-            "key": "field_60f00d933a426",
-            "label": "ℹ️",
-            "name": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "<em>Copy colour<\/em> affects the header elements and navigation drawer theme.",
-            "new_lines": "wpautop",
-            "esc_html": 0
         },
         {
             "key": "field_60cc78931a8ee",
@@ -102,9 +102,10 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "the_content"
+        "the_content",
+        "featured_image"
     ],
     "active": true,
     "description": "",
-    "modified": 1626345590
+    "modified": 1627299166
 }
