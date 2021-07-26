@@ -8,7 +8,7 @@
             "name": "hero_image",
             "type": "image",
             "instructions": "Minimum dimensions: 2400 x 1350",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -65,5 +65,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1627297064
+    "modified": 1627297110
 }
