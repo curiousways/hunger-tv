@@ -82,7 +82,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "Minimum dimensions: 1920 x 830",
+                            "instructions": "Minimum dimensions: 1920 x 830\r\n<br>\r\nMaximum file size: 3MB",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -98,7 +98,7 @@
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
-                            "max_size": "",
+                            "max_size": 3,
                             "mime_types": ""
                         },
                         {
@@ -159,7 +159,7 @@
                             "label": "Images",
                             "name": "images",
                             "type": "gallery",
-                            "instructions": "Minimum width: 780",
+                            "instructions": "Minimum width: 780\r\n<br>\r\nMaximum file size: 3MB",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -178,7 +178,7 @@
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
-                            "max_size": "",
+                            "max_size": 3,
                             "mime_types": ""
                         }
                     ],
@@ -196,7 +196,7 @@
                             "label": "Images",
                             "name": "image",
                             "type": "gallery",
-                            "instructions": "Minimum height: 460\r\n<br><br>\r\nRecommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
+                            "instructions": "Minimum height: 460\r\n<br>\r\nMaximum file size: 3MB\r\n<br><br>\r\nRecommend putting a landscape image last in order to take up more whitespace to the left of the first image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -215,7 +215,7 @@
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
-                            "max_size": "",
+                            "max_size": 3,
                             "mime_types": ""
                         }
                     ],
@@ -578,5 +578,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1626435952
+    "modified": 1627299846
 }

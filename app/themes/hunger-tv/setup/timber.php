@@ -176,6 +176,11 @@ class StarterSite extends Timber\Site {
 			echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/admin.css" type="text/css" media="all" />';
 		}
 		add_action('acf/input/admin_head', '_mghd_hide_legacy_layouts');
+
+		function _mghd_featured_image_note($html) {
+			return $html .= '<p>Avoid using this field, recommend using the <strong>Hero image</strong> instead.</p>';
+		}
+		add_filter('admin_post_thumbnail_html', '_mghd_featured_image_note');
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {

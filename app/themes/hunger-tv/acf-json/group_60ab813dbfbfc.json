@@ -233,7 +233,7 @@
                             "label": "Poster",
                             "name": "poster",
                             "type": "image",
-                            "instructions": "Minimum dimensions: 1920 x 830\r\n<br><br>\r\nThis image will be displayed until the video loads.",
+                            "instructions": "Minimum dimensions: 1920 x 830\r\n<br>\r\nMaximum file size: 3MB\r\n<br><br>\r\nThis image will be displayed until the video loads.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -249,7 +249,7 @@
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
-                            "max_size": "",
+                            "max_size": 3,
                             "mime_types": ""
                         }
                     ],
@@ -312,5 +312,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1626344662
+    "modified": 1627297744
 }

@@ -18,5 +18,5 @@ add_image_size('slideshow', false, 460);
 add_image_size('slideshow--large', false, 920);
 
 // Grid
-add_image_size('grid', 780, false);
-add_image_size('grid--large', 1560, false);
+add_image_size('grid', 780);
+add_image_size('grid--large', 1560);
