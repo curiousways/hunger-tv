@@ -11,7 +11,7 @@
 ## Development
 
 ```sh
-$ yarn setup:dev
+$ yarn setup:development
 $ yarn watch
 ```
 
