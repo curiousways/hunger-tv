@@ -7,7 +7,7 @@
             "label": "Hero image",
             "name": "hero_image",
             "type": "image",
-            "instructions": "Minimum dimensions: 2400 x 1350",
+            "instructions": "Minimum dimensions: 2400 x 1350\r\n<br>\r\nMaximum file size: 3MB",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -23,7 +23,7 @@
             "min_size": "",
             "max_width": "",
             "max_height": "",
-            "max_size": "",
+            "max_size": 3,
             "mime_types": ""
         },
         {
@@ -65,5 +65,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1627297110
+    "modified": 1627299380
 }
