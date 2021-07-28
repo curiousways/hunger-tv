@@ -1,24 +1,33 @@
 {% set poster = Image(item.poster) %}
 
-<section class="video">
+<section>
 
-	<img
-		src="{{ poster.src('hero') }}"
-		srcset="{{ fn('wp_get_attachment_image_srcset', poster.id, 'hero') }}"
-		sizes="100vw"
-		alt=""
-		loading="lazy"
-	/>
+	{% if item.title %}
+		<div class="row">
+			<div class="col">
+				<h2>{{ item.title }}</h2>
+			</div>
+		</div>
+	{% endif %}
 
-	<video
-		autoplay
-		loop
-		muted
-		playsinline
-		poster="{{ poster.src('hero') }}"
-	>
-		<source src="{{ item.video.url }}" type="video/webm">
-		<source src="{{ item.video.url }}" type="video/mp4">
-	</video>
+	<div class="video">
+		<img
+			src="{{ poster.src('hero') }}"
+			srcset="{{ fn('wp_get_attachment_image_srcset', poster.id, 'hero') }}"
+			sizes="100vw"
+			alt=""
+			loading="lazy"
+		/>
+		<video
+			autoplay
+			loop
+			muted
+			playsinline
+			poster="{{ poster.src('hero') }}"
+		>
+			<source src="{{ item.video.url }}" type="video/webm">
+			<source src="{{ item.video.url }}" type="video/mp4">
+		</video>
+	</div>
 
 </section>

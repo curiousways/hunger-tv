@@ -210,6 +210,25 @@
                     "display": "row",
                     "sub_fields": [
                         {
+                            "key": "field_61013c0f090ab",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
                             "key": "field_60ab9388f8df1",
                             "label": "Video",
                             "name": "video",
@@ -312,5 +331,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1627297744
+    "modified": 1627470881
 }
