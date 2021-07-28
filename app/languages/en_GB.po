@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.8.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-20 16:13:46+0000\n"
+"PO-Revision-Date: 2021-07-28 10:40:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9879,16 +9879,16 @@ msgstr "T"
 
 #: wp-includes/link-template.php:3169
 msgid "Newer comments"
-msgstr "Newer Comments"
-
-#: wp-includes/link-template.php:3168
-msgid "Older comments"
-msgstr "Older Comments"
+msgstr "Newer comments"
 
 #. translators: Post calendar label. %s: Date.
 #: wp-includes/general-template.php:2353
 msgid "Posts published on %s"
 msgstr "Posts published on %s"
+
+#: wp-includes/link-template.php:3168
+msgid "Older comments"
+msgstr "Older comments"
 
 #: wp-includes/embed.php:1193
 msgid "Close sharing dialog"
