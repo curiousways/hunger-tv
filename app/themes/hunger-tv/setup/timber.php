@@ -69,7 +69,7 @@ class StarterSite extends Timber\Site {
 
 		register_nav_menus([
 			'header-navigation' => 'Header navigation',
-			'footer-navigation' => 'Footer navigation'
+			// 'footer-navigation' => 'Footer navigation'
 		]);
 
 		// ACF Global Options
@@ -198,7 +198,7 @@ class StarterSite extends Timber\Site {
 	public function add_to_context( $context ) {
 		$context['site'] = $this;
 		$context['header_navigation'] = new Timber\Menu('header-navigation');
-		$context['footer_navigation'] = new Timber\Menu('footer-navigation');
+		// $context['footer_navigation'] = new Timber\Menu('footer-navigation');
 		$context['options'] = get_fields('option');
 		$context['home'] = new Timber\Post(get_option('page_on_front'));
 		$context['disable_animation'] = isset($_COOKIE['meal']) ? true : false;
