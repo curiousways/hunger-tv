@@ -42,7 +42,7 @@
             "label": "Slideshow",
             "name": "slideshow",
             "type": "gallery",
-            "instructions": "Minimum height: 460\r\n<br>\r\nMaximum file size: 3MB",
+            "instructions": "Minimum height: 460\r\n<br>\r\nRecommended height: 920\r\n<br>\r\nMaximum file size: 3MB",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -82,5 +82,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1627299459
+    "modified": 1628775728
 }

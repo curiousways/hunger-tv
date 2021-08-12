@@ -75,7 +75,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "Minimum width: 780\r\n<br>\r\nMaximum file size: 3MB",
+                            "instructions": "Minimum width: 780\r\n<br>\r\nRecommended width: 1560\r\n<br>\r\nMaximum file size: 3MB",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -241,5 +241,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1627299630
+    "modified": 1628775779
 }

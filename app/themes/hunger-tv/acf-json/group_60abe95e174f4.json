@@ -28,7 +28,7 @@
             "label": "Background image",
             "name": "background_image",
             "type": "image",
-            "instructions": "Minimum dimensions: 1200 x 675\r\n<br>\r\nMaximum file size: 3MB",
+            "instructions": "Minimum dimensions: 1200 x 675\r\n<br>\r\nRecommended dimensions: 2400 x 1350\r\n<br>\r\nMaximum file size: 3MB",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -90,7 +90,7 @@
             "label": "Image",
             "name": "image",
             "type": "image",
-            "instructions": "Minimum width: 780\r\n<br>\r\nMaximum file size: 3MB",
+            "instructions": "Minimum width: 780\r\n<br>\r\nRecommended width: 1560\r\n<br>\r\nMaximum file size: 3MB",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -142,5 +142,5 @@
     "hide_on_screen": "",
     "active": false,
     "description": "",
-    "modified": 1627299700
+    "modified": 1628775834
 }
