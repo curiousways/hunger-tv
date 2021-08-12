@@ -5,13 +5,18 @@
 
 			<div class="carousel__tray">
 				{% for image in images %}
+					{% set image = Image(image) %}
 					<div>
-						{# <img
-							src="{{ Image(image).src('slideshow') }}"
-							alt="{{ image.alt }}"
-							loading="lazy"
-						/> #}
-						{% include 'includes/image.twig' with { size: 'slideshow' } %}
+						{% if image is not empty %}
+							<img
+								src="{{ image.src('slideshow') }}"
+								{{ image.height >= 920 ? "srcset=\"#{image.src('slideshow')} 1x, #{image.src('slideshow--large')} 2x\"" }}
+								width="{{ fn('wp_get_attachment_image_src', image.id, 'slideshow')[1] }}" {# Fix carousel translate3d #}
+								height="{{ fn('wp_get_attachment_image_src', image.id, 'slideshow')[2] }}" {# Fix layout shift #}
+								alt="{{ image.alt }}"
+								loading="lazy"
+							/>
+						{% endif %}
 					</div>
 				{% endfor %}
 			</div>

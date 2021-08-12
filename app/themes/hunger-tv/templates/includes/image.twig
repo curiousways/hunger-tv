@@ -9,7 +9,7 @@
 {% if image is not empty %}
 	<div
 		class="image{{ classes ? ' ' ~ classes }}"
-		style="padding-bottom:{{ height / width * 100 }}%{{ size == 'slideshow' ? ";width:#{width}px;height:#{height}px;" }}"
+		style="padding-bottom:{{ height / width * 100 }}%"
 	>
 		<img
 			src="{{ image.src(size) }}"
