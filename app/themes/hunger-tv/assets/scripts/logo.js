@@ -1,6 +1,8 @@
 import { setCookie, getCookie } from "./functions";
 const container = document.querySelector(".header__bar");
 const logo = document.querySelector(".hero__logo");
+const logoHeight = logo.querySelector("svg").getBoundingClientRect().height;
+const logoOffset = 24;
 
 // Source: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/
 window.addEventListener(
@@ -17,14 +19,15 @@ if (window.scrollY == 0 && getCookie("meal") == null) {
 	window.addEventListener("scroll", () => {
 		logo.classList.add("animating");
 
-		if (logo.querySelector("svg").getBoundingClientRect().top <= 24) {
+		if (
+			logo.querySelector("svg").getBoundingClientRect().top <= logoOffset
+		) {
 			logo.classList.add("fixed");
 			container.classList.add("visible");
 			// setCookie("meal", "devoured", 1);
 		}
 
-		if (window.scrollY <= 242) {
-			// Height of SVG minus the offset of 24
+		if (window.scrollY <= logoHeight - logoOffset) {
 			logo.classList.remove("fixed");
 			container.classList.remove("visible");
 		}
