@@ -79,7 +79,9 @@
 
 .hero--solid-colour,
 .hero.no-image {
-	padding-bottom: 50%;
+	.hero__content {
+		background: none;
+	}
 
 	h2 {
 		@include omega;

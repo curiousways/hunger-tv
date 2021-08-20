@@ -43,3 +43,28 @@ label {
 		right: rhythm(-1);
 	}
 }
+
+// Placeholder
+// Source: https://css-tricks.com/snippets/css/style-placeholder-text/
+
+::-webkit-input-placeholder {
+	color: inherit;
+	opacity: $hover-opacity;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: inherit;
+	opacity: $hover-opacity;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: inherit;
+	opacity: $hover-opacity;
+}
+
+:-ms-input-placeholder {
+	color: inherit;
+	opacity: $hover-opacity;
+}
