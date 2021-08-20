@@ -1,7 +1,7 @@
-const navToggle = document.getElementById("drawer--nav__toggle");
-const navDrawer = document.getElementById("drawer--nav");
-const searchToggle = document.getElementById("drawer--search__toggle");
-const searchDrawer = document.getElementById("drawer--search");
+export const navToggle = document.getElementById("drawer--nav__toggle");
+export const navDrawer = document.getElementById("drawer--nav");
+export const searchToggle = document.getElementById("drawer--search__toggle");
+export const searchDrawer = document.getElementById("drawer--search");
 
 navToggle.addEventListener("click", function () {
 	this.classList.toggle("is-active");

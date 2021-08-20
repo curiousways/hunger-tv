@@ -1,4 +1,5 @@
 import { setCookie, getCookie } from "./functions";
+import { navToggle, navDrawer, searchToggle, searchDrawer } from "./drawer";
 const container = document.querySelector(".header__bar");
 const logo = document.querySelector(".hero__logo");
 const logoHeight = logo.querySelector("svg").getBoundingClientRect().height;
@@ -30,6 +31,10 @@ if (window.scrollY == 0 && getCookie("meal") == null) {
 		if (window.scrollY <= logoHeight - logoOffset) {
 			logo.classList.remove("fixed");
 			container.classList.remove("visible");
+			navToggle.classList.remove("is-active");
+			navDrawer.classList.remove("open");
+			searchToggle.classList.remove("is-active");
+			searchDrawer.classList.remove("open");
 		}
 	});
 } else {
