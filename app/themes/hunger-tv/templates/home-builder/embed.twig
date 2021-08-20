@@ -2,7 +2,7 @@
 
 	{% if item.title %}
 		<div class="row">
-			<div class="col">
+			<div class="col{{ 'youtube' not in item.embed_url and 'vimeo' not in item.embed_url ? ' center' }}">
 				<h2>{{ item.title }}</h2>
 			</div>
 		</div>
