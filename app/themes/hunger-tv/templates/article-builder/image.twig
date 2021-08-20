@@ -18,7 +18,7 @@
 
 	{% if item.image_credit or item.image.caption %}
 		<div class="row">
-			<div class="col lg:8 lg:offset-2 center">
+			<div class="col lg:8 lg:offset-2">
 				{% include 'includes/caption.twig' with { caption: item.image_credit ? item.image_credit : item.image.caption } %}
 			</div>
 		</div>
