@@ -9,7 +9,7 @@ use DeliciousBrains\WPMDB\Container\DI\Definition\HasSubDefinition;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class SourceChain implements DefinitionSource, MutableDefinitionSource
+class SourceChain implements \DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionSource, \DeliciousBrains\WPMDB\Container\DI\Definition\Source\MutableDefinitionSource
 {
     /**
      * @var DefinitionSource[]
@@ -44,7 +44,7 @@ class SourceChain implements DefinitionSource, MutableDefinitionSource
             $source = $this->sources[$i];
             $definition = $source->getDefinition($name);
             if ($definition) {
-                if ($definition instanceof HasSubDefinition) {
+                if ($definition instanceof \DeliciousBrains\WPMDB\Container\DI\Definition\HasSubDefinition) {
                     $this->resolveSubDefinition($definition, $i);
                 }
                 return $definition;
@@ -52,18 +52,18 @@ class SourceChain implements DefinitionSource, MutableDefinitionSource
         }
         return null;
     }
-    public function addDefinition(Definition $definition)
+    public function addDefinition(\DeliciousBrains\WPMDB\Container\DI\Definition\Definition $definition)
     {
         if (!$this->mutableSource) {
             throw new \LogicException("The container's definition source has not been initialized correctly");
         }
         $this->mutableSource->addDefinition($definition);
     }
-    public function setRootDefinitionSource(DefinitionSource $rootSource)
+    public function setRootDefinitionSource(\DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionSource $rootSource)
     {
         $this->rootSource = $rootSource;
     }
-    private function resolveSubDefinition(HasSubDefinition $definition, $currentIndex)
+    private function resolveSubDefinition(\DeliciousBrains\WPMDB\Container\DI\Definition\HasSubDefinition $definition, $currentIndex)
     {
         $subDefinitionName = $definition->getSubDefinitionName();
         if ($subDefinitionName === $definition->getName()) {
@@ -77,7 +77,7 @@ class SourceChain implements DefinitionSource, MutableDefinitionSource
             $definition->setSubDefinition($subDefinition);
         }
     }
-    public function setMutableDefinitionSource(MutableDefinitionSource $mutableSource)
+    public function setMutableDefinitionSource(\DeliciousBrains\WPMDB\Container\DI\Definition\Source\MutableDefinitionSource $mutableSource)
     {
         $this->mutableSource = $mutableSource;
         \array_unshift($this->sources, $mutableSource);

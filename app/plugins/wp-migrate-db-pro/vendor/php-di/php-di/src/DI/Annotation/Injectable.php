@@ -34,11 +34,11 @@ final class Injectable
     {
         if (isset($values['scope'])) {
             if ($values['scope'] === 'prototype') {
-                $this->scope = Scope::PROTOTYPE;
+                $this->scope = \DeliciousBrains\WPMDB\Container\DI\Scope::PROTOTYPE;
             } elseif ($values['scope'] === 'singleton') {
-                $this->scope = Scope::SINGLETON;
+                $this->scope = \DeliciousBrains\WPMDB\Container\DI\Scope::SINGLETON;
             } else {
-                throw new UnexpectedValueException(\sprintf("Value '%s' is not a valid scope", $values['scope']));
+                throw new \UnexpectedValueException(\sprintf("Value '%s' is not a valid scope", $values['scope']));
             }
         }
         if (isset($values['lazy'])) {

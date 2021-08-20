@@ -7,7 +7,7 @@ use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\FilesystemCache;
 /**
  * @group DCOM-101
  */
-class FilesystemCacheTest extends BaseFileCacheTest
+class FilesystemCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\BaseFileCacheTest
 {
     public function testLifetime()
     {
@@ -46,14 +46,14 @@ class FilesystemCacheTest extends BaseFileCacheTest
     {
         $cache = $this->_getCacheDriver();
         $stats = $cache->getStats();
-        $this->assertNull($stats[Cache::STATS_HITS]);
-        $this->assertNull($stats[Cache::STATS_MISSES]);
-        $this->assertNull($stats[Cache::STATS_UPTIME]);
-        $this->assertEquals(0, $stats[Cache::STATS_MEMORY_USAGE]);
-        $this->assertGreaterThan(0, $stats[Cache::STATS_MEMORY_AVAILABLE]);
+        $this->assertNull($stats[\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_HITS]);
+        $this->assertNull($stats[\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MISSES]);
+        $this->assertNull($stats[\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_UPTIME]);
+        $this->assertEquals(0, $stats[\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MEMORY_USAGE]);
+        $this->assertGreaterThan(0, $stats[\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MEMORY_AVAILABLE]);
     }
     protected function _getCacheDriver()
     {
-        return new FilesystemCache($this->directory);
+        return new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\FilesystemCache($this->directory);
     }
 }

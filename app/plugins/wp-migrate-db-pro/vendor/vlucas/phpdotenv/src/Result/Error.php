@@ -9,7 +9,7 @@ use DeliciousBrains\WPMDB\Container\PhpOption\Some;
  * @template E
  * @extends \Dotenv\Result\Result<T,E>
  */
-class Error extends Result
+class Error extends \DeliciousBrains\WPMDB\Container\Dotenv\Result\Result
 {
     /**
      * @var E
@@ -46,7 +46,7 @@ class Error extends Result
      */
     public function success()
     {
-        return None::create();
+        return \DeliciousBrains\WPMDB\Container\PhpOption\None::create();
     }
     /**
      * Map over the success value.
@@ -68,7 +68,7 @@ class Error extends Result
      */
     public function error()
     {
-        return Some::create($this->value);
+        return \DeliciousBrains\WPMDB\Container\PhpOption\Some::create($this->value);
     }
     /**
      * Map over the error value.

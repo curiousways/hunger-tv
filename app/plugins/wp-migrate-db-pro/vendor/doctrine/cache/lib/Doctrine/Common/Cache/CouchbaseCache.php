@@ -27,7 +27,7 @@ use DeliciousBrains\WPMDB\Container\Couchbase;
  * @since  2.4
  * @author Michael Nitschinger <michael@nitschinger.at>
  */
-class CouchbaseCache extends CacheProvider
+class CouchbaseCache extends \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\CacheProvider
 {
     /**
      * @var Couchbase|null
@@ -40,7 +40,7 @@ class CouchbaseCache extends CacheProvider
      *
      * @return void
      */
-    public function setCouchbase(Couchbase $couchbase)
+    public function setCouchbase(\DeliciousBrains\WPMDB\Container\Couchbase $couchbase)
     {
         $this->couchbase = $couchbase;
     }
@@ -101,6 +101,6 @@ class CouchbaseCache extends CacheProvider
         $server = \explode(":", $servers[0]);
         $key = $server[0] . ":" . "11210";
         $stats = $stats[$key];
-        return array(Cache::STATS_HITS => $stats['get_hits'], Cache::STATS_MISSES => $stats['get_misses'], Cache::STATS_UPTIME => $stats['uptime'], Cache::STATS_MEMORY_USAGE => $stats['bytes'], Cache::STATS_MEMORY_AVAILABLE => $stats['limit_maxbytes']);
+        return array(\DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_HITS => $stats['get_hits'], \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MISSES => $stats['get_misses'], \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_UPTIME => $stats['uptime'], \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MEMORY_USAGE => $stats['bytes'], \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\Cache::STATS_MEMORY_AVAILABLE => $stats['limit_maxbytes']);
     }
 }

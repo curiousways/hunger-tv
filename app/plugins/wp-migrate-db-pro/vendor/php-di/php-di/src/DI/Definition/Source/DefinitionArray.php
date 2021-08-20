@@ -13,7 +13,7 @@ use DeliciousBrains\WPMDB\Container\DI\Definition\ValueDefinition;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class DefinitionArray implements DefinitionSource, MutableDefinitionSource
+class DefinitionArray implements \DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionSource, \DeliciousBrains\WPMDB\Container\DI\Definition\Source\MutableDefinitionSource
 {
     const WILDCARD = '*';
     /**
@@ -51,7 +51,7 @@ class DefinitionArray implements DefinitionSource, MutableDefinitionSource
     /**
      * {@inheritdoc}
      */
-    public function addDefinition(Definition $definition)
+    public function addDefinition(\DeliciousBrains\WPMDB\Container\DI\Definition\Definition $definition)
     {
         $this->definitions[$definition->getName()] = $definition;
         // Clear cache
@@ -84,7 +84,7 @@ class DefinitionArray implements DefinitionSource, MutableDefinitionSource
                 $definition = $this->castDefinition($definition, $name);
                 // For a class definition, we replace * in the class name with the matches
                 // *Interface -> *Impl => FooInterface -> FooImpl
-                if ($definition instanceof ObjectDefinition) {
+                if ($definition instanceof \DeliciousBrains\WPMDB\Container\DI\Definition\ObjectDefinition) {
                     \array_shift($matches);
                     $definition->setClassName($this->replaceWildcards($definition->getClassName(), $matches));
                 }
@@ -100,14 +100,14 @@ class DefinitionArray implements DefinitionSource, MutableDefinitionSource
      */
     private function castDefinition($definition, $name)
     {
-        if ($definition instanceof DefinitionHelper) {
+        if ($definition instanceof \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\DefinitionHelper) {
             $definition = $definition->getDefinition($name);
         } elseif (\is_array($definition)) {
-            $definition = new ArrayDefinition($name, $definition);
+            $definition = new \DeliciousBrains\WPMDB\Container\DI\Definition\ArrayDefinition($name, $definition);
         } elseif ($definition instanceof \Closure) {
-            $definition = new FactoryDefinition($name, $definition);
-        } elseif (!$definition instanceof Definition) {
-            $definition = new ValueDefinition($name, $definition);
+            $definition = new \DeliciousBrains\WPMDB\Container\DI\Definition\FactoryDefinition($name, $definition);
+        } elseif (!$definition instanceof \DeliciousBrains\WPMDB\Container\DI\Definition\Definition) {
+            $definition = new \DeliciousBrains\WPMDB\Container\DI\Definition\ValueDefinition($name, $definition);
         }
         return $definition;
     }

@@ -9,7 +9,7 @@ use DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class AliasDefinition implements CacheableDefinition, SelfResolvingDefinition
+class AliasDefinition implements \DeliciousBrains\WPMDB\Container\DI\Definition\CacheableDefinition, \DeliciousBrains\WPMDB\Container\DI\Definition\SelfResolvingDefinition
 {
     /**
      * Entry name.
@@ -42,7 +42,7 @@ class AliasDefinition implements CacheableDefinition, SelfResolvingDefinition
      */
     public function getScope()
     {
-        return Scope::PROTOTYPE;
+        return \DeliciousBrains\WPMDB\Container\DI\Scope::PROTOTYPE;
     }
     /**
      * @return string
@@ -51,11 +51,11 @@ class AliasDefinition implements CacheableDefinition, SelfResolvingDefinition
     {
         return $this->targetEntryName;
     }
-    public function resolve(ContainerInterface $container)
+    public function resolve(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         return $container->get($this->getTargetEntryName());
     }
-    public function isResolvable(ContainerInterface $container)
+    public function isResolvable(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         return $container->has($this->getTargetEntryName());
     }

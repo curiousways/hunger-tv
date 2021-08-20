@@ -3,7 +3,7 @@
 namespace DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache;
 
 use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\XcacheCache;
-class XcacheCacheTest extends CacheTest
+class XcacheCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\CacheTest
 {
     public function setUp()
     {
@@ -13,6 +13,6 @@ class XcacheCacheTest extends CacheTest
     }
     protected function _getCacheDriver()
     {
-        return new XcacheCache();
+        return new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\XcacheCache();
     }
 }

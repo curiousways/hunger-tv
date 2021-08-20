@@ -2,7 +2,7 @@
 
 namespace DeliciousBrains\WPMDB\Container\Dotenv\Store;
 
-final class StringStore implements StoreInterface
+final class StringStore implements \DeliciousBrains\WPMDB\Container\Dotenv\Store\StoreInterface
 {
     /**
      * The file content.

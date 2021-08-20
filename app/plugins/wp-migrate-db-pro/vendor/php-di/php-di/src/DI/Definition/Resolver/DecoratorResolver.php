@@ -12,7 +12,7 @@ use DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface;
  * @since 5.0
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class DecoratorResolver implements DefinitionResolver
+class DecoratorResolver implements \DeliciousBrains\WPMDB\Container\DI\Definition\Resolver\DefinitionResolver
 {
     /**
      * @var ContainerInterface
@@ -29,7 +29,7 @@ class DecoratorResolver implements DefinitionResolver
      * @param ContainerInterface $container
      * @param DefinitionResolver $definitionResolver Used to resolve nested definitions.
      */
-    public function __construct(ContainerInterface $container, DefinitionResolver $definitionResolver)
+    public function __construct(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container, \DeliciousBrains\WPMDB\Container\DI\Definition\Resolver\DefinitionResolver $definitionResolver)
     {
         $this->container = $container;
         $this->definitionResolver = $definitionResolver;
@@ -43,18 +43,18 @@ class DecoratorResolver implements DefinitionResolver
      *
      * {@inheritdoc}
      */
-    public function resolve(Definition $definition, array $parameters = [])
+    public function resolve(\DeliciousBrains\WPMDB\Container\DI\Definition\Definition $definition, array $parameters = [])
     {
         $callable = $definition->getCallable();
         if (!\is_callable($callable)) {
-            throw new DefinitionException(\sprintf('The decorator "%s" is not callable', $definition->getName()));
+            throw new \DeliciousBrains\WPMDB\Container\DI\Definition\Exception\DefinitionException(\sprintf('The decorator "%s" is not callable', $definition->getName()));
         }
         $decoratedDefinition = $definition->getDecoratedDefinition();
-        if (!$decoratedDefinition instanceof Definition) {
+        if (!$decoratedDefinition instanceof \DeliciousBrains\WPMDB\Container\DI\Definition\Definition) {
             if (!$definition->getSubDefinitionName()) {
-                throw new DefinitionException('Decorators cannot be nested in another definition');
+                throw new \DeliciousBrains\WPMDB\Container\DI\Definition\Exception\DefinitionException('Decorators cannot be nested in another definition');
             }
-            throw new DefinitionException(\sprintf('Entry "%s" decorates nothing: no previous definition with the same name was found', $definition->getName()));
+            throw new \DeliciousBrains\WPMDB\Container\DI\Definition\Exception\DefinitionException(\sprintf('Entry "%s" decorates nothing: no previous definition with the same name was found', $definition->getName()));
         }
         $decorated = $this->definitionResolver->resolve($decoratedDefinition);
         return \call_user_func($callable, $decorated, $this->container);
@@ -62,7 +62,7 @@ class DecoratorResolver implements DefinitionResolver
     /**
      * {@inheritdoc}
      */
-    public function isResolvable(Definition $definition, array $parameters = [])
+    public function isResolvable(\DeliciousBrains\WPMDB\Container\DI\Definition\Definition $definition, array $parameters = [])
     {
         return \true;
     }

@@ -12,7 +12,7 @@ use DeliciousBrains\WPMDB\Container\Interop\Container\Exception\NotFoundExceptio
  * @since 5.0
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class StringDefinition implements Definition, SelfResolvingDefinition
+class StringDefinition implements \DeliciousBrains\WPMDB\Container\DI\Definition\Definition, \DeliciousBrains\WPMDB\Container\DI\Definition\SelfResolvingDefinition
 {
     /**
      * Entry name.
@@ -44,7 +44,7 @@ class StringDefinition implements Definition, SelfResolvingDefinition
      */
     public function getScope()
     {
-        return Scope::SINGLETON;
+        return \DeliciousBrains\WPMDB\Container\DI\Scope::SINGLETON;
     }
     /**
      * @return string
@@ -53,14 +53,14 @@ class StringDefinition implements Definition, SelfResolvingDefinition
     {
         return $this->expression;
     }
-    public function resolve(ContainerInterface $container)
+    public function resolve(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         $expression = $this->expression;
         $result = \preg_replace_callback('#\\{([^\\{\\}]+)\\}#', function (array $matches) use($container) {
             try {
                 return $container->get($matches[1]);
-            } catch (NotFoundException $e) {
-                throw new DependencyException(\sprintf("Error while parsing string expression for entry '%s': %s", $this->getName(), $e->getMessage()), 0, $e);
+            } catch (\DeliciousBrains\WPMDB\Container\Interop\Container\Exception\NotFoundException $e) {
+                throw new \DeliciousBrains\WPMDB\Container\DI\DependencyException(\sprintf("Error while parsing string expression for entry '%s': %s", $this->getName(), $e->getMessage()), 0, $e);
             }
         }, $expression);
         if ($result === null) {
@@ -68,7 +68,7 @@ class StringDefinition implements Definition, SelfResolvingDefinition
         }
         return $result;
     }
-    public function isResolvable(ContainerInterface $container)
+    public function isResolvable(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         return \true;
     }

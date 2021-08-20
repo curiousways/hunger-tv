@@ -7,7 +7,7 @@ namespace DeliciousBrains\WPMDB\Container\Invoker\Exception;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class NotCallableException extends InvocationException
+class NotCallableException extends \DeliciousBrains\WPMDB\Container\Invoker\Exception\InvocationException
 {
     /**
      * @param string $value

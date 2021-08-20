@@ -19,7 +19,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\value')) {
      */
     function value($value)
     {
-        return new ValueDefinitionHelper($value);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\ValueDefinitionHelper($value);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\object')) {
@@ -33,7 +33,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\object')) {
      */
     function object($className = null)
     {
-        return new ObjectDefinitionHelper($className);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\ObjectDefinitionHelper($className);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\factory')) {
@@ -47,7 +47,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\factory')) {
      */
     function factory($factory)
     {
-        return new FactoryDefinitionHelper($factory);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\FactoryDefinitionHelper($factory);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\decorate')) {
@@ -67,7 +67,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\decorate')) {
      */
     function decorate($callable)
     {
-        return new FactoryDefinitionHelper($callable, \true);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\FactoryDefinitionHelper($callable, \true);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\get')) {
@@ -80,7 +80,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\get')) {
      */
     function get($entryName)
     {
-        return new EntryReference($entryName);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\EntryReference($entryName);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\link')) {
@@ -95,7 +95,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\link')) {
      */
     function link($entryName)
     {
-        return new EntryReference($entryName);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\EntryReference($entryName);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\env')) {
@@ -111,7 +111,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\env')) {
     {
         // Only mark as optional if the default value was *explicitly* provided.
         $isOptional = 2 === \func_num_args();
-        return new EnvironmentVariableDefinitionHelper($variableName, $isOptional, $defaultValue);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\EnvironmentVariableDefinitionHelper($variableName, $isOptional, $defaultValue);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\add')) {
@@ -139,7 +139,7 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\add')) {
         if (!\is_array($values)) {
             $values = [$values];
         }
-        return new ArrayDefinitionExtensionHelper($values);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\ArrayDefinitionExtensionHelper($values);
     }
 }
 if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\string')) {
@@ -158,6 +158,6 @@ if (!\function_exists('DeliciousBrains\\WPMDB\\Container\\DI\\string')) {
      */
     function string($expression)
     {
-        return new StringDefinitionHelper((string) $expression);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\StringDefinitionHelper((string) $expression);
     }
 }

@@ -4,7 +4,7 @@ namespace DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache;
 
 use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\MemcacheCache;
 use Memcache;
-class MemcacheCacheTest extends CacheTest
+class MemcacheCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\CacheTest
 {
     private $memcache;
     public function setUp()
@@ -12,7 +12,7 @@ class MemcacheCacheTest extends CacheTest
         if (!\extension_loaded('memcache')) {
             $this->markTestSkipped('The ' . __CLASS__ . ' requires the use of memcache');
         }
-        $this->memcache = new Memcache();
+        $this->memcache = new \Memcache();
         if (@$this->memcache->connect('localhost', 11211) === \false) {
             unset($this->memcache);
             $this->markTestSkipped('The ' . __CLASS__ . ' cannot connect to memcache');
@@ -20,7 +20,7 @@ class MemcacheCacheTest extends CacheTest
     }
     public function tearDown()
     {
-        if ($this->memcache instanceof Memcache) {
+        if ($this->memcache instanceof \Memcache) {
             $this->memcache->flush();
         }
     }
@@ -39,7 +39,7 @@ class MemcacheCacheTest extends CacheTest
     }
     protected function _getCacheDriver()
     {
-        $driver = new MemcacheCache();
+        $driver = new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\MemcacheCache();
         $driver->setMemcache($this->memcache);
         return $driver;
     }

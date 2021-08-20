@@ -8,7 +8,7 @@ use DeliciousBrains\WPMDB\Container\DI\Scope;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class FactoryDefinition implements Definition
+class FactoryDefinition implements \DeliciousBrains\WPMDB\Container\DI\Definition\Definition
 {
     /**
      * Entry name.
@@ -56,7 +56,7 @@ class FactoryDefinition implements Definition
      */
     public function getScope()
     {
-        return $this->scope ?: Scope::SINGLETON;
+        return $this->scope ?: \DeliciousBrains\WPMDB\Container\DI\Scope::SINGLETON;
     }
     /**
      * @return callable Callable that returns the value associated to the entry name.

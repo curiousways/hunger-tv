@@ -9,7 +9,7 @@ use DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class ValueDefinition implements Definition, SelfResolvingDefinition
+class ValueDefinition implements \DeliciousBrains\WPMDB\Container\DI\Definition\Definition, \DeliciousBrains\WPMDB\Container\DI\Definition\SelfResolvingDefinition
 {
     /**
      * Entry name.
@@ -43,7 +43,7 @@ class ValueDefinition implements Definition, SelfResolvingDefinition
      */
     public function getScope()
     {
-        return Scope::SINGLETON;
+        return \DeliciousBrains\WPMDB\Container\DI\Scope::SINGLETON;
     }
     /**
      * @return mixed
@@ -52,11 +52,11 @@ class ValueDefinition implements Definition, SelfResolvingDefinition
     {
         return $this->value;
     }
-    public function resolve(ContainerInterface $container)
+    public function resolve(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         return $this->getValue();
     }
-    public function isResolvable(ContainerInterface $container)
+    public function isResolvable(\DeliciousBrains\WPMDB\Container\Interop\Container\ContainerInterface $container)
     {
         return \true;
     }

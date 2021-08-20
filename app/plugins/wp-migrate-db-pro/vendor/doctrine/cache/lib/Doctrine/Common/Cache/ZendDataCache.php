@@ -27,7 +27,7 @@ namespace DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache;
  * @author Ralph Schindler <ralph.schindler@zend.com>
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  */
-class ZendDataCache extends CacheProvider
+class ZendDataCache extends \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\CacheProvider
 {
     /**
      * {@inheritdoc}

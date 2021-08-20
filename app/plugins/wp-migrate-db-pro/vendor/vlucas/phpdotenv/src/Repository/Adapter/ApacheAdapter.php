@@ -3,7 +3,7 @@
 namespace DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter;
 
 use DeliciousBrains\WPMDB\Container\PhpOption\None;
-class ApacheAdapter implements AvailabilityInterface, ReaderInterface, WriterInterface
+class ApacheAdapter implements \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\AvailabilityInterface, \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\ReaderInterface, \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\WriterInterface
 {
     /**
      * Determines if the adapter is supported.
@@ -28,7 +28,7 @@ class ApacheAdapter implements AvailabilityInterface, ReaderInterface, WriterInt
      */
     public function get($name)
     {
-        return None::create();
+        return \DeliciousBrains\WPMDB\Container\PhpOption\None::create();
     }
     /**
      * Set an environment variable.

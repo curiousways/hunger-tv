@@ -9,7 +9,7 @@ use DeliciousBrains\WPMDB\Container\DI\Scope;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class MethodInjection implements Definition
+class MethodInjection implements \DeliciousBrains\WPMDB\Container\DI\Definition\Definition
 {
     /**
      * @var string
@@ -55,7 +55,7 @@ class MethodInjection implements Definition
     {
         $this->parameters = $parameters;
     }
-    public function merge(MethodInjection $definition)
+    public function merge(\DeliciousBrains\WPMDB\Container\DI\Definition\ObjectDefinition\MethodInjection $definition)
     {
         // In case of conflicts, the current definition prevails.
         $this->parameters = $this->parameters + $definition->parameters;
@@ -72,6 +72,6 @@ class MethodInjection implements Definition
      */
     public function getScope()
     {
-        return Scope::PROTOTYPE;
+        return \DeliciousBrains\WPMDB\Container\DI\Scope::PROTOTYPE;
     }
 }

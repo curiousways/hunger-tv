@@ -10,7 +10,7 @@ use DeliciousBrains\WPMDB\Container\DI\Definition\Helper\DefinitionHelper;
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class EntryReference implements DefinitionHelper
+class EntryReference implements \DeliciousBrains\WPMDB\Container\DI\Definition\Helper\DefinitionHelper
 {
     /**
      * Entry name.
@@ -36,6 +36,6 @@ class EntryReference implements DefinitionHelper
      */
     public function getDefinition($entryName)
     {
-        return new AliasDefinition($entryName, $this->name);
+        return new \DeliciousBrains\WPMDB\Container\DI\Definition\AliasDefinition($entryName, $this->name);
     }
 }

@@ -3,7 +3,7 @@
 namespace DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache;
 
 use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\WincacheCache;
-class WincacheCacheTest extends CacheTest
+class WincacheCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\CacheTest
 {
     public function setUp()
     {
@@ -13,6 +13,6 @@ class WincacheCacheTest extends CacheTest
     }
     protected function _getCacheDriver()
     {
-        return new WincacheCache();
+        return new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\WincacheCache();
     }
 }

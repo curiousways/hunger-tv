@@ -2,7 +2,7 @@
 
 namespace DeliciousBrains\WPMDB\Container\Dotenv\Repository;
 
-class AdapterRepository extends AbstractRepository
+class AdapterRepository extends \DeliciousBrains\WPMDB\Container\Dotenv\Repository\AbstractRepository
 {
     /**
      * The set of readers to use.

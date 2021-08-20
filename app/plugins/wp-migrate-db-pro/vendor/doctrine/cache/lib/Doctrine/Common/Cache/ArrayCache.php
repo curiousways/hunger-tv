@@ -30,7 +30,7 @@ namespace DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache;
  * @author Roman Borschel <roman@code-factory.org>
  * @author David Abdemoulaie <dave@hobodave.com>
  */
-class ArrayCache extends CacheProvider
+class ArrayCache extends \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\CacheProvider
 {
     /**
      * @var array $data

@@ -2,7 +2,7 @@
 
 namespace DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter;
 
-interface WriterInterface extends AvailabilityInterface
+interface WriterInterface extends \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\AvailabilityInterface
 {
     /**
      * Set an environment variable.

@@ -5,15 +5,15 @@ namespace DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache;
 use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\PredisCache;
 use DeliciousBrains\WPMDB\Container\Predis\Client;
 use DeliciousBrains\WPMDB\Container\Predis\Connection\ConnectionException;
-class PredisCacheTest extends CacheTest
+class PredisCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\CacheTest
 {
     private $client;
     public function setUp()
     {
-        $this->client = new Client();
+        $this->client = new \DeliciousBrains\WPMDB\Container\Predis\Client();
         try {
             $this->client->connect();
-        } catch (ConnectionException $e) {
+        } catch (\DeliciousBrains\WPMDB\Container\Predis\Connection\ConnectionException $e) {
             $this->markTestSkipped('The ' . __CLASS__ . ' requires the use of redis');
         }
     }
@@ -22,6 +22,6 @@ class PredisCacheTest extends CacheTest
      */
     protected function _getCacheDriver()
     {
-        return new PredisCache($this->client);
+        return new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\PredisCache($this->client);
     }
 }

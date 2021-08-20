@@ -3,7 +3,7 @@
 namespace DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache;
 
 use DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\ZendDataCache;
-class ZendDataCacheTest extends CacheTest
+class ZendDataCacheTest extends \DeliciousBrains\WPMDB\Container\Doctrine\Tests\Common\Cache\CacheTest
 {
     public function setUp()
     {
@@ -19,6 +19,6 @@ class ZendDataCacheTest extends CacheTest
     }
     protected function _getCacheDriver()
     {
-        return new ZendDataCache();
+        return new \DeliciousBrains\WPMDB\Container\Doctrine\Common\Cache\ZendDataCache();
     }
 }

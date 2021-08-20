@@ -4,7 +4,7 @@ namespace DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter;
 
 use DeliciousBrains\WPMDB\Container\PhpOption\None;
 use DeliciousBrains\WPMDB\Container\PhpOption\Some;
-class ServerConstAdapter implements AvailabilityInterface, ReaderInterface, WriterInterface
+class ServerConstAdapter implements \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\AvailabilityInterface, \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\ReaderInterface, \DeliciousBrains\WPMDB\Container\Dotenv\Repository\Adapter\WriterInterface
 {
     /**
      * Determines if the adapter is supported.
@@ -25,9 +25,9 @@ class ServerConstAdapter implements AvailabilityInterface, ReaderInterface, Writ
     public function get($name)
     {
         if (\array_key_exists($name, $_SERVER)) {
-            return Some::create($_SERVER[$name]);
+            return \DeliciousBrains\WPMDB\Container\PhpOption\Some::create($_SERVER[$name]);
         }
-        return None::create();
+        return \DeliciousBrains\WPMDB\Container\PhpOption\None::create();
     }
     /**
      * Set an environment variable.
