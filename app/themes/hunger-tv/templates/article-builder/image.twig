@@ -14,10 +14,14 @@
 
 {% elseif item.image %}
 
-	{% include 'includes/image.twig' with {
-		classes: 'image--full',
-		size: 'hero'
-	} %}
-	{% include 'includes/caption.twig' with { caption: item.image_credit ? item.image_credit : item.image.caption } %}
+	{% include 'includes/image.twig' with { size: 'hero' } %}
+
+	{% if item.image_credit or item.image.caption %}
+		<div class="row">
+			<div class="col lg:8 lg:offset-2 center">
+				{% include 'includes/caption.twig' with { caption: item.image_credit ? item.image_credit : item.image.caption } %}
+			</div>
+		</div>
+	{% endif %}
 
 {% endif %}
