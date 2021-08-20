@@ -1,10 +1,27 @@
 <section>
+
 	{% if item.title %}
 		<div class="row">
-			<div class="col">
+			<div class="col{{ 'youtube' not in item.embed_url and 'vimeo' not in item.embed_url ? ' center' }}">
 				<h2>{{ item.title }}</h2>
 			</div>
 		</div>
 	{% endif %}
-	{% include 'includes/embed.twig' %}
+
+	{% if 'youtube' in item.embed_url or 'vimeo' in item.embed_url %}
+		{% include 'includes/embed.twig' %}
+	{% elseif 'soundcloud' in item.embed_url %}
+		<div class="row">
+			<div class="col lg:10 lg:offset-1">
+				{% include 'includes/embed.twig' %}
+			</div>
+		</div>
+	{% else %}
+		<div class="row">
+			<div class="col lg:8 lg:offset-2">
+				{% include 'includes/embed.twig' %}
+			</div>
+		</div>
+	{% endif %}
+
 </section>
