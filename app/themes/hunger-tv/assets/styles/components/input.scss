@@ -1,5 +1,9 @@
 // Input
 
+input {
+	accent-color: $primary;
+}
+
 input[type="checkbox"] {
 	cursor: pointer;
 	margin-right: rhythm(1);
