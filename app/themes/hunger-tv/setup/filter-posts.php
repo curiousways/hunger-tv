@@ -29,7 +29,7 @@ add_action('pre_get_posts', 'myprefix_query_offset', 1 );
 function myprefix_query_offset($query) {
 
     //Before anything else, make sure this is the right query...
-    if ( ! $query->is_main_query() || ! is_archive() ) {
+    if ( ! $query->is_main_query() || ! is_archive() || is_admin() ) {
         return;
     }
 
@@ -64,7 +64,7 @@ function myprefix_adjust_offset_pagination($found_posts, $query) {
     $offset = 1;
 
     //Ensure we're modifying the right query object...
-    if ( $query->is_main_query() && is_archive() ) {
+    if ( $query->is_main_query() && is_archive() && ! is_admin() ) {
         //Reduce WordPress's found_posts count by the offset... 
         return $found_posts - $offset;
     }
