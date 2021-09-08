@@ -114,7 +114,11 @@ class EIO_JS_Webp extends EIO_Page_Parser {
 			add_action( 'wp_enqueue_scripts', array( $this, 'min_external_script' ), -99 );
 		} else {
 			add_action( 'wp_head', array( $this, 'inline_check_script' ), -99 );
-			add_action( 'wp_footer', array( $this, 'inline_load_script' ), -99 );
+			if ( defined( 'EWWW_IMAGE_OPTIMIZER_WEBP_FOOTER_SCRIPT' ) && EWWW_IMAGE_OPTIMIZER_WEBP_FOOTER_SCRIPT ) {
+				add_action( 'wp_footer', array( $this, 'inline_load_script' ), -99 );
+			} else {
+				add_action( 'wp_head', array( $this, 'inline_load_script' ), -90 );
+			}
 		}
 		$this->validate_user_exclusions();
 	}
@@ -139,9 +143,6 @@ class EIO_JS_Webp extends EIO_Page_Parser {
 			false === apply_filters( 'eio_allow_admin_js_webp', false )
 		) {
 			$this->debug_message( 'is_admin' );
-			return false;
-		}
-		if ( $this->is_amp() ) {
 			return false;
 		}
 		if ( ewww_image_optimizer_ce_webp_enabled() ) {
@@ -189,6 +190,9 @@ class EIO_JS_Webp extends EIO_Page_Parser {
 		global $wp_query;
 		if ( ! isset( $wp_query ) ) {
 			return $should_process;
+		}
+		if ( $this->is_amp() ) {
+			return false;
 		}
 		if ( is_embed() ) {
 			$this->debug_message( 'is_embed' );
@@ -341,6 +345,9 @@ class EIO_JS_Webp extends EIO_Page_Parser {
 			strpos( $buffer, 'amp-boilerplate' )
 		) {
 			$this->debug_message( 'JS WebP disabled' );
+			return $buffer;
+		}
+		if ( $this->is_json( $buffer ) ) {
 			return $buffer;
 		}
 		if ( ! $this->should_process_page() ) {

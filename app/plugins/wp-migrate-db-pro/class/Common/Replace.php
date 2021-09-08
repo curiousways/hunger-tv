@@ -867,4 +867,11 @@ class Replace
     private function is_object_cloneable($object) {
         return (new \ReflectionClass(get_class($object)))->isCloneable();
     }
+
+    /**
+     * Empties pairs array
+     */
+    public function reset_pairs() {
+        $this->pairs = [];
+    }
 }
