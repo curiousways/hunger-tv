@@ -1,12 +1,9 @@
 // Embed
 
-// .embed iframe {
-// 	width: 100%;
-// }
-
 iframe,
 .twitter-tweet {
-	width: 100%;
+	width: 100% !important;
+	min-width: auto !important;
 	margin: auto !important;
 }
 
