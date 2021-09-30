@@ -67,7 +67,7 @@
 
 @media (max-width: $sm-max) {
 	.sm\:no-scroll {
-		overflow: hidden;
+		overflow: hidden !important;
 	}
 
 	.sm\:hide {
