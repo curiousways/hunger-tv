@@ -66,6 +66,10 @@
 // Responsive
 
 @media (max-width: $sm-max) {
+	.sm\:no-scroll {
+		overflow: hidden !important;
+	}
+
 	.sm\:hide {
 		display: none !important;
 	}
