@@ -103,18 +103,13 @@ class StarterSite extends Timber\Site {
 		}
 		add_action('wp_enqueue_scripts', '_mghd_enqueue_assets');
 
-		// Return an asset's path
-		function asset($path) {
-			return trailingslashit(get_template_directory_uri()) . 'dist/assets/' . $path;
-		}
-
 		// Disable Gutenberg
 		add_filter('use_block_editor_for_post', '__return_false', 10);
 
-		// Remove heading options from ALL text editors
+		// Remove heading options from text editors
 		// Source: https://support.advancedcustomfields.com/forums/topic/wysiwyg-formatselect/
 		add_filter('tiny_mce_before_init', function($settings) {
-			$settings['block_formats'] = 'Paragraph=p;Title 2=h2;Subtitle 3=h3';
+			$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
 			return $settings;
 		});
 

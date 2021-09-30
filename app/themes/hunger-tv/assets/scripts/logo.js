@@ -2,7 +2,9 @@ import { setCookie, getCookie } from "./functions";
 import { navToggle, navDrawer, searchToggle, searchDrawer } from "./drawer";
 const container = document.querySelector(".header__bar");
 const logo = document.querySelector(".hero__logo");
-const logoHeight = logo.querySelector("svg").getBoundingClientRect().height;
+const logoHeight = logo
+	? logo.querySelector("svg").getBoundingClientRect().height
+	: null;
 const logoOffset = 24;
 
 // Source: https://css-tricks.com/books/greatest-css-tricks/scroll-animation/

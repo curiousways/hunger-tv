@@ -21,9 +21,7 @@
 				{{ item.button.target ? 'target="' ~ item.button.target ~ '"' }}
 			>
 				{{ item.button.title ? item.button.title : 'View now' }}
-				{% if item.button.target == '_blank' %}
-					{% include 'icons/external-link.svg' %}
-				{% endif %}
+				{{ item.button.target == '_blank' ? include('icons/external-link.svg') }}
 			</a>
 		</div>
 
