@@ -3,7 +3,7 @@ Contributors: smashballoon, craig-at-smash-balloon
 Tags: Instagram, Instagram feed, Instagram photos, Instagram widget, Instagram gallery
 Requires at least: 3.4
 Tested up to: 5.8
-Stable tag: 2.9.3.1
+Stable tag: 2.9.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -331,6 +331,28 @@ We understand that sometimes you need help, have issues or just have questions. 
 * Plus more customization options added all the time!
 
 == Changelog ==
+= 2.9.7 =
+* Tweak: A prompt will now be displayed if the ability to save settings requires a page refresh.
+* Fix: Fixed several accessibility issues in the admin area.
+* Fix: Made a significant number of code quality improvements.
+
+= 2.9.6 =
+* Fix: Periods and underscores in usernames when used as part of the shortcode would cause the load more button not to work.
+* Tweak: The WooCommerce orders post type will no longer be scanned for oembeds.
+* Tweak: An alert bubble will be added to the Instagram Feed menu item when there are new notifications available.
+
+= 2.9.5 =
+* Fix: Fixed an issue when reconnecting a personal account.
+* Fix: Using showheader="true" in the shortcode would not work if the related setting was disabled on the settings page.
+* Fix: Added additional plugin hardening.
+
+= 2.9.4 =
+* Tweak: All Instagram data is now encrypted in your WordPress database.
+* Tweak: Access Tokens are no longer able to be viewed on the settings page.
+* Tweak: Added a maximum caching time of 24 hours.
+* Tweak: Added an expiration time to backup caches.
+* Tweak: Deauthorizing our app inside your Instagram or Facebook account will now delete all data for that feed on your site.
+
 = 2.9.3.1 =
 * Fix: Fixed a problem with the image resizing table check that would cause blank images or non-optimized images to show in the feed.
 

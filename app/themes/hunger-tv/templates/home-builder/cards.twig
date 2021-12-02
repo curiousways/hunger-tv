@@ -13,7 +13,7 @@
 			<div class="col lg:4 md:6">
 				{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
 			</div>
-			{% set ignore_ids = ignore_ids|merge([post.id]) %}
+			{# {% set ignore_ids = ignore_ids|merge([post.id]) %} #}
 		{% endfor %}
 	</div>
 
