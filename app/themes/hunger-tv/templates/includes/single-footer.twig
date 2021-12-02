@@ -1,23 +1,32 @@
+{% set credits = post.article_info|split('\r\n') %}
+{% set initial_credits = 2 %}
+
 <footer>
 	<div class="row">
 		<div class="col lg:8 lg:offset-2">
 
-			{% set credits = post.article_info|split('\r\n') %}
-
-			<details class="credits">
-				<summary>
+			{% if credits|length > initial_credits %}
+				<details class="credits">
+					<summary>
+						<ul class>
+							{% for credit in credits|slice(0, initial_credits) %}
+								<li>{{ credit }}</li>
+							{% endfor %}
+						</ul>
+					</summary>
 					<ul class>
-						{% for credit in credits|slice(0, 2) %}
+						{% for credit in credits|slice(initial_credits) %}
 							<li>{{ credit }}</li>
 						{% endfor %}
 					</ul>
-				</summary>
-				<ul class>
-					{% for credit in credits|slice(2) %}
+				</details>
+			{% else %}
+				<ul class="credits">
+					{% for credit in credits %}
 						<li>{{ credit }}</li>
 					{% endfor %}
 				</ul>
-			</details>
+			{% endif %}
 
 			{{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }}
 			{% include 'includes/share.twig' %}
