@@ -8,6 +8,7 @@
 			{% if credits|length > initial_credits %}
 				<details class="credits">
 					<summary>
+						{% include 'icons/arrow.svg' %}
 						<ul class>
 							{% for credit in credits|slice(0, initial_credits) %}
 								<li>
