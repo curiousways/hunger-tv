@@ -10,25 +10,34 @@
 					<summary>
 						<ul class>
 							{% for credit in credits|slice(0, initial_credits) %}
-								<li>{{ credit }}</li>
+								<li>
+									<em>{{ credit|split('@@@')[0] }}</em>
+									<span>{{ credit|split('@@@')[1] }}</span>
+								</li>
 							{% endfor %}
 						</ul>
 					</summary>
 					<ul class>
 						{% for credit in credits|slice(initial_credits) %}
-							<li>{{ credit }}</li>
+							<li>
+								<em>{{ credit|split('@@@')[0] }}</em>
+								<span>{{ credit|split('@@@')[1] }}</span>
+							</li>
 						{% endfor %}
 					</ul>
 				</details>
 			{% else %}
 				<ul class="credits">
 					{% for credit in credits %}
-						<li>{{ credit }}</li>
+						<li>
+							<em>{{ credit|split('@@@')[0] }}</em>
+							<span>{{ credit|split('@@@')[1] }}</span>
+						</li>
 					{% endfor %}
 				</ul>
 			{% endif %}
 
-			{{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }}
+			{# {{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }} #}
 			{% include 'includes/share.twig' %}
 			{% include 'includes/tags.twig' %}
 
