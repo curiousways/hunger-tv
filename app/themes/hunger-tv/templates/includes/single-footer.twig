@@ -4,14 +4,20 @@
 
 			{% set credits = post.article_info|split('\r\n') %}
 
-			<ul class="credits">
-				{% for credit in credits|slice(0, 2) %}
-					<li>{{ credit }}</li>
-				{% endfor %}
-				{% for credit in credits|slice(2) %}
-					<li>{{ credit }}</li>
-				{% endfor %}
-			</ul>
+			<details class="credits">
+				<summary>
+					<ul class>
+						{% for credit in credits|slice(0, 2) %}
+							<li>{{ credit }}</li>
+						{% endfor %}
+					</ul>
+				</summary>
+				<ul class>
+					{% for credit in credits|slice(2) %}
+						<li>{{ credit }}</li>
+					{% endfor %}
+				</ul>
+			</details>
 
 			{{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }}
 			{% include 'includes/share.twig' %}
