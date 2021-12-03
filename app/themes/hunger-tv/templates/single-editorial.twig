@@ -9,20 +9,22 @@
 		{% include 'includes/article-builder.twig' %}
 		{% include 'includes/single-footer.twig' %}
 
-		<section>
-			<div class="row">
-				<div class="col center">
-					<h2>Related Content</h2>
-				</div>
-			</div>
-			<div class="row">
-				{% for post in related %}
-					<div class="col lg:4 md:6">
-						{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+		{% if related|length %}
+			<section>
+				<div class="row">
+					<div class="col center">
+						<h2>Related Content</h2>
 					</div>
-				{% endfor %}
-			</div>
-		</section>
+				</div>
+				<div class="row">
+					{% for post in related %}
+						<div class="col lg:4 md:6">
+							{% include ['includes/card--' ~ post.post_type ~ '.twig', 'includes/card.twig'] %}
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+		{% endif %}
 
 	</article>
 
