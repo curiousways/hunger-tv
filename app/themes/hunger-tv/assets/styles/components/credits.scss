@@ -10,12 +10,18 @@
 		float: right;
 		transform: rotate(90deg);
 		margin-left: rhythm();
-		@include link;
 	}
 
 	em {
 		color: $grey;
 		font-style: normal;
+	}
+
+	&:hover,
+	&:focus {
+		svg {
+			opacity: $hover-opacity;
+		}
 	}
 }
 
