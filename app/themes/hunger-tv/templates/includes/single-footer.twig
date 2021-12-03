@@ -1,11 +1,13 @@
-{% set credits = post.article_info|split('\r\n') %}
+{% set credits = post.article_info|trim('\r\n')|split('\r\n') %}
 {% set initial_credits = 2 %}
 
 {% macro credit_item(credit) %}
-	<li>
-		<em>{{ credit|split('@@@')[0] }}</em>
-		<span>{{ credit|split('@@@')[1] }}</span>
-	</li>
+	{% if credit %}
+		<li>
+			<em>{{ credit|split('@@@')[0] }}</em>
+			<span>{{ credit|split('@@@')[1] }}</span>
+		</li>
+	{% endif %}
 {% endmacro %}
 
 <footer>
