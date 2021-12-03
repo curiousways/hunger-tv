@@ -1,8 +1,42 @@
+{% set credits = post.article_info|split('\r\n') %}
+{% set initial_credits = 2 %}
+
+{% macro credit_item(credit) %}
+	<li>
+		<em>{{ credit|split('@@@')[0] }}</em>
+		<span>{{ credit|split('@@@')[1] }}</span>
+	</li>
+{% endmacro %}
+
 <footer>
 	<div class="row">
 		<div class="col lg:8 lg:offset-2">
 
-			{{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }}
+			{% if credits|length > initial_credits %}
+				<details class="credits">
+					<summary>
+						{% include 'icons/arrow.svg' %}
+						<ul class>
+							{% for credit in credits|slice(0, initial_credits) %}
+								{{ _self.credit_item(credit) }}
+							{% endfor %}
+						</ul>
+					</summary>
+					<ul class>
+						{% for credit in credits|slice(initial_credits) %}
+							{{ _self.credit_item(credit) }}
+						{% endfor %}
+					</ul>
+				</details>
+			{% elseif post.article_info %}
+				<ul class="credits">
+					{% for credit in credits %}
+						{{ _self.credit_item(credit) }}
+					{% endfor %}
+				</ul>
+			{% endif %}
+
+			{# {{ post.article_info ? fn('hungertv_parse_credits', post.article_info) }} #}
 			{% include 'includes/share.twig' %}
 			{% include 'includes/tags.twig' %}
 
