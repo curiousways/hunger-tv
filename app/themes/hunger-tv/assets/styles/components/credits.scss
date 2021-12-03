@@ -1,8 +1,36 @@
 // Credits
 
 .credits {
+	summary {
+		list-style: none;
+		cursor: pointer;
+	}
+
+	svg {
+		float: right;
+		transform: rotate(90deg);
+		margin-left: rhythm();
+	}
+
 	em {
 		color: $grey;
 		font-style: normal;
+	}
+
+	&:hover,
+	&:focus {
+		svg {
+			opacity: $hover-opacity;
+		}
+	}
+}
+
+// Variants
+
+details.credits {
+	&[open] {
+		svg {
+			transform: rotate(-90deg);
+		}
 	}
 }
