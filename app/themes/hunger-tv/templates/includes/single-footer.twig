@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col lg:8 lg:offset-2">
 
-			{% if credits|length > initial_credits %}
+			{# {% if credits|length > initial_credits %}
 				<details class="credits">
 					<summary>
 						{% include 'icons/arrow.svg' %}
@@ -29,8 +29,8 @@
 							{{ _self.credit_item(credit) }}
 						{% endfor %}
 					</ul>
-				</details>
-			{% elseif post.article_info %}
+				</details> #}
+			{% if post.article_info %}
 				<ul class="credits">
 					{% for credit in credits %}
 						{{ _self.credit_item(credit) }}
