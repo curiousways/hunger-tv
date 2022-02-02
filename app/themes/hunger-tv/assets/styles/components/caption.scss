@@ -7,4 +7,13 @@
 	&:first-child {
 		margin-top: 0;
 	}
+
+	~ button {
+		@extend .eta;
+		background: none;
+		border: none;
+		font-weight: bold;
+		padding: 0;
+		@include link;
+	}
 }
