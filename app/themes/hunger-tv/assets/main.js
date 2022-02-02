@@ -6,6 +6,7 @@ import "./main.scss";
 
 // Scripts
 import "./scripts/carousel";
+import "./scripts/captions";
 import "./scripts/drawer";
 import "./scripts/hero";
 import "./scripts/logo";
