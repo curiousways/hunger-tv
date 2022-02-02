@@ -63,6 +63,13 @@
 	color: $grey;
 }
 
+.truncate {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
 // Responsive
 
 @media (max-width: $sm-max) {

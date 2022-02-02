@@ -11,11 +11,12 @@ if (captions.length) {
 			button.innerHTML = "Show more";
 
 			caption.style.height = captionHeight + "px";
-			caption.style.overflow = "hidden";
+			caption.classList.add("truncate");
 			caption.parentNode.appendChild(button);
 
 			button.addEventListener("click", () => {
 				caption.style.height = "auto";
+				caption.classList.remove("truncate");
 				button.remove();
 			});
 		}
