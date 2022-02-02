@@ -21,4 +21,6 @@ if (captions.length) {
 			});
 		}
 	});
+
+	console.log("%ccaptions running", "color:green;");
 }
