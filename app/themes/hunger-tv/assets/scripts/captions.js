@@ -10,12 +10,12 @@ if (captions.length) {
 			const button = document.createElement("button");
 			button.innerHTML = "Show more";
 
-			caption.style.height = captionHeight + "px";
+			caption.style.height = captionHeight + "px"; // Fallback
 			caption.classList.add("truncate");
 			caption.parentNode.appendChild(button);
 
 			button.addEventListener("click", () => {
-				caption.style.height = "auto";
+				caption.style.height = "auto"; // Fallback
 				caption.classList.remove("truncate");
 				button.remove();
 			});
