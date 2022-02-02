@@ -11,6 +11,7 @@ captions.forEach((caption) => {
 
 		button.addEventListener("click", () => {
 			caption.style.height = "auto";
+			button.remove();
 		});
 	}
 });
