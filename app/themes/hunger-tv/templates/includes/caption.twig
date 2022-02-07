@@ -3,5 +3,7 @@
 {% endif %}
 
 {% if caption %}
-	<p class="caption">{{ caption }}</p>
+	<div class="caption">
+		{{ caption|wpautop }}
+	</div>
 {% endif %}
