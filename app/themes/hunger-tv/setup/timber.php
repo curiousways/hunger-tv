@@ -176,6 +176,12 @@ class StarterSite extends Timber\Site {
 			return $html .= '<p>Avoid using this field, recommend using the <strong>Hero image</strong> instead.</p>';
 		}
 		add_filter('admin_post_thumbnail_html', '_mghd_featured_image_note');
+
+		// Source: https://smashballoon.com/doc/how-can-i-allow-editors-access-to-the-instagram-plugin-settings/
+		function sb_custom_capability($cap) {
+			return 'edit_posts';
+		}
+		add_filter('sbi_settings_pages_capability', 'sb_custom_capability', 10, 1);
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
