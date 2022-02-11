@@ -52,6 +52,10 @@
 			height: rhythm(); // Required to stop logo enlarging
 		}
 	}
+
+	&:not(.fixed) {
+		color: $white;
+	}
 }
 
 .hero__content {
