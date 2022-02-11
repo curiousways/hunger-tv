@@ -7,7 +7,7 @@
 	],
 	"require": {
 		"php": ">=7.2",
-		"roots/wordpress": "5.8.*",
+		"roots/wordpress": "5.9.*",
 		"roots/wp-password-bcrypt": "^1.0"
 	},
 	"extra": {
