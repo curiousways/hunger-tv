@@ -1,14 +1,18 @@
 #sbi-notifications {
   position: relative;
   background: #FFFFFF 0 0 no-repeat padding-box;
-  box-shadow: 0 5px 15px #0000000D;
-  border-radius: 6px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), 0px 4px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
   opacity: 1;
   min-height: 48px;
-  padding: 15px 102px 15px 72px;
+  padding: 20px 120px 20px 82px;
   margin: 0 0 14px 0;
+  box-sizing: border-box;
 }
-
+#sbi-notifications.sbi_review_notice,
+#sbi-notifications.sbi_discount_notice {
+  padding: 16px 70px 16px 82px
+}
 #sbi-notifications * {
   box-sizing: border-box;
 }
@@ -16,12 +20,20 @@
 #sbi-notifications .bell,
 #sbi-notifications .thumb{
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 11px;
+  left: 24px;
   width: 42px;
-  height: 48px;
+  height: 42px;
 }
-#sbi-notifications .thumb img {
+
+#sbi-notifications .rn_step_2 .bell,
+#sbi-notifications .rn_step_2 .thumb,
+.sbi_discount_notice .bell,
+.sbi_discount_notice .sbi_thumb {
+  top: 16px !important;
+}
+#sbi-notifications .thumb img,
+#sbi-notifications .bell img {
   max-width: 100%;
 }
 #sbi-notifications .thumb .img-overlay {
@@ -47,85 +59,144 @@
   display: block;
 }
 
-#sbi-notifications .messages .message .title {
-  font-weight: bold;
-  font-size: 17px;
-  line-height: 20px;
+#sbi-notifications .messages .message .title,
+#sbi-builder-app #sbi-notifications .messages .message .title{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 25px;
   margin: 0;
-  padding: 0;
-  color: #444;
+  color: #141B38;
+  letter-spacing: -0.01em;
 }
 
 #sbi-notifications .messages .message .content {
   font-weight: normal;
-  font-size: 13px;
-  line-height: 20px;
-  margin: 6px 0 40px 0;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 2px 0 32px 0;
+  color: #434960;
 }
 
 #sbi-notifications .messages .message .buttons {
-  margin: -30px 80px 0 0;
+  margin: -15px 0px 3px 0;
+  display: flex;
 }
-
+.sbi-btn {
+  transition: all 0.15s ease-in-out;
+  letter-spacing: 0.2px;
+}
+/*orange*/
+.sbi-btn-orange{
+  background: #E34F0E!important;
+  color: #fff!important;
+}
+.sbi-btn-orange:hover{
+  background: #F37036!important;
+  color: #fff!important;
+}
+.sbi-btn-orange:focus,
+.sbi-btn-orange:active{
+  background: #B8400B!important;
+  color: #fff!important;
+}
+/*grey*/
+.sbi-btn-grey{
+  background: #F3F4F5!important;
+  color: #141B38!important;
+  border: 1px solid #D0D1D7!important;
+}
+.sbi-btn-grey:hover{
+  background: #fff!important;
+  color: #141B38!important;
+  border: 1px solid #DCDDE1!important;
+}
+.sbi-btn-grey:focus,
+.sbi-btn-grey:active{
+  background: #E8E8EB!important;
+  color: #141B38!important;
+  border: 1px solid #D0D1D7!important;
+}
 #sbi-notifications .messages .message .buttons a {
-  margin: 0 6px 0 0;
-  padding: 8px 10px;
-  line-height: 13px;
-  font-size: 13px;
-  min-height: unset;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 32px;
+  text-decoration: none;
+  font-size: 12px;
+  border: none;
 }
-
-#sbi-notifications .messages .message .buttons .button-secondary {
-  border: 1px solid #0071A1;
+#sbi-notifications .messages .message .buttons a.sbi-btn-orange {
+  border: 1px solid #E34F0E
 }
-
+#sbi-notifications .messages .message .buttons a:not(:last-child) {
+  margin-right: 8px;
+}
+#sbi-notifications .messages .message .buttons a:focus,
+#sbi-notifications .messages .message .buttons a:active {
+  outline: none;
+  box-shadow: none;
+}
 #sbi-notifications .dismiss {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 16px;
-  height: 16px;
+  top: 2px;
+  right: 6px;
+  width: 30px;
+  height: 32px;
   color: #72777C;
   font-size: 16px;
   cursor: pointer;
-  text-align: center;
-  vertical-align: middle;
+  align-items: center;
   line-height: 16px;
+  display: flex;
+  justify-content: center;
 }
-
-#sbi-notifications .dismiss:hover {
-  color: #dc3232;
+#sbi-notifications .dismiss svg {
+  width: 15px;
+  height: 15px;
 }
-
+#sbi-notifications .dismiss svg path {
+  fill: #8C8F9A;
+}
 #sbi-notifications .navigation {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 63px;
+  bottom: 24px;
+  right: 21px;
+  width: 72px;
   height: 30px;
 }
 
 #sbi-notifications .navigation a {
   display: block;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #7E8993;
-  border-radius: 3px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #DCDDE1;
+  border-radius: 2px;
   font-size: 8px;
   text-align: center;
   vertical-align: middle;
   line-height: 30px;
   cursor: pointer;
-  background-color: #ffffff;
-  color: #41454A;
-}
-#sbi-notifications .navigation svg {
-  width: 8px;
-  height: 8px;
+  background: #F3F4F5;
+  color: #141B38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
 }
 
-#sbi-notifications .navigation a:hover {
-  background-color: #f1f1f1;
+#sbi-notifications .navigation svg {
+  width: 9px;
+  height: 9px;
+}
+
+#sbi-notifications .navigation a:not(.disabled):hover {
+  background-color: #fff;
+}
+#sbi-notifications .navigation a:not(.disabled):focus,
+#sbi-notifications .navigation a:not(.disabled):active {
+  background: #E8E8EB;
+  color: #141B38;
 }
 
 #sbi-notifications .navigation .prev {
@@ -137,15 +208,21 @@
 }
 
 #sbi-notifications .navigation .disabled {
-  border-color: #dddddd;
-  color: #A0A5AA;
+  background: #E8E8EB;
+  color: #8C8F9A;
   cursor: default;
 }
-
-#sbi-notifications .navigation .disabled:hover {
-  background-color: #ffffff;
+@media screen and (max-width: 880px) {
+  #sbi-notifications .messages .message .buttons {
+    flex-wrap: wrap;
+  }
+  #sbi-notifications .messages .message .buttons a,
+  .sbi-notice-links a {
+    margin: 0;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
 }
-
 @media screen and (max-width: 768px) {
   #sbi-notifications {
     padding: 15px 15px 15px 72px;
@@ -158,14 +235,17 @@
     line-height: 24px;
   }
   #sbi-notifications .messages .message .buttons {
-    margin: -30px 80px 0 0;
+    margin: -10px 0 0;
   }
-  #sbi-notifications .messages .message .buttons a {
-    margin: 0;
-    display: table;
-  }
+
   #sbi-notifications .messages .message .buttons .button-secondary {
     margin-top: 6px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #sbi-notifications.sbi_review_notice, #sbi-notifications.sbi_discount_notice {
+    padding: 16px 30px 16px 82px;
   }
 }
 .sbi-notice-alert {
@@ -185,3 +265,4 @@
   text-align: center;
   z-index: 26;
 }
+

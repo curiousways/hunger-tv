@@ -160,15 +160,15 @@ class SB_Instagram_Post_Set {
 						}
 
 						if ( ! $single_post->images_done_resizing() && $single_post->exists_in_posts_table() ) {
-							$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir );
+							$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir, $this->upload_url );
 						} else {
 							if ( $is_top_post_feed ) {
-								if ( $single_post->save_in_db( $this->transient_name, date( 'Y-m-d H:i:s', strtotime( $this->first_post_top_time_stamp ) - (120 * $posts_iterated_through) - 1 ) ) ) {
-									$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir );
+								if ( $single_post->save_in_db( $this->transient_name, date( 'Y-m-d H:i:s', strtotime( $this->first_post_top_time_stamp ) - ( 120 * $posts_iterated_through ) - 1 ) ) ) {
+									$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir, $this->upload_url );
 								}
 							} else {
-								if ( $single_post->save_in_db( $this->transient_name, date( 'Y-m-d H:i:s', strtotime( $this->fill_in_timestamp ) - (120 * $posts_iterated_through) ) ) ) {
-									$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir );
+								if ( $single_post->save_in_db( $this->transient_name, date( 'Y-m-d H:i:s', strtotime( $this->fill_in_timestamp ) - ( 120 * $posts_iterated_through ) ) ) ) {
+									$single_post->resize_and_save_image( $this->image_sizes, $this->upload_dir, $this->upload_url );
 								}
 							}
 						}

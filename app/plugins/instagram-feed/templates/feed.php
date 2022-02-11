@@ -10,12 +10,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-$feed_styles              = SB_Instagram_Display_Elements::get_feed_style( $settings ); // already escaped
-$sb_images_style          = SB_Instagram_Display_Elements::get_sbi_images_style( $settings ); // already escaped
-$image_resolution_setting = $settings['imageres'];
-$cols_setting             = $settings['cols'];
-$num_setting              = $settings['num'];
-$icon_type                = 'svg';
+$feed_styles     = SB_Instagram_Display_Elements::get_feed_style( $settings ); // already escaped
+$feed_atts       = SB_Instagram_Display_Elements::get_feed_container_data_attributes( $settings );
+$sb_images_style = SB_Instagram_Display_Elements::get_sbi_images_style( $settings ); // already escaped
+$feed_classes    = SB_Instagram_Display_Elements::get_feed_container_css_classes( $settings, $additional_classes ); // already escaped
 
 /**
  * Add HTML or execute code before the feed displays.
@@ -29,27 +27,21 @@ $icon_type                = 'svg';
  */
 do_action( 'sbi_before_feed', $posts, $settings );
 
-if ( ! empty( $header_data ) && $settings['showheader'] && $settings['headeroutside'] ) {
-	include sbi_get_feed_template_part( 'header', $settings );
-}
+sbi_header_html( $settings, $header_data, 'outside' );
 ?>
 
-<div id="sb_instagram" class="sbi sbi_col_<?php echo esc_attr( $cols_setting ); ?> <?php echo esc_attr( $additional_classes ); ?>"<?php echo SB_Instagram_Display_Elements::print_style( $feed_styles ); ?> data-feedid="<?php echo esc_attr( $feed_id ); ?>" data-res="<?php echo esc_attr( $image_resolution_setting ); ?>" data-cols="<?php echo esc_attr( $cols_setting ); ?>" data-num="<?php echo esc_attr( $num_setting ); ?>" data-shortcode-atts="<?php echo esc_attr( $shortcode_atts ); ?>" <?php echo $other_atts; ?>>
-	<?php
-	if ( ! empty( $header_data ) && $settings['showheader'] && ! $settings['headeroutside'] ) {
-		include sbi_get_feed_template_part( 'header', $settings );
-	}
-	?>
+<div id="sb_instagram" <?php echo $feed_classes . $feed_styles; ?> data-feedid="<?php echo esc_attr( $feed_id ); ?>" <?php echo $feed_atts; ?> data-shortcode-atts="<?php echo esc_attr( $shortcode_atts ); ?>" <?php echo $other_atts; ?>>
+	<?php sbi_header_html( $settings, $header_data ); ?>
 
-	<div id="sbi_images"<?php echo SB_Instagram_Display_Elements::print_style( $sb_images_style ); ?>>
+    <div id="sbi_images" <?php echo $sb_images_style; ?>>
 		<?php
 		if ( ! in_array( 'ajaxPostLoad', $flags, true ) ) {
 			$this->posts_loop( $posts, $settings );
 		}
 		?>
-	</div>
+    </div>
 
-	<?php require sbi_get_feed_template_part( 'footer', $settings ); ?>
+	<?php include sbi_get_feed_template_part( 'footer', $settings ); ?>
 
 	<?php
 	/**
@@ -61,8 +53,7 @@ if ( ! empty( $header_data ) && $settings['showheader'] && $settings['headerouts
 	 *
 	 * @since 2.1/5.2
 	 */
-	do_action( 'sbi_before_feed_end', $this, $feed_id );
-	?>
+	do_action( 'sbi_before_feed_end', $this, $feed_id ); ?>
 </div>
 
-<?php do_action( 'sbi_after_feed', $posts, $settings ); ?>
+<?php do_action( 'sbi_after_feed', $posts, $settings );?>

@@ -80,7 +80,7 @@ class SB_Instagram_Data_Manager {
 
 		$data_was_deleted = false;
 
-		if ( $statuses['last_used'] < sbi_get_current_time() - ( 21 * DAY_IN_SECONDS ) ) {
+		if ( $statuses['last_used'] < sbi_get_current_time() - (21 * DAY_IN_SECONDS) ) {
 			global $sb_instagram_posts_manager;
 
 			$this->delete_caches();
@@ -92,7 +92,7 @@ class SB_Instagram_Data_Manager {
 			$data_was_deleted = true;
 		}
 
-		if ( $statuses['last_used'] < sbi_get_current_time() - ( 90 * DAY_IN_SECONDS ) ) {
+		if ( $statuses['last_used'] < sbi_get_current_time() - (90 * DAY_IN_SECONDS) ) {
 			SB_Instagram_Connected_Account::update_connected_accounts( array() );
 			global $sb_instagram_posts_manager;
 
@@ -126,17 +126,15 @@ class SB_Instagram_Data_Manager {
 	 */
 	public function delete_non_hashtag_sbi_instagram_posts( $username ) {
 		global $wpdb;
-		$table_name             = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
+		$table_name = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
 		$feeds_posts_table_name = esc_sql( $wpdb->prefix . SBI_INSTAGRAM_FEEDS_POSTS );
 
 		$non_hashtag_posts = $wpdb->get_results(
 			"SELECT p.id, p.media_id FROM $table_name as p
 					INNER JOIN $feeds_posts_table_name AS f ON p.id = f.id
-					WHERE f.hashtag = '';",
-			ARRAY_A
-		);
+					WHERE f.hashtag = '';", ARRAY_A );
 
-		$upload        = wp_upload_dir();
+		$upload = wp_upload_dir();
 		$file_suffixes = array( 'thumb', 'low', 'full' );
 
 		foreach ( $non_hashtag_posts as $post ) {
@@ -156,9 +154,7 @@ class SB_Instagram_Data_Manager {
 		$non_hashtag_posts_deleted = $wpdb->query(
 			"DELETE p, f FROM $table_name as p
 					INNER JOIN $feeds_posts_table_name AS f ON p.id = f.id
-					WHERE f.hashtag = '';",
-			ARRAY_A
-		);
+					WHERE f.hashtag = '';", ARRAY_A );
 
 	}
 
@@ -169,15 +165,14 @@ class SB_Instagram_Data_Manager {
 	 */
 	public function update_json_non_hashtag_sbi_instagram_posts() {
 		global $wpdb;
-		$table_name             = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
+		$table_name = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
 		$feeds_posts_table_name = esc_sql( $wpdb->prefix . SBI_INSTAGRAM_FEEDS_POSTS );
 
 		$updated = $wpdb->query(
 			"UPDATE $table_name as p
 				INNER JOIN $feeds_posts_table_name AS f ON p.id = f.id
 				SET p.json_data = ''
-				WHERE f.hashtag = '';"
-		);
+				WHERE f.hashtag = '';" );
 
 	}
 
@@ -198,8 +193,8 @@ class SB_Instagram_Data_Manager {
 		$this->update_statuses( $statuses );
 
 		global $wpdb;
-		$encryption             = new SB_Instagram_Data_Encryption();
-		$table_name             = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
+		$encryption = new SB_Instagram_Data_Encryption();
+		$table_name = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
 		$feeds_posts_table_name = esc_sql( $wpdb->prefix . SBI_INSTAGRAM_FEEDS_POSTS );
 
 		$plaintext_posts = $wpdb->get_results(
@@ -207,9 +202,7 @@ class SB_Instagram_Data_Manager {
 					INNER JOIN $feeds_posts_table_name AS f ON p.id = f.id
 					WHERE p.json_data LIKE '%{%'
 					ORDER BY p.time_stamp DESC
-					LIMIT 50;",
-			ARRAY_A
-		);
+					LIMIT 50;", ARRAY_A );
 
 		if ( empty( $plaintext_posts ) ) {
 			$statuses['num_db_updates'] = 31;
@@ -218,16 +211,11 @@ class SB_Instagram_Data_Manager {
 
 		foreach ( $plaintext_posts as $post ) {
 			$json_data = $encryption->encrypt( $post['json_data'] );
-			$updated   = $wpdb->query(
-				$wpdb->prepare(
-					"UPDATE $table_name as p
+			$updated = $wpdb->query( $wpdb->prepare(
+				"UPDATE $table_name as p
 					INNER JOIN $feeds_posts_table_name AS f ON p.id = f.id
 					SET p.json_data = %s
-					WHERE p.id = %d;",
-					$json_data,
-					$post['id']
-				)
-			);
+					WHERE p.id = %d;", $json_data, $post['id'] )  );
 		}
 	}
 
@@ -251,76 +239,58 @@ class SB_Instagram_Data_Manager {
 	public function delete_caches( $include_backup = true ) {
 		/* Backup Caches */
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'options';
+		$table_name = $wpdb->prefix . "options";
 
 		if ( $include_backup ) {
-			$wpdb->query(
-				"
+			$wpdb->query( "
 		    DELETE
 		    FROM $table_name
 		    WHERE `option_name` LIKE ('%!sbi\_%')
-		    "
-			);
-			$wpdb->query(
-				"
+		    " );
+			$wpdb->query( "
 		    DELETE
 		    FROM $table_name
 		    WHERE `option_name` LIKE ('%\_transient\_&sbi\_%')
-		    "
-			);
-			$wpdb->query(
-				"
+		    " );
+			$wpdb->query( "
 		    DELETE
 		    FROM $table_name
 		    WHERE `option_name` LIKE ('%\_transient\_timeout\_&sbi\_%')
-        "
-			);
+        " );
 		}
 
 		/* Regular Caches */
 		//Delete all transients
-		$wpdb->query(
-			"
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_sbi\_%')
-		        "
-		);
-		$wpdb->query(
-			"
+		        " );
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_timeout\_sbi\_%')
-		        "
-		);
-		$wpdb->query(
-			"
+		        " );
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_&sbi\_%')
-		        "
-		);
-		$wpdb->query(
-			"
+		        " );
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_timeout\_&sbi\_%')
-		        "
-		);
-		$wpdb->query(
-			"
+		        " );
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_\$sbi\_%')
-		        "
-		);
-		$wpdb->query(
-			"
+		        " );
+		$wpdb->query( "
 		        DELETE
 		        FROM $table_name
 		        WHERE `option_name` LIKE ('%\_transient\_timeout\_\$sbi\_%')
-            "
-		);
+            " );
 
 		delete_option( 'sbi_single_cache' );
 	}
@@ -335,16 +305,13 @@ class SB_Instagram_Data_Manager {
 	public function update_db_for_dpa() {
 		global $wpdb;
 		$encryption = new SB_Instagram_Data_Encryption();
-		$table_name = $wpdb->prefix . 'options';
+		$table_name = $wpdb->prefix . "options";
 
-		$permanent_caches = $wpdb->get_results(
-			"
+		$permanent_caches = $wpdb->get_results("
 		    SELECT *
-		    FROM $wpdb->options
+		    FROM $table_name
 		    WHERE option_name LIKE ('%!sbi\_%')
-		    ",
-			ARRAY_A
-		);
+		    ", ARRAY_A );
 
 		if ( count( $permanent_caches ) < 10 ) {
 			foreach ( $permanent_caches as $permanent_cache ) {
@@ -357,7 +324,7 @@ class SB_Instagram_Data_Manager {
 
 			$this->delete_caches( false );
 		} else {
-			$this->delete_caches();
+			$this->delete_caches( true );
 		}
 
 		SB_Instagram_Connected_Account::encrypt_all_access_tokens();
@@ -384,7 +351,7 @@ class SB_Instagram_Data_Manager {
 			$ids = get_option( 'sbi_hashtag_ids', array() );
 			if ( ! is_array( $ids ) ) {
 				$encryption = new SB_Instagram_Data_Encryption();
-				$ids        = json_decode( $encryption->decrypt( $ids ), true );
+				$ids = json_decode( $encryption->decrypt( $ids ), true );
 			}
 
 			update_option( 'sbi_hashtag_ids', $encryption->encrypt( sbi_json_encode( $ids ) ), false );
@@ -413,7 +380,7 @@ class SB_Instagram_Data_Manager {
 	 * @since 2.9.4/5.12.4
 	 */
 	public function update_statuses( $statuses ) {
-		$sbi_statuses_option                 = get_option( 'sbi_statuses', array() );
+		$sbi_statuses_option = get_option( 'sbi_statuses', array() );
 		$sbi_statuses_option['data_manager'] = $statuses;
 
 		update_option( 'sbi_statuses', $sbi_statuses_option );
@@ -430,15 +397,13 @@ class SB_Instagram_Data_Manager {
 	 */
 	public function remote_encrypt( $encrypted_value ) {
 		$local_encrypt = new SB_Instagram_Data_Encryption();
-		$raw_value     = $local_encrypt->decrypt( $encrypted_value );
+		$raw_value = $local_encrypt->decrypt( $encrypted_value );
 		if ( $this->key_salt === null ) {
-			$url  = 'https://secure.smashballoon.com/';
+			$url = 'https://secure.smashballoon.com/';
 			$args = array(
-				'timeout' => 20,
+				'timeout' => 20
 			);
-			if ( version_compare( get_bloginfo( 'version' ), '3.7', '<' ) ) {
-				$args['sslverify'] = false;
-			}
+
 			$response = wp_remote_get( $url, $args );
 
 			if ( ! is_wp_error( $response ) ) {
@@ -446,12 +411,12 @@ class SB_Instagram_Data_Manager {
 			}
 		}
 
-		$key  = substr( $this->key_salt, 0, 64 );
+		$key = substr( $this->key_salt, 0, 64 );
 		$salt = substr( $this->key_salt, 64, 64 );
 
 		$args = array(
-			'key'  => $key,
-			'salt' => $salt,
+			'key' => $key,
+			'salt' => $salt
 		);
 
 		$remote_encrypt = new SB_Instagram_Data_Encryption( $args );
@@ -465,7 +430,7 @@ class SB_Instagram_Data_Manager {
 	 * @since 2.9.4/5.12.4
 	 */
 	public function reset() {
-		$sbi_statuses_option                 = get_option( 'sbi_statuses', array() );
+		$sbi_statuses_option = get_option( 'sbi_statuses', array() );
 		$sbi_statuses_option['data_manager'] = $this->defaults();
 
 		update_option( 'sbi_statuses', $sbi_statuses_option );
@@ -481,8 +446,8 @@ class SB_Instagram_Data_Manager {
 	 */
 	public function defaults() {
 		return array(
-			'last_used'      => sbi_get_current_time() - DAY_IN_SECONDS,
-			'num_db_updates' => 0,
+			'last_used' => sbi_get_current_time() - DAY_IN_SECONDS,
+			'num_db_updates' => 0
 		);
 	}
 }

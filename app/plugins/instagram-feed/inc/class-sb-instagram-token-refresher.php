@@ -117,7 +117,7 @@ class SB_Instagram_Token_Refresher {
 		if ( ! $connection->is_wp_error() && ! $connection->is_instagram_error() ) {
 			$access_token_data = $connection->get_data();
 
-			if ( ! empty( $access_token_data ) ) {
+			if ( ! empty( $access_token_data ) && ! empty( $access_token_data['expires_in'] ) ) {
 				$this->report['did_update'] = true;
 				$this->add_renewal_data( $access_token_data );
 
@@ -140,14 +140,7 @@ class SB_Instagram_Token_Refresher {
 	 * the access token for a connected account and saves it in the database.
 	 */
 	public function update_last_attempt_timestamp() {
-		$options            = get_option( 'sb_instagram_settings', array() );
-		$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
-
-		$connected_accounts[ $this->connected_account['user_id'] ]['last_refresh_attempt'] = time();
-
-		$options['connected_accounts'] = $connected_accounts;
-
-		update_option( 'sb_instagram_settings', $options );
+		sbi_update_connected_account( $this->connected_account['user_id'], array( 'last_updated' => time() ) );
 	}
 
 	/**
@@ -175,19 +168,14 @@ class SB_Instagram_Token_Refresher {
 	 * @param $token_data
 	 */
 	private function add_renewal_data( $token_data ) {
-		$options            = get_option( 'sb_instagram_settings', array() );
-		$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
-
 		$expires_in        = $token_data['expires_in'];
 		$expires_timestamp = sbi_get_current_timestamp() + $expires_in;
 
-		$connected_accounts[ $this->connected_account['user_id'] ]['expires_timestamp'] = $expires_timestamp;
-		$connected_accounts[ $this->connected_account['user_id'] ]['access_token']      = $token_data['access_token'];
-		$connected_accounts[ $this->connected_account['user_id'] ]                      = SB_Instagram_Connected_Account::encrypt_connected_account_tokens( $connected_accounts[ $this->connected_account['user_id'] ] );
-
-		$options['connected_accounts'] = $connected_accounts;
-
-		update_option( 'sb_instagram_settings', $options );
+		$to_update = array(
+			'access_token' => $token_data['access_token'],
+			'expires'      => date( 'Y-m-d H:i:s', $expires_timestamp ),
+		);
+		sbi_update_connected_account( $this->connected_account['user_id'], $to_update );
 	}
 
 }

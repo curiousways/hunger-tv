@@ -71,7 +71,7 @@ class SB_Instagram_Single {
 		$this->post = $this->maybe_saved_data();
 
 		if ( empty( $this->post )
-			 || ! $this->was_recently_updated() ) {
+		     || ! $this->was_recently_updated() ) {
 
 			if ( ! $this->should_delay_oembed_request() ) {
 
@@ -114,7 +114,7 @@ class SB_Instagram_Single {
 			return false;
 		}
 
-		return ( time() - 21 * DAY_IN_SECONDS ) < $this->post['last_update'];
+		return ( time() - 14 * DAY_IN_SECONDS ) < $this->post['last_update'];
 	}
 
 
@@ -265,7 +265,7 @@ class SB_Instagram_Single {
 		} else {
 			$settings = get_option( 'sb_instagram_settings', array() );
 
-			$resize_disabled = isset( $settings['sb_instagram_disable_resize'] ) && $settings['sb_instagram_disable_resize'];
+			$resize_disabled = isset( $settings['sb_instagram_disable_resize'] ) && $settings['sb_instagram_disable_resize'] === 'on';
 
 			if ( ! $resize_disabled ) {
 				global $wpdb;

@@ -40,16 +40,6 @@ class SBI_Account_Connector {
 	 * @since 5.10
 	 */
 	public static function maybe_launch_modals( $sb_instagram_user_id ) {
-		if ( ! isset( $_GET['sbi_con'] ) || ! wp_verify_nonce( $_GET['sbi_con'], 'sbi-connect' ) ) {
-			if ( isset( $_GET['sbi_con'] ) && ! wp_verify_nonce( $_GET['sbi_con'], 'sbi-connect' ) ) :
-				?>
-				<div class="sbi_deprecated">
-					<span><?php esc_html_e( 'Oops! The link to connect your account expired. Please try connecting your account again.', 'instagram-feed' ); ?></span>
-				</div>
-				<?php
-			endif;
-			return;
-		}
 		if ( ! empty( $_POST ) ) {
 			return;
 		}
@@ -91,10 +81,24 @@ class SBI_Account_Connector {
 	 */
 	public function fetch( $data ) {
 		if ( ! isset( $data['user_id'] ) ) {
-			return array( 'error' => __( 'Invalid account ID', 'instagram-feed' ) );
+			$return = array( 'error' => '<div class="sbi-connect-actions sb-alerts-wrap"><div class="sb-alert">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.99935 0.666504C4.39935 0.666504 0.666016 4.39984 0.666016 8.99984C0.666016 13.5998 4.39935 17.3332 8.99935 17.3332C13.5993 17.3332 17.3327 13.5998 17.3327 8.99984C17.3327 4.39984 13.5993 0.666504 8.99935 0.666504ZM9.83268 13.1665H8.16602V11.4998H9.83268V13.1665ZM9.83268 9.83317H8.16602V4.83317H9.83268V9.83317Z" fill="#995C00"/>
+                            </svg>
+                            <span><strong>' . esc_html__( 'Error connecting to Instagram', 'instagram-feed' ) . '</strong></span><br>
+                            ' . esc_html__( 'Invalid account ID', 'instagram-feed' ) . '
+                        </div></div>' );
+			return $return;
 		}
 		if ( ! isset( $data['access_token'] ) ) {
-			return array( 'error' => __( 'Invalid access token', 'instagram-feed' ) );
+			$return = array( 'error' => '<div class="sbi-connect-actions sb-alerts-wrap"><div class="sb-alert">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.99935 0.666504C4.39935 0.666504 0.666016 4.39984 0.666016 8.99984C0.666016 13.5998 4.39935 17.3332 8.99935 17.3332C13.5993 17.3332 17.3327 13.5998 17.3327 8.99984C17.3327 4.39984 13.5993 0.666504 8.99935 0.666504ZM9.83268 13.1665H8.16602V11.4998H9.83268V13.1665ZM9.83268 9.83317H8.16602V4.83317H9.83268V9.83317Z" fill="#995C00"/>
+                            </svg>
+                            <span><strong>' . esc_html__( 'Error connecting to Instagram', 'instagram-feed' ) . '</strong></span><br>
+                            ' . esc_html__( 'Invalid access token', 'instagram-feed' ) . '
+                        </div></div>' );
+			return $return;
 		}
 
 		$connection = new SB_Instagram_API_Connect( $data, 'header', array() );
@@ -125,6 +129,12 @@ class SBI_Account_Connector {
 					'profile_picture'   => '',
 				);
 
+				$refresher = new SB_Instagram_Token_Refresher( $new_connected_account );
+				$refresher->attempt_token_refresh();
+
+				if ( $refresher->get_last_error_code() === 10 ) {
+					$new_connected_account['private'] = true;
+				}
 			} else {
 				$new_connected_account = array(
 					'access_token'    => $data['access_token'],
@@ -146,7 +156,15 @@ class SBI_Account_Connector {
 			} else {
 				$error = $connection->get_data();
 			}
-			return array( 'error' => sbi_formatted_error( $error ) );
+
+			$return = array( 'error' => '<div class="sbi-connect-actions sb-alerts-wrap"><div class="sb-alert">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.99935 0.666504C4.39935 0.666504 0.666016 4.39984 0.666016 8.99984C0.666016 13.5998 4.39935 17.3332 8.99935 17.3332C13.5993 17.3332 17.3327 13.5998 17.3327 8.99984C17.3327 4.39984 13.5993 0.666504 8.99935 0.666504ZM9.83268 13.1665H8.16602V11.4998H9.83268V13.1665ZM9.83268 9.83317H8.16602V4.83317H9.83268V9.83317Z" fill="#995C00"/>
+                            </svg>
+                            <span><strong>' . esc_html__( 'Error connecting to Instagram', 'instagram-feed' ) . '</strong></span><br>
+                            ' . wp_kses_post( sbi_formatted_error( $error ) ) . '
+                        </div></div>' );
+			return $return;
 		}
 
 	}
@@ -170,17 +188,17 @@ class SBI_Account_Connector {
 			return false;
 		}
 
-		$access_token      = ! empty( $data['access_token'] ) ? $data['access_token'] : '';
-		$page_access_token = ! empty( $data['page_access_token'] ) ? $data['page_access_token'] : '';
-		$username          = ! empty( $data['username'] ) ? $data['username'] : '';
-		$name              = ! empty( $data['name'] ) ? $data['name'] : '';
-		$profile_picture   = ! empty( $data['profile_picture_url'] ) ? $data['profile_picture_url'] : '';
+		$access_token      = isset( $data['access_token'] ) ? $data['access_token'] : '';
+		$page_access_token = isset( $data['page_access_token'] ) ? $data['page_access_token'] : '';
+		$username          = isset( $data['username'] ) ? $data['username'] : '';
+		$name              = isset( $data['name'] ) ? $data['name'] : '';
+		$profile_picture   = isset( $data['profile_picture_url'] ) ? $data['profile_picture_url'] : '';
 		if ( empty( $profile_picture ) ) {
-			$profile_picture = ! empty( $data['profile_picture'] ) ? $data['profile_picture'] : '';
+			$profile_picture = isset( $data['profile_picture'] ) ? $data['profile_picture'] : '';
 		}
-		$user_id            = ! empty( $data['id'] ) ? $data['id'] : '';
-		$type               = ! empty( $data['type'] ) ? $data['type'] : 'basic';
-		$account_type       = ! empty( $data['account_type'] ) ? $data['account_type'] : 'business';
+		$user_id            = isset( $data['id'] ) ? $data['id'] : '';
+		$type               = isset( $data['type'] ) ? $data['type'] : 'basic';
+		$account_type       = isset( $data['account_type'] ) ? $data['account_type'] : 'business';
 		$this->id           = $user_id;
 		$this->account_data = array(
 			'access_token'    => $access_token,
@@ -197,15 +215,13 @@ class SBI_Account_Connector {
 			$this->account_data['use_tagged']        = '1';
 			$this->account_data['name']              = sbi_sanitize_emoji( $name );
 			$this->account_data['profile_picture']   = $profile_picture;
-			$this->account_data['local_avatar']      = SB_Instagram_Connected_Account::create_local_avatar( $username, $profile_picture );
+			$this->account_data['local_avatar_url']  = SB_Instagram_Connected_Account::maybe_local_avatar( $username, $profile_picture );
 			$this->account_data['page_access_token'] = $page_access_token;
 		}
 
 		if ( isset( $data['expires_timestamp'] ) ) {
 			$this->account_data['expires_timestamp'] = $data['expires_timestamp'];
 		}
-
-		$this->account_data = SB_Instagram_Connected_Account::encrypt_connected_account_tokens( $this->account_data );
 
 		return true;
 	}
@@ -218,13 +234,8 @@ class SBI_Account_Connector {
 	 * @since 5.10
 	 */
 	public function update_stored_account() {
-		$options                       = sbi_get_database_settings();
-		$connected_accounts            = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
-		$options['connected_accounts'] = $connected_accounts;
-
 		if ( ! empty( $this->account_data ) ) {
-			$options['connected_accounts'][ $this->id ] = $this->account_data;
-			update_option( 'sb_instagram_settings', $options );
+			$single_source = InstagramFeed\Builder\SBI_Source::update_single_source( $this->get_account_data(), false );
 
 			return true;
 		}
@@ -250,8 +261,7 @@ class SBI_Account_Connector {
 	 * @since 5.10
 	 */
 	public static function stored_connected_accounts() {
-		$options            = sbi_get_database_settings();
-		$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
+		$connected_accounts = \InstagramFeed\Builder\SBI_Feed_Builder::get_source_list();
 		return $connected_accounts;
 	}
 }

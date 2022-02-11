@@ -35,7 +35,8 @@ class SB_Instagram_GDPR_Integrations {
 		if ( ! self::doing_gdpr( $settings ) ) {
 			return $blocking;
 		}
-		unset( $blocking['instagram-feed'] );
+		remove_filter( 'wt_cli_third_party_scripts', 'wt_cli_instagram_feed_script' );
+
 		return $blocking;
 	}
 
@@ -49,7 +50,7 @@ class SB_Instagram_GDPR_Integrations {
 		if ( class_exists( 'Cookie_Notice' ) ) {
 			return 'Cookie Notice by dFactory';
 		}
-		if ( class_exists( 'Cookie_Law_Info' ) ) {
+		if ( function_exists( 'run_cookie_law_info' ) || class_exists( 'Cookie_Law_Info' ) ) {
 			return 'GDPR Cookie Consent by WebToffee';
 		}
 		if ( class_exists( 'Cookiebot_WP' ) ) {
@@ -126,6 +127,10 @@ class SB_Instagram_GDPR_Integrations {
 				if ( ! is_wp_error( $image_editor ) ) {
 					$sbi_statuses_option['gdpr']['image_editor'] = true;
 				} else {
+
+					if ( ! function_exists( 'download_url' ) ) {
+						include_once ABSPATH . 'wp-admin/includes/file.php';
+					}
 					// Set a timeout for downloading the image
 					$timeout_seconds = 5;
 
@@ -136,6 +141,8 @@ class SB_Instagram_GDPR_Integrations {
 					if ( ! is_wp_error( $image_editor ) ) {
 						$sbi_statuses_option['gdpr']['image_editor'] = true;
 					}
+
+					@unlink( $temp_file );
 				}
 			}
 
@@ -149,13 +156,13 @@ class SB_Instagram_GDPR_Integrations {
 			}
 
 			global $wpdb;
-			$table_name                            = esc_sql( $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE );
+			$table_name                            = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
 			$sbi_statuses_option['gdpr']['tables'] = true;
 			if ( $wpdb->get_var( "show tables like '$table_name'" ) !== $table_name ) {
 				$sbi_statuses_option['gdpr']['tables'] = false;
 			}
 
-			$feeds_posts_table_name = esc_sql( $wpdb->prefix . SBI_INSTAGRAM_FEEDS_POSTS );
+			$feeds_posts_table_name = $wpdb->prefix . SBI_INSTAGRAM_FEEDS_POSTS;
 			if ( $wpdb->get_var( "show tables like '$feeds_posts_table_name'" ) !== $feeds_posts_table_name ) {
 				$sbi_statuses_option['gdpr']['tables'] = false;
 			}
@@ -169,8 +176,8 @@ class SB_Instagram_GDPR_Integrations {
 		}
 
 		if ( ! $sbi_statuses_option['gdpr']['upload_dir']
-			 || ! $sbi_statuses_option['gdpr']['tables']
-			 || ! $sbi_statuses_option['gdpr']['image_editor'] ) {
+		     || ! $sbi_statuses_option['gdpr']['tables']
+		     || ! $sbi_statuses_option['gdpr']['image_editor'] ) {
 			return false;
 		}
 
@@ -182,19 +189,18 @@ class SB_Instagram_GDPR_Integrations {
 
 		$errors = array();
 		if ( ! $sbi_statuses_option['gdpr']['upload_dir'] ) {
-			$errors[] = __( 'A folder for storing resized images was not successfully created.' );
+			$errors[] = __( 'A folder for storing resized images was not successfully created.', 'instagram-feed' );
 		}
 		if ( ! $sbi_statuses_option['gdpr']['tables'] ) {
-			$errors[] = __( 'Tables used for storing information about resized images were not successfully created.' );
+			$errors[] = __( 'Tables used for storing information about resized images were not successfully created.', 'instagram-feed' );
 		}
 		if ( ! $sbi_statuses_option['gdpr']['image_editor'] ) {
-			$errors[] = sprintf( __( 'An image editor is not available on your server. Instagram Feed is unable to create local resized images. See %1$sthis FAQ%2$s for more information' ), '<a href="https://smashballoon.com/doc/the-images-in-my-feed-are-missing-or-showing-errors/" target="_blank" rel="noopener noreferrer">', '</a>' );
+			$errors[] = sprintf( __( 'An image editor is not available on your server. Instagram Feed is unable to create local resized images. See %1$sthis FAQ%2$s for more information', 'instagram-feed' ), '<a href="https://smashballoon.com/doc/the-images-in-my-feed-are-missing-or-showing-errors/" target="_blank" rel="noopener noreferrer">', '</a>' );
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['tab'] ) && $_GET['tab'] !== 'support' ) {
 			$tab      = sbi_is_pro_version() ? 'customize-advanced' : 'customize';
-			$errors[] = '<a href="?page=sb-instagram-feed&amp;tab=' . esc_attr( $tab ) . '&amp;retest=1" class="button button-secondary">' . __( 'Retest', 'instagram-feed' ) . '</a>';
+			$errors[] = '<a href="?page=sbi-settings&amp;tab=' . $tab . '&amp;retest=1" class="button button-secondary">' . __( 'Retest', 'instagram-feed' ) . '</a>';
 		}
 
 		return implode( '<br>', $errors );

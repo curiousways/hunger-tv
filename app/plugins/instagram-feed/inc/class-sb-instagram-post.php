@@ -207,7 +207,7 @@ class SB_Instagram_Post {
 	 *                accommodate personal accounts and possible
 	 *                custom sizes in the future
 	 */
-	public function resize_and_save_image( $image_sizes, $upload_dir ) {
+	public function resize_and_save_image( $image_sizes, $upload_dir, $upload_url ) {
 		$sbi_statuses_option = get_option( 'sbi_statuses', array() );
 
 		if ( isset( $this->instagram_api_data['id'] ) ) {
@@ -216,7 +216,7 @@ class SB_Instagram_Post {
 			$image_sizes_to_make = isset( $image_sizes[ $account_type ] ) ? $image_sizes[ $account_type ] : array();
 			// if it's a personal account or a weird url, the post id is used, otherwise the last part of the image url is used
 			if ( $account_type === 'business' ) {
-				$new_file_name = explode( '?', SB_Instagram_Parse::get_media_url( $this->instagram_api_data ) );
+				$new_file_name = explode( '?', SB_Instagram_Parse::get_media_url( $this->instagram_api_data, 'lightbox' ) );
 				if ( strlen( basename( $new_file_name[0], '.jpg' ) ) > 10 ) {
 					$new_file_name = basename( $new_file_name[0], '.jpg' );
 				} else {
@@ -231,9 +231,9 @@ class SB_Instagram_Post {
 
 			foreach ( $image_sizes_to_make as $res_setting => $image_size ) {
 				if ( $account_type === 'business' ) {
-					$file_name = SB_Instagram_Parse::get_media_url( $this->instagram_api_data );
+					$file_name = SB_Instagram_Parse::get_media_url( $this->instagram_api_data, 'lightbox' );
 				} else {
-					$file_name = isset( $image_source_set[ $image_size ] ) ? $image_source_set[ $image_size ] : SB_Instagram_Parse::get_media_url( $this->instagram_api_data );
+					$file_name = isset( $image_source_set[ $image_size ] ) ? $image_source_set[ $image_size ] : SB_Instagram_Parse::get_media_url( $this->instagram_api_data, 'lightbox' );
 				}
 				if ( strpos( $file_name, 'placeholder' ) !== false ) {
 					$file_name = '';
@@ -304,6 +304,10 @@ class SB_Instagram_Post {
 						global $sb_instagram_posts_manager;
 						$sb_instagram_posts_manager->add_error( 'image_editor', $message );
 					}
+
+					if ( ! empty( $temp_file ) ) {
+						@unlink( $temp_file );
+					}
 				}
 			}
 
@@ -346,8 +350,7 @@ class SB_Instagram_Post {
 			global $wpdb;
 
 			$posts_table_name = $wpdb->prefix . SBI_INSTAGRAM_POSTS_TYPE;
-
-			$stored = $wpdb->get_results(
+			$stored           = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT media_id, aspect_ratio FROM $posts_table_name
 			WHERE instagram_id = %s
@@ -410,7 +413,7 @@ class SB_Instagram_Post {
 		}
 
 		if ( $this->media_id === 'pending' ) {
-			$this->resize_and_save_image( $image_sizes, $upload_dir );
+			$this->resize_and_save_image( $image_sizes, $upload_dir, $upload_url );
 		} else {
 			$this->update_sbi_instagram_posts( $to_update );
 		}
@@ -486,7 +489,7 @@ class SB_Instagram_Post {
 	 *
 	 * @param string $transient_name
 	 *
-	 * @return int|bool
+	 * @return int
 	 *
 	 * @since 2.0/4.0
 	 */
@@ -534,7 +537,6 @@ class SB_Instagram_Post {
 			$query = $wpdb->last_query;
 			$sb_instagram_posts_manager->add_error( 'storage', __( 'Error inserting post.', 'instagram-feed' ) . ' ' . $error . '<br><code>' . $query . '</code>' );
 		}
-		return false;
 	}
 
 	/**

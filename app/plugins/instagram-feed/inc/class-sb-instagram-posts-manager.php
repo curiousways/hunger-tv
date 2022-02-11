@@ -83,9 +83,10 @@ class SB_Instagram_Posts_Manager {
 		}
 
 		if ( isset( $details['error']['code'] )
-			 && (int) $details['error']['code'] === 18 ) {
+		     && (int) $details['error']['code'] === 18 ) {
 			$this->errors['accounts'][ $account_id ][ $error_type ]['clear_time'] = time() + 60 * 15;
 		}
+		\InstagramFeed\Builder\SBI_Source::add_error( $account_id, $details );
 	}
 
 	/**
@@ -114,7 +115,7 @@ class SB_Instagram_Posts_Manager {
 
 		// is it connection? or what type?
 		if ( $type === 'api'
-			 || $type === 'wp_remote_get' ) {
+		     || $type === 'wp_remote_get' ) {
 			$connection_details = array(
 				'error_id' => '',
 			);
@@ -140,7 +141,7 @@ class SB_Instagram_Posts_Manager {
 				}
 				$connection_details['critical'] = true;
 			}
-			if ( ! is_admin() ) {
+			if ( get_the_ID() !== 0 ) {
 				$connection_details['post_id'] = get_the_ID();
 			}
 			$connection_details['error_message'] = $this->generate_error_message( $details, $connected_account );
@@ -167,7 +168,7 @@ class SB_Instagram_Posts_Manager {
 					$hashtag_details['error_id'] = $key;
 				}
 			}
-			if ( ! is_admin() ) {
+			if ( get_the_ID() !== 0 ) {
 				$hashtag_details['post_id'] = get_the_ID();
 			}
 			$hashtag_details['error_message'] = $this->generate_error_message( $details, $connected_account );
@@ -178,8 +179,8 @@ class SB_Instagram_Posts_Manager {
 			if ( isset( $details['hashtag'] ) ) {
 				foreach ( $this->errors['hashtag'] as $hashtag_error_item ) {
 					if ( isset( $hashtag_error_item['hashtag'] )
-						 && strtolower( $hashtag_error_item['hashtag'] ) === strtolower( $details['hashtag'] )
-						 && $hashtag_error_item['error_id'] === $details['error_id'] ) {
+					     && strtolower( $hashtag_error_item['hashtag'] ) === strtolower( $details['hashtag'] )
+					     && $hashtag_error_item['error_id'] === $details['error_id'] ) {
 						$found = true;
 					}
 				}
@@ -191,7 +192,7 @@ class SB_Instagram_Posts_Manager {
 		}
 
 		if ( $type === 'image_editor'
-			 || $type === 'storage' ) {
+		     || $type === 'storage' ) {
 
 			$this->errors['resizing'] = $details;
 			$log_item                .= $details;
@@ -352,7 +353,7 @@ class SB_Instagram_Posts_Manager {
 			return $error_message_return;
 		}
 		$hash = '#' . (int) $response['error']['code'];
-		$link = admin_url( '?page=sb-instagram-feed' );
+		$link = admin_url( '?page=sbi-settings' );
 
 		if ( isset( $response['error']['message'] ) ) {
 			if ( (int) $response['error']['code'] === 100 ) {
@@ -378,7 +379,7 @@ class SB_Instagram_Posts_Manager {
 			}
 		} else {
 			$error_message_return['error_message'] = __( 'An unknown error has occurred.', 'instagram-feed' );
-			$error_message_return['admin_only']    = sbi_json_encode( $response );
+			$error_message_return['admin_only']    = json_encode( $response );
 		}
 		return $error_message_return;
 	}
@@ -530,7 +531,7 @@ class SB_Instagram_Posts_Manager {
 
 		if ( false === $sbi_resizing_cache ) {
 
-			if ( $wpdb->get_var( "show tables like '$table_name'" ) === $table_name ) {
+			if ( $wpdb->get_var( "show tables like '$table_name'" ) == $table_name ) {
 				wp_cache_set( $resizing_key, true );
 			} else {
 				wp_cache_set( $resizing_key, false );
@@ -560,8 +561,7 @@ class SB_Instagram_Posts_Manager {
 			}
 		}
 
-		$options            = get_option( 'sb_instagram_settings', array() );
-		$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
+		$connected_accounts =  SB_Instagram_Connected_Account::get_all_connected_accounts();
 
 		foreach ( $connected_accounts as $account_id => $data ) {
 			if ( isset( $data['local_avatar'] ) ) {
@@ -596,6 +596,7 @@ class SB_Instagram_Posts_Manager {
 			        "
 		);
 		delete_option( 'sbi_hashtag_ids' );
+		delete_option( 'sbi_local_avatars' );
 
 		$upload     = wp_upload_dir();
 		$upload_dir = $upload['basedir'];
@@ -669,7 +670,6 @@ class SB_Instagram_Posts_Manager {
 		if ( ! empty( $connected_account ) ) {
 			if ( $this->remove_connected_account_error( $connected_account, $type, false ) ) {
 				$this->add_action_log( 'Cleared connected account error ' . $connected_account['username'] . '.' );
-
 			}
 
 			if ( $type === 'connection' ) {
@@ -679,7 +679,7 @@ class SB_Instagram_Posts_Manager {
 			}
 
 			if ( ! empty( $this->errors['revoked'] ) ) {
-				if ( ( $key = array_search( $connected_account['user_id'], $this->errors['revoked'], true ) ) !== false ) {
+				if ( ( $key = array_search( $connected_account['user_id'], $this->errors['revoked'] ) ) !== false ) {
 					unset( $this->errors['revoked'][ $key ] );
 				}
 			}
@@ -925,7 +925,7 @@ class SB_Instagram_Posts_Manager {
 
 		foreach ( $this->errors['hashtag'] as $hashtag_error ) {
 			if ( ! empty( $hashtag_error['hashtag'] )
-				 && strtolower( $hashtag_error['hashtag'] ) === strtolower( $hashtag ) ) {
+			     && strtolower( $hashtag_error['hashtag'] ) === strtolower( $hashtag ) ) {
 				if ( ! empty( $hashtag_error['clear_time'] ) ) {
 
 					if ( $hashtag_error['clear_time'] < time() ) {
@@ -968,6 +968,17 @@ class SB_Instagram_Posts_Manager {
 		if ( ! $this->are_critical_errors() ) {
 			return '';
 		}
+		$accounts_revoked_string = '';
+		if ( $this->was_app_permission_related_error() ) {
+			$accounts_revoked = $this->get_app_permission_related_error_ids();
+			if ( count( $accounts_revoked ) > 1 ) {
+				$accounts_revoked = implode( ', ', $accounts_revoked );
+			} else {
+				$accounts_revoked = $accounts_revoked[0];
+			}
+			$accounts_revoked_string = sprintf( __( 'Instagram Feed related data for the account(s) %s was removed due to permission for the Smash Balloon App on Facebook or Instagram being revoked.', 'instagram-feed' ), $accounts_revoked );
+		}
+
 		if ( isset( $this->errors['connection']['critical'] ) ) {
 			$errors        = $this->get_errors();
 			$error_message = '';
@@ -975,18 +986,24 @@ class SB_Instagram_Posts_Manager {
 			$error_message_array = $errors['connection']['error_message'];
 			$error_message      .= '<strong>' . $error_message_array['error_message'] . '</strong><br>';
 			$error_message      .= $error_message_array['admin_only'] . '<br><br>';
+			if ( ! empty( $accounts_revoked_string ) ) {
+				$error_message .= $accounts_revoked_string . '<br><br>';
+			}
 			if ( ! empty( $error_message_array['backend_directions'] ) ) {
 				$error_message .= $error_message_array['backend_directions'];
 			} else {
+				$retry = '';
+				if ( is_admin() ) {
+					$retry = '<button data-url="'.get_the_permalink( $this->errors['connection']['post_id'] ).'" class="sbi-clear-errors-visit-page sbi-space-left sbi-btn sbi-notice-btn sbi-btn-grey">' . __( 'View Feed and Retry', 'instagram-feed' )  . '</button>';
+				}
 				$hash           = isset( $errors['connection']['error_id'] ) ? '#' . (int) $errors['connection']['error_id'] : '';
-				$error_message .= '<p class="sbi-error-directions"><a href="https://smashballoon.com/instagram-feed/docs/errors/' . $hash . '" target="_blank" rel="noopener">' . __( 'Directions on how to resolve this issue', 'instagram-feed' ) . '</a></p>';
+				$error_message .= '<div class="license-action-btns"><p class="sbi-error-directions"><a class="sbi-license-btn sbi-btn-blue sbi-notice-btn" href="https://smashballoon.com/instagram-feed/docs/errors/' . $hash . '" target="_blank" rel="noopener">' . __( 'Directions on how to resolve this issue', 'instagram-feed' ) . '</a>' . $retry. '</p></div>';
 			}
 		} else {
-			$options            = sbi_get_database_settings();
-			$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
+			$connected_accounts = SB_Instagram_Connected_Account::get_all_connected_accounts();
 			foreach ( $connected_accounts as $connected_account ) {
 				if ( isset( $connected_account['private'] )
-					 && sbi_private_account_near_expiration( $connected_account ) ) {
+				     && sbi_private_account_near_expiration( $connected_account ) ) {
 					$link_1              = '<a href="https://help.instagram.com/116024195217477/In">';
 					$link_2              = '</a>';
 					$error_message_array = array(
@@ -1010,7 +1027,11 @@ class SB_Instagram_Posts_Manager {
 					if ( ! empty( $error_message_array['backend_directions'] ) ) {
 						$error_message .= $error_message_array['backend_directions'];
 					} else {
-						$error_message .= '<p class="sbi-error-directions"><a href="https://smashballoon.com/instagram-feed/docs/errors/" target="_blank" rel="noopener">' . __( 'Directions on how to resolve this issue', 'instagram-feed' ) . '</a></p>';
+						$retry = '';
+						if ( is_admin() ) {
+							$retry = '<button data-url="'.get_the_permalink( $this->errors['connection']['post_id'] ).'" class="sbi-clear-errors-visit-page sbi-space-left sbi-btn sbi-notice-btn sbi-btn-grey">' . __( 'View Feed and Retry', 'instagram-feed' )  . '</button>';
+						}
+						$error_message .= '<p class="sbi-error-directions"><a class="sbi-license-btn sbi-btn-blue sbi-notice-btn" href="https://smashballoon.com/instagram-feed/docs/errors/" target="_blank" rel="noopener">' . __( 'Directions on how to resolve this issue', 'instagram-feed' ) . '</a>' . $retry. '</p>';
 					}
 				}
 			}
@@ -1041,7 +1062,7 @@ class SB_Instagram_Posts_Manager {
 	 */
 	public function clear_api_request_delays() {
 		if ( empty( $this->errors['accounts'] )
-			 && empty( $this->errors['hashtag'] ) ) {
+		     && empty( $this->errors['hashtag'] ) ) {
 			return;
 		}
 
@@ -1102,17 +1123,19 @@ class SB_Instagram_Posts_Manager {
 		if ( isset( $this->errors['connection']['critical'] ) ) {
 			return true;
 		} else {
-			$options            = sbi_get_database_settings();
-			$connected_accounts = isset( $options['connected_accounts'] ) ? $options['connected_accounts'] : array();
+			$connected_accounts =  SB_Instagram_Connected_Account::get_all_connected_accounts();
 			foreach ( $connected_accounts as $connected_account ) {
 				if ( isset( $connected_account['private'] )
-					 && sbi_private_account_near_expiration( $connected_account ) ) {
+				     && sbi_private_account_near_expiration( $connected_account ) ) {
 					return true;
 				}
 
-				if ( isset( $this->errors['accounts'][ $connected_account['user_id'] ]['api'] ) ) {
-					if ( isset( $this->errors['accounts'][ $connected_account['user_id'] ]['api']['error'] ) ) {
-						return $this->is_critical_error( $this->errors['accounts'][ $connected_account['user_id'] ]['api'] );
+				$user_id = ! empty( $connected_account['user_id'] ) ? $connected_account['user_id'] : 0;
+				$user_id = empty( $user_id ) && ! empty( $connected_account['account_id'] ) ? $connected_account['account_id'] : 0;
+
+				if ( isset( $this->errors['accounts'][ $user_id ]['api'] ) ) {
+					if ( isset( $this->errors['accounts'][ $user_id ]['api']['error'] ) ) {
+						return $this->is_critical_error( $this->errors['accounts'][ $user_id ]['api'] );
 					}
 				}
 			}
@@ -1152,13 +1175,15 @@ class SB_Instagram_Posts_Manager {
 				$to_update[ $connected_account['user_id'] ] = $connected_account;
 
 				if ( isset( $connected_account['type'] )
-					 && $connected_account['type'] === 'business' ) {
+				     && $connected_account['type'] === 'business' ) {
 					$are_other_business_accounts = true;
 				}
 			}
 		}
 
 		SB_Instagram_Connected_Account::update_connected_accounts( $to_update );
+
+		\InstagramFeed\Builder\SBI_Db::delete_source_by_account_id( $to_delete_connected_account['user_id'] );
 
 		$manager = new SB_Instagram_Data_Manager();
 
