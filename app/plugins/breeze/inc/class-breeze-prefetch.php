@@ -25,11 +25,11 @@ if ( ! class_exists( 'Breeze_Prefetch' ) ) {
 		 * @access public
 		 */
 		public function load_prefetch_scripts() {
-			$breeze_options = breeze_get_option( 'advanced_settings' );
 			// Check if the option is enabled by admin.
-			if ( isset( $breeze_options['breeze-preload-links'] ) && true === filter_var( $breeze_options['breeze-preload-links'], FILTER_VALIDATE_BOOLEAN ) ) {
+			$preload_links = Breeze_Options_Reader::get_option_value( 'breeze-preload-links' );
+			if ( isset( $preload_links ) && true === filter_var( $preload_links, FILTER_VALIDATE_BOOLEAN ) ) {
 				// Load the prefetch library.
-				wp_enqueue_script( 'breeze-prefetch', BREEZE_PLUGIN_URL . 'assets/js/breeze-prefetch-links.js', array(), time(), false );
+				wp_enqueue_script( 'breeze-prefetch', BREEZE_PLUGIN_URL . 'assets/js/js-front-end/breeze-prefetch-links.min.js', array(), BREEZE_VERSION, false );
 				wp_localize_script(
 					'breeze-prefetch',
 					'breeze_prefetch',

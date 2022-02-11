@@ -1,6 +1,6 @@
 <?php
 /**
- *  @copyright 2017  Cloudways  https://www.cloudways.com
+ * @copyright 2017  Cloudways  https://www.cloudways.com
  *
  *  Original development of this plugin by JoomUnited https://www.joomunited.com/
  *
@@ -30,17 +30,18 @@ class Breeze_CDN_Integration {
 	 * Execute rewrite cdn
 	 */
 	public function handle_rewrite_cdn() {
-		$cdn_integration = breeze_get_option( 'cdn_integration' );
 
-		if ( empty( $cdn_integration ) || empty( $cdn_integration['cdn-active'] ) ) {
+		$cdn_integration = Breeze_Options_Reader::get_option_value( 'cdn_integration', true );
+
+		if ( empty( Breeze_Options_Reader::get_option_value( 'cdn-active' ) ) ) {
 			return;
 		}
 
-		if ( $cdn_integration['cdn-url'] == '' ) {
+		if ( empty( Breeze_Options_Reader::get_option_value( 'cdn-url' ) ) ) {
 			return;
 		}
 
-		if ( get_option( 'home' ) == $cdn_integration['cdn-url'] ) {
+		if ( get_option( 'home' ) == Breeze_Options_Reader::get_option_value( 'cdn-url' ) ) {
 			return;
 		}
 

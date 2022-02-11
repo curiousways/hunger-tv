@@ -18,6 +18,24 @@
  */
 defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
+function set_as_network_screen() {
+	if ( isset( $_GET['is-network'] ) || isset( $_POST['is-network'] ) ) {
+		$is_network = false;
+
+		if ( isset( $_GET['is-network'] ) ) {
+			$is_network = filter_var( $_GET['is-network'], FILTER_VALIDATE_BOOLEAN );
+		}
+
+		if ( isset( $_POST['is-network'] ) ) {
+			$is_network = filter_var( $_POST['is-network'], FILTER_VALIDATE_BOOLEAN );
+		}
+
+		if ( true === $is_network && ! defined( 'WP_NETWORK_ADMIN' ) ) {
+			define( 'WP_NETWORK_ADMIN', true );
+		}
+	}
+}
+
 /**
  * Retrieve site options accounting for settings inheritance.
  *
@@ -691,9 +709,10 @@ function breeze_varnish_purge_cache( $url = '', $purge_varnish = false, $check_v
 		$schema = $parse_url['scheme'] . '://';
 	}
 	// Determine the host
-	$host         = $parse_url['host'];
-	$config       = breeze_get_option( 'varnish_cache' );
-	$varnish_host = isset( $config['breeze-varnish-server-ip'] ) ? $config['breeze-varnish-server-ip'] : '127.0.0.1';
+	$host = $parse_url['host'];
+
+	$varnish_ip   = Breeze_Options_Reader::get_option_value( 'breeze-varnish-server-ip' );
+	$varnish_host = isset( $varnish_ip ) ? $varnish_ip : '127.0.0.1';
 	$purgeme      = $varnish_host . $url_path . $pregex;
 	if ( ! empty( $parse_url['query'] ) && 'breeze' !== strtolower( $parse_url['query'] ) ) {
 		$purgeme .= '?' . $parse_url['query'];
@@ -839,4 +858,162 @@ function breeze_is_amp_page() {
 	}
 
 	return false;
+}
+
+
+function breeze_migrate_old_settings( $is_sigle = true, $subsite_id = 0, $is_root = false ) {
+	//If this is a single site.
+	if ( true === $is_sigle ) {
+		// if the option exists, then we do not need to do anything.
+		// This option is not available to Breeze versions < 2.0.0.
+		$new_option = breeze_get_option( 'file_settings', true );
+		if ( ! empty( $new_option ) ) {
+			return;
+		}
+
+		$get_current_basic    = breeze_get_option( 'basic_settings', true );
+		$get_current_advanced = breeze_get_option( 'advanced_settings', true );
+		$get_current_varnish  = breeze_get_option( 'varnish_cache', true );
+		$get_current_cdn      = breeze_get_option( 'cdn_integration', true );
+		$options              = array();
+	}
+
+	// if multisite then run code for sub-site.
+	if ( false === $is_sigle && ! empty( $subsite_id ) ) {
+		$subsite_id = absint( $subsite_id );
+		// if the option exists, then we do not need to do anything.
+		// This option is not available to Breeze versions < 2.0.0.
+		$new_option = get_blog_option( $subsite_id, 'breeze_file_settings', array() );
+		if ( ! empty( $new_option ) ) {
+			return;
+		}
+
+		$get_current_basic    = get_blog_option( $subsite_id, 'breeze_basic_settings', array() );
+		$get_current_advanced = get_blog_option( $subsite_id, 'breeze_advanced_settings', array() );
+		$get_current_varnish  = get_blog_option( $subsite_id, 'breeze_varnish_cache', array() );
+		$get_current_cdn      = get_blog_option( $subsite_id, 'breeze_cdn_integration', array() );
+	}
+
+	// if multisite and network level.
+	if ( true === $is_root ) {
+		$new_option = get_site_option( 'breeze_file_settings', array() );
+		if ( ! empty( $new_option ) ) {
+			return;
+		}
+
+		$get_current_basic    = get_site_option( 'breeze_basic_settings', array() );
+		$get_current_advanced = get_site_option( 'breeze_advanced_settings', array() );
+		$get_current_varnish  = get_site_option( 'breeze_varnish_cache', array() );
+		$get_current_cdn      = get_site_option( 'breeze_cdn_integration', array() );
+	}
+
+	if ( ! empty( $get_current_basic ) ) {
+		foreach ( $get_current_basic as $option_name => $value ) {
+			$options[ $option_name ] = $value;
+		}
+	}
+
+	if ( ! empty( $get_current_advanced ) ) {
+		foreach ( $get_current_advanced as $option_name => $value ) {
+			$options[ $option_name ] = $value;
+		}
+	}
+
+	if ( ! empty( $get_current_varnish ) ) {
+		foreach ( $get_current_varnish as $option_name => $value ) {
+			$options[ $option_name ] = $value;
+		}
+	}
+
+	if ( ! empty( $get_current_cdn ) ) {
+		foreach ( $get_current_cdn as $option_name => $value ) {
+			$options[ $option_name ] = $value;
+		}
+	}
+
+	$basic = array(
+		'breeze-active'           => ( isset( $options['breeze-active'] ) ? $options['breeze-active'] : '1' ),
+		'breeze-cross-origin'     => ( isset( $options['breeze-cross-origin'] ) ? $options['breeze-cross-origin'] : '0' ),
+		'breeze-disable-admin'    => ( isset( $options['breeze-disable-admin'] ) ? $options['breeze-disable-admin'] : array() ),
+		'breeze-gzip-compression' => ( isset( $options['breeze-gzip-compression'] ) ? $options['breeze-gzip-compression'] : '1' ),
+		'breeze-browser-cache'    => ( isset( $options['breeze-browser-cache'] ) ? $options['breeze-browser-cache'] : '1' ),
+		'breeze-lazy-load'        => ( isset( $options['breeze-lazy-load'] ) ? $options['breeze-lazy-load'] : '0' ),
+		'breeze-lazy-load-native' => ( isset( $options['breeze-lazy-load-native'] ) ? $options['breeze-lazy-load-native'] : '0' ),
+		'breeze-desktop-cache'    => '1',
+		'breeze-mobile-cache'     => '1',
+		'breeze-display-clean'    => '1',
+		'breeze-ttl'              => ( isset( $options['breeze-ttl'] ) ? $options['breeze-ttl'] : 1440 ),
+	);
+
+	$file = array(
+		'breeze-minify-html'        => ( isset( $options['breeze-minify-html'] ) ? $options['breeze-minify-html'] : '0' ),
+		// --
+		'breeze-minify-css'         => ( isset( $options['breeze-minify-css'] ) ? $options['breeze-minify-css'] : '0' ),
+		'breeze-font-display-swap'  => ( isset( $options['breeze-font-display-swap'] ) ? $options['breeze-font-display-swap'] : '0' ),
+		'breeze-group-css'          => ( isset( $options['breeze-group-css'] ) ? $options['breeze-group-css'] : '0' ),
+		'breeze-exclude-css'        => ( isset( $options['breeze-exclude-css'] ) ? $options['breeze-exclude-css'] : array() ),
+		'breeze-include-inline-css' => ( isset( $options['breeze-include-inline-css'] ) ? $options['breeze-include-inline-css'] : '0' ),
+		// --
+		'breeze-minify-js'          => ( isset( $options['breeze-minify-js'] ) ? $options['breeze-minify-js'] : '0' ),
+		'breeze-group-js'           => ( isset( $options['breeze-group-js'] ) ? $options['breeze-group-js'] : '0' ),
+		'breeze-include-inline-js'  => ( isset( $options['breeze-include-inline-js'] ) ? $options['breeze-include-inline-js'] : '0' ),
+		'breeze-exclude-js'         => ( isset( $options['breeze-exclude-js'] ) ? $options['breeze-exclude-js'] : array() ),
+		'breeze-move-to-footer-js'  => ( isset( $options['breeze-move-to-footer-js'] ) ? $options['breeze-move-to-footer-js'] : array() ),
+		'breeze-defer-js'           => ( isset( $options['breeze-defer-js'] ) ? $options['breeze-defer-js'] : array() ),
+		'breeze-enable-js-delay'    => ( isset( $options['breeze-enable-js-delay'] ) ? $options['breeze-enable-js-delay'] : '0' ),
+		'breeze-delay-js-scripts'   => ( isset( $options['breeze-delay-js-scripts'] ) ? $options['breeze-delay-js-scripts'] : array() ),
+
+	);
+
+	$preload = array(
+		'breeze-preload-fonts' => ( isset( $options['breeze-preload-fonts'] ) ? $options['breeze-preload-fonts'] : array() ),
+		'breeze-preload-links' => ( isset( $options['breeze-preload-links'] ) ? $options['breeze-preload-links'] : '0' ),
+	);
+
+	$advanced = array(
+		'breeze-exclude-urls'  => ( isset( $options['breeze-exclude-urls'] ) ? $options['breeze-exclude-urls'] : array() ),
+		'cached-query-strings' => ( isset( $options['cached-query-strings'] ) ? $options['cached-query-strings'] : array() ),
+		'breeze-wp-emoji'      => ( isset( $options['breeze-wp-emoji'] ) ? $options['breeze-wp-emoji'] : '0' ),
+	);
+
+	$wp_content = substr( WP_CONTENT_DIR, strlen( ABSPATH ) );
+	$cdn        = array(
+		'cdn-active'          => ( isset( $options['cdn-active'] ) ? $options['cdn-active'] : '0' ),
+		'cdn-relative-path'   => ( isset( $options['cdn-relative-path'] ) ? $options['cdn-relative-path'] : '1' ),
+		'cdn-url'             => ( isset( $options['cdn-url'] ) ? $options['cdn-url'] : '' ),
+		'cdn-content'         => ( isset( $options['cdn-content'] ) ? $options['cdn-content'] : array( 'wp-includes', $wp_content ) ),
+		'cdn-exclude-content' => ( isset( $options['cdn-exclude-content'] ) ? $options['cdn-exclude-content'] : array( '.php' ) ),
+	);
+
+	$varnish = array(
+		'auto-purge-varnish'       => ( isset( $options['auto-purge-varnish'] ) ? $options['auto-purge-varnish'] : '1' ),
+		'breeze-varnish-server-ip' => ( isset( $options['breeze-varnish-server-ip'] ) ? $options['breeze-varnish-server-ip'] : '127.0.0.1' ),
+	);
+
+	if ( true === $is_sigle ) {
+		breeze_update_option( 'basic_settings', $basic, true );
+		breeze_update_option( 'file_settings', $file, true );
+		breeze_update_option( 'preload_settings', $preload, true );
+		breeze_update_option( 'advanced_settings', $advanced, true );
+		breeze_update_option( 'cdn_integration', $cdn, true );
+		breeze_update_option( 'varnish_cache', $varnish, true );
+	}
+
+	if ( false === $is_sigle && ! empty( $subsite_id ) ) {
+		update_blog_option( $subsite_id, 'breeze_basic_settings', $basic );
+		update_blog_option( $subsite_id, 'breeze_file_settings', $file );
+		update_blog_option( $subsite_id, 'breeze_preload_settings', $preload );
+		update_blog_option( $subsite_id, 'breeze_advanced_settings', $advanced );
+		update_blog_option( $subsite_id, 'breeze_cdn_integration', $cdn );
+		update_blog_option( $subsite_id, 'breeze_varnish_cache', $varnish );
+	}
+
+	if ( true === $is_root ) {
+		update_site_option( 'breeze_basic_settings', $basic );
+		update_site_option( 'breeze_file_settings', $file );
+		update_site_option( 'breeze_preload_settings', $preload );
+		update_site_option( 'breeze_advanced_settings', $advanced );
+		update_site_option( 'breeze_cdn_integration', $cdn );
+		update_site_option( 'breeze_varnish_cache', $varnish );
+	}
 }

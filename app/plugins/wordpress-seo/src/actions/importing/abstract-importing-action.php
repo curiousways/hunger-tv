@@ -3,13 +3,11 @@
 namespace Yoast\WP\SEO\Actions\Importing;
 
 use Exception;
-use wpdb;
-use Yoast\WP\SEO\Actions\Indexing\Indexation_Action_Interface;
-use Yoast\WP\SEO\Actions\Indexing\Limited_Indexing_Action_Interface;
-use Yoast\WP\SEO\Helpers\Indexable_To_Postmeta_Helper;
 use Yoast\WP\SEO\Helpers\Options_Helper;
-use Yoast\WP\SEO\Helpers\Wpdb_Helper;
-use Yoast\WP\SEO\Repositories\Indexable_Repository;
+use Yoast\WP\SEO\Helpers\Sanitization_Helper;
+use Yoast\WP\SEO\Services\Importing\Aioseo_Replacevar_Handler;
+use Yoast\WP\SEO\Services\Importing\Aioseo_Robots_Provider_Service;
+use Yoast\WP\SEO\Services\Importing\Aioseo_Robots_Transformer_Service;
 
 /**
  * Importing action interface.
@@ -31,27 +29,6 @@ abstract class Abstract_Importing_Action implements Importing_Action_Interface {
 	const TYPE = null;
 
 	/**
-	 * Represents the indexables repository.
-	 *
-	 * @var Indexable_Repository
-	 */
-	protected $indexable_repository;
-
-	/**
-	 * The WordPress database instance.
-	 *
-	 * @var wpdb
-	 */
-	protected $wpdb;
-
-	/**
-	 * The indexable_to_postmeta helper.
-	 *
-	 * @var Indexable_To_Postmeta_Helper
-	 */
-	protected $indexable_to_postmeta;
-
-	/**
 	 * The options helper.
 	 *
 	 * @var Options_Helper
@@ -59,32 +36,54 @@ abstract class Abstract_Importing_Action implements Importing_Action_Interface {
 	protected $options;
 
 	/**
-	 * The wpdb helper.
+	 * The sanitization helper.
 	 *
-	 * @var Wpdb_Helper
+	 * @var Sanitization_Helper
 	 */
-	protected $wpdb_helper;
+	protected $sanitization;
+
+	/**
+	 * The replacevar handler.
+	 *
+	 * @var Aioseo_Replacevar_Handler
+	 */
+	protected $replacevar_handler;
+
+	/**
+	 * The robots provider service.
+	 *
+	 * @var Aioseo_Robots_Provider_Service
+	 */
+	protected $robots_provider;
+
+	/**
+	 * The robots transformer service.
+	 *
+	 * @var Aioseo_Robots_Transformer_Service
+	 */
+	protected $robots_transformer;
 
 	/**
 	 * Abstract_Importing_Action constructor.
 	 *
-	 * @param Indexable_Repository         $indexable_repository  The indexables repository.
-	 * @param wpdb                         $wpdb                  The WordPress database instance.
-	 * @param Indexable_To_Postmeta_Helper $indexable_to_postmeta The indexable_to_postmeta helper.
-	 * @param Options_Helper               $options               The options helper.
-	 * @param Wpdb_Helper                  $wpdb_helper           The wpdb_helper helper.
+	 * @param Options_Helper                    $options            The options helper.
+	 * @param Sanitization_Helper               $sanitization       The sanitization helper.
+	 * @param Aioseo_Replacevar_Handler         $replacevar_handler The replacevar handler.
+	 * @param Aioseo_Robots_Provider_Service    $robots_provider    The robots provider service.
+	 * @param Aioseo_Robots_Transformer_Service $robots_transformer The robots transfomer service.
 	 */
 	public function __construct(
-		Indexable_Repository $indexable_repository,
-		wpdb $wpdb,
-		Indexable_To_Postmeta_Helper $indexable_to_postmeta,
 		Options_Helper $options,
-		Wpdb_Helper $wpdb_helper ) {
-		$this->indexable_repository  = $indexable_repository;
-		$this->wpdb                  = $wpdb;
-		$this->indexable_to_postmeta = $indexable_to_postmeta;
-		$this->options               = $options;
-		$this->wpdb_helper           = $wpdb_helper;
+		Sanitization_Helper $sanitization,
+		Aioseo_Replacevar_Handler $replacevar_handler,
+		Aioseo_Robots_Provider_Service $robots_provider,
+		Aioseo_Robots_Transformer_Service $robots_transformer
+	) {
+		$this->options            = $options;
+		$this->sanitization       = $sanitization;
+		$this->replacevar_handler = $replacevar_handler;
+		$this->robots_provider    = $robots_provider;
+		$this->robots_transformer = $robots_transformer;
 	}
 
 	/**
@@ -124,13 +123,33 @@ abstract class Abstract_Importing_Action implements Importing_Action_Interface {
 	}
 
 	/**
-	 * Gets the cursor id (to be used as a key for the import_cursors option).
+	 * Can the current action import the data from plugin $plugin of type $type?
 	 *
-	 * @return string The cursor id.
+	 * @param string $plugin The plugin to import from.
+	 * @param string $type   The type of data to import.
+	 *
+	 * @return bool True if this action can handle the combination of Plugin and Type.
+	 *
+	 * @throws Exception If the TYPE constant is not set in the child class.
 	 */
-	protected function get_cursor_id() {
-		$class = get_class( $this );
-		return $class::PLUGIN . '_' . $class::TYPE;
+	public function is_compatible_with( $plugin = null, $type = null ) {
+		if ( empty( $plugin ) && empty( $type ) ) {
+			return true;
+		}
+
+		if ( $plugin === $this->get_plugin() && empty( $type ) ) {
+			return true;
+		}
+
+		if ( empty( $plugin ) && $type === $this->get_type() ) {
+			return true;
+		}
+
+		if ( $plugin === $this->get_plugin() && $type === $this->get_type() ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -179,9 +198,37 @@ abstract class Abstract_Importing_Action implements Importing_Action_Interface {
 	}
 
 	/**
-	 * Creates a query for gathering to-be-imported data from the database.
+	 * Gets the cursor id.
 	 *
-	 * @return string The query to use for importing or counting the number of items to import.
+	 * @return string The cursor id.
 	 */
-	abstract public function query();
+	protected function get_cursor_id() {
+		return $this->get_plugin() . '_' . $this->get_type();
+	}
+
+	/**
+	 * Minimally transforms data to be imported.
+	 *
+	 * @param string $meta_data The meta data to be imported.
+	 *
+	 * @return string The transformed meta data.
+	 */
+	public function simple_import( $meta_data ) {
+		// Transform the replace vars into Yoast replace vars.
+		$transformed_data = $this->replacevar_handler->transform( $meta_data );
+
+		return $this->sanitization->sanitize_text_field( \html_entity_decode( $transformed_data ) );
+	}
+
+	/**
+	 * Transforms URL to be imported.
+	 *
+	 * @param string $meta_data The meta data to be imported.
+	 *
+	 * @return string The transformed meta data.
+	 */
+	public function url_import( $meta_data ) {
+		// We put null as the allowed protocols here, to have the WP default allowed protocols, see https://developer.wordpress.org/reference/functions/wp_allowed_protocols.
+		return $this->sanitization->sanitize_url( $meta_data, null );
+	}
 }

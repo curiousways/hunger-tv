@@ -122,7 +122,7 @@ class Breeze_Lazy_Load {
 				// If native is enabled.
 				if ( true === $use_native ) {
 					$loading = $image_element->getAttribute( 'loading' );
-					if ( ! empty( $loading ) ) {
+					if ( empty( $loading ) ) {
 						$image_element->setAttribute( 'loading', 'lazy' );
 					}
 				} else {

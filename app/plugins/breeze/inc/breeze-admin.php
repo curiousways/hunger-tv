@@ -57,9 +57,9 @@ class Breeze_Admin {
 				add_action( 'admin_notices', array( $this, 'installing_notices' ) );
 			}
 
-			$config = breeze_get_option( 'basic_settings' );
+			$breeze_display_clean = Breeze_Options_Reader::get_option_value( 'breeze-display-clean' );
 
-			if ( isset( $config['breeze-display-clean'] ) && $config['breeze-display-clean'] ) {
+			if ( isset( $breeze_display_clean ) && $breeze_display_clean ) {
 				//register top bar menu
 				add_action( 'admin_bar_menu', array( $this, 'register_admin_bar_menu' ), 999 );
 			}
@@ -82,15 +82,18 @@ class Breeze_Admin {
 	 * @access public
 	 */
 	public function breeze_lazy_load() {
-		$advanced             = breeze_get_option( 'advanced_settings' );
+
 		$is_lazy_load_enabled = false;
 		$is_lazy_load_native  = false;
 
-		if ( isset( $advanced['breeze-lazy-load'] ) ) {
-			$is_lazy_load_enabled = filter_var( $advanced['breeze-lazy-load'], FILTER_VALIDATE_BOOLEAN );
+		$option_breeze_lazy_load        = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load' );
+		$option_breeze_lazy_load_native = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-native' );
+
+		if ( isset( $option_breeze_lazy_load ) ) {
+			$is_lazy_load_enabled = filter_var( $option_breeze_lazy_load, FILTER_VALIDATE_BOOLEAN );
 		}
-		if ( isset( $advanced['breeze-lazy-load-native'] ) ) {
-			$is_lazy_load_native = filter_var( $advanced['breeze-lazy-load-native'], FILTER_VALIDATE_BOOLEAN );
+		if ( isset( $option_breeze_lazy_load_native ) ) {
+			$is_lazy_load_native = filter_var( $option_breeze_lazy_load_native, FILTER_VALIDATE_BOOLEAN );
 		}
 
 		if ( true === $is_lazy_load_enabled && false === $is_lazy_load_native ) {
@@ -98,11 +101,7 @@ class Breeze_Admin {
 				wp_enqueue_script( 'jquery' );
 			}
 
-			$script_load = '.min';
-			if ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) {
-				$script_load = '';
-			}
-			wp_enqueue_script( 'breeze-lazy', plugins_url( 'assets/js/breeze-lazy-load' . $script_load . '.js', dirname( __FILE__ ) ), array(), BREEZE_VERSION, true );
+			wp_enqueue_script( 'breeze-lazy', plugins_url( 'assets/js/js-front-end/breeze-lazy-load.min.js', dirname( __FILE__ ) ), array(), BREEZE_VERSION, true );
 		}
 	}
 
@@ -153,15 +152,21 @@ class Breeze_Admin {
 		if ( ! wp_script_is( 'jquery', 'enqueued' ) ) {
 			wp_enqueue_script( 'jquery' );
 		}
-		wp_enqueue_script( 'breeze-backend', plugins_url( 'assets/js/breeze-backend.js', dirname( __FILE__ ) ), array( 'jquery' ), BREEZE_VERSION, true );
-		wp_enqueue_style( 'breeze-topbar', plugins_url( 'assets/css/topbar.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION );
-		wp_enqueue_style( 'breeze-notice', plugins_url( 'assets/css/notice.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION );
+		$min = '.min';
+		if ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) {
+			$min = '';
+		}
+		wp_enqueue_script( 'breeze-backend', plugins_url( 'assets/js/breeze-main' . $min . '.js', dirname( __FILE__ ) ), array( 'jquery' ), time(), true ); // BREEZE_VERSION
+		#wp_enqueue_style( 'breeze-topbar', plugins_url( 'assets/css/topbar.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION );
+		wp_enqueue_style( 'breeze-notice', plugins_url( 'assets/css/breeze-admin-global.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION );
 		$current_screen = get_current_screen();
 		if ( $current_screen->base == 'settings_page_breeze' || $current_screen->base == 'settings_page_breeze-network' ) {
 			//add css
-			wp_enqueue_style( 'breeze-style', plugins_url( 'assets/css/style.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION );
+			wp_enqueue_style( 'breeze-fonts', plugins_url( 'assets/css/breeze-fonts.css', dirname( __FILE__ ) ), array(), BREEZE_VERSION ); // BREEZE_VERSION
+			wp_enqueue_style( 'breeze-style', plugins_url( 'assets/css/breeze-admin.css', dirname( __FILE__ ) ), array( 'breeze-fonts' ), time() ); // BREEZE_VERSION
+
 			//js
-			wp_enqueue_script( 'breeze-configuration', plugins_url( 'assets/js/breeze-configuration.js', dirname( __FILE__ ) ), array( 'jquery' ), BREEZE_VERSION, true );
+			#wp_enqueue_script( 'breeze-configuration', plugins_url( 'assets/js/breeze-configuration.js', dirname( __FILE__ ) ), array( 'jquery' ), BREEZE_VERSION, true );
 
 			// Include the required jQuery UI Core & Libraries
 			wp_enqueue_script( 'jquery-ui-core' );
@@ -169,12 +174,16 @@ class Breeze_Admin {
 			wp_enqueue_script( 'jquery-ui-accordion' );
 			wp_enqueue_script( 'jquery-ui-sortable' );
 			wp_enqueue_script( 'jquery-ui-widget' );
+
+
+
 		}
 
 		$token_name = array(
 			'breeze_purge_varnish'  => wp_create_nonce( '_breeze_purge_varnish' ),
 			'breeze_purge_database' => wp_create_nonce( '_breeze_purge_database' ),
 			'breeze_purge_cache'    => wp_create_nonce( '_breeze_purge_cache' ),
+			'breeze_save_options'   => wp_create_nonce( '_breeze_save_options' ),
 		);
 
 		wp_localize_script( 'breeze-backend', 'breeze_token_name', $token_name );
@@ -342,22 +351,44 @@ class Breeze_Admin {
 		}
 
 		$default_basic = array(
-			'breeze-active'             => '1',
-			'breeze-ttl'                => '',
-			'breeze-minify-html'        => '0',
-			'breeze-minify-css'         => '0',
-			'breeze-font-display-swap'  => '0',
-			'breeze-minify-js'          => '0',
-			'breeze-gzip-compression'   => '1',
-			'breeze-desktop-cache'      => '1',
-			'breeze-browser-cache'      => '1',
-			'breeze-mobile-cache'       => '1',
-			'breeze-disable-admin'      => $active_cache_users,
-			'breeze-display-clean'      => '1',
-			'breeze-include-inline-js'  => '0',
-			'breeze-include-inline-css' => '0',
+			'breeze-active'           => '1',
+			'breeze-cross-origin'     => '0',
+			'breeze-disable-admin'    => $active_cache_users,
+			'breeze-gzip-compression' => '1',
+			'breeze-desktop-cache'    => '1',
+			'breeze-mobile-cache'     => '1',
+			'breeze-browser-cache'    => '1',
+			'breeze-lazy-load'        => '0',
+			'breeze-lazy-load-native' => '0',
+			'breeze-display-clean'    => '1',
+
 		);
 		$basic         = array_merge( $default_basic, $basic );
+
+		// Default File
+		$file = breeze_get_option( 'file_settings' );
+		if ( empty( $advanced ) ) {
+			$file = array();
+		}
+
+		$default_file = array(
+			'breeze-minify-html'       => '0',
+			// --
+			'breeze-minify-css'        => '0',
+			'breeze-font-display-swap' => '0',
+			'breeze-group-css'         => '0',
+			'breeze-exclude-css'       => array(),
+			// --
+			'breeze-minify-js'         => '0',
+			'breeze-group-js'          => '0',
+			'breeze-include-inline-js' => '0',
+			'breeze-exclude-js'        => array(),
+			'breeze-move-to-footer-js' => array(),
+			'breeze-defer-js'          => array(),
+			'breeze-enable-js-delay'   => '0',
+		);
+
+		$file = array_merge( $default_file, $file );
 
 		// Default Advanced
 		$advanced = breeze_get_option( 'advanced_settings' );
@@ -365,18 +396,9 @@ class Breeze_Admin {
 			$advanced = array();
 		}
 		$default_advanced = array(
-			'breeze-exclude-urls'      => array(),
-			'breeze-group-css'         => '0',
-			'breeze-group-js'          => '0',
-			'breeze-lazy-load'         => '0',
-			'breeze-lazy-load-native'  => '0',
-			'breeze-preload-links'     => '0',
-			'breeze-exclude-css'       => array(),
-			'breeze-exclude-js'        => array(),
-			'breeze-move-to-footer-js' => array(),
-			'breeze-defer-js'          => array(),
-			'breeze-enable-js-delay'   => '0',
-			'cached-query-strings'     => array(),
+			'breeze-exclude-urls'  => array(),
+			'cached-query-strings' => array(),
+			'breeze-wp-emoji'      => '0',
 		);
 
 		$is_advanced = get_option( 'breeze_advanced_settings_120' );
@@ -436,13 +458,27 @@ class Breeze_Admin {
 		);
 		$cdn         = array_merge( $default_cdn, $cdn );
 
+
+		// Preload default
+		$preload = breeze_get_option( 'preload_settings' );
+		if ( empty( $preload ) ) {
+			$preload = array();
+		}
+		$default_preload = array(
+			'breeze-preload-fonts' => array(),
+			'breeze-preload-links' => '0',
+		);
+		$preload         = array_merge( $default_preload, $preload );
+
 		// Varnish default
 		$varnish = breeze_get_option( 'varnish_cache' );
 		if ( empty( $varnish ) ) {
 			$varnish = array();
 		}
 		$default_varnish = array(
-			'auto-purge-varnish' => '1',
+			'auto-purge-varnish'       => '1',
+			'breeze-varnish-server-ip' => '127.0.0.1',
+			'breeze-ttl'               => 1440,
 		);
 		$varnish         = array_merge( $default_varnish, $varnish );
 
@@ -465,20 +501,31 @@ class Breeze_Admin {
 				}
 
 				$blog_advanced = get_blog_option( (int) $blog->blog_id, 'breeze_advanced_settings', '' );
-				if ( empty( $blog_advanced ) || empty( $is_advanced ) ) {
-					$save_advanced = $advanced;
+				if ( empty( $blog_advanced ) ) {
+					update_blog_option( (int) $blog->blog_id, 'breeze_advanced_settings', $advanced );
+				}
+
+				$blog_preload = get_blog_option( (int) $blog->blog_id, 'breeze_preload_settings', '' );
+				if ( empty( $blog_preload ) ) {
+					update_blog_option( (int) $blog->blog_id, 'breeze_preload_settings', $preload );
+				}
+
+				$blog_file = get_blog_option( (int) $blog->blog_id, 'breeze_file_settings', '' );
+				if ( empty( $blog_file ) || empty( $is_advanced ) ) {
+					$save_file = $file;
 
 					if ( isset( $breeze_delay_js_scripts ) ) {
-						if ( empty( $blog_advanced ) ) {
-							$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
+						if ( empty( $blog_file ) ) {
+							$save_file['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 						} else {
-							$save_advanced                            = $blog_advanced;
-							$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
+							$save_file                            = $blog_file;
+							$save_file['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 						}
 
 					}
-					update_blog_option( (int) $blog->blog_id, 'breeze_advanced_settings', $save_advanced );
+					update_blog_option( (int) $blog->blog_id, 'breeze_file_settings', $save_file );
 				}
+
 
 				$blog_cdn = get_blog_option( (int) $blog->blog_id, 'breeze_cdn_integration', '' );
 				if ( empty( $blog_cdn ) ) {
@@ -498,20 +545,30 @@ class Breeze_Admin {
 				}
 
 				$network_advanced = breeze_get_option( 'advanced_settings' );
-				if ( ! $network_advanced || empty( $is_advanced ) ) {
-					$save_advanced = $advanced;
+				if ( ! $network_advanced ) {
+					breeze_update_option( 'advanced_settings', $advanced );
+				}
+
+				$network_preload = breeze_get_option( 'preload_settings' );
+				if ( ! $network_preload ) {
+					breeze_update_option( 'preload_settings', $preload );
+				}
+
+				$network_file = breeze_get_option( 'file_settings' );
+				if ( ! $network_file || empty( $is_advanced ) ) {
+					$save_advanced = $file;
 
 					if ( isset( $breeze_delay_js_scripts ) ) {
-						if ( empty( $network_advanced ) ) {
+						if ( empty( $network_file ) ) {
 							$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 						} else {
-							$save_advanced                            = $network_advanced;
+							$save_advanced                            = $network_file;
 							$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 						}
 
 					}
 
-					breeze_update_option( 'advanced_settings', $save_advanced, true );
+					breeze_update_option( 'file_settings', $save_advanced, true );
 				}
 
 				$network_cdn = breeze_get_option( 'cdn_integration' );
@@ -533,19 +590,29 @@ class Breeze_Admin {
 			}
 
 			$singe_network_advanced = breeze_get_option( 'advanced_settings' );
-			if ( ! $singe_network_advanced || empty( $is_advanced ) ) {
+			if ( ! $singe_network_advanced ) {
+				breeze_update_option( 'advanced_settings', $advanced );
+			}
+
+			$singe_network_preload = breeze_get_option( 'preload_settings' );
+			if ( ! $singe_network_preload ) {
+				breeze_update_option( 'preload_settings', $preload );
+			}
+
+			$singe_network_file = breeze_get_option( 'file_settings' );
+			if ( ! $singe_network_file || empty( $is_advanced ) ) {
 				$save_advanced = $advanced;
 
 				if ( isset( $breeze_delay_js_scripts ) ) {
-					if ( empty( $singe_network_advanced ) ) {
+					if ( empty( $singe_network_file ) ) {
 						$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 					} else {
-						$save_advanced                            = $singe_network_advanced;
+						$save_advanced                            = $singe_network_file;
 						$save_advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 					}
 				}
 
-				breeze_update_option( 'advanced_settings', $save_advanced, true );
+				breeze_update_option( 'file_settings', $save_advanced, true );
 			}
 
 			$singe_network_cdn = breeze_get_option( 'cdn_integration' );
@@ -618,24 +685,27 @@ class Breeze_Admin {
 				);
 
 				// Delete NETWORK level options.
-				$network_id = get_current_network_id();
-				delete_network_option( $network_id, 'breeze_basic_settings' );
-				delete_network_option( $network_id, 'breeze_advanced_settings' );
-				delete_network_option( $network_id, 'breeze_cdn_integration' );
-				delete_network_option( $network_id, 'breeze_varnish_cache' );
-				delete_network_option( $network_id, 'breeze_inherit_settings' );
-				delete_network_option( $network_id, 'breeze_show_incompatibility' );
-				delete_network_option( $network_id, 'breeze_first_install' );
-				delete_network_option( $network_id, 'breeze_advanced_settings_120' );
-				delete_network_option( $network_id, 'breeze_new_update' );
-				delete_network_option( $network_id, 'breeze_ecommerce_detect' );
-				delete_network_option( $network_id, 'breeze_exclude_url_pages' );
-				delete_network_option( $network_id, 'breeze_hide_notice' );
+				delete_site_option( 'breeze_basic_settings' );
+				delete_site_option( 'breeze_preload_settings' );
+				delete_site_option( 'breeze_file_settings' );
+				delete_site_option( 'breeze_advanced_settings' );
+				delete_site_option( 'breeze_cdn_integration' );
+				delete_site_option( 'breeze_varnish_cache' );
+				delete_site_option( 'breeze_inherit_settings' );
+				delete_site_option( 'breeze_show_incompatibility' );
+				delete_site_option( 'breeze_first_install' );
+				delete_site_option( 'breeze_advanced_settings_120' );
+				delete_site_option( 'breeze_new_update' );
+				delete_site_option( 'breeze_ecommerce_detect' );
+				delete_site_option( 'breeze_exclude_url_pages' );
+				delete_site_option( 'breeze_hide_notice' );
 
 				// Delete options for each sub-blog.
 				foreach ( $sites as $blog_id ) {
 					switch_to_blog( $blog_id );
 					delete_option( 'breeze_basic_settings' );
+					delete_option( 'breeze_preload_settings' );
+					delete_option( 'breeze_file_settings' );
 					delete_option( 'breeze_advanced_settings' );
 					delete_option( 'breeze_cdn_integration' );
 					delete_option( 'breeze_varnish_cache' );
@@ -652,6 +722,8 @@ class Breeze_Admin {
 			} else {
 				// Delete options for each sub-blog.
 				delete_option( 'breeze_basic_settings' );
+				delete_option( 'breeze_preload_settings' );
+				delete_option( 'breeze_file_settings' );
 				delete_option( 'breeze_advanced_settings' );
 				delete_option( 'breeze_cdn_integration' );
 				delete_option( 'breeze_varnish_cache' );
@@ -672,7 +744,7 @@ class Breeze_Admin {
 	 * Render tab for the settings in back-end.
 	 */
 	public static function render( $tab ) {
-		require_once( BREEZE_PLUGIN_DIR . 'views/tabs/' . $tab . '.php' );
+		require_once( BREEZE_PLUGIN_DIR . 'views/option-tabs/' . $tab . '-tab.php' );
 	}
 
 	/**

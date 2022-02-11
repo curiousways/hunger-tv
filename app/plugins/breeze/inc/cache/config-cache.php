@@ -51,8 +51,8 @@ class Breeze_ConfigCache {
 
 			foreach ( $blogs as $blog_id ) {
 				switch_to_blog( $blog_id );
-				//$config = breeze_get_option( 'basic_settings' );
-				//if ( ! empty( $config['breeze-active'] ) ) {
+
+				//if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 					$inherit_option = get_blog_option( $blog_id, 'breeze_inherit_settings', '0' );
 					$inherit_option = filter_var( $inherit_option, FILTER_VALIDATE_BOOLEAN );
 					if ( false === $inherit_option ) {
@@ -66,9 +66,8 @@ class Breeze_ConfigCache {
 				restore_current_blog();
 			}
 		} else {
-			$config = breeze_get_option( 'basic_settings' );
 
-			if ( ! empty( $config['breeze-active'] ) ) {
+			if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 				$cache_configs['breeze-config'][] = preg_replace( '(^https?://)', '', site_url() );
 			}
 		}
@@ -146,9 +145,19 @@ class Breeze_ConfigCache {
 			$file_string .= "\n\t" . 'return $config;';
 			$file_string .= "\n}";
 			$file_string .= "\n" . '$config = breeze_fetch_configuration_data( $site_url );';
-			//$file_string .= "\n" . 'if ( empty( $config ) && false === filter_var( SUBDOMAIN_INSTALL, FILTER_VALIDATE_BOOLEAN ) && true === filter_var( MULTISITE, FILTER_VALIDATE_BOOLEAN ) ) {';
-			//$file_string .= "\n\t" . '$config   = breeze_fetch_configuration_data( $domain );';
-			//$file_string .= "\n" . '}';
+			$file_string .= "\n" . 'if ( ';
+			$file_string .= "\n" . ' empty( $config ) && ';
+			$file_string .= "\n" . ' false === filter_var( SUBDOMAIN_INSTALL, FILTER_VALIDATE_BOOLEAN ) && ';
+			$file_string .= "\n" . ' true === filter_var( MULTISITE, FILTER_VALIDATE_BOOLEAN ) && ';
+			$file_string .= "\n" . ' false === strpos( $site_url, "robots.txt") && ';
+			$file_string .= "\n" . ' false === strpos( $site_url, "favicon.ico") && ';
+			$file_string .= "\n" . ' false === strpos( $site_url, "wp-cron.php")';
+			$file_string .= "\n" . ' ) {';
+			$file_string .= "\n\t" . '$xplode = explode( "/", $site_url);';
+			$file_string .= "\n\t" . 'if(isset($xplode[0])){';
+			$file_string .= "\n\t\t" . '$config   = breeze_fetch_configuration_data( $domain );';
+			$file_string .= "\n\t" . '}';
+			$file_string .= "\n" . '}';
 		}
 
 		$file_string .= "\nif ( empty( \$config ) || ! isset( \$config['config_path'] ) || ! @file_exists( \$config['config_path'] ) ) { return; }" .
@@ -172,12 +181,11 @@ class Breeze_ConfigCache {
 
 		if ( true === $create_root_config ) {
 			$network_id   = get_current_network_id();
-			$settings     = get_network_option( $network_id, 'breeze_basic_settings' );
-			$config       = get_network_option( $network_id, 'breeze_advanced_settings' );
+			$settings     = Breeze_Options_Reader::fetch_all_saved_settings(true);
+			#$settings     = get_network_option( $network_id, 'breeze_basic_settings' );
 			$homepage_url = network_site_url();
 		} else {
-			$settings     = breeze_get_option( 'basic_settings' );
-			$config       = breeze_get_option( 'advanced_settings' );
+			$settings     = Breeze_Options_Reader::fetch_all_saved_settings();
 			$homepage_url = get_site_url();
 		}
 
@@ -196,9 +204,13 @@ class Breeze_ConfigCache {
 
 		$storage['wp-user-roles'] = breeze_all_wp_user_roles();
 
-		$storage['enabled-lazy-load']    = ( isset( $config['breeze-lazy-load'] ) ? $config['breeze-lazy-load'] : 0 );
-		$storage['use-lazy-load-native'] = ( isset( $config['breeze-lazy-load-native'] ) ? $config['breeze-lazy-load-native'] : 0 );
-		$storage['breeze-preload-links'] = ( isset( $config['breeze-preload-links'] ) ? $config['breeze-preload-links'] : 0 );
+		$lazy_load        = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load', false, $create_root_config );
+		$lazy_load_native = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-native', false, $create_root_config );
+		$preload_links    = Breeze_Options_Reader::get_option_value( 'breeze-preload-links', false, $create_root_config );
+
+		$storage['enabled-lazy-load']    = ( isset( $lazy_load ) ? $lazy_load : 0 );
+		$storage['use-lazy-load-native'] = ( isset( $lazy_load_native ) ? $lazy_load_native : 0 );
+		$storage['breeze-preload-links'] = ( isset( $preload_links ) ? $preload_links : 0 );
 
 
 		if ( isset( $_POST['woocommerce_default_customer_address'] ) ) {
@@ -330,17 +342,17 @@ class Breeze_ConfigCache {
 			}
 		}
 
-		if ( ! empty( $settings['breeze-disable-admin'] ) ) {
-			$storage['disable_per_adminuser'] = $settings['breeze-disable-admin'];
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-disable-admin', false, $create_root_config ) ) ) {
+			$storage['disable_per_adminuser'] = Breeze_Options_Reader::get_option_value( 'breeze-disable-admin', false, $create_root_config );
 		}
 
-		if ( ! empty( $config['cached-query-strings'] ) ) {
-			$storage['cached-query-strings'] = $config['cached-query-strings'];
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'cached-query-strings', false, $create_root_config ) ) ) {
+			$storage['cached-query-strings'] = Breeze_Options_Reader::get_option_value( 'cached-query-strings', false, $create_root_config );
 		}
 
 		$storage['exclude_url'] = array_merge(
 			$ecommerce_exclude_urls,
-			! empty( $config['breeze-exclude-urls'] ) ? $config['breeze-exclude-urls'] : array()
+			! empty( Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) ) ? Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) : array()
 		);
 
 		$saved_pages = get_option( 'breeze_exclude_url_pages', array() );
@@ -355,7 +367,7 @@ class Breeze_ConfigCache {
 
 			$storage['exclude_url'] = array_merge(
 				$saved_pages_urls,
-				! empty( $config['breeze-exclude-urls'] ) ? $config['breeze-exclude-urls'] : array(),
+				! empty( Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) ) ? Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) : array(),
 				$ecommerce_exclude_urls
 			);
 		}
@@ -366,7 +378,7 @@ class Breeze_ConfigCache {
 			if ( ! empty( $woocommerce_fb_feed_link ) ) {
 				$storage['exclude_url'] = array_merge(
 					$woocommerce_fb_feed_link,
-					! empty( $config['breeze-exclude-urls'] ) ? $config['breeze-exclude-urls'] : array(),
+					! empty( Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) ) ? Breeze_Options_Reader::get_option_value( 'breeze-exclude-urls', false, $create_root_config ) : array(),
 					$ecommerce_exclude_urls
 				);
 			}

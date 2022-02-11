@@ -1,6 +1,6 @@
 <?php
 /**
- *  @copyright 2017  Cloudways  https://www.cloudways.com
+ * @copyright 2017  Cloudways  https://www.cloudways.com
  *
  *  Original development of this plugin by JoomUnited https://www.joomunited.com/
  *
@@ -21,6 +21,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 class Breeze_PurgeCache {
 
 	public function set_action() {
@@ -35,14 +36,14 @@ class Breeze_PurgeCache {
 	/**
 	 * When user posts a comment, set a cookie so we don't show them page cache
 	 *
-	 * @param  WP_Comment $comment
-	 * @param  WP_User $user
+	 * @param WP_Comment $comment
+	 * @param WP_User $user
+	 *
 	 * @since  1.3
 	 */
 	public function set_comment_cookie_exceptions( $comment, $user ) {
-		$config = breeze_get_option( 'basic_settings' );
 		// File based caching only
-		if ( ! empty( $config['breeze-active'] ) ) {
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 
 			$post_id = $comment->comment_post_ID;
 
@@ -59,10 +60,8 @@ class Breeze_PurgeCache {
 			return;
 		}
 
-		$config = breeze_get_option( 'basic_settings' );
-
 		// File based caching only
-		if ( ! empty( $config['breeze-active'] ) ) {
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 			self::breeze_cache_flush();
 		}
 	}
@@ -71,9 +70,8 @@ class Breeze_PurgeCache {
 		if ( empty( $approved ) ) {
 			return;
 		}
-		$config = breeze_get_option( 'basic_settings' );
 		// File based caching only
-		if ( ! empty( $config['breeze-active'] ) ) {
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 			$post_id = $commentdata['comment_post_ID'];
 
 			global $wp_filesystem;
@@ -92,10 +90,8 @@ class Breeze_PurgeCache {
 
 	//            if a comments status changes, purge it's parent posts cache
 	public function purge_post_on_comment_status_change( $comment_ID, $comment_status ) {
-		$config = breeze_get_option( 'basic_settings' );
-
 		// File based caching only
-		if ( ! empty( $config['breeze-active'] ) ) {
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
 			$comment = get_comment( $comment_ID );
 			if ( ! empty( $comment ) ) {
 				$post_id = $comment->comment_post_ID;
@@ -153,8 +149,8 @@ class Breeze_PurgeCache {
 
 	/**
 	 * Return an instance of the current class, create one if it doesn't exist
-	 * @since  1.0
 	 * @return object
+	 * @since  1.0
 	 */
 	public static function factory() {
 
@@ -169,8 +165,9 @@ class Breeze_PurgeCache {
 	}
 
 }
-$breez_basic_settings = breeze_get_option( 'basic_settings' );
 
-if ( isset( $breez_basic_settings['breeze-active'] ) && $breez_basic_settings['breeze-active'] ) {
+$breeze_basic_settings = Breeze_Options_Reader::get_option_value( 'breeze-active' );
+
+if ( isset( $breeze_basic_settings ) && $breeze_basic_settings ) {
 	Breeze_PurgeCache::factory();
 }

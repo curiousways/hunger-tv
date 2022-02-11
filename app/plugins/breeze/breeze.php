@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Breeze
  * Description: Breeze is a WordPress cache plugin with extensive options to speed up your website. All the options including Varnish Cache are compatible with Cloudways hosting.
- * Version: 1.2.6
+ * Version: 2.0.1
  * Text Domain: breeze
  * Domain Path: /languages
  * Author: Cloudways
@@ -37,7 +37,7 @@ if ( ! defined( 'BREEZE_PLUGIN_DIR' ) ) {
 	define( 'BREEZE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 }
 if ( ! defined( 'BREEZE_VERSION' ) ) {
-	define( 'BREEZE_VERSION', '1.2.6' );
+	define( 'BREEZE_VERSION', '2.0.1' );
 }
 if ( ! defined( 'BREEZE_SITEURL' ) ) {
 	define( 'BREEZE_SITEURL', get_site_url() );
@@ -66,6 +66,8 @@ if ( ! defined( 'BREEZE_PLUGIN_URL' ) ) {
 define( 'BREEZE_CACHE_DELAY', true );
 define( 'BREEZE_CACHE_NOGZIP', true );
 define( 'BREEZE_ROOT_DIR', str_replace( BREEZE_WP_CONTENT_NAME, '', WP_CONTENT_DIR ) );
+// Options reader
+require_once BREEZE_PLUGIN_DIR . 'inc/class-breeze-options-reader.php';
 
 // Compatibility checks
 require_once BREEZE_PLUGIN_DIR . 'inc/plugin-incompatibility/class-breeze-incompatibility-plugins.php';
@@ -114,17 +116,13 @@ if ( is_admin() || 'cli' === php_sapi_name() ) {
 	);
 
 } else {
-	$cdn_conf        = breeze_get_option( 'cdn_integration' );
-	$basic_conf      = breeze_get_option( 'basic_settings' );
-	$config_advanced = breeze_get_option( 'advanced_settings' );
-
-	if ( ! empty( $cdn_conf['cdn-active'] )
-	     || ! empty( $basic_conf['breeze-minify-js'] )
-	     || ! empty( $basic_conf['breeze-minify-css'] )
-	     || ! empty( $basic_conf['breeze-minify-html'] )
-	     || ! empty( $config_advanced['breeze-defer-js'] )
-	     || ! empty( $config_advanced['breeze-move-to-footer-js'] )
-	     || ! empty( $config_advanced['breeze-delay-js-scripts'] )
+	if ( ! empty( Breeze_Options_Reader::get_option_value( 'cdn-active' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-js' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-css' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-html' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ) )
+	     || ! empty( Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' ) )
 	) {
 		// Call back ob start
 		ob_start( 'breeze_ob_start_callback' );
@@ -136,11 +134,11 @@ require_once( BREEZE_PLUGIN_DIR . 'inc/compatibility/class-breeze-shortpixel-com
 
 // Call back ob start - stack
 function breeze_ob_start_callback( $buffer ) {
-	$conf = breeze_get_option( 'cdn_integration' );
+
 	// Get buffer from minify
 	$buffer = apply_filters( 'breeze_minify_content_return', $buffer );
 
-	if ( ! empty( $conf ) || ! empty( $conf['cdn-active'] ) ) {
+	if ( ! empty( Breeze_Options_Reader::get_option_value( 'cdn-active' ) ) ) {
 		// Get buffer after remove query strings
 		$buffer = apply_filters( 'breeze_cdn_content_return', $buffer );
 	}
@@ -149,6 +147,7 @@ function breeze_ob_start_callback( $buffer ) {
 	return $buffer;
 }
 
+require_once( BREEZE_PLUGIN_DIR . 'views/option-tabs-loader.php' );
 // Minify
 
 require_once( BREEZE_PLUGIN_DIR . 'inc/minification/breeze-minify-main.php' );
@@ -288,7 +287,7 @@ function breeze_check_for_new_version() {
 
 	// This process can also be started by Wp-CLI.
 	if ( ! empty( get_option( 'breeze_new_update', '' ) ) ) {
-		#if ( 1 == 1 ) {
+
 		// This needs to happen only once.
 		if ( class_exists( 'Breeze_Configuration' ) && method_exists( 'Breeze_Configuration', 'update_htaccess' ) ) {
 			Breeze_Configuration::update_htaccess();
@@ -344,6 +343,9 @@ function breeze_check_for_new_version() {
 
 		// If the WP install is multi-site
 		if ( is_multisite() ) {
+			// Migrate old network settings if needed.
+			breeze_migrate_old_settings( false, 0, true );
+
 			$basic = get_site_option( 'breeze_basic_settings' );
 			if ( isset( $basic['breeze-disable-admin'] ) && ! is_array( $basic['breeze-disable-admin'] ) ) {
 				$all_user_roles     = breeze_all_wp_user_roles();
@@ -365,13 +367,13 @@ function breeze_check_for_new_version() {
 				update_site_option( 'breeze_basic_settings', $basic );
 			}
 
-			$advanced_network = get_site_option( 'breeze_advanced_settings' );
+			$advanced_network = get_site_option( 'breeze_file_settings' );
 			$is_advanced      = get_site_option( 'breeze_advanced_settings_120' );
 
 			if ( empty( $is_advanced ) ) {
 				$advanced_network['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 
-				update_site_option( 'breeze_advanced_settings', $advanced_network );
+				update_site_option( 'breeze_file_settings', $advanced_network );
 				update_site_option( 'breeze_advanced_settings_120', 'yes' );
 			}
 
@@ -384,7 +386,7 @@ function breeze_check_for_new_version() {
 					$advanced_network['breeze-enable-js-delay'] = '1';
 				}
 
-				update_site_option( 'breeze_advanced_settings', $advanced_network );
+				update_site_option( 'breeze_file_settings', $advanced_network );
 			}
 
 			// For multi-site we need to also reset the root config-file.
@@ -395,7 +397,8 @@ function breeze_check_for_new_version() {
 				foreach ( $blogs as $blog_data ) {
 					$blog_id = (int) $blog_data->blog_id;
 					switch_to_blog( $blog_id );
-
+					// Migrate old settings if needed.
+					breeze_migrate_old_settings( false, $blog_id );
 					// if the settings are inherited, then we do not need to refresh the config file.
 					$inherit_option = get_blog_option( $blog_id, 'breeze_inherit_settings', '' );
 					if ( '' === $inherit_option ) {
@@ -427,14 +430,14 @@ function breeze_check_for_new_version() {
 							update_blog_option( $blog_id, 'breeze_basic_settings', $basic );
 						}
 
-						$advanced_options = get_blog_option( $blog_id, 'breeze_advanced_settings' );
+						$advanced_options = get_blog_option( $blog_id, 'breeze_file_settings' );
 						$is_advanced      = get_blog_option( $blog_id, 'breeze_advanced_settings_120' );
 
 
 						if ( empty( $is_advanced ) && empty( $advanced_options['breeze-delay-js-scripts'] ) ) {
 							$advanced_options['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 
-							update_blog_option( $blog_id, 'breeze_advanced_settings', $advanced_options );
+							update_blog_option( $blog_id, 'breeze_file_settings', $advanced_options );
 							update_blog_option( $blog_id, 'breeze_advanced_settings_120', 'yes' );
 						}
 
@@ -447,7 +450,7 @@ function breeze_check_for_new_version() {
 							}
 
 
-							update_blog_option( $blog_id, 'breeze_advanced_settings', $advanced_options );
+							update_blog_option( $blog_id, 'breeze_file_settings', $advanced_options );
 						}
 
 						// Refresh breeze-cache.php file
@@ -461,6 +464,8 @@ function breeze_check_for_new_version() {
 				}
 			}
 		} else {
+			// Migrate old settings if needed.
+			breeze_migrate_old_settings();
 			// update cache for logged-in users from administrator only to all user roles.
 			$basic = get_option( 'breeze_basic_settings' );
 			if ( isset( $basic['breeze-disable-admin'] ) && ! is_array( $basic['breeze-disable-admin'] ) ) {
@@ -485,14 +490,14 @@ function breeze_check_for_new_version() {
 			}
 
 			// For single site.
-			$advanced    = breeze_get_option( 'advanced_settings' );
+			$advanced    = breeze_get_option( 'file_settings' );
 			$is_advanced = get_option( 'breeze_advanced_settings_120' );
 
 
 			if ( empty( $is_advanced ) ) {
 				$advanced['breeze-delay-js-scripts'] = $breeze_delay_js_scripts;
 
-				breeze_update_option( 'advanced_settings', $advanced, true );
+				breeze_update_option( 'file_settings', $advanced, true );
 				breeze_update_option( 'advanced_settings_120', 'yes', true );
 			}
 
@@ -505,7 +510,7 @@ function breeze_check_for_new_version() {
 				}
 
 
-				breeze_update_option( 'advanced_settings', $advanced, true );
+				breeze_update_option( 'file_settings', $advanced, true );
 			}
 			// Refresh breeze-cache.php file
 			Breeze_ConfigCache::factory()->write_config_cache();

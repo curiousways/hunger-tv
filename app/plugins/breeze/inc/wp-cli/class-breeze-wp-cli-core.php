@@ -357,8 +357,12 @@ class Breeze_WP_Cli_Core extends \WP_CLI_Command {
 					);
 				}
 			}
+			if ( ! isset( $json['breeze_file_settings'] ) && ! isset( $json['breeze_preload_settings'] ) ) {
+				$settings_action = Breeze_Settings_Import_Export::replace_options_old_to_new( $json, $level, true );
+			} else {
+				$settings_action = Breeze_Settings_Import_Export::replace_options_cli( $json, $level );
+			}
 
-			$settings_action = Breeze_Settings_Import_Export::replace_options_cli( $json, $level );
 
 			if ( true === $settings_action ) {
 				WP_CLI::success(

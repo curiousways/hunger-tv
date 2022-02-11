@@ -1,6 +1,6 @@
 <?php
 /**
- *  @copyright 2017  Cloudways  https://www.cloudways.com
+ * @copyright 2017  Cloudways  https://www.cloudways.com
  *
  *  Original development of this plugin by JoomUnited https://www.joomunited.com/
  *
@@ -21,9 +21,10 @@
 defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 class Breeze_PurgeCacheTime {
-	protected $timettl      = false;
-	protected $normalcache  = 0;
+	protected $timettl = false;
+	protected $normalcache = 0;
 	protected $varnishcache = 0;
+
 	public function __construct( $settings = null ) {
 		if ( isset( $settings['breeze-ttl'] ) ) {
 			$this->timettl = $settings['breeze-ttl'];
@@ -42,12 +43,14 @@ class Breeze_PurgeCacheTime {
 		add_filter( 'cron_schedules', array( $this, 'filter_cron_schedules' ) );
 
 	}
+
 	//     * Unschedule events
 	public function unschedule_events() {
 		$timestamp = wp_next_scheduled( 'breeze_purge_cache' );
 
 		wp_unschedule_event( $timestamp, 'breeze_purge_cache' );
 	}
+
 	//       set up schedule_events
 	public function schedule_events() {
 
@@ -56,6 +59,7 @@ class Breeze_PurgeCacheTime {
 		// Expire cache never
 		if ( isset( $this->timettl ) && (int) $this->timettl === 0 ) {
 			wp_unschedule_event( $timestamp, 'breeze_purge_cache' );
+
 			return;
 		}
 
@@ -102,17 +106,16 @@ class Breeze_PurgeCacheTime {
 		if ( ! $instance ) {
 			$instance = new self();
 		}
+
 		return $instance;
 	}
 }
 
-$basic   = breeze_get_option( 'basic_settings' );
-$varnish = breeze_get_option( 'varnish_cache' );
 //Enabled auto purge the varnish caching by time life
 $params = array(
-	'breeze-active'        => ( isset( $basic['breeze-active'] ) ? (int) $basic['breeze-active'] : 0 ),
-	'breeze-ttl'           => ( isset( $basic['breeze-ttl'] ) ? (int) $basic['breeze-ttl'] : 0 ),
-	'breeze-varnish-purge' => ( isset( $varnish['auto-purge-varnish'] ) ? (int) $varnish['auto-purge-varnish'] : 0 ),
+	'breeze-active'        => (int) Breeze_Options_Reader::get_option_value( 'breeze-active' ),
+	'breeze-ttl'           => (int) Breeze_Options_Reader::get_option_value( 'breeze-ttl' ),
+	'breeze-varnish-purge' => (int) Breeze_Options_Reader::get_option_value( 'auto-purge-varnish' ),
 );
 
 if ( $params['breeze-active'] || $params['breeze-varnish-purge'] ) {

@@ -184,6 +184,7 @@ class Breeze_Js_Deferred_Loading extends Breeze_MinificationBase {
 			$this->move_to_footer_js = $options['move_to_footer_js'];
 		}
 
+
 		// is there JS we should simply remove
 		$removableJS = apply_filters( 'breeze_filter_js_removables', '' );
 		if ( ! empty( $removableJS ) ) {
@@ -211,7 +212,7 @@ class Breeze_Js_Deferred_Loading extends Breeze_MinificationBase {
 			$ordered_moving_js    = array_map( array( $this, 'getpath' ), $ordered_moving_js );
 			$this->footer_scripts = array_merge( $ordered_moving_js, $this->footer_scripts );
 
-			// JS Scripts found, wen can start processing them.
+			// JS Scripts found, we can start processing them.
 			return true;
 		}
 
@@ -303,11 +304,13 @@ class Breeze_Js_Deferred_Loading extends Breeze_MinificationBase {
 									)
 								) {
 									$this->footer_scripts[ $url ] = $path;
+									$content = str_replace( $tag, '', $content );
 								} else {
 									$this->head_scripts[ $url ] = $path;
 								}
 							} else {
 								$this->footer_scripts[ $url ] = $path;
+								$content = str_replace( $tag, '', $content );
 							}
 						} else {
 							//No merge, but maybe we can move it

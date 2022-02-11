@@ -22,9 +22,9 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 class Breeze_PurgeVarnish {
 	protected $blogId;
-	protected $urlsPurge   = array();
-	protected $auto_purge  = false;
-	protected $actions     = array(
+	protected $urlsPurge = array();
+	protected $auto_purge = false;
+	protected $actions = array(
 		'switch_theme',                        // After a theme is changed
 		'save_post',                            // Save a post
 		'deleted_post',                        // Delete a post
@@ -35,10 +35,10 @@ class Breeze_PurgeVarnish {
 	public function __construct() {
 		global $blog_id;
 		$this->blogId = $blog_id;
-		$settings     = breeze_get_option( 'varnish_cache' );
+
 		//storage config
-		if ( ! empty( $settings['auto-purge-varnish'] ) ) {
-			$this->auto_purge = (int) $settings['auto-purge-varnish'];
+		if ( ! empty( Breeze_Options_Reader::get_option_value( 'auto-purge-varnish' ) ) ) {
+			$this->auto_purge = (int) Breeze_Options_Reader::get_option_value( 'auto-purge-varnish' );
 			if ( $this->auto_purge && ! isset( $_GET['breeze_check_cache_available'] ) ) {
 				// before sending the requests, we need to make sure Varnish is actually enabled.
 				// If Varnish is disabled, the requests will take longer to finish and will affect
@@ -107,13 +107,22 @@ class Breeze_PurgeVarnish {
 				//clear static cache
 				$size_cache = Breeze_Configuration::breeze_clean_cache();
 				if ( (int) $size_cache > 0 ) {
-					echo '<div id="message-clear-cache-top" style="margin: 10px 0px 10px 0;padding: 10px;" class="notice notice-success" ><strong>' . __( 'Cache data has been purged: ', 'breeze' ) . $size_cache . __( ' Kb static cache cleaned', 'breeze' ) . '</strong></div>';
+					$class = 'notice notice-success is-dismissible breeze-notice';
+					$message =  __( 'Cache data has been purged: ', 'breeze' ) . $size_cache . __( ' Kb static cache cleaned', 'breeze' ) ;
+
+					printf( '<div id="message-clear-cache-top" class="%1$s" style="margin: 10px 14px 10px 0;padding: 10px; display: none; font-weight: 600;"><p>%2$s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>', esc_attr( $class ), esc_html( $message ) );
+					#echo '<div id="message-clear-cache-top" style="margin: 10px 0px 10px 0;padding: 10px;" class="notice notice-success" ><strong>' . __( 'Cache data has been purged: ', 'breeze' ) . $size_cache . __( ' Kb static cache cleaned', 'breeze' ) . '</strong></div>';
 				} else {
-					echo '<div id="message-clear-cache-top" style="margin: 10px 0px 10px 0;padding: 10px;" class="notice notice-success" ><strong>' . __( 'Cache data has been purged.', 'breeze' ) . '</strong></div>';
+					$class = 'notice notice-success is-dismissible breeze-notice';
+					$message =  __( 'Cache data has been purged: ', 'breeze' );
+
+					printf( '<div id="message-clear-cache-top" class="%1$s" style="margin: 10px 14px 10px 0;padding: 10px; display: none; font-weight: 600;"><p>%2$s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>', esc_attr( $class ), esc_html( $message ) );
+					#echo '<div id="message-clear-cache-top" style="margin: 10px 0px 10px 0;padding: 10px;" class="notice notice-success" ><strong>' . __( 'Cache data has been purged.', 'breeze' ) . '</strong></div>';
 				}
 			}
 		}
 	}
+
 
 	/**
 	 * Purge varnish cache
@@ -141,9 +150,10 @@ class Breeze_PurgeVarnish {
 			$schema = $parseUrl['scheme'] . '://';
 		}
 		// Determine the host
-		$host         = $parseUrl['host'];
-		$config       = breeze_get_option( 'varnish_cache' );
-		$varnish_host = isset( $config['breeze-varnish-server-ip'] ) ? $config['breeze-varnish-server-ip'] : '127.0.0.1';
+		$host = $parseUrl['host'];
+
+		$varnish_ip   = Breeze_Options_Reader::get_option_value( 'breeze-varnish-server-ip' );
+		$varnish_host = isset( $varnish_ip ) ? $varnish_ip : '127.0.0.1';
 		$purgeme      = $varnish_host . $path . $pregex;
 		if ( ! empty( $parseUrl['query'] ) && $parseUrl['query'] != 'breeze' ) {
 			$purgeme .= '?' . $parseUrl['query'];
@@ -287,7 +297,7 @@ class Breeze_PurgeVarnish {
 					$listofurls,
 					get_post_type_archive_link( get_post_type( $postId ) ),
 					get_post_type_archive_feed_link( get_post_type( $postId ) )
-					// Need to add in JSON?
+				// Need to add in JSON?
 				);
 			}
 			// Feeds

@@ -17,8 +17,9 @@ if ( ! class_exists( 'Breeze_Disable_Emoji_Option' ) ) {
 		private $emoji_status = false;
 
 		function __construct() {
-			$basic              = breeze_get_option( 'basic_settings' );
-			$this->emoji_status = isset( $basic['breeze-wp-emoji'] ) ? filter_var( $basic['breeze-wp-emoji'], FILTER_VALIDATE_BOOLEAN ) : false;
+
+			$emoji_data         = Breeze_Options_Reader::get_option_value( 'breeze-wp-emoji' );
+			$this->emoji_status = isset( $emoji_data ) ? filter_var( $emoji_data, FILTER_VALIDATE_BOOLEAN ) : false;
 
 			if ( true === $this->emoji_status ) {
 				add_action( 'init', array( &$this, 'disable_emoji_wp_wide' ) );

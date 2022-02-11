@@ -26,7 +26,7 @@ if ( ! class_exists( 'Breeze_Preload_Fonts' ) ) {
 		 * @access public
 		 */
 		public function load_preload_scripts() {
-			$breeze_options   = breeze_get_option( 'advanced_settings' );
+			$preload_fonts    = Breeze_Options_Reader::get_option_value( 'breeze-preload-fonts' );
 			$fonts_extensions = array(
 				'woff',
 				'woff2',
@@ -41,14 +41,14 @@ if ( ! class_exists( 'Breeze_Preload_Fonts' ) ) {
 			$fonts_extensions = apply_filters( 'breeze_preload_fonts_exception', $fonts_extensions );
 
 			// Check if the option is enabled by admin.
-			if ( isset( $breeze_options['breeze-preload-fonts'] ) && ! empty( $breeze_options['breeze-preload-fonts'] ) ) {
+			if ( isset( $preload_fonts ) && ! empty( $preload_fonts ) ) {
 
-				foreach ( $breeze_options['breeze-preload-fonts'] as $index => $preload_url ) {
+				foreach ( $preload_fonts as $index => $preload_url ) {
 					$extension = pathinfo( $preload_url, PATHINFO_EXTENSION );
-
+					$extension = strtolower( $extension );
 					if ( 'css' === $extension ) {
 						echo '<link rel="preload" as="style" onload="this.rel = \'stylesheet\'" href="' . $preload_url . '" crossorigin>' . "\n";
-					} elseif ( in_array( $extension, $fonts_extensions ) ) {
+					} elseif ( in_array( $extension, $fonts_extensions, true ) ) {
 						echo '<link rel="preload" as="font" type="font/' . $extension . '" href="' . $preload_url . '" crossorigin>' . "\n";
 					}
 				}

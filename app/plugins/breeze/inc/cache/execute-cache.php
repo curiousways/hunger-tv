@@ -2,7 +2,12 @@
 /*
  *  Based on some work of https://github.com/tlovett1/simple-cache/blob/master/inc/dropins/file-based-page-cache.php
  */
-defined( 'ABSPATH' ) || exit;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit;
+}
 
 if ( isset( $GLOBALS['breeze_config'], $GLOBALS['breeze_config']['cache_options'], $GLOBALS['breeze_config']['cache_options']['breeze-active'] ) ) {
 	$is_caching_active = filter_var( $GLOBALS['breeze_config']['cache_options']['breeze-active'], FILTER_VALIDATE_BOOLEAN );
@@ -10,7 +15,6 @@ if ( isset( $GLOBALS['breeze_config'], $GLOBALS['breeze_config']['cache_options'
 		return;
 	}
 }
-
 
 // Load helper functions.
 require_once dirname( __DIR__ ) . '/functions.php';
@@ -69,9 +73,14 @@ if ( strpos( $_SERVER['REQUEST_URI'], '/wp-json/geodir/' ) !== false ) {
 	return;
 }
 
+if ( isset( $_GET['wc-api'] ) ) {
+	return;
+}
+
 if (
 	strpos( $_SERVER['REQUEST_URI'], 'breeze-minification' ) !== false ||
-	strpos( $_SERVER['REQUEST_URI'], 'favicon.ico' ) !== false
+	strpos( $_SERVER['REQUEST_URI'], 'favicon.ico' ) !== false ||
+	strpos( $_SERVER['REQUEST_URI'], 'wp-cron.php' ) !== false
 ) {
 	return;
 }
@@ -224,8 +233,7 @@ function breeze_cache( $buffer, $flags ) {
 
 	$blog_id_requested = isset( $GLOBALS['breeze_config']['blog_id'] ) ? $GLOBALS['breeze_config']['blog_id'] : 0;
 	$cache_base_path   = breeze_get_cache_base_path( false, $blog_id_requested );
-
-	$path = $cache_base_path . md5( $url_path );
+	$path              = $cache_base_path . md5( $url_path );
 
 	// Make sure we can read/write files and that proper folders exist
 	if ( ! wp_mkdir_p( $path ) ) {
@@ -513,17 +521,18 @@ function check_exclude_page( $opts_config, $current_url ) {
 	if ( ! empty( $opts_config['exclude_url'] ) ) {
 
 		$is_exclude = exec_breeze_check_for_exclude_values( $current_url, $opts_config['exclude_url'] );
+
 		if ( ! empty( $is_exclude ) ) {
 			return true;
 		}
 
-		foreach ( $opts_config['exclude_url'] as $v ) {
+		foreach ( $opts_config['exclude_url'] as $exclude_url ) {
 			// Clear blank character
-			$v = trim( $v );
-			if ( preg_match( '/(\&?\/?\(\.?\*\)|\/\*|\*)$/', $v, $matches ) ) {
+			$exclude_url = trim( $exclude_url );
+			if ( preg_match( '/(\&?\/?\(\.?\*\)|\/\*|\*)$/', $exclude_url, $matches ) ) {
 				// End of rules is *, /*, [&][/](*) , [&][/](.*)
-				$pattent = substr( $v, 0, strpos( $v, $matches[0] ) );
-				if ( $v[0] == '/' ) {
+				$pattent = substr( $exclude_url, 0, strpos( $exclude_url, $matches[0] ) );
+				if ( $exclude_url[0] == '/' ) {
 					// A path of exclude url with regex
 					if ( ( @preg_match( '@' . $pattent . '@', $current_url, $matches ) > 0 ) ) {
 						return true;
@@ -535,13 +544,18 @@ function check_exclude_page( $opts_config, $current_url ) {
 					}
 				}
 			} else {
-				if ( $v[0] == '/' ) {
+				if ( $exclude_url[0] == '/' ) {
+
 					// A path of exclude
-					if ( ( @preg_match( '@' . $v . '@', $current_url, $matches ) > 0 ) ) {
+					if ( ( @preg_match( '@' . $exclude_url . '@', $current_url, $matches ) > 0 ) ) {
 						return true;
 					}
 				} else { // Whole path
-					if ( $v == $current_url ) {
+
+					$exclude_url = ltrim( $exclude_url, 'https:' );
+					$current_url = ltrim( $current_url, 'https:' );
+
+					if ( mb_strtolower( $exclude_url ) === mb_strtolower( $current_url ) ) {
 						return true;
 					}
 				}
