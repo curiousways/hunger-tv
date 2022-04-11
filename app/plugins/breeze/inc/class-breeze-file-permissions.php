@@ -15,6 +15,30 @@ class Breeze_File_Permissions {
 
 		add_action( 'admin_notices', array( &$this, 'display_the_errors' ) );
 		add_action( 'network_admin_notices', array( &$this, 'display_the_errors' ) );
+
+		add_action( 'wp_ajax_breeze_file_permission_check', array( &$this, 'breeze_check_the_files_permission' ) );
+	}
+
+	public function breeze_check_the_files_permission() {
+		$this->check_specific_files_folders();
+		$message_display = '';
+		if ( ! empty( self::$errors ) ) {
+			$message_display .= '<div class="notice notice-error is-dismissible breeze-per" style="margin-left:2px">';
+			$message_display .= '<p><strong>' . __( 'Breeze settings will not reflect because there is file permission issue', 'breeze' ) . '</strong></p>';
+			foreach ( self::$errors as $message ) {
+				$message_display .= '<p>' . $message . '</p>';
+			}
+			$message_display .= '<p>';
+			$message_display .= sprintf(
+				'<a href="%s" target="_blank">%s</a>',
+				esc_url( 'https://support.cloudways.com/en/articles/5126387-how-can-i-reset-file-and-folder-permissions' ),
+				esc_html__( 'For reference please click on the KB', 'breeze' )
+			);
+			$message_display .= '</p>';
+			$message_display .= '</div>';
+		}
+
+		wp_die( $message_display );
 	}
 
 	// The object is created from within the class itself
@@ -51,7 +75,9 @@ class Breeze_File_Permissions {
 		// Advanced cache file.
 		$file = $wp_content_dir . 'advanced-cache.php';
 
-		if ( ! is_writable( $file ) ) {
+		if ( ! file_exists( $file ) ) {
+			self::append_permission_error( $file . __( ' file does not exist. Save Breeze settings to create the file.', 'breeze' ) );
+		} else if ( ! is_writable( $file ) ) {
 			self::append_permission_error( $file . __( ' file is not writable.', 'breeze' ) );
 		}
 
@@ -75,9 +101,15 @@ class Breeze_File_Permissions {
 		 * Checking multisite specific folders.
 		 */
 		if ( is_multisite() ) {
+			set_as_network_screen();
+
 			if ( is_network_admin() ) {
+
 				$file = $wp_content_dir . 'breeze-config/breeze-config.php';
-				if ( ! is_writable( $file ) ) {
+
+				if ( ! file_exists( $file ) ) {
+					self::append_permission_error( $file . __( ' file does not exist. Save Breeze settings to create the file.', 'breeze' ) );
+				} elseif ( ! is_writable( $file ) ) {
 					self::append_permission_error( $file . __( ' file is not writable.', 'breeze' ) );
 				}
 
@@ -111,6 +143,7 @@ class Breeze_File_Permissions {
 					}
 				}
 			} else {
+
 				$the_blog_id = get_current_blog_id();
 
 				$inherit_option = get_blog_option( $the_blog_id, 'breeze_inherit_settings' );
@@ -123,7 +156,9 @@ class Breeze_File_Permissions {
 
 
 				$file = $wp_content_dir . 'breeze-config/breeze-config-' . $the_blog_id . '.php';
-				if ( false === $inherit_option && file_exists( $file) && ! is_writable( $file ) ) {
+				if ( false === $inherit_option && ! file_exists( $file ) ) {
+					self::append_permission_error( $file . __( ' file does not exist. Save Breeze settings to create the file.', 'breeze' ) );
+				} elseif ( false === $inherit_option && file_exists( $file ) && ! is_writable( $file ) ) {
 					self::append_permission_error( $file . __( ' file is not writable.', 'breeze' ) );
 				}
 
@@ -147,8 +182,12 @@ class Breeze_File_Permissions {
 				}// endif
 			}
 		} else {
+
 			$file = $wp_content_dir . 'breeze-config/breeze-config.php';
-			if ( ! is_writable( $file ) ) {
+
+			if ( ! file_exists( $file ) ) {
+				self::append_permission_error( $file . __( ' file does not exist. Save Breeze settings to create the file.', 'breeze' ) );
+			} elseif ( ! is_writable( $file ) ) {
 				self::append_permission_error( $file . __( ' file is not writable.', 'breeze' ) );
 			}
 
@@ -177,7 +216,7 @@ class Breeze_File_Permissions {
 
 		$this->check_specific_files_folders();
 		if ( ! empty( self::$errors ) ) {
-			echo '<div class="notice notice-error is-dismissible">';
+			echo '<div class="notice notice-error is-dismissible breeze-per" style="margin-left:2px">';
 			echo '<p><strong>' . __( 'Breeze settings will not reflect because there is file permission issue', 'breeze' ) . '</strong></p>';
 			foreach ( self::$errors as $message ) {
 				echo '<p>' . $message . '</p>';

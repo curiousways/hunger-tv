@@ -554,7 +554,6 @@ function check_exclude_page( $opts_config, $current_url ) {
 
 					$exclude_url = ltrim( $exclude_url, 'https:' );
 					$current_url = ltrim( $current_url, 'https:' );
-
 					if ( mb_strtolower( $exclude_url ) === mb_strtolower( $current_url ) ) {
 						return true;
 					}

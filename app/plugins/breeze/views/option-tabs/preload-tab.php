@@ -133,6 +133,51 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/preload-active.png';
 			</div>
 		</div>
 		<!-- END OPTION -->
+
+		<!-- START OPTION -->
+		<div class="br-option-item">
+			<div class="br-label">
+				<div class="br-option-text">
+					<?php _e( 'Prefetch of DNS Request', 'breeze' ); ?>
+				</div>
+			</div>
+			<div class="br-option">
+				<p>
+					<?php _e( 'Specify domain URLs, one per line', 'breeze' ); ?>
+				</p>
+				<?php
+				$prefetch_domain_list = true;
+
+				if ( isset( $options['breeze-prefetch-urls'] ) && ! empty( $options['breeze-prefetch-urls'] ) ) {
+					$prefetch_domain_list = breeze_validate_urls( $options['breeze-prefetch-urls'] );
+				}
+
+
+				$domains_output = '';
+				if ( ! empty( $options['breeze-prefetch-urls'] ) ) {
+					$output         = implode( "\n", $options['breeze-prefetch-urls'] );
+					$domains_output = esc_textarea( $output );
+				}
+
+				$placeholder_never_cache_url = '//demo.com';
+				?>
+				<textarea cols="100" rows="7" id="br-prefetch-urls" name="br-prefetch-urls" placeholder="<?php echo esc_attr( $placeholder_never_cache_url ); ?>"><?php echo $domains_output; ?></textarea>
+				<div class="br-note">
+					<p>
+						<?php
+
+						_e( 'Third-party content load will be optimized if we prefetch the domains.', 'breeze' );
+						?>
+					</p>
+					<?php if ( false === $prefetch_domain_list ) { ?>
+						<p class="br-notice">
+							<?php _e( 'One (or more) URL is invalid. Please check and correct the entry.', 'breeze' ); ?>
+						</p>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+		<!-- END OPTION -->
 	</section>
 	<div class="br-submit">
 		<input type="submit" value="<?php echo __( 'Save Changes', 'breeze' ); ?>" class="br-submit-save"/>

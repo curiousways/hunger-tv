@@ -30,6 +30,7 @@ class Breeze_Configuration {
 		add_action( 'wp_ajax_save_settings_tab_file', array( &$this, 'update_options_for_file' ) );
 		add_action( 'wp_ajax_save_settings_tab_preload', array( &$this, 'update_options_for_preload' ) );
 		add_action( 'wp_ajax_save_settings_tab_advanced', array( &$this, 'update_options_for_advanced' ) );
+		add_action( 'wp_ajax_save_settings_tab_heartbeat', array( &$this, 'update_options_for_heartbeat' ) );
 		add_action( 'wp_ajax_save_settings_tab_database', array( &$this, 'update_options_for_database' ) );
 		add_action( 'wp_ajax_save_settings_tab_cdn', array( &$this, 'update_options_for_cdn' ) );
 		add_action( 'wp_ajax_save_settings_tab_tools', array( &$this, 'update_options_for_tools' ) );
@@ -99,18 +100,25 @@ class Breeze_Configuration {
 			}
 		}
 
+		$iframe_lazy_load = ( isset( $_POST['bz-lazy-load-iframe'] ) ? '1' : '0' );
+		$lazy_load        = ( isset( $_POST['bz-lazy-load'] ) ? '1' : '0' );
+		if ( false === filter_var( $lazy_load, FILTER_VALIDATE_BOOLEAN ) ) {
+			$iframe_lazy_load = '0';
+		}
+
 		$basic = array(
-			'breeze-active'           => ( isset( $_POST['cache-system'] ) ? '1' : '0' ),
-			'breeze-cross-origin'     => ( isset( $_POST['safe-cross-origin'] ) ? '1' : '0' ),
-			'breeze-disable-admin'    => $active_cache_users,
-			'breeze-gzip-compression' => ( isset( $_POST['gzip-compression'] ) ? '1' : '0' ),
-			'breeze-browser-cache'    => ( isset( $_POST['browser-cache'] ) ? '1' : '0' ),
-			'breeze-lazy-load'        => ( isset( $_POST['bz-lazy-load'] ) ? '1' : '0' ),
-			'breeze-lazy-load-native' => ( isset( $_POST['bz-lazy-load-nat'] ) ? '1' : '0' ),
-			'breeze-desktop-cache'    => '1',
-			'breeze-mobile-cache'     => '1',
-			'breeze-display-clean'    => '1',
-			'breeze-ttl'              => (int) $_POST['cache-ttl'],
+			'breeze-active'            => ( isset( $_POST['cache-system'] ) ? '1' : '0' ),
+			'breeze-cross-origin'      => ( isset( $_POST['safe-cross-origin'] ) ? '1' : '0' ),
+			'breeze-disable-admin'     => $active_cache_users,
+			'breeze-gzip-compression'  => ( isset( $_POST['gzip-compression'] ) ? '1' : '0' ),
+			'breeze-browser-cache'     => ( isset( $_POST['browser-cache'] ) ? '1' : '0' ),
+			'breeze-lazy-load'         => ( isset( $_POST['bz-lazy-load'] ) ? '1' : '0' ),
+			'breeze-lazy-load-native'  => ( isset( $_POST['bz-lazy-load-nat'] ) ? '1' : '0' ),
+			'breeze-lazy-load-iframes' => $iframe_lazy_load,
+			'breeze-desktop-cache'     => '1',
+			'breeze-mobile-cache'      => '1',
+			'breeze-display-clean'     => '1',
+			'breeze-ttl'               => (int) $_POST['cache-ttl'],
 		);
 
 		breeze_update_option( 'basic_settings', $basic, true );
@@ -256,7 +264,7 @@ class Breeze_Configuration {
 
 		if ( isset( $_POST['breeze-preload-font'] ) && ! empty( $_POST['breeze-preload-font'] ) ) {
 			foreach ( $_POST['breeze-preload-font'] as $font_url ) {
-				if ( trim( $font_url ) == '' ) {
+				if ( '' === trim( $font_url ) ) {
 					continue;
 				}
 				$font_url                                          = current( explode( '?', $font_url, 2 ) );
@@ -264,9 +272,25 @@ class Breeze_Configuration {
 			}
 		}
 
+		$prefetch_urls = $this->string_convert_arr( sanitize_textarea_field( $_POST['br-prefetch-urls'] ) );
+		if ( ! empty( $prefetch_urls ) ) {
+			$prefetch_urls = array_unique( $prefetch_urls );
+			// ltrim( $current_url, 'https:' )
+			foreach ( $prefetch_urls as &$url_prefetch ) {
+				//$url_prefetch = ltrim( $url_prefetch, 'https:' );
+				$link_schema = parse_url( $url_prefetch );
+				if ( isset( $link_schema['host'] ) ) {
+					$url_prefetch = '//' . $link_schema['host'];
+				} else {
+					unset( $url_prefetch );
+				}
+			}
+		}
+
 		$preload = array(
 			'breeze-preload-fonts' => $preload_fonts,
 			'breeze-preload-links' => ( isset( $_POST['preload-links'] ) ? '1' : '0' ),
+			'breeze-prefetch-urls' => $prefetch_urls,
 		);
 
 		breeze_update_option( 'preload_settings', $preload, true );
@@ -317,6 +341,45 @@ class Breeze_Configuration {
 		);
 
 		breeze_update_option( 'advanced_settings', $advanced, true );
+
+		// Storage information to cache pages.
+		Breeze_ConfigCache::factory()->write();
+		Breeze_ConfigCache::factory()->write_config_cache();
+
+		// Delete cache after settings
+		do_action( 'breeze_clear_all_cache' );
+
+		wp_send_json( $response );
+	}
+
+	/**
+	 *  Save the Heartbeat API settings via Ajax call.
+	 *
+	 * @access public
+	 * @since 2.0.0
+	 */
+	public function update_options_for_heartbeat() {
+		check_ajax_referer( '_breeze_save_options', 'security' );
+		set_as_network_screen();
+
+		global $wp_filesystem;
+
+		if ( empty( $wp_filesystem ) ) {
+			require_once( ABSPATH . '/wp-admin/includes/file.php' );
+			WP_Filesystem();
+		}
+
+		$response = array();
+		parse_str( $_POST['form-data'], $_POST );
+
+		$heartbeat = array(
+			'breeze-control-heartbeat'  => ( isset( $_POST['breeze-control-hb'] ) ? '1' : '0' ),
+			'breeze-heartbeat-front'    => sanitize_textarea_field( $_POST['br-heartbeat-front'] ),
+			'breeze-heartbeat-postedit' => sanitize_textarea_field( $_POST['br-heartbeat-postedit'] ),
+			'breeze-heartbeat-backend'  => sanitize_textarea_field( $_POST['br-heartbeat-backend'] ),
+		);
+
+		breeze_update_option( 'heartbeat_settings', $heartbeat, true );
 
 		// Storage information to cache pages.
 		Breeze_ConfigCache::factory()->write();

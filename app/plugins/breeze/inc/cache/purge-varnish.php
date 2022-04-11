@@ -22,9 +22,9 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 class Breeze_PurgeVarnish {
 	protected $blogId;
-	protected $urlsPurge = array();
-	protected $auto_purge = false;
-	protected $actions = array(
+	protected $urlsPurge   = array();
+	protected $auto_purge  = false;
+	protected $actions     = array(
 		'switch_theme',                        // After a theme is changed
 		'save_post',                            // Save a post
 		'deleted_post',                        // Delete a post

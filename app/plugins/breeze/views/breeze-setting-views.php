@@ -28,6 +28,11 @@ $breeze_option_tabs = array(
 		'tab-icon' => 'advanced',
 	),
 	array(
+		'tab-slug' => 'heartbeat',
+		'tab-name' => __( 'HEARTBEAT API', 'breeze' ),
+		'tab-icon' => 'heartbeat',
+	),
+	array(
 		'tab-slug' => 'database',
 		'tab-name' => __( 'DATABASE OPTIONS', 'breeze' ),
 		'tab-icon' => 'database',

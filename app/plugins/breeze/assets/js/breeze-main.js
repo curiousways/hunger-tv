@@ -207,12 +207,16 @@ jQuery( document ).ready(
 			'#bz-lazy-load',
 			function () {
 
-				var native_lazy = $( '#native-lazy-option' );
+				var native_lazy         = $( '#native-lazy-option' );
+				var native_lazy_iframes = $( '#native-lazy-option-iframe' );
 				if ( true === $( this ).is( ':checked' ) ) {
 					native_lazy.show();
+					native_lazy_iframes.show();
 				} else {
 					native_lazy.hide();
+					native_lazy_iframes.hide();
 					$( '#bz-lazy-load-nat' ).attr( 'checked', false );
+					$( '#bz-lazy-load-iframe' ).attr( 'checked', false );
 				}
 			}
 		);
@@ -759,6 +763,7 @@ jQuery( document ).ready(
 		1000
 	);
 
+
 	$( window ).on(
 		'resize',
 		function () {
@@ -769,7 +774,7 @@ jQuery( document ).ready(
 		}
 	);
 
-	var loader_spinner      = '<div class="br-loader-spinner loading_tab"><div></div><div></div><div></div><div></div></div>';
+	var loader_spinner = '<div class="br-loader-spinner loading_tab"><div></div><div></div><div></div><div></div></div>';
 	var loader_spinner_save = '<div class="br-loader-spinner saving_settings"><div></div><div></div><div></div><div></div></div>';
 
 	$( '.breeze-box .br-link' ).on(
@@ -778,9 +783,9 @@ jQuery( document ).ready(
 		function ( e ) {
 			e.preventDefault();
 			var requested_tab = this.dataset.tabId;
-			var $html_area    = $( '.br-options' );
-			active_tab        = get_cookie( 'breeze_active_tab' );
-			if ( ! active_tab ) {
+			var $html_area = $( '.br-options' );
+			active_tab = get_cookie( 'breeze_active_tab' );
+			if ( !active_tab ) {
 				active_tab = 'basic';
 			}
 
@@ -788,8 +793,8 @@ jQuery( document ).ready(
 			$( '.br-link' ).each(
 				function ( index, element ) {
 					// element == this
-					var $the_slug   = element.dataset.breezeLink;
-					var $image      = $( this ).find( 'img' );
+					var $the_slug = element.dataset.breezeLink;
+					var $image = $( this ).find( 'img' );
 					var $image_path = $image.get( 0 ).dataset.path;
 					$image.attr( 'src', $image_path + $the_slug + '.png' );
 				}
@@ -797,7 +802,7 @@ jQuery( document ).ready(
 
 			var this_line = $( this ).closest( '.br-link' );
 			this_line.addClass( 'br-active' );
-			var $image      = this_line.find( 'img' );
+			var $image = this_line.find( 'img' );
 			var $image_path = $image.get( 0 ).dataset.path;
 			$image.attr( 'src', $image_path + requested_tab + '-active.png' );
 			$html_area.html( loader_spinner );
@@ -822,6 +827,7 @@ jQuery( document ).ready(
 					},
 					// called when the request finishes (after success and error callbacks are executed)
 					complete: function ( jqXHR, textStatus ) {
+						breeze_permission_check();
 						document.cookie = 'breeze_active_tab=' + requested_tab;
 						if ( 'faq' === requested_tab ) {
 							$( '#faq-content' ).accordion(
@@ -840,9 +846,44 @@ jQuery( document ).ready(
 		}
 	);
 
+	function breeze_permission_check() {
+		var existing_notice = $( '.breeze-per' );
+
+		if ( existing_notice.length ) {
+			existing_notice.empty();
+			existing_notice.append( '<p>Re-checking permissions, please wait...</p>' );
+		}
+
+		$.ajax( {
+			type: "GET",
+			url: ajaxurl,
+			data: { action: "breeze_file_permission_check", 'is-network': $( 'body' ).hasClass( 'network-admin' ) },
+			dataType: "html", // xml, html, script, json, jsonp, text
+			success: function ( data ) {
+				if ( '' === data ) {
+					existing_notice.remove();
+				} else {
+					if ( existing_notice.length ) {
+						$( data ).insertBefore( existing_notice );
+						existing_notice.remove();
+					}else{
+						$('#wpbody-content').prepend(data);
+					}
+				}
+			},
+			error: function ( jqXHR, textStatus, errorThrown ) {
+
+			},
+			// called when the request finishes (after success and error callbacks are executed)
+			complete: function ( jqXHR, textStatus ) {
+
+			}
+		} );
+	}
+
 	function get_cookie( cname ) {
 		var name = cname + "=";
-		var ca   = document.cookie.split( ';' );
+		var ca = document.cookie.split( ';' );
 		for ( var i = 0; i < ca.length; i++ ) {
 			var c = ca[ i ];
 			while ( c.charAt( 0 ) == ' ' ) {
@@ -863,7 +904,7 @@ jQuery( document ).ready(
 	} else {
 
 		if ( typeof active_tab !== 'undefined' && '' !== active_tab ) {
-			if ('import_export' === active_tab) {
+			if ( 'import_export' === active_tab ) {
 				active_tab = 'basic';
 			}
 			var link_target = $( '#tab-' + active_tab );
@@ -971,8 +1012,8 @@ jQuery( document ).ready(
 		'.do_clean_action',
 		function ( e ) {
 			e.preventDefault();
-			var action_type   = this.dataset.section;
-			var section       = $( this ).closest( 'div.br-db-item' );
+			var action_type = this.dataset.section;
+			var section = $( this ).closest( 'div.br-db-item' );
 			var section_title = section.get( 0 ).dataset.sectionTitle;
 
 			var confirm_action = confirm( 'Confirm the action to clean ' + section_title );
@@ -1012,7 +1053,7 @@ jQuery( document ).ready(
 		'change',
 		'#br-clean-all',
 		function ( e ) {
-			var is_selected       = $( this ).is( ':checked' );
+			var is_selected = $( this ).is( ':checked' );
 			var the_action_button = $( '#br-clean-all-cta' );
 
 			if ( true === is_selected ) {
@@ -1089,10 +1130,10 @@ jQuery( document ).ready(
 		function ( e ) {
 			e.preventDefault();
 
-			var $form  = $( this ).closest( 'form' );
+			var $form = $( this ).closest( 'form' );
 			var tab_is = $form.get( 0 ).dataset.section;
 
-			var data_send  = {
+			var data_send = {
 				'action': 'save_settings_tab_' + tab_is,
 				'security': breeze_token_name.breeze_save_options,
 				'form-data': $form.serialize(),
@@ -1126,9 +1167,9 @@ jQuery( document ).ready(
 		'#inherit-settings',
 		function () {
 			var is_selected = $( this ).is( ':checked' );
-			var is_network  = '.br-is-network';
-			var is_custom   = '.br-is-custom';
-			var tab_is      = 'inherit';
+			var is_network = '.br-is-network';
+			var is_custom = '.br-is-custom';
+			var tab_is = 'inherit';
 
 			var nonce_is = $( this ).closest( 'div.change-settings-use' ).find( 'input#breeze_inherit_settings_nonce' ).val();
 

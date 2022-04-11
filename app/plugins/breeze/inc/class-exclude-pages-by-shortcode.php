@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Exclude_Pages_By_Shortcode {
 
 	function __construct() {
-		add_action( 'save_post', [ &$this, 'post_check_content_on_save' ], 10, 3 );
+		add_action( 'save_post', array( &$this, 'post_check_content_on_save' ), 10, 3 );
 	}
 
 	public function post_check_content_on_save( $post_id = 0, $post = null, $update = false ) {

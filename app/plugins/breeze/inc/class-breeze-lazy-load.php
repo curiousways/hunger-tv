@@ -108,9 +108,7 @@ class Breeze_Lazy_Load {
 		$html_dom->loadHTML( $content, LIBXML_NOERROR );  // | LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 
 		$dom_last_error = libxml_get_last_error();
-		#error_log( '$dom_last_error: ' . var_export( $dom_last_error, true ) );
-		$dom_all_error = libxml_get_errors();
-		#error_log( '$dom_all_error: ' . var_export( $dom_all_error, true ) );
+		$dom_all_error  = libxml_get_errors();
 
 		$dom_xpath = new DOMXPath( $html_dom );
 		/**
@@ -178,6 +176,85 @@ class Breeze_Lazy_Load {
 						}
 					}
 				}
+			}
+		}
+
+
+		$apply_to_iframes = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-iframes' );
+		$apply_to_iframes = apply_filters( 'breeze_enable_lazy_load_iframes', $apply_to_iframes );
+
+		if ( true === filter_var( $apply_to_iframes, FILTER_VALIDATE_BOOLEAN ) ) {
+			// Iterate each iframe item found in the content.
+			foreach ( $html_dom->getElementsByTagName( 'iframe' ) as $iframe ) {
+				// fetch iframe video source.
+				$src = $iframe->getAttribute( 'src' );
+
+				$allowed_url         = false;
+				$allowed_iframes_url = apply_filters( 'breeze_iframe_lazy_load_list', array(
+					'youtube.com',
+					'dailymotion.com/embed/video',
+					'facebook.com/plugins/video.php',
+					'player.vimeo.com',
+					'fast.wistia.net/embed/',
+					'players.brightcove.net',
+					's3.amazonaws.com',
+					'cincopa.com/media',
+					'twitch.tv',
+					'bitchute.com',
+					'media.myspace.com/play/video',
+					'tiktok.com/embed',
+				) );
+
+				foreach ( $allowed_iframes_url as $iframe_url ) {
+					if ( false !== strpos( $src, $iframe_url ) ) {
+						$allowed_url = true;
+						break;
+					}
+				}
+
+				// We only need iframes that handle youtube videos.
+				if ( true === $allowed_url ) {
+					// Fetch the video ID from iframe source.
+					$video_link = explode( '/', $src );
+					$video_id   = end( $video_link );
+
+					// Set the video ID as attribute on iframe.
+					$iframe->setAttribute( 'data-video-id', $video_id );
+
+					// Fetch the current CSS classes if any
+					$current_classes = $iframe->getAttribute( 'class' );
+					if ( ! empty( trim( $current_classes ) ) ) {
+						$current_classes .= ' ';
+					}
+					$current_classes .= 'br-lazy';
+
+					// Remove the current CSS class attribute.
+					$iframe->removeAttribute( 'class' );
+					// Add the CSS classes back including the extra.
+					$iframe->setAttribute( 'class', $current_classes );
+
+					$iframe->setAttribute( 'data-breeze', $src );
+					$iframe->removeAttribute( 'src' );
+				}
+			}
+
+			foreach ( $html_dom->getElementsByTagName( 'video' ) as $video_tab ) {
+				$src = $video_tab->getAttribute( 'src' );
+
+				// Fetch the current CSS classes if any
+				$current_classes = $video_tab->getAttribute( 'class' );
+				if ( ! empty( trim( $current_classes ) ) ) {
+					$current_classes .= ' ';
+				}
+				$current_classes .= 'br-lazy';
+
+				// Remove the current CSS class attribute.
+				$video_tab->removeAttribute( 'class' );
+				// Add the CSS classes back including the extra.
+				$video_tab->setAttribute( 'class', $current_classes );
+
+				$video_tab->setAttribute( 'data-breeze', $src );
+				$video_tab->removeAttribute( 'src' );
 			}
 		}
 

@@ -53,15 +53,15 @@ class Breeze_ConfigCache {
 				switch_to_blog( $blog_id );
 
 				//if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
-					$inherit_option = get_blog_option( $blog_id, 'breeze_inherit_settings', '0' );
-					$inherit_option = filter_var( $inherit_option, FILTER_VALIDATE_BOOLEAN );
-					if ( false === $inherit_option ) {
-						// Site uses own (custom) configuration.
-						$cache_configs["breeze-config-{$blog_id}"] = preg_replace( '(^https?://)', '', site_url() );
-					} else {
-						// Site uses global configuration.
-						$cache_configs['breeze-config'][ $blog_id ] = preg_replace( '(^https?://)', '', site_url() );
-					}
+				$inherit_option = get_blog_option( $blog_id, 'breeze_inherit_settings', '0' );
+				$inherit_option = filter_var( $inherit_option, FILTER_VALIDATE_BOOLEAN );
+				if ( false === $inherit_option ) {
+					// Site uses own (custom) configuration.
+					$cache_configs["breeze-config-{$blog_id}"] = preg_replace( '(^https?://)', '', site_url() );
+				} else {
+					// Site uses global configuration.
+					$cache_configs['breeze-config'][ $blog_id ] = preg_replace( '(^https?://)', '', site_url() );
+				}
 				//}
 				restore_current_blog();
 			}
@@ -180,8 +180,8 @@ class Breeze_ConfigCache {
 	public static function write_config_cache( $create_root_config = false ) {
 
 		if ( true === $create_root_config ) {
-			$network_id   = get_current_network_id();
-			$settings     = Breeze_Options_Reader::fetch_all_saved_settings(true);
+			$network_id = get_current_network_id();
+			$settings   = Breeze_Options_Reader::fetch_all_saved_settings( true );
 			#$settings     = get_network_option( $network_id, 'breeze_basic_settings' );
 			$homepage_url = network_site_url();
 		} else {
@@ -204,14 +204,15 @@ class Breeze_ConfigCache {
 
 		$storage['wp-user-roles'] = breeze_all_wp_user_roles();
 
-		$lazy_load        = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load', false, $create_root_config );
-		$lazy_load_native = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-native', false, $create_root_config );
-		$preload_links    = Breeze_Options_Reader::get_option_value( 'breeze-preload-links', false, $create_root_config );
+		$lazy_load         = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load', false, $create_root_config );
+		$lazy_load_native  = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-native', false, $create_root_config );
+		$preload_links     = Breeze_Options_Reader::get_option_value( 'breeze-preload-links', false, $create_root_config );
+		$lazy_load_iframes = Breeze_Options_Reader::get_option_value( 'breeze-lazy-load-iframes', false, $create_root_config );
 
-		$storage['enabled-lazy-load']    = ( isset( $lazy_load ) ? $lazy_load : 0 );
-		$storage['use-lazy-load-native'] = ( isset( $lazy_load_native ) ? $lazy_load_native : 0 );
-		$storage['breeze-preload-links'] = ( isset( $preload_links ) ? $preload_links : 0 );
-
+		$storage['enabled-lazy-load']        = ( isset( $lazy_load ) ? $lazy_load : 0 );
+		$storage['use-lazy-load-native']     = ( isset( $lazy_load_native ) ? $lazy_load_native : 0 );
+		$storage['breeze-preload-links']     = ( isset( $preload_links ) ? $preload_links : 0 );
+		$storage['breeze-lazy-load-iframes'] = ( isset( $lazy_load_iframes ) ? $lazy_load_iframes : 0 );
 
 		if ( isset( $_POST['woocommerce_default_customer_address'] ) ) {
 			$storage['woocommerce_geolocation_ajax'] = ( 'geolocation_ajax' === $_POST['woocommerce_default_customer_address'] ) ? 1 : 0;

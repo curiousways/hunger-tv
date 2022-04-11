@@ -51,6 +51,7 @@ class Breeze_Options_Reader {
 			'file_settings',
 			'preload_settings',
 			'advanced_settings',
+			'heartbeat_settings',
 			'cdn_integration',
 			'varnish_cache',
 			'inherit_settings',

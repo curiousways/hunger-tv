@@ -21,8 +21,8 @@
 defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
 
 class Breeze_PurgeCacheTime {
-	protected $timettl = false;
-	protected $normalcache = 0;
+	protected $timettl      = false;
+	protected $normalcache  = 0;
 	protected $varnishcache = 0;
 
 	public function __construct( $settings = null ) {

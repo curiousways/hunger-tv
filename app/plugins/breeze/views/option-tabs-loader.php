@@ -20,6 +20,7 @@ class Breeze_Tab_Loader {
 			'tools',
 			'faq',
 			'varnish',
+			'heartbeat',
 		);
 
 		$requested_tab = $_GET['request_tab'];

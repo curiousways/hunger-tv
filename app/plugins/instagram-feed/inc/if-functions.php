@@ -30,7 +30,8 @@ function display_instagram( $atts = array(), $preview_settings = false ) {
 
 	if ( $database_settings['sb_instagram_ajax_theme'] !== 'on'
 		 && $database_settings['sb_instagram_ajax_theme'] !== 'true'
-		 && $database_settings['sb_instagram_ajax_theme'] !== '1' ) {
+		 && $database_settings['sb_instagram_ajax_theme'] !== '1'
+		 && $database_settings['sb_instagram_ajax_theme'] !== true ) {
 		wp_enqueue_script( 'sbi_scripts' );
 	}
 
@@ -600,11 +601,11 @@ function sbi_debug_report( $instagram_feed, $feed_id ) {
 		$atts = array( 'feed' => 1 );
 	}
 
-	$settings_obj = new SB_Instagram_Settings_Pro( $atts, sbi_get_database_settings() );
+	$settings_obj = new SB_Instagram_Settings( $atts, sbi_get_database_settings() );
 
 	$settings = $settings_obj->get_settings();
 
-	$public_settings_keys = SB_Instagram_Settings_Pro::get_public_db_settings_keys();
+	$public_settings_keys = SB_Instagram_Settings::get_public_db_settings_keys();
 	?>
 
 	<p>Status</p>
@@ -717,6 +718,36 @@ function sbi_maybe_palette_styles( $posts, $settings ) {
 }
 add_action( 'sbi_after_feed', 'sbi_maybe_palette_styles', 10, 2 );
 
+function sbi_maybe_button_hover_styles( $posts, $settings ) {
+	$follow_hover_color = str_replace( '#', '', SB_Instagram_Display_Elements::get_follow_hover_color( $settings ) );
+	$load_hover_color = str_replace( '#', '', SB_Instagram_Display_Elements::get_load_button_hover_color( $settings ) );
+
+	if ( empty( $load_hover_color ) && empty( $follow_hover_color ) ) {
+		return;
+	}
+
+	?>
+	<style type="text/css">
+		<?php if ( ! empty( $load_hover_color ) ) : ?>
+		#sb_instagram #sbi_load .sbi_load_btn:hover{
+			outline: none;
+			box-shadow: inset 0 0 20px 20px <?php echo sanitize_hex_color( '#' . $load_hover_color ); ?>;
+		}
+		<?php endif; ?>
+		<?php if ( ! empty( $follow_hover_color ) ) : ?>
+
+		#sb_instagram .sbi_follow_btn a:hover,
+		#sb_instagram .sbi_follow_btn a:focus{
+			outline: none;
+			box-shadow: inset 0 0 10px 20px <?php echo sanitize_hex_color( '#' . $follow_hover_color ); ?>;
+		}
+		<?php endif; ?>
+	</style>
+	<?php
+}
+add_action( 'sbi_after_feed', 'sbi_maybe_button_hover_styles', 10, 2 );
+
+
 /**
  * Uses post IDs to process images that may need resizing
  *
@@ -792,7 +823,7 @@ function sbi_get_database_settings() {
 		'sb_instagram_disable_resize'       => false,
 		'sb_instagram_cache_time'           => 1,
 		'sb_instagram_cache_time_unit'      => 'hours',
-		'sbi_caching_type'                  => 'page',
+		'sbi_caching_type'                  => 'background',
 		'sbi_cache_cron_interval'           => '12hours',
 		'sbi_cache_cron_time'               => '1',
 		'sbi_cache_cron_am_pm'              => 'am',

@@ -27,6 +27,7 @@ if ( ! class_exists( 'Breeze_Prefetch' ) ) {
 		public function load_prefetch_scripts() {
 			// Check if the option is enabled by admin.
 			$preload_links = Breeze_Options_Reader::get_option_value( 'breeze-preload-links' );
+
 			if ( isset( $preload_links ) && true === filter_var( $preload_links, FILTER_VALIDATE_BOOLEAN ) ) {
 				// Load the prefetch library.
 				wp_enqueue_script( 'breeze-prefetch', BREEZE_PLUGIN_URL . 'assets/js/js-front-end/breeze-prefetch-links.min.js', array(), BREEZE_VERSION, false );
@@ -44,7 +45,7 @@ if ( ! class_exists( 'Breeze_Prefetch' ) ) {
 
 
 		/**
-		 * The list of links that do not need prefetch.
+		 * The list of links that do not need pre-fetch.
 		 *
 		 * @return array|mixed
 		 * @since 1.2.0

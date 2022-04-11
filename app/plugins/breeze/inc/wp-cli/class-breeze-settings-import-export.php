@@ -122,24 +122,26 @@ class Breeze_Settings_Import_Export {
 		if ( is_multisite() ) {
 			// If this export is made from network admin
 			if ( 'network' === $level ) {
-				$breeze_basic_settings    = get_site_option( 'breeze_basic_settings' );
-				$breeze_advanced_settings = get_site_option( 'breeze_advanced_settings' );
-				$breeze_cdn_integration   = get_site_option( 'breeze_cdn_integration' );
-				$breeze_varnish_cache     = get_site_option( 'breeze_varnish_cache' );
-				$breeze_file_settings     = get_site_option( 'breeze_file_settings' );
-				$breeze_preload_settings  = get_site_option( 'breeze_preload_settings' );
+				$breeze_basic_settings     = get_site_option( 'breeze_basic_settings' );
+				$breeze_advanced_settings  = get_site_option( 'breeze_advanced_settings' );
+				$breeze_heartbeat_settings = get_site_option( 'breeze_heartbeat_settings' );
+				$breeze_cdn_integration    = get_site_option( 'breeze_cdn_integration' );
+				$breeze_varnish_cache      = get_site_option( 'breeze_varnish_cache' );
+				$breeze_file_settings      = get_site_option( 'breeze_file_settings' );
+				$breeze_preload_settings   = get_site_option( 'breeze_preload_settings' );
 
 				// Extra options
 				$breeze_first_install         = get_site_option( 'breeze_first_install' );
 				$breeze_advanced_settings_120 = get_site_option( 'breeze_advanced_settings_120' );
 			} else { // if this export is made from sub-site.
-				$network_id               = (int) $level;
-				$breeze_basic_settings    = get_blog_option( $network_id, 'breeze_basic_settings' );
-				$breeze_advanced_settings = get_blog_option( $network_id, 'breeze_advanced_settings' );
-				$breeze_cdn_integration   = get_blog_option( $network_id, 'breeze_cdn_integration' );
-				$breeze_varnish_cache     = get_blog_option( $network_id, 'breeze_varnish_cache' );
-				$breeze_file_settings     = get_blog_option( $network_id, 'breeze_file_settings' );
-				$breeze_preload_settings  = get_blog_option( $network_id, 'breeze_preload_settings' );
+				$network_id                = (int) $level;
+				$breeze_basic_settings     = get_blog_option( $network_id, 'breeze_basic_settings' );
+				$breeze_advanced_settings  = get_blog_option( $network_id, 'breeze_advanced_settings' );
+				$breeze_heartbeat_settings = get_blog_option( $network_id, 'breeze_heartbeat_settings' );
+				$breeze_cdn_integration    = get_blog_option( $network_id, 'breeze_cdn_integration' );
+				$breeze_varnish_cache      = get_blog_option( $network_id, 'breeze_varnish_cache' );
+				$breeze_file_settings      = get_blog_option( $network_id, 'breeze_file_settings' );
+				$breeze_preload_settings   = get_blog_option( $network_id, 'breeze_preload_settings' );
 
 				// Extra options
 				$breeze_first_install         = get_blog_option( $network_id, 'breeze_first_install' );
@@ -148,12 +150,13 @@ class Breeze_Settings_Import_Export {
 				$breeze_advanced_settings_120 = get_blog_option( $network_id, 'breeze_advanced_settings_120' );
 			}
 		} else { // If WP is single site.
-			$breeze_basic_settings    = get_option( 'breeze_basic_settings' );
-			$breeze_advanced_settings = get_option( 'breeze_advanced_settings' );
-			$breeze_cdn_integration   = get_option( 'breeze_cdn_integration' );
-			$breeze_varnish_cache     = get_option( 'breeze_varnish_cache' );
-			$breeze_file_settings     = get_option( 'breeze_file_settings' );
-			$breeze_preload_settings  = get_option( 'breeze_preload_settings' );
+			$breeze_basic_settings     = get_option( 'breeze_basic_settings' );
+			$breeze_advanced_settings  = get_option( 'breeze_advanced_settings' );
+			$breeze_heartbeat_settings = get_option( 'breeze_heartbeat_settings' );
+			$breeze_cdn_integration    = get_option( 'breeze_cdn_integration' );
+			$breeze_varnish_cache      = get_option( 'breeze_varnish_cache' );
+			$breeze_file_settings      = get_option( 'breeze_file_settings' );
+			$breeze_preload_settings   = get_option( 'breeze_preload_settings' );
 
 			// Extra options
 			$breeze_first_install         = get_option( 'breeze_first_install' );
@@ -161,10 +164,11 @@ class Breeze_Settings_Import_Export {
 			$breeze_advanced_settings_120 = get_option( 'breeze_advanced_settings_120' );
 		}
 
-		$export['breeze_basic_settings']    = $breeze_basic_settings;
-		$export['breeze_advanced_settings'] = $breeze_advanced_settings;
-		$export['breeze_cdn_integration']   = $breeze_cdn_integration;
-		$export['breeze_varnish_cache']     = $breeze_varnish_cache;
+		$export['breeze_basic_settings']     = $breeze_basic_settings;
+		$export['breeze_advanced_settings']  = $breeze_advanced_settings;
+		$export['breeze_heartbeat_settings'] = $breeze_heartbeat_settings;
+		$export['breeze_cdn_integration']    = $breeze_cdn_integration;
+		$export['breeze_varnish_cache']      = $breeze_varnish_cache;
 
 		// Extra options
 		if ( isset( $breeze_first_install ) ) {
@@ -427,6 +431,13 @@ class Breeze_Settings_Import_Export {
 				'breeze-wp-emoji'      => ( isset( $options['breeze-wp-emoji'] ) ? $options['breeze-wp-emoji'] : '0' ),
 			);
 
+			$heartbeat = array(
+				'breeze-control-heartbeat'  => ( isset( $options['breeze-control-heartbeat'] ) ? $options['breeze-control-heartbeat'] : '0' ),
+				'breeze-heartbeat-front'    => ( isset( $options['breeze-heartbeat-front'] ) ? $options['breeze-heartbeat-front'] : '' ),
+				'breeze-heartbeat-postedit' => ( isset( $options['breeze-heartbeat-postedit'] ) ? $options['breeze-heartbeat-postedit'] : '' ),
+				'breeze-heartbeat-backend'  => ( isset( $options['breeze-heartbeat-backend'] ) ? $options['breeze-heartbeat-backend'] : '' ),
+			);
+
 			$wp_content = substr( WP_CONTENT_DIR, strlen( ABSPATH ) );
 			$cdn        = array(
 				'cdn-active'          => ( isset( $options['cdn-active'] ) ? $options['cdn-active'] : '0' ),
@@ -460,6 +471,7 @@ class Breeze_Settings_Import_Export {
 					update_site_option( 'breeze_file_settings', $file );
 					update_site_option( 'breeze_preload_settings', $preload );
 					update_site_option( 'breeze_advanced_settings', $advanced );
+					update_site_option( 'breeze_heartbeat_settings', $heartbeat );
 					update_site_option( 'breeze_cdn_integration', $cdn );
 					update_site_option( 'breeze_varnish_cache', $varnish );
 
@@ -485,6 +497,7 @@ class Breeze_Settings_Import_Export {
 					update_blog_option( $blog_id, 'breeze_file_settings', $file );
 					update_blog_option( $blog_id, 'breeze_preload_settings', $preload );
 					update_blog_option( $blog_id, 'breeze_advanced_settings', $advanced );
+					update_blog_option( $blog_id, 'breeze_heartbeat_settings', $heartbeat );
 					update_blog_option( $blog_id, 'breeze_cdn_integration', $cdn );
 					update_blog_option( $blog_id, 'breeze_varnish_cache', $varnish );
 
@@ -506,6 +519,7 @@ class Breeze_Settings_Import_Export {
 				update_option( 'breeze_file_settings', $file );
 				update_option( 'breeze_preload_settings', $preload );
 				update_option( 'breeze_advanced_settings', $advanced );
+				update_option( 'breeze_heartbeat_settings', $heartbeat );
 				update_option( 'breeze_cdn_integration', $cdn );
 				update_option( 'breeze_varnish_cache', $varnish );
 
@@ -537,6 +551,26 @@ class Breeze_Settings_Import_Export {
 	 * @static
 	 */
 	private static function validate_json_entry( $value, $option = '' ) {
+		$heartbeat_options = array(
+			'',
+			'120',
+			'180',
+			'240',
+			'300',
+			'disable',
+		);
+		if (
+			'breeze-heartbeat-front' === $option ||
+			'breeze-heartbeat-postedit' === $option ||
+			'breeze-heartbeat-backend' === $option
+		) {
+			$value = (string) $value;
+			if ( in_array( $value, $heartbeat_options, true ) ) {
+				return $value;
+			} else {
+				return '';
+			}
+		}
 
 		/**
 		 * Treat options that are not checkbox or array.
@@ -602,6 +636,7 @@ class Breeze_Settings_Import_Export {
 			'breeze-browser-cache'      => '1',
 			'breeze-lazy-load'          => '0',
 			'breeze-lazy-load-native'   => '0',
+			'breeze-lazy-load-iframes'  => '0',
 			'breeze-desktop-cache'      => '1',
 			'breeze-mobile-cache'       => '1',
 			'breeze-display-clean'      => '1',
@@ -620,6 +655,7 @@ class Breeze_Settings_Import_Export {
 			'cdn-relative-path'         => '1',
 			'auto-purge-varnish'        => '1',
 			'breeze_inherit_settings'   => '0',
+			'breeze-control-heartbeat'  => '0',
 		);
 
 		if ( array_key_exists( $option, $checkboxes ) ) {
@@ -687,6 +723,7 @@ class Breeze_Settings_Import_Export {
 			'cached-query-strings'     => array(),
 			'cdn-content'              => array( 'wp-includes', $wp_content ),
 			'cdn-exclude-content'      => array( '.php' ),
+			'breeze-prefetch-urls'     => array(),
 		);
 
 		if ( array_key_exists( $option, $array_list ) ) {

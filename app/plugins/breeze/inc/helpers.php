@@ -1017,3 +1017,7 @@ function breeze_migrate_old_settings( $is_sigle = true, $subsite_id = 0, $is_roo
 		update_site_option( 'breeze_varnish_cache', $varnish );
 	}
 }
+
+function breeze_rtrim_urls( $url ) {
+	return rtrim( $url, '/' );
+}
