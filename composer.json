@@ -12,5 +12,10 @@
 	},
 	"extra": {
 		"wordpress-install-dir": "wp"
+	},
+	"config": {
+		"allow-plugins": {
+			"roots/wordpress-core-installer": true
+		}
 	}
 }
