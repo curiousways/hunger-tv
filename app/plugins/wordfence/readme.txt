@@ -3,8 +3,8 @@ Contributors: mmaunder, wfryan, wfmatt, wfmattr
 Tags: security, firewall, malware scanner, web application firewall, two factor authentication, block hackers, country blocking, clean hacked site, blocklist, waf, login security
 Requires at least: 3.9
 Requires PHP: 5.3
-Tested up to: 5.9
-Stable tag: 7.5.9
+Tested up to: 6.1
+Stable tag: 7.8.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -184,6 +184,80 @@ Secure your website with Wordfence.
 9. Logging in is easy with Wordfence 2FA.
 
 == Changelog ==
+
+= 7.8.0 - November 28, 2022 =
+* Improvement: Added feedback when login form is submitted with 2FA
+* Fix: Restored click support on login button when using 2FA with WooCommerce
+* Fix: Corrected display issue with reCAPTCHA score history graph
+* Fix: Prevented errors on PHP caused by corrupted login timestamps
+* Fix: Prevented deprecation notices on PHP 8.2 related to dynamic properties
+* Change: Updated Wordfence registration workflow
+
+= 7.7.1 - October 4, 2022 =
+* Fix: Prevented scan resume attempts from repeating indefinitely when the initial scan stage fails
+
+= 7.7.0 - October 3, 2022 =
+* Improvement: Added configurable scan resume functionality to prevent scan failures on sites with intermittent connectivity issues
+* Improvement: Added new scan result for vulnerabilities found in plugins that do not have patched versions available via WordPress.org
+* Improvement: Implemented stand-alone MMDB reader for IP address lookups to prevent plugin conflicts and support additional PHP versions
+* Improvement: Added option to disable looking up IP address locations via the Wordfence API
+* Improvement: Prevented successful logins from resetting brute force counters
+* Improvement: Clarified IPv6 diagnostic
+* Improvement: Included maximum number of days in live traffic option text
+* Fix: Made timezones consistent on firewall page
+* Fix: Added "Use only IPv4 to start scans" option to search
+* Fix: Prevented deprecation notices on PHP 8.1 when emailing the activity log
+* Fix: Prevented warning on PHP 8 related to process owner diagnostic
+* Fix: Prevented PHP Code Sniffer false positive related to T_BAD_CHARACTER
+* Fix: Removed unsupported beta feed option
+
+= 7.6.2 - September 19, 2022 =
+* Improvement: Hardened 2FA login flow to reduce exposure in cases where an attacker is able to obtain privileged information from the database
+
+= 7.6.1 - September 6, 2022 =
+* Fix: Prevented XSS that would have required admin privileges to exploit (CVE-2022-3144)
+
+= 7.6.0 - July 28, 2022 =
+* Improvement: Added option to start scans using only IPv4
+* Improvement: Added diagnostic for internal IPv6 connectivity to site
+* Improvement: Added AUTOMATIC_UPDATER_DISABLED diagnostic
+* Improvement: Updated password strength check
+* Improvement: Added support for scanning plugin/theme files in when using the WP_CONTENT_DIR/WP_PLUGIN_DIR constants
+* Improvement: Updated GeoIP database
+* Improvement: Made DISABLE_WP_CRON diagnostic more clear
+* Improvement: Added "Hostname" to Live Traffic message displayed for hostname blocking
+* Improvement: Improved compatibility with Flywheel hosting
+* Improvement: Adopted semantic versioning
+* Improvement: Added support for dynamic cookie redaction patterns when logging requests
+* Fix: Prevented scanned paths from being displayed as skipped in rare cases
+* Fix: Corrected indexed files count in scan messages
+* Fix: Prevented overlapping AJAX requests when viewing Live Traffic on slower servers
+* Fix: Corrected WP_DEBUG_DISPLAY diagnostic
+* Fix: Prevented extraneous warnings caused by DNS resolution failures
+* Fix: Corrected display issue with Save/Cancel buttons on All Options page
+* Fix: Prevented errors caused by WHOIS searches for invalid values
+
+= 7.5.11 - June 14, 2022 =
+* Improvement: Added option to toggle display of last login column on WP Users page
+* Improvement: Improved autocomplete support for 2FA code on Apple devices
+* Improvement: Prevented Batcache from caching block pages
+* Improvement: Updated GeoIP database
+* Fix: Prevented extraneous scan results when non-existent paths are configured using UPLOADS and related constants
+* Fix: Corrected issue that prevented reCAPTCHA scores from being recorded
+* Fix: Prevented invalid JSON setting values from triggering fatal errors
+* Fix: Made text domains consistent for translation support
+* Fix: Clarified that allowlisted IP addresses also bypass reCAPTCHA
+
+= 7.5.10 - May 17, 2022 =
+* Improvement: Improved scan support for sites with non-standard directory structures
+* Improvement: Increased accuracy of executable PHP upload detection
+* Improvement: Addressed various deprecation notices with PHP 8.1
+* Improvement: Improved handling of invalidated license keys
+* Fix: Corrected lost password redirect URL when used with WooCommerce
+* Fix: Prevented errors when live traffic data exceeds database column length
+* Fix: Prevented bulk password resets from locking out admins
+* Fix: Corrected issue that prevented saving country blocking settings in certain cases
+* Change: Updated copyright information
 
 = 7.5.9 - March 22, 2022 =
 * Improvement: Updated GeoIP database

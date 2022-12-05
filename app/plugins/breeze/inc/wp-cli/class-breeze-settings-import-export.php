@@ -22,6 +22,9 @@ class Breeze_Settings_Import_Export {
 	 * @access public
 	 */
 	public function import_json_settings() {
+		breeze_is_restricted_access();
+		check_ajax_referer( '_breeze_import_settings', 'security' );
+
 		if ( ! current_user_can( 'administrator' ) ) {
 			wp_send_json_error( new WP_Error( 'authority_issue', __( 'Only administrator can import settings', 'breeze' ) ) );
 
@@ -93,6 +96,7 @@ class Breeze_Settings_Import_Export {
 	 * @access public
 	 */
 	public function export_json_settings() {
+		breeze_is_restricted_access();
 		$level = '';
 		if ( is_multisite() ) {
 			$level = ( isset( $_GET['network_level'] ) ) ? $_GET['network_level'] : '';
@@ -417,6 +421,8 @@ class Breeze_Settings_Import_Export {
 				'breeze-defer-js'           => ( isset( $options['breeze-defer-js'] ) ? $options['breeze-defer-js'] : array() ),
 				'breeze-enable-js-delay'    => ( isset( $options['breeze-enable-js-delay'] ) ? $options['breeze-enable-js-delay'] : '0' ),
 				'breeze-delay-js-scripts'   => ( isset( $options['breeze-delay-js-scripts'] ) ? $options['breeze-delay-js-scripts'] : array() ),
+				'no-breeze-no-delay-js'     => ( isset( $options['no-breeze-no-delay-js'] ) ? $options['no-breeze-no-delay-js'] : array() ),
+				'breeze-delay-all-js'       => ( isset( $options['breeze-delay-all-js'] ) ? $options['breeze-delay-all-js'] : '0' ),
 
 			);
 
@@ -656,6 +662,7 @@ class Breeze_Settings_Import_Export {
 			'auto-purge-varnish'        => '1',
 			'breeze_inherit_settings'   => '0',
 			'breeze-control-heartbeat'  => '0',
+			'breeze-delay-all-js'       => '0',
 		);
 
 		if ( array_key_exists( $option, $checkboxes ) ) {
@@ -718,6 +725,7 @@ class Breeze_Settings_Import_Export {
 				'data-noptimize',
 				'googletagmanager',
 			),
+			'no-breeze-no-delay-js'    => array(),
 			'breeze-preload-fonts'     => array(),
 			'breeze-exclude-urls'      => array(),
 			'cached-query-strings'     => array(),

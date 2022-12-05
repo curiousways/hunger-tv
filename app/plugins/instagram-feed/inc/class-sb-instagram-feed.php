@@ -1397,7 +1397,54 @@ class SB_Instagram_Feed
 	protected function filter_posts( $post_set, $settings = array() ) {
 		// array_unique( $post_set, SORT_REGULAR);
 
-		return $post_set;
+		if ( $settings['media'] === 'all' ) {
+			return $post_set;
+		}
+
+		$media_filter = $settings['media'] !== 'all' ? $settings['media'] : false;
+		if ( $media_filter ) {
+			$media_filter = is_array( $media_filter ) ? $media_filter : array( $media_filter );
+		}
+		$video_types    = ! empty( $settings['videotypes'] ) ? explode( ',', str_replace( ' ', '', strtolower( $settings['videotypes'] ) ) ) : array( 'igtv', 'regular', 'reels' );
+		$filtered_posts = array();
+		foreach ( $post_set as $post ) {
+			$keep_post = false;
+			$is_hidden = false;
+			$passes_media_filter = true;
+
+			if ( $media_filter ) {
+				$media_type = SB_Instagram_Parse::get_media_type( $post );
+
+				if ( $media_type === 'video' && in_array( 'videos', $media_filter, true ) ) {
+					if ( ! empty( $video_types ) ) {
+						$video_type = SB_Instagram_Parse::get_media_product_type( $post );
+						$video_type = 'feed' === $video_type ? 'regular' : $video_type;
+
+						if ( ! in_array( $video_type, $video_types, true ) ) {
+							$passes_media_filter = false;
+						}
+					}
+				} elseif ( $media_type === 'video' && ! in_array( 'videos', $media_filter, true ) ) {
+					$passes_media_filter = false;
+				} elseif ( $media_type === 'image' && ! in_array( 'photos', $media_filter, true ) ) {
+					$passes_media_filter = false;
+				} elseif ( $media_type === 'carousel' && ! in_array( 'photos', $media_filter, true ) ) {
+					$passes_media_filter = false;
+				}
+
+			}
+
+			if ( ! $is_hidden && $passes_media_filter ) {
+				$keep_post = true;
+			}
+
+			$keep_post = apply_filters( 'sbi_passes_filter', $keep_post, $post, $settings );
+			if ( $keep_post ) {
+				$filtered_posts[] = $post;
+			}
+		}
+
+		return $filtered_posts;
 	}
 
 	protected function handle_no_posts_found( $settings = array(), $feed_types_and_terms = array() ) {

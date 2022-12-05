@@ -275,7 +275,14 @@ class Breeze_Query_Strings_Rules {
 		}
 
 		$current_url_query = parse_url( $url, PHP_URL_QUERY );
+
+		if ( ! empty( $current_url_query ) ) {
 		parse_str( $current_url_query, $breeze_query_output );
+		}
+
+		if ( empty( $breeze_query_output ) ) {
+			$breeze_query_output = array();
+		}
 
 		return $breeze_query_output;
 	}

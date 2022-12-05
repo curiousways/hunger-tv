@@ -203,8 +203,8 @@
                     </div>
                     <div class="sb-srcs-item" v-for="(source, sourceIndex) in sourcesList" :class="{expanded: expandedFeedID == sourceIndex + 1, 'sb-account-has-error' : source.error !== ''}">
                         <div class="sbi-fb-srcs-item-ins">
-                            <div class="sb-srcs-item-avatar" v-if="returnAccountAvatar(source)">
-                                <img :src="returnAccountAvatar(source)">
+                            <div class="sb-srcs-item-avatar" v-if="returnAccountAvatar(source) != false">
+                                <img :key="sourceIndex" :src="returnAccountAvatar(source)" :alt="escapeHTML(source.username)">
                             </div>
                             <div class="sb-srcs-item-inf">
                                 <div class="sb-srcs-item-name">{{source.username}}</div>
@@ -232,6 +232,11 @@
                                 <span>{{source.account_id}}</span>
                                 <div class="sbi-fb-srcs-info-icon" v-html="svgIcons['copy2']" @click.prevent.default="copyToClipBoard(source.account_id)"></div>
                             </div>
+                        </div>
+
+                        <div class="sbi-fb-srcs-personal-btn" v-if="expandedFeedID == sourceIndex + 1 && source.account_type == 'basic'" @click.prevent.default="openPersonalAccount( source )">
+                            <div v-html="svgIcons['addRoundIcon']"></div>
+                            <span v-html="source?.header_data?.biography || source?.local_avatar_url ? genericText.updateAccountInfo : genericText.addAccountInfo"></span>
                         </div>
                     </div>
 

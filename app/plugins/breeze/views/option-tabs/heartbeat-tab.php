@@ -46,12 +46,15 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/heartbeat-active.png';
 					$basic_value = isset( $options['breeze-control-heartbeat'] ) ? filter_var( $options['breeze-control-heartbeat'], FILTER_VALIDATE_BOOLEAN ) : false;
 					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-control-heartbeat'], '1', false ) : '';
 					?>
+
 					<div class="on-off-checkbox">
-						<input id="breeze-control-hb" name="breeze-control-hb" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-						<label for="breeze-control-hb">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="breeze-control-hb" name="breeze-control-hb" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php

@@ -53,11 +53,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 				$check_basic = ( isset( $basic_value ) && true === $basic_value ) ? checked( $basic['breeze-active'], '1', false ) : '';
 				?>
 				<div class="on-off-checkbox">
-					<input id="cache-system" name="cache-system" type="checkbox" class="br-box" value="1" <?php echo $check_basic; ?>>
-					<label for="cache-system">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="cache-system" name="cache-system" type="checkbox" class="br-box" value="1" <?php echo $check_basic; ?>>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p>
 						<?php _e( 'This is the basic cache that we recommend should be kept enabled in all cases. Basic cache will build the internal and static caches for the WordPress websites.', 'breeze' ); ?>
@@ -90,27 +92,35 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 		<!-- END OPTION -->
 
 		<!-- START OPTION -->
-		<div class="br-option-item">
+		<?php
+		$supports_conditionals = breeze_is_supported( 'conditional_htaccess' );
+
+		$is_disabled = is_multisite() && ! is_network_admin() && ! $supports_conditionals;
+		$basic_value = isset( $basic['breeze-gzip-compression'] ) ? filter_var( $basic['breeze-gzip-compression'], FILTER_VALIDATE_BOOLEAN ) : false;
+		$is_checked  = isset( $basic['breeze-gzip-compression'] ) && true === $basic_value && ! $is_disabled;
+
+		$disable_overlay = '';
+		if ( $is_disabled ) {
+			$disable_overlay = ' br-apply-disable';
+		}
+		?>
+		<div class="br-option-item<?php echo $disable_overlay; ?>">
 			<div class="br-label">
 				<div class="br-option-text">
 					<?php _e( 'Gzip Compression', 'breeze' ); ?>
 				</div>
 			</div>
 			<div class="br-option">
-				<?php
-				$supports_conditionals = breeze_is_supported( 'conditional_htaccess' );
 
-				$is_disabled = is_multisite() && ! is_network_admin() && ! $supports_conditionals;
-				$basic_value = isset( $basic['breeze-gzip-compression'] ) ? filter_var( $basic['breeze-gzip-compression'], FILTER_VALIDATE_BOOLEAN ) : false;
-				$is_checked  = isset( $basic['breeze-gzip-compression'] ) && true === $basic_value && ! $is_disabled;
-				?>
 				<div class="on-off-checkbox">
-					<input id="gzip-compression" type="checkbox" name="gzip-compression" class="br-box" value="1"
-						<?php echo $is_disabled ? 'disabled="disabled"' : ''; ?> <?php checked( $is_checked, true ); ?>/>
-					<label for="gzip-compression">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="gzip-compression" type="checkbox" name="gzip-compression" class="br-box" value="1"
+							<?php echo $is_disabled ? 'disabled="disabled"' : ''; ?> <?php checked( $is_checked, true ); ?>/>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p>
 						<?php _e( 'Enable this to compress your files making HTTP requests fewer and faster.', 'breeze' ); ?>
@@ -128,27 +138,35 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 		<!-- END OPTION -->
 
 		<!-- START OPTION -->
-		<div class="br-option-item">
+		<?php
+		$supports_conditionals = breeze_is_supported( 'conditional_htaccess' );
+
+		$is_disabled = is_multisite() && ! is_network_admin() && ! $supports_conditionals;
+		$basic_value = isset( $basic['breeze-browser-cache'] ) ? filter_var( $basic['breeze-browser-cache'], FILTER_VALIDATE_BOOLEAN ) : false;
+		$is_checked  = isset( $basic['breeze-browser-cache'] ) && true === $basic_value && ! $is_disabled;
+
+		$disable_overlay = '';
+		if ( $is_disabled ) {
+			$disable_overlay = ' br-apply-disable';
+		}
+		?>
+		<div class="br-option-item<?php echo $disable_overlay; ?>">
 			<div class="br-label">
 				<div class="br-option-text">
 					<?php _e( 'Browser Cache', 'breeze' ); ?>
 				</div>
 			</div>
 			<div class="br-option">
-				<?php
-				$supports_conditionals = breeze_is_supported( 'conditional_htaccess' );
 
-				$is_disabled = is_multisite() && ! is_network_admin() && ! $supports_conditionals;
-				$basic_value = isset( $basic['breeze-browser-cache'] ) ? filter_var( $basic['breeze-browser-cache'], FILTER_VALIDATE_BOOLEAN ) : false;
-				$is_checked  = isset( $basic['breeze-browser-cache'] ) && true === $basic_value && ! $is_disabled;
-				?>
 				<div class="on-off-checkbox">
-					<input id="browser-cache" type="checkbox" name="browser-cache" class="br-box" value="1"
-						<?php echo $is_disabled ? 'disabled="disabled"' : ''; ?> <?php checked( $is_checked, true ); ?>/>
-					<label for="browser-cache">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="browser-cache" type="checkbox" name="browser-cache" class="br-box" value="1"
+							<?php echo $is_disabled ? 'disabled="disabled"' : ''; ?> <?php checked( $is_checked, true ); ?>/>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p>
 						<?php _e( 'Enable this to add expires headers to static files. This will ask browsers to either request a file from server or fetch from the browser’s cache.', 'breeze' ); ?>
@@ -184,11 +202,14 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 				$check_basic = ( isset( $basic_value ) && true === $basic_value ) ? checked( $basic['breeze-lazy-load'], '1', false ) : '';
 				?>
 				<div class="on-off-checkbox">
-					<input id="bz-lazy-load" type="checkbox" name="bz-lazy-load" class="br-box" value='1' <?php echo $disabled; ?> <?php echo $check_basic; ?>/>
-					<label for="bz-lazy-load">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="bz-lazy-load" type="checkbox" name="bz-lazy-load" class="br-box" value='1' <?php echo $disabled; ?> <?php echo $check_basic; ?>/>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
+
 				<div class="br-note">
 					<p><?php _e( 'Images will begin to load before being displayed on screen.', 'breeze' ); ?></p>
 					<?php
@@ -220,13 +241,16 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 				$iframe_lazy_load = ( isset( $basic_value ) && true === $basic_value ) ? checked( $basic['breeze-lazy-load-iframes'], '1', false ) : '';
 				?>
 
-                <span <?php echo $hide; ?> id="native-lazy-option-iframe">
-						<div class="on-off-checkbox">
+				<span <?php echo $hide; ?> id="native-lazy-option-iframe">
+
+					<div class="on-off-checkbox">
+					<label class="br-switcher">
 						<input id="bz-lazy-load-iframe" type="checkbox" name="bz-lazy-load-iframe" class="br-box" value='1' <?php echo $iframe_lazy_load; ?>>
-						<label for="bz-lazy-load-iframe">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 					</div>
+
 						<p>
 					<?php _e( 'iFrame lazy load', 'breeze' ); ?><br/>
 					</p>
@@ -238,15 +262,18 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 						_e( 'Apply lazy load to iframe/videos tags.', 'breeze' );
 						?>
 					</p>
-                </span>
+				</span>
 
-                <span <?php echo $hide; ?> id="native-lazy-option">
-						<div class="on-off-checkbox">
+				<span <?php echo $hide; ?> id="native-lazy-option">
+				<div class="on-off-checkbox">
+					<label class="br-switcher">
 						<input id="bz-lazy-load-nat" type="checkbox" name="bz-lazy-load-nat" class="br-box" value='1' <?php echo $native_lazy_load; ?>>
-						<label for="bz-lazy-load-nat">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
-					</div>
+						<div class="br-see-state">
+						</div>
+					</label><br>
+				</div>
+
+
 						<p>
 					<?php _e( 'Enable native browser lazy load', 'breeze' ); ?><br/>
 					</p>
@@ -258,12 +285,12 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 						_e( 'This is not supported by all browsers.', 'breeze' );
 						?>
 					</p>
-                </span>
+				</span>
 
 
-            </div>
-        </div>
-        <!-- END OPTION -->
+			</div>
+		</div>
+		<!-- END OPTION -->
 
 		<!-- START OPTION -->
 		<div class="br-option-item">
@@ -278,11 +305,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 				$check_basic = ( isset( $basic_value ) && true === $basic_value ) ? checked( $basic['breeze-cross-origin'], '1', false ) : '';
 				?>
 				<div class="on-off-checkbox">
-					<input id="safe-cross-origin" type="checkbox" name="safe-cross-origin" class="br-box" <?php echo $check_basic; ?> value='1'/>
-					<label for="safe-cross-origin">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="safe-cross-origin" type="checkbox" name="safe-cross-origin" class="br-box" <?php echo $check_basic; ?> value='1'/>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p><?php _e( 'Apply “noopener noreferrer” to links which have target”_blank” attribute and the anchor leads to external websites', 'breeze' ); ?></p>
 				</div>
@@ -313,12 +342,14 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/basic-active.png';
 					?>
 					<strong><?php echo esc_html( $user_role_data['name'] ); ?></strong>
 					<div class="on-off-checkbox">
-						<input id="breeze-admin-cache-<?php echo esc_attr( $user_role ); ?>" type="checkbox" name="breeze-admin-cache[<?php echo esc_attr( $user_role ); ?>]" class="br-box"
-							   value="1" <?php echo $check_role; ?>>
-						<label for="breeze-admin-cache-<?php echo esc_attr( $user_role ); ?>">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="breeze-admin-cache-<?php echo esc_attr( $user_role ); ?>" type="checkbox" name="breeze-admin-cache[<?php echo esc_attr( $user_role ); ?>]" class="br-box"
+								   value="1" <?php echo $check_role; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 
 					<br/>
 					<?php

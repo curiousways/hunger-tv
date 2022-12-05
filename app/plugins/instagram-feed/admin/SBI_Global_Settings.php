@@ -93,7 +93,7 @@ class SBI_Global_Settings {
 				update_option( 'sbi_license_key', $sbi_license_key );
 			}
 		} else {
-			$license_key = trim( get_option( 'sbi_license_key' ) );
+			$license_key = sanitize_key( trim( get_option( 'sbi_license_key', '' ) ) );
 
 			if ( empty( $sbi_license_key ) && ! empty( $license_key ) ) {
 				$sbi_license_data = $this->get_license_data( $license_key, 'deactivate_license', SBI_PLUGIN_NAME );
@@ -226,7 +226,7 @@ class SBI_Global_Settings {
 		if ( ! sbi_current_user_can( 'manage_instagram_feed_options' ) ) {
 			wp_send_json_error();
 		}
-		$license_key = trim( get_option( 'sbi_license_key' ) );
+		$license_key = sanitize_key( trim( get_option( 'sbi_license_key', '' ) ) );
 		$sbi_license_data = $this->get_license_data( $license_key, 'deactivate_license', SBI_PLUGIN_NAME );
 		// update the license data
 		if( !empty( $sbi_license_data ) ) {
@@ -258,7 +258,7 @@ class SBI_Global_Settings {
 		if ( ! sbi_current_user_can( 'manage_instagram_feed_options' ) ) {
 			wp_send_json_error();
 		}
-		$license_key = get_option( 'sbi_license_key' );
+		$license_key = sanitize_key( get_option( 'sbi_license_key', '' ) );
 		$sbi_api_params = array(
 			'edd_action'=> 'check_license',
 			'license'   => $license_key,
@@ -302,7 +302,7 @@ class SBI_Global_Settings {
 			wp_send_json_error();
 		}
 		// Do the form validation
-		$license_key = isset( $_POST['license_key'] ) ? sanitize_text_field( $_POST['license_key'] ) : '';
+		$license_key = isset( $_POST['license_key'] ) ? sanitize_key( $_POST['license_key'] ) : '';
 		$item_name = isset( $_POST['item_name'] ) ? sanitize_text_field( $_POST['item_name'] ) : '';
 		$option_name = isset( $_POST['option_name'] ) ? sanitize_text_field( $_POST['option_name'] ) : '';
 		if ( empty( $license_key ) || empty( $item_name ) ) {
@@ -666,11 +666,11 @@ class SBI_Global_Settings {
 
 		$license_key = null;
 		if ( get_option('sbi_license_key') ) {
-			$license_key = get_option('sbi_license_key');
+			$license_key = sanitize_key( get_option('sbi_license_key') );
 		}
 
 		$upgrade_url 	= sprintf('https://smashballoon.com/instagram-feed/pricing/?license_key=%s&upgrade=true&utm_campaign=instagram-free&utm_source=settings&utm_medium=upgrade-license', $license_key);
-		$renew_url 		= sprintf('https://smashballoon.com/checkout/?license_key=%s&download_id=%s&utm_campaign=instagram-free&utm_source=settings&utm_medium=upgrade-license&utm_content=renew-license', $license_key, $sbi_download_id);
+		$renew_url 		= sprintf('https://smashballoon.com/checkout/?license_key=%s&download_id=%s&utm_campaign=instagram-free&utm_source=settings&utm_medium=upgrade-license&utm_content=renew-license', $license_key, sanitize_key( $sbi_download_id ) );
 		$learn_more_url = 'https://smashballoon.com/doc/my-license-key-wont-activate/?utm_campaign=instagram-free&utm_source=settings&utm_medium=license&utm_content=learn-more';
 
 		// Check if the license key reached max site installations
@@ -775,7 +775,7 @@ class SBI_Global_Settings {
 			);
 		}
 		$licenseErrorMsg = null;
-		$license_key = trim( get_option( 'sbi_license_key' ) );
+		$license_key = sanitize_key( trim( get_option( 'sbi_license_key', '' ) ) );
 		if ( $license_key ) {
 			$license_last_check = get_option( 'sbi_license_last_check_timestamp' );
 			$date = time() - (DAY_IN_SECONDS * 90);
@@ -813,7 +813,7 @@ class SBI_Global_Settings {
 
 		$license_key = null;
 		if ( get_option('sbi_license_key') ) {
-			$license_key = get_option('sbi_license_key');
+			$license_key = sanitize_key( get_option('sbi_license_key') );
 		}
 
 		$has_license_error = false;
@@ -1055,6 +1055,7 @@ class SBI_Global_Settings {
 			'nextCheck'	=> $this->get_cron_next_check(),
 			'loaderSVG' => '<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><path fill="#fff" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h6.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/></path></svg>',
 			'checkmarkSVG' => '<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>',
+			'timesCircleSVG' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"/></svg>',
 			'uploadSVG' => '<svg class="btn-icon" width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M0.166748 14.6667H11.8334V13H0.166748V14.6667ZM0.166748 6.33333H3.50008V11.3333H8.50008V6.33333H11.8334L6.00008 0.5L0.166748 6.33333Z" fill="#141B38"/></svg>',
 			'exportSVG' => '<svg class="btn-icon" width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1103,7 +1104,7 @@ class SBI_Global_Settings {
 	public static function get_links_with_utm() {
 		$license_key = null;
 		if ( get_option('sbi_license_key') ) {
-			$license_key = get_option('sbi_license_key');
+			$license_key = sanitize_key( get_option('sbi_license_key') );
 		}
 		$all_access_bundle_popup = sprintf('https://smashballoon.com/all-access/?license_key=%s&upgrade=true&utm_campaign=instagram-free&utm_source=balloon&utm_medium=all-access', $license_key);
 
@@ -1145,7 +1146,7 @@ class SBI_Global_Settings {
 				'cronAmPm'			=> $sbi_cache_cron_am_pm,
 				'gdpr'				=> $sbi_settings['gdpr'],
 				'gdprPlugin'		=> $active_gdpr_plugin,
-				'customCSS'			=> isset( $sbi_settings['sb_instagram_custom_css'] ) ? stripslashes( $sbi_settings['sb_instagram_custom_css'] ) : '',
+				'customCSS'			=> isset( $sbi_settings['sb_instagram_custom_css'] ) ? wp_strip_all_tags( stripslashes( $sbi_settings['sb_instagram_custom_css'] ) ) : '',
 				'customJS'			=> isset( $sbi_settings['sb_instagram_custom_js'] ) ? stripslashes( $sbi_settings['sb_instagram_custom_js'] ) : '',
 			),
 			'advanced' => array(

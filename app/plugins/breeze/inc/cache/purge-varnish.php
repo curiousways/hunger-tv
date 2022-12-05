@@ -158,13 +158,25 @@ class Breeze_PurgeVarnish {
 		if ( ! empty( $parseUrl['query'] ) && $parseUrl['query'] != 'breeze' ) {
 			$purgeme .= '?' . $parseUrl['query'];
 		}
+
+
+		$ssl_verification = apply_filters('breeze_ssl_check_certificate', true);
+
+		if ( ! is_bool( $ssl_verification ) ) {
+			$ssl_verification = true;
+		}
+
+		if(defined('WP_DEBUG') && true === WP_DEBUG){
+			$ssl_verification = false;
+		}
+
 		$request_args = array(
 			'method'    => $purge_method,
 			'headers'   => array(
 				'Host'       => $host,
 				'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
 			),
-			'sslverify' => false,
+			'sslverify' => $ssl_verification,
 		);
 		$response     = wp_remote_request( $schema . $purgeme, $request_args );
 		if ( is_wp_error( $response ) || $response['response']['code'] != '200' ) {

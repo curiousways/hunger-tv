@@ -192,6 +192,13 @@ class SB_Instagram_API_Connect
 		);
 		$response = wp_remote_get( $this->url, $args );
 
+		/**
+		 * Api response for instagram connection
+		 *
+		 * @since 6.0.6
+		 */
+		do_action( 'sbi_api_connect_response', $response, $this->url );
+
 		if ( ! is_wp_error( $response ) ) {
 			// certain ways of representing the html for double quotes causes errors so replaced here.
 			$response = json_decode( str_replace( '%22', '&rdquo;', $response['body'] ), true );
@@ -285,7 +292,7 @@ class SB_Instagram_API_Connect
 					$url = 'https://graph.instagram.com/me?fields=id,username,media_count,account_type&access_token=' . $access_token;
 				} else {
 					$num = min( $num, 200 );
-					$url = 'https://graph.instagram.com/' . $connected_account['user_id'] . '/media?fields=media_url,thumbnail_url,caption,id,media_type,timestamp,username,comments_count,like_count,permalink,children%7Bmedia_url,id,media_type,timestamp,permalink,thumbnail_url%7D&limit=' . $num . '&access_token=' . $access_token;
+					$url = 'https://graph.instagram.com/' . $connected_account['user_id'] . '/media?fields=media_url,thumbnail_url,caption,id,media_type,media_product_type,timestamp,username,comments_count,like_count,permalink,children%7Bmedia_url,id,media_type,timestamp,permalink,thumbnail_url%7D&limit=' . $num . '&access_token=' . $access_token;
 				}
 			}
 

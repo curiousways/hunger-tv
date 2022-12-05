@@ -2,6 +2,9 @@
 
 defined( 'ABSPATH' ) or die;
 
+// Thickbox for popups
+add_thickbox();
+
 $global_tabs = array(
 	'faq',
 );
@@ -67,11 +70,12 @@ $breeze_option_tabs = array(
 $section_icons = array();
 $section_title = array();
 
-$show_tabs  = true;
-$is_subsite = is_multisite() && get_current_screen()->base !== 'settings_page_breeze-network';
-
+$show_tabs             = true;
+$is_subsite            = is_multisite() && get_current_screen()->base !== 'settings_page_breeze-network';
+$logo_subsite          = '';
 $is_inherited_settings = false;
 if ( $is_subsite ) {
+	$logo_subsite = ' subsite-logo';
 	// Show settings inherit option.
 	$inherit_settings = get_option( 'breeze_inherit_settings', '0' );
 
@@ -81,40 +85,12 @@ if ( $is_subsite ) {
 	if ( true === $is_inherited_settings ) {
 		$show_tabs = false;
 	}
-
-	$display_text = array(
-		'network' => ( true === $is_inherited_settings ) ? 'br-show' : 'br-hide',
-		'custom'  => ( false === $is_inherited_settings ) ? 'br-show' : 'br-hide',
-	);
-	?>
-	<div style="width: 100%; margin-top: 30px;" class="change-settings-use">
-		<div class="on-off-checkbox settings-switcher">
-			<input id="inherit-settings" name="inherit-settings" type="checkbox" class="br-box" value="0" <?php echo $check_inherit_setting; ?>>
-			<label for="inherit-settings">
-				<div class="status-switch" data-unchecked="Inherit Network Settings" data-checked="Use Custom Settings"></div>
-			</label>
-		</div>
-		<p class="br-global-text-settings">
-		<span class="br-important br-is-network <?php echo esc_attr( $display_text['network'] ); ?>">
-			<strong><?php _e( 'Network Settings', 'breeze' ); ?></strong>:
-			 <?php esc_html_e( 'This option allows the subsite to inherit all the cache settings from network. To modify/update the settings please go to network site.', 'breeze' ); ?>
-		</span>
-
-			<span class="br-is-custom <?php echo esc_attr( $display_text['custom'] ); ?>">
-			<strong><?php _e( 'Custom Settings', 'breeze' ); ?></strong>:
-			 <?php esc_html_e( 'This option allows subsite to have different settings/configuration from the network level. Use this option only if you wish to have separate settings for this subsite.', 'breeze' ); ?>
-		</span>
-		</p>
-		<?php wp_nonce_field( 'breeze_inherit_settings', 'breeze_inherit_settings_nonce' ); ?>
-
-	</div>
-	<?php
 }
 ?>
 
 <div class="wrap breeze-box">
 	<div class="br-menu">
-		<div class="br-logo">&nbsp;</div>
+		<div class="br-logo<?php echo esc_attr( $logo_subsite ); ?>">&nbsp;</div>
 		<div class="br-mobile-menu">
 			<span class="dashicons dashicons-menu"></span>
 			<?php _e( 'Open menu', 'breeze' ); ?>
@@ -162,5 +138,56 @@ if ( $is_subsite ) {
 		?>
 
 	</div>
-	<div class="br-options"></div>
+	<?php
+
+	if ( true === $is_subsite ) {
+		// Show settings inherit option.
+		$inherit_settings = get_option( 'breeze_inherit_settings', '0' );
+
+		$is_inherited_settings = isset( $inherit_settings ) ? filter_var( $inherit_settings, FILTER_VALIDATE_BOOLEAN ) : false;
+		$check_inherit_setting = ( isset( $is_inherited_settings ) && false === $is_inherited_settings ) ? checked( $inherit_settings, '0', false ) : '';
+
+		if ( true === $is_inherited_settings ) {
+			$show_tabs = false;
+		}
+
+		$display_text = array(
+			'network' => ( true === $is_inherited_settings ) ? 'br-show' : 'br-hide',
+			'custom'  => ( false === $is_inherited_settings ) ? 'br-show' : 'br-hide',
+		);
+		?>
+		<div class="br-container">
+			<div class="br-network-only change-settings-use">
+				<div>
+					<p class="br-global-text-settings">
+						<span class="br-important br-is-network <?php echo esc_attr( $display_text['network'] ); ?>">
+							<strong><?php _e( 'Network Settings', 'breeze' ); ?></strong>:<br/>
+							 <?php esc_html_e( 'This option allows the subsite to inherit all the cache settings from network. To modify/update the settings please go to network site.', 'breeze' ); ?>
+						</span>
+
+						<span class="br-is-custom <?php echo esc_attr( $display_text['custom'] ); ?>">
+							<strong><?php _e( 'Use Custom Settings', 'breeze' ); ?></strong>:<br/>
+							 <?php esc_html_e( 'This option allows subsite to have different settings/configuration from the network level. Use this option only if you wish to have separate settings for this subsite.', 'breeze' ); ?>
+						</span>
+					</p>
+					<?php wp_nonce_field( 'breeze_inherit_settings', 'breeze_inherit_settings_nonce' ); ?>
+				</div>
+				<div class="br-option-net">
+					<div class="br-radio">
+						<input type="radio" id="inherit-settings-1" name="inherit-settings" value="1" <?php echo ( true === $is_inherited_settings ) ? 'checked' : ''; ?>/>
+						<label for="inherit-settings-1" class="radio-label"><?php _e( 'Inherit Network Settings', 'breeze' ); ?></label>
+					</div>
+
+					<div class="br-radio">
+						<input type="radio" id="inherit-settings-2" name="inherit-settings" value="0" <?php echo ( false === $is_inherited_settings ) ? 'checked' : ''; ?> style="margin-left: 25px;"/>
+						<label for="inherit-settings-2" class="radio-label"><?php _e( 'Use Custom Settings', 'breeze' ); ?></label>
+					</div>
+
+				</div>
+			</div>
+			<div class="br-options"></div>
+		</div>
+	<?php } else { ?>
+		<div class="br-options"></div>
+	<?php } ?>
 </div>

@@ -1,9 +1,9 @@
 === Smash Balloon Social Photo Feed ===
-Contributors: smashballoon, craig-at-smash-balloon
+Contributors: smashballoon, craig-at-smash-balloon, am, smub
 Tags: Instagram, Instagram feed, Instagram photos, Instagram widget, Instagram gallery
 Requires at least: 4.1
-Tested up to: 5.9
-Stable tag: 6.0.4
+Tested up to: 6.1
+Stable tag: 6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,8 +34,8 @@ Display Instagram posts from your Instagram accounts, either in the same single 
 * **Increase Social Engagement** - Increase engagement between you and your Instagram followers. Increase your number of followers by displaying your Instagram content directly on your site.
 * **Save Time** - Don't have time to update your photos on your site? Save time and increase efficiency by only posting your photos to Instagram and automatically displaying them on your website
 * **Display Your Content Your Way** - Customize your Instagram feeds to look exactly the way you want, so that they blend seemlessly into your site or pop out at your visitors!
-* **Keep Your Site Looking Fresh** - Automatically aggregate your new Instagram content straight to your site to keep it looking fresh and keeping your audience engaged.
-* **Super simple to set up** - Once installed, you can be displaying your Instagram photos within 30 seconds! No confusing steps or Instagram Developer account needed. The Instagram Feed aggregator plugin is the easiest way to aggregate Instagram posts on your site.
+* **Keep Your Site Looking Fresh** - Automatically push your new Instagram content straight to your site to keep it looking fresh and keeping your audience engaged.
+* **Super simple to set up** - Once installed, you can be displaying your Instagram photos within 30 seconds! No confusing steps or Instagram Developer account needed.
 * **Powers all Instagram oEmbeds on your site** - With WordPress removing support for Instagram oEmbeds, the plugin will now power all Instagram embeds on your site, old and new, to allow them to continue working.
 
 = Pro Version =
@@ -80,7 +80,7 @@ For simple step-by-step directions on how to set up the Instagram Feed plugin pl
 
 Copy and paste the following shortcode directly into the page, post or widget where you'd like the Instagram feed to show up: `[instagram-feed]`
 
-**Multiple Instagram Aggregator Feeds**
+**Multiple Instagram Feeds**
 
 If you'd like to display multiple Instagram feeds then you can set different settings directly in the shortcode like so: `[instagram-feed num=9 cols=3]`
 
@@ -171,7 +171,7 @@ In version 2.5, support was added to allow the plugin to power your Instagram oE
 
 We've made it super easy. Simply click on the big blue button on the Instagram Feed Settings page and log into your Instagram account. The plugin will then ask if you'd like to connect the account and start using it in a feed.
 
-= My Instagram aggregator isn't displaying. Why not!? =
+= My Instagram feed isn't displaying. Why not!? =
 
 There are a few common reasons for this:
 
@@ -221,7 +221,7 @@ If you are trying to display an Instagram feed that has no posts made to it, a l
 
 5) The shortcode you are using is incorrect
 
-You may have an error in the Instagram Feed agregator shortcode you are using or are missing a necessary argument.
+You may have an error in the Instagram Feed shortcode you are using or are missing a necessary argument.
 
 = What are the available shortcode options that I can use to customize my Instagram feed? =
 
@@ -331,9 +331,39 @@ We understand that sometimes you need help, have issues or just have questions. 
 * Plus more customization options added all the time!
 
 == Changelog ==
+= 6.1 =
+* New: Added the ability to filter "Reels" posts in feeds. When customizing a feed and using the moderation settings you can now choose to show or hide Instagram "Reels" posts.
+* New: Add a header image and bio text for personal sources. Go to the settings page and click on the gear icon to add this to an existing source.
+* New: Added support for Instagram "Reels" oEmbeds. Use WordPress' embed block to create rich oEmbed links in blog posts and pages.
+* Tweak: Vue.js code is now loaded from a local file shipped with the plugin rather than an external CDN for use with the customizer in the admin area.
+
+= 6.0.8 =
+* Tweak: Added a workaround to retrieve missing images if none were returned by Instagram for a post.
+* Fix: Custom colors assigned to the Follow button would not apply when using a custom color palette.
+* Fix: Added additional plugin hardening.
+* Fix: A fatal error would occur with older versions of PHP and WordPress in some circumstances.
+
+= 6.0.7 =
+* Fix: Removed legacy "disable mobile" setting support as it was causing confusion for users updating from 2.x where changes to feed columns would not have an effect.
+* Fix: Removed the reference in the feed CSS file to an image file that didn't exist.in the feed CSS file.
+* Fix: All sources would be removed when the grace period to address app permission issues ended. Now only the single source will be removed.
+* Fix: The number of posts would be inaccurate in the feed preview when using the customizer for mobile devices.
+
+= 6.0.6 =
+* Tweak: Added a warning notice to allow a grace period before Instagram data is permanently deleted from your site after deauthorizing the Smash Balloon Instagram app. Due to Instagram requirements, any Instagram data on your site must be deleted within a reasonable time after the app has been deauthorized. The new warning notice provides a 7 day grace period to allow you time to reauthorize the app if you don't want the data to be deleted.
+* Tweak: Reconnecting an account now results in deleting the original connection in the database and adding a new one. This will prevent issues with some caching systems like Redis.
+* Fix: Only the first 20 sources were available when creating feeds and changing sources for a feed.
+* Fix: The link in some error messages were incorrect resulting in "access denied" error messages when clicking on them.
+
+= 6.0.5 =
+* Tweak: If WordPress cron is broken or behind schedule and causing background caching to not work, the plugin will update the feed when the page loads.
+* Fix: Jetpack's "Master Bar" feature was causing the sidebar in the customizer to be partially hidden.
+* Fix: Added back support for the "class" shortcode setting for all feeds.
+* Fix: Removed all Font Awesome icons and no longer include the CSS file from the Font Awesome CDN.
+
 = 6.0.4 =
-* Fix: Added back the ability to use up to 10 columns in feeds for desktop and tablet devices, which was inadvertently removed in v6.0.
-* Fix: The reconnect link that would display when an account had an error would not successfully redirect to connect.smashballoon.com to reconnect the account.
+* Fix: Added back the ability to use up to 10 columns in feeds.
+* Fix: The reconnect link that would display when an account had an error would not redirect to connect.smashballoon.com.
 
 = 6.0.3 =
 * Tweak: Updated our logo throughout the plugin to match our new [website](https://smashballoon.com/).

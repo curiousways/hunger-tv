@@ -29,14 +29,15 @@ if ( ! class_exists( 'Breeze_Shortpixel_Compatibility' ) ) {
 
 
 		public function clear_breeze_cache() {
-			$data = $_POST['data'];
+			if ( false === breeze_is_restricted_access( true ) ) {
+				$data = $_POST['data'];
 
-			$action = isset( $data['action'] ) ? $data['action'] : null;
-			// Clear LQIP cache and Clear CSS cache.
-			if ( 'clear lqip cache' === $action || 'clear css cache' === $action ) {
-				$this->clear_all_breeze_cache();
+				$action = isset( $data['action'] ) ? $data['action'] : null;
+				// Clear LQIP cache and Clear CSS cache.
+				if ( 'clear lqip cache' === $action || 'clear css cache' === $action ) {
+					$this->clear_all_breeze_cache();
+				}
 			}
-
 
 		}
 

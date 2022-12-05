@@ -45,9 +45,12 @@ if ( ! class_exists( 'Breeze_Incompatibility_Plugins' ) ) {
 
 		public function compatibility_warning_close() {
 			$response            = array();
-			$response['success'] = true;
-			update_option( 'breeze_hide_notice', 'yes', 'no' );
-
+			$response['success'] = false;
+			// Only administrator can close this notice.
+			if ( false === breeze_is_restricted_access( true ) ) {
+				$response['success'] = true;
+				update_option( 'breeze_hide_notice', 'yes', 'no' );
+			}
 			wp_send_json( $response );
 		}
 

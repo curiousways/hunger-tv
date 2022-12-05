@@ -464,7 +464,12 @@ class Breeze_Ecommerce_Cache {
 	public function wc_facebook_feed() {
 		$urls = array();
 		if ( class_exists( 'WC_Facebook_Loader' ) ) {
+			if ( class_exists( 'SkyVerge\WooCommerce\Facebook\Products\Feed' ) ) {
 			$urls[] = SkyVerge\WooCommerce\Facebook\Products\Feed::get_feed_data_url();
+		}
+			if ( class_exists( 'WooCommerce\Facebook\Products\Feed' ) ) {
+				$urls[] = WooCommerce\Facebook\Products\Feed::get_feed_data_url();
+			}
 		}
 
 		return $urls;
@@ -624,6 +629,10 @@ class Breeze_Ecommerce_Cache {
 	 * Remove '/' chacracter of end url
 	 */
 	public function rtrim_urls( $url ) {
+		if ( empty( $url ) || ! is_string( $url ) ) {
+			return $url;
+		}
+
 		return rtrim( $url, '/' );
 	}
 

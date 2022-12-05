@@ -53,11 +53,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/varnish-active.png';
 				$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['auto-purge-varnish'], '1', false ) : '';
 				?>
 				<div class="on-off-checkbox">
-					<input id="auto-purge-varnish" name="auto-purge-varnish" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-					<label for="auto-purge-varnish">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="auto-purge-varnish" name="auto-purge-varnish" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p>
 						<?php _e( 'Keep this option enabled to automatically purge Varnish cache on actions like publishing new blog posts, pages and comments.', 'breeze' ); ?>

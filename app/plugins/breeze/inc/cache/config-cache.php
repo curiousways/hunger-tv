@@ -178,7 +178,7 @@ class Breeze_ConfigCache {
 	 * @param bool $create_root_config Used in multisite, to reset/create breeze-config.php file
 	 */
 	public static function write_config_cache( $create_root_config = false ) {
-
+		global $wmc_settings;
 		if ( true === $create_root_config ) {
 			$network_id = get_current_network_id();
 			$settings   = Breeze_Options_Reader::fetch_all_saved_settings( true );
@@ -214,6 +214,40 @@ class Breeze_ConfigCache {
 		$storage['breeze-preload-links']     = ( isset( $preload_links ) ? $preload_links : 0 );
 		$storage['breeze-lazy-load-iframes'] = ( isset( $lazy_load_iframes ) ? $lazy_load_iframes : 0 );
 
+		//  CURCY - WooCommerce Multi Currency Premium.
+		if (
+			class_exists( 'WOOMULTI_CURRENCY' ) ||
+			class_exists( 'WOOMULTI_CURRENCY_F')
+		) {
+			if ( empty( $wmc_settings ) ) {
+				// if $wmc_settings is empty, we will check again.
+				$wmc_settings = get_option( 'woo_multi_currency_params', array() );
+			}
+			// if the option exists and has values.
+			if ( ! empty( $wmc_settings ) ) {
+				$is_enable = filter_var( $wmc_settings['enable'], FILTER_VALIDATE_BOOLEAN );
+				if ( $is_enable ) {
+					$session_type = 'cookie';
+					$is_session   = false;
+					if ( isset( $wmc_settings['use_session'] ) ) {
+						$is_session = filter_var( $wmc_settings['use_session'], FILTER_VALIDATE_BOOLEAN );
+					}
+					if ( $is_session ) {
+						$session_type = 'session';
+					}
+					$storage['curcy-wmc-type'] = $session_type;
+				}
+			}
+		}
+
+		// WOOCS - WooCommerce Currency Switcher
+		$woocs_is_active = false;
+		if (
+			class_exists( 'WOOCS_STARTER' )
+		) {
+			$woocs_is_active = true;
+		}
+
 		if ( isset( $_POST['woocommerce_default_customer_address'] ) ) {
 			$storage['woocommerce_geolocation_ajax'] = ( 'geolocation_ajax' === $_POST['woocommerce_default_customer_address'] ) ? 1 : 0;
 		} else {
@@ -223,6 +257,10 @@ class Breeze_ConfigCache {
 		// permalink_structure
 		if ( is_multisite() ) {
 			if ( is_network_admin() ) {
+				if ( true === $woocs_is_active ) {
+					$storage['woocs-store-type'] = get_site_option( 'woocs_storage', 'transient' );
+				}
+
 				unset( $storage['woocommerce_geolocation_ajax'] );
 				// network oes not have this setting.
 				// we save for each sub-site.
@@ -241,9 +279,15 @@ class Breeze_ConfigCache {
 			} else {
 				$network_id                     = get_current_blog_id();
 				$storage['permalink_structure'] = get_blog_option( $network_id, 'permalink_structure', '' );
+				if ( true === $woocs_is_active ) {
+					$storage['woocs-store-type'] = get_blog_option( $network_id, 'woocs_storage', 'transient' );
+				}
 			}
 		} else {
 			$storage['permalink_structure'] = get_option( 'permalink_structure', '' );
+			if ( true === $woocs_is_active ) {
+				$storage['woocs-store-type'] = get_option( 'woocs_storage', 'transient' );
+			}
 		}
 
 

@@ -54,15 +54,21 @@ class Breeze_PurgeCache {
 	//    Automatically purge all file based page cache on post changes
 	public function purge_post_on_update( $post_id ) {
 		$post_type = get_post_type( $post_id );
+
 		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || 'revision' === $post_type ) {
 			return;
 		} elseif ( ! current_user_can( 'edit_post', $post_id ) && ( ! defined( 'DOING_CRON' ) || ! DOING_CRON ) ) {
 			return;
 		}
 
+		$do_cache_reset = true;
+		if ( 'tribe_events' === $post_type ) {
+			$do_cache_reset = false;
+		}
+
 		// File based caching only
 		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-active' ) ) ) {
-			self::breeze_cache_flush();
+			self::breeze_cache_flush( $do_cache_reset );
 		}
 	}
 
@@ -110,8 +116,8 @@ class Breeze_PurgeCache {
 	}
 
 	//clean cache
-	public static function breeze_cache_flush() {
-		global $wp_filesystem;
+	public static function breeze_cache_flush( $flush_cache = true ) {
+		global $wp_filesystem, $post;
 
 		require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
@@ -120,8 +126,28 @@ class Breeze_PurgeCache {
 		$cache_path = breeze_get_cache_base_path( is_network_admin() );
 		$wp_filesystem->rmdir( untrailingslashit( $cache_path ), true );
 
-		if ( function_exists( 'wp_cache_flush' ) ) {
-			wp_cache_flush();
+		if ( true === $flush_cache && ! empty( $post ) ) {
+			$post_type = get_post_type( $post->ID );
+
+			$flush_cache = true;
+			$ignore_object_cache = array(
+				'tribe_events',
+				'shop_order',
+			);
+			if ( in_array( $post_type, $ignore_object_cache ) ) {
+				$flush_cache = false;
+			}
+		}
+
+		if ( true === $flush_cache && isset( $_GET['post_type'] ) && 'tribe_events' === $_GET['post_type'] ) {
+			$flush_cache = false;
+		}
+
+		if ( function_exists( 'wp_cache_flush' ) && true === $flush_cache ) {
+			#if ( ! defined( 'RedisCachePro\Version' ) && ! defined( 'WP_REDIS_VERSION' ) ) {
+				wp_cache_flush();
+			#}
+
 		}
 	}
 
@@ -162,6 +188,18 @@ class Breeze_PurgeCache {
 		}
 
 		return $instance;
+	}
+
+
+	public static function __flush_object_cache() {
+		set_as_network_screen();
+
+		if ( is_network_admin() ) {
+			// in case we need to add something specific for network.
+			return wp_cache_flush();
+		}
+
+		return wp_cache_flush();
 	}
 
 }

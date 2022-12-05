@@ -33,11 +33,11 @@ class SBI_Db {
 			unset( $args['page'] );
 		}
 
-		$offset = max( 0, $page * self::RESULTS_PER_PAGE );
+		$offset = max( 0, $page * 400 );
 
 		if ( empty( $args ) ) {
 
-			$limit = (int) self::RESULTS_PER_PAGE;
+			$limit = 400;
 			$sql   = "SELECT s.id, s.account_id, s.account_type, s.privilege, s.access_token, s.username, s.info, s.error, s.expires, count(f.id) as used_in
 				FROM $sources_table_name s
 				LEFT JOIN $feeds_table_name f ON f.settings LIKE CONCAT('%', s.account_id, '%')
@@ -55,15 +55,13 @@ class SBI_Db {
 			$i = 0;
 			foreach ( $results as $result ) {
 				if ( (int) $result['used_in'] > 0 ) {
-					$account_id = sanitize_key( $result['account_id'] );
-					$sql        = "SELECT *
+					$results[ $i ]['instances'] = $wpdb->get_results( $wpdb->prepare(
+						"SELECT *
 						FROM $feeds_table_name
-						WHERE settings LIKE CONCAT('%', $account_id, '%')
+						WHERE settings LIKE CONCAT('%', %s, '%')
 						GROUP BY id
 						LIMIT 100;
-						";
-
-					$results[ $i ]['instances'] = $wpdb->get_results( $sql, ARRAY_A );
+						", $result['account_id'] ), ARRAY_A );
 				}
 				$i++;
 			}
@@ -555,6 +553,25 @@ class SBI_Db {
 	 *
 	 * @param array $source_id
 	 *
+	 * @since 6.0.6
+	 */
+	public static function delete_source( $source_id ) {
+		global $wpdb;
+		$sources_table_name = $wpdb->prefix . 'sbi_sources';
+		return $wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM $sources_table_name WHERE id = %d; ",
+				$source_id
+			)
+		);
+
+	}
+
+	/**
+	 * Query to Remove Source from Database
+	 *
+	 * @param array $source_id
+	 *
 	 * @since 6.0
 	 */
 	public static function delete_source_query( $source_id ) {
@@ -926,5 +943,22 @@ class SBI_Db {
 		$wp_roles->remove_cap( 'administrator', 'manage_instagram_feed_options' );
 		wp_clear_scheduled_hook( 'sbi_feed_update' );
 		wp_clear_scheduled_hook( 'sbi_usage_tracking_cron' );
+	}
+
+	/**
+	 * Query to Get Single source
+	 *
+	 * @param array $source_id
+	 *
+	 * @since 6.0.8
+	 */
+	public static function get_source_by_account_id( $source_id ) {
+		global $wpdb;
+		$sources_table_name = $wpdb->prefix . 'sbi_sources';
+		$sql = $wpdb->prepare(
+				"SELECT * FROM $sources_table_name WHERE account_id = %s; ",
+				$source_id
+			);
+		return $wpdb->get_row( $sql, ARRAY_A );
 	}
 }
