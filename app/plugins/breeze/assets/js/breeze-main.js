@@ -40,6 +40,15 @@ jQuery( document ).ready(
 				breeze_purgeVarnish_callAjax();
 			}
 		);
+		// Topbar action
+		$( document ).on(
+			'click',
+			'#wp-admin-bar-breeze-purge-object-cache-group',
+			function ( e ) {
+				e.preventDefault();
+				breeze_purge_opcache_ajax();
+			}
+		);
 
 		$( document ).on(
 			'click',
@@ -47,6 +56,21 @@ jQuery( document ).ready(
 			function ( e ) {
 				e.preventDefault();
 				breeze_purgeFile_callAjax();
+			}
+		);
+
+		// Reset Default
+		$( document ).on(
+			'click',
+			'#breeze_reset_default',
+			function ( e ) {
+				e.preventDefault();
+
+				reset_confirm = confirm("Want to reset breeze settings?");
+
+				if ( reset_confirm ) {
+					breeze_reset_default();
+				}
 			}
 		);
 
@@ -66,6 +90,107 @@ jQuery( document ).ready(
 
 			}
 		);
+
+		if ( $box_container.length ) {
+			$( '.breeze-box' ).on( 'keyup paste', '#cdn-url', function () {
+				var cdn_value = $.trim( $( this ).val() );
+				if ( '' !== cdn_value && true === is_valid_url( cdn_value ) ) {
+
+					$.ajax( {
+						type: "POST",
+						url: ajaxurl,
+						data: {
+							action: 'breeze_check_cdn_url',
+							'cdn_url': cdn_value,
+							security: breeze_token_name.breeze_check_cdn_url
+						},
+						dataType: "json", // xml, html, script, json, jsonp, text
+						success: function ( data ) {
+							if(false === data.success){
+								$('#cdn-message-error').show();
+								$('#cdn-message-error').html(data.message);
+							}else{
+								$('#cdn-message-error').hide();
+							}
+						},
+						error: function ( jqXHR, textStatus, errorThrown ) {
+
+						},
+						// called when the request finishes (after success and error callbacks are executed)
+						complete: function ( jqXHR, textStatus ) {
+
+						}
+					} );
+				}else{
+					$('#cdn-message-error').hide();
+				}
+			} );
+		}
+
+		function is_valid_url( url ) {
+			return /^(http(s)?:)?\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test( url );
+		}
+
+		//clear cache by button
+		function breeze_purge_opcache_ajax() {
+			$.ajax(
+				{
+					url: ajaxurl,
+					dataType: 'json',
+					method: 'POST',
+					data: {
+						action: 'breeze_purge_opcache',
+						is_network: $( 'body' ).hasClass( 'network-admin' ),
+						security: breeze_token_name.breeze_purge_opcache
+					},
+					success: function ( res ) {
+						current = location.href;
+						if ( res.clear ) {
+							var div = '<div id="message" class="notice notice-success is-dismissible breeze-notice" style="margin-top:10px; margin-bottom:10px;padding: 10px;margin-left: 0;"><p><strong>Object Cache has been purged.</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+							//backend
+							$( "#wpbody #wpbody-content" ).prepend( div );
+							setTimeout(
+								function () {
+									//location.reload();
+									purge_action = true;
+								},
+								2000
+							);
+
+						} else {
+							window.location.href = current + "breeze-msg=purge-fail";
+							purge_action = true;
+							location.reload();
+						}
+					}
+				}
+			);
+		}
+
+		//reset to default
+		function breeze_reset_default() {
+			$.ajax(
+				{
+					url: ajaxurl,
+					dataType: 'json',
+					method: 'POST',
+					data: {
+						action: 'breeze_reset_default',
+						is_network: $('body').hasClass('network-admin'),
+						security: breeze_token_name.breeze_reset_default
+					},
+					success: function (res) {
+						if ( res === true ) {
+							alert('Settings reset to default');
+							purge_action = true;
+						} else {
+							alert('Something went wrong - please try again');
+						}
+						location.reload();
+					}
+				}
+			);
+		}
 
 		//clear cache by button
 		function breeze_purgeVarnish_callAjax() {
@@ -95,7 +220,7 @@ jQuery( document ).ready(
 
 						} else {
 							window.location.href = current + "breeze-msg=purge-fail";
-							purge_action         = true;
+							purge_action = true;
 							location.reload();
 						}
 					}
@@ -114,9 +239,9 @@ jQuery( document ).ready(
 						security: breeze_token_name.breeze_purge_cache
 					},
 					success: function ( res ) {
-						current              = location.href;
-						res                  = parseFloat( res );
-						var fileClean        = res;
+						current = location.href;
+						res = parseFloat( res );
+						var fileClean = res;
 						window.location.href = current + "#breeze-msg=success-cleancache&file=" + res;
 						//location.reload();
 						if ( fileClean > 0 ) {
@@ -133,22 +258,22 @@ jQuery( document ).ready(
 		}
 
 		function getParameterByName( name, url ) {
-			if ( ! url ) {
+			if ( !url ) {
 				url = window.location.href;
 			}
-			name        = name.replace( /[\[\]]/g, "\\$&" );
-			var regex   = new RegExp( "[?&]" + name + "(=([^&#]*)|&|#|$)" ),
+			name = name.replace( /[\[\]]/g, "\\$&" );
+			var regex = new RegExp( "[?&]" + name + "(=([^&#]*)|&|#|$)" ),
 				results = regex.exec( url );
-			if ( ! results ) {
+			if ( !results ) {
 				return null;
 			}
-			if ( ! results[ 2 ] ) {
+			if ( !results[ 2 ] ) {
 				return '';
 			}
 			return decodeURIComponent( results[ 2 ].replace( /\+/g, " " ) );
 		}
 
-		var url       = location.href;
+		var url = location.href;
 		var fileClean = parseFloat( getParameterByName( 'file', url ) );
 
 		$( window ).on(
@@ -158,7 +283,7 @@ jQuery( document ).ready(
 				if ( patt.test( url ) ) {
 					//backend
 					var div = '';
-					if ( url.indexOf( "msg=success-cleancache" ) > 0 && ! isNaN( fileClean ) ) {
+					if ( url.indexOf( "msg=success-cleancache" ) > 0 && !isNaN( fileClean ) ) {
 						if ( fileClean > 0 ) {
 							div = '<div id="message" class="notice notice-success is-dismissible breeze-notice" style="margin-top:10px; margin-bottom:10px;padding: 10px;"><p><strong>Internal cache has been purged: ' + fileClean + 'Kb cleaned</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 						} else {
@@ -207,7 +332,7 @@ jQuery( document ).ready(
 			'#bz-lazy-load',
 			function () {
 
-				var native_lazy         = $( '#native-lazy-option' );
+				var native_lazy = $( '#native-lazy-option' );
 				var native_lazy_iframes = $( '#native-lazy-option-iframe' );
 				if ( true === $( this ).is( ':checked' ) ) {
 					native_lazy.show();
@@ -238,21 +363,31 @@ jQuery( document ).ready(
 			'#minification-css',
 			function () {
 				var font_display_swap = $( '#font-display-swap' );
-				var font_display      = $( '#font-display' );
+				var font_display = $( '#font-display' );
 
 				var include_inline_css = $( '#include-inline-css' );
-				var group_css          = $( '#group-css' );
+				var group_css = $( '#group-css' );
+				var minification_css = $( '#exclude-css' );
 
 				if ( $( this ).is( ':checked' ) ) {
 					font_display_swap.show();
-					include_inline_css.removeAttr( 'disabled' );
-					group_css.removeAttr( 'disabled' );
+					//include_inline_css.removeAttr( 'disabled' );
+					//group_css.removeAttr( 'disabled' );
+
+					minification_css.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
+					group_css.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
+					include_inline_css.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
 				} else {
 					font_display_swap.hide();
 					font_display.removeAttr( 'checked' );
-					include_inline_css.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
-					group_css.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					//include_inline_css.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					//group_css.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					include_inline_css.prop( 'checked', false );
+					group_css.prop( 'checked', false );
 
+					minification_css.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
+					group_css.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
+					include_inline_css.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
 				}
 			}
 		);
@@ -263,29 +398,64 @@ jQuery( document ).ready(
 			function () {
 
 				var include_inline_js = $( '#include-inline-js' );
-				var group_js          = $( '#group-js' );
+				var group_js = $( '#group-js' );
+				var exclude_js = $( '#exclude-js' );
 
 				if ( $( this ).is( ':checked' ) ) {
-					include_inline_js.removeAttr( 'disabled' );
-					group_js.removeAttr( 'disabled' );
-				} else {
-					include_inline_js.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
-					group_js.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					//include_inline_js.removeAttr( 'disabled' );
+					//group_js.removeAttr( 'disabled' );
 
+					exclude_js.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
+					group_js.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
+					include_inline_js.closest( 'div.br-option-item' ).removeClass( 'br-apply-disable' );
+				} else {
+					//include_inline_js.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					//group_js.removeAttr( 'checked' ).attr( 'disabled', 'disabled' );
+					include_inline_js.prop( 'checked', false );
+					group_js.prop( 'checked', false );
+
+
+					exclude_js.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
+					group_js.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
+					include_inline_js.closest( 'div.br-option-item' ).addClass( 'br-apply-disable' );
 				}
 			}
 		);
 
 		$box_container.on(
 			'change',
+			'#breeze-delay-all-js',
+			function () {
+				var $delay_js_div_all = $( '#breeze-delay-js-scripts-div-all' );
+				var $enable_inline_delay = $( '#enable-js-delay' );
+
+				if ( $( this ).is( ':checked' ) ) {
+					$delay_js_div_all.show();
+					$( 'input[name="enable-js-delay"]' ).prop( 'checked', false );
+					$( '#breeze-delay-js-scripts-div' ).hide();
+					$enable_inline_delay.attr( 'disabled', 'disabled' );
+				} else {
+					$delay_js_div_all.hide();
+					$enable_inline_delay.removeAttr( 'disabled' );
+				}
+			}
+		)
+
+		$box_container.on(
+			'change',
 			'#enable-js-delay',
 			function () {
-				$delay_js_div = $( '#breeze-delay-js-scripts-div' );
+				var $delay_js_div = $( '#breeze-delay-js-scripts-div' );
+				var $delay_all_js = $( '#breeze-delay-all-js' );
 
 				if ( $( this ).is( ':checked' ) ) {
 					$delay_js_div.show();
+					$( 'input[name="breeze-delay-all-js"]' ).prop( 'checked', false );
+					$( '#breeze-delay-js-scripts-div-all' ).hide();
+					$delay_all_js.attr( 'disabled', 'disabled' );
 				} else {
 					$delay_js_div.hide();
+					$delay_all_js.removeAttr( 'disabled' );
 				}
 			}
 		)
@@ -338,12 +508,15 @@ jQuery( document ).ready(
 		initRemoveBtn();
 
 		function initSortableHandle() {
-			$( '.breeze-list-url' ).sortable(
-				{
-					handle: $( 'span.sort-handle' ),
-					stop: validateMoveButtons
-				}
-			);
+
+			if ( $( '.breeze-list-url' ).length ) {
+				$( '.breeze-list-url' ).sortable(
+					{
+						handle: $( 'span.sort-handle' ),
+						stop: validateMoveButtons
+					}
+				);
+			}
 		}
 
 		initSortableHandle();
@@ -468,6 +641,49 @@ jQuery( document ).ready(
 				// Toggle right-side content
 				if ( id_tab === 'faq' ) {
 					$( '#breeze-and-cloudways' ).hide();
+					if ( $( '#faq-content' ).length ) {
+						$( '#faq-content' ).accordion(
+							{
+								collapsible: true,
+								animate: 200,
+								header: '.faq-question',
+								heightStyle: 'content'
+							}
+						);
+					}
+				} else {
+					$( '#breeze-and-cloudways' ).show();
+				}
+			}
+		);
+
+		// Cookie do
+		function Breeze_setTabFromCookie() {
+			var breeze_active_tab = getCookie( 'breeze_active_tab' );
+			if ( ! breeze_active_tab ) {
+				breeze_active_tab = 'basic';
+			}
+
+			if ('import_export' === breeze_active_tab) {
+				breeze_active_tab = 'basic';
+			}
+
+			if ( $( "#tab-" + breeze_active_tab ).length === 0 ) { // Tab not found (multisite case)
+				firstTab = $( '#breeze-tabs' ).find( 'a:first-child' );
+				if (firstTab.length) {
+					tabType = firstTab.attr( 'id' ).replace( 'tab-', '' );
+					firstTab.addClass( 'active' );
+					$( "#tab-content-" + tabType ).addClass( 'active' );
+				}
+			} else {
+				$( "#tab-" + breeze_active_tab ).addClass( 'active' );
+				$( "#tab-content-" + breeze_active_tab ).addClass( 'active' );
+			}
+
+			// Toggle right-side content
+			if ( breeze_active_tab === 'faq' ) {
+				$( '#breeze-and-cloudways' ).hide();
+				if ( $( '#faq-content' ).length ) {
 					$( '#faq-content' ).accordion(
 						{
 							collapsible: true,
@@ -476,46 +692,7 @@ jQuery( document ).ready(
 							heightStyle: 'content'
 						}
 					);
-				} else {
-					$( '#breeze-and-cloudways' ).show();
 				}
-			}
-		);
-
-		// Cookie do
-		function setTabFromCookie() {
-			active_tab = getCookie( 'breeze_active_tab' );
-			if ( ! active_tab ) {
-				active_tab = 'basic';
-			}
-
-			if ('import_export' === active_tab) {
-				active_tab = 'basic';
-			}
-
-			if ( $( "#tab-" + active_tab ).length === 0 ) { // Tab not found (multisite case)
-				firstTab = $( '#breeze-tabs' ).find( 'a:first-child' );
-				if (firstTab.length) {
-					tabType = firstTab.attr( 'id' ).replace( 'tab-', '' );
-					firstTab.addClass( 'active' );
-					$( "#tab-content-" + tabType ).addClass( 'active' );
-				}
-			} else {
-				$( "#tab-" + active_tab ).addClass( 'active' );
-				$( "#tab-content-" + active_tab ).addClass( 'active' );
-			}
-
-			// Toggle right-side content
-			if ( active_tab === 'faq' ) {
-				$( '#breeze-and-cloudways' ).hide();
-				$( '#faq-content' ).accordion(
-					{
-						collapsible: true,
-						animate: 200,
-						header: '.faq-question',
-						heightStyle: 'content'
-					}
-				);
 			} else {
 				$( '#breeze-and-cloudways' ).show();
 			}
@@ -536,7 +713,7 @@ jQuery( document ).ready(
 			return "";
 		}
 
-		setTabFromCookie();
+		Breeze_setTabFromCookie();
 
 		// Sub-site settings toggle.
 		var global_tabs                          = [
@@ -692,13 +869,14 @@ jQuery( document ).ready(
 			'#breeze_import_btn',
 			function () {
 				if ( true === $valid_json ) {
-					network      = $( '#breeze-level' ).val();
+					var network      = $( '#breeze-level' ).val();
 					var the_file = $( '#breeze_import_settings' ).get( 0 ).files[ 0 ];
 
 					var breeze_data = new FormData();
 					breeze_data.append( 'action', 'breeze_import_json' );
 					breeze_data.append( 'network_level', network );
 					breeze_data.append( 'breeze_import_file', the_file );
+					breeze_data.append( 'security', breeze_token_name.breeze_import_settings );
 
 					var filename_holder = $( '#file-selected' );
 					var filename_error  = $( '#file-error' );
@@ -830,14 +1008,17 @@ jQuery( document ).ready(
 						breeze_permission_check();
 						document.cookie = 'breeze_active_tab=' + requested_tab;
 						if ( 'faq' === requested_tab ) {
-							$( '#faq-content' ).accordion(
-								{
-									collapsible: true,
-									animate: 200,
-									header: '.faq-question',
-									heightStyle: 'content'
-								}
-							);
+							if ( $( '#faq-content' ).length ) {
+								$( '#faq-content' ).accordion(
+									{
+										collapsible: true,
+										animate: 200,
+										header: '.faq-question',
+										heightStyle: 'content'
+									}
+								);
+							}
+
 						}
 						selected_services = [];
 					}
@@ -860,7 +1041,7 @@ jQuery( document ).ready(
 			data: { action: "breeze_file_permission_check", 'is-network': $( 'body' ).hasClass( 'network-admin' ) },
 			dataType: "html", // xml, html, script, json, jsonp, text
 			success: function ( data ) {
-				if ( '' === data ) {
+				if ( '' === data || 'no-issue' === data ) {
 					existing_notice.remove();
 				} else {
 					if ( existing_notice.length ) {
@@ -1164,9 +1345,9 @@ jQuery( document ).ready(
 
 	$( document ).on(
 		'change',
-		'#inherit-settings',
+		'input:radio[name="inherit-settings"]',
 		function () {
-			var is_selected = $( this ).is( ':checked' );
+			var is_selected = $('input:radio[name="inherit-settings"]:checked').val();
 			var is_network = '.br-is-network';
 			var is_custom = '.br-is-custom';
 			var tab_is = 'inherit';
@@ -1209,7 +1390,7 @@ jQuery( document ).ready(
 					complete: function ( jqXHR, textStatus ) {
 						$( '#wpcontent' ).find( 'div.br-inherit-wait' ).remove();
 
-						if ( true === is_selected ) {
+						if ( '0' === is_selected || true === is_selected ) {
 							// custom is enabled
 							$( is_network ).removeClass( 'br-show' ).addClass( 'br-hide' );
 							$( is_custom ).removeClass( 'br-hide' ).addClass( 'br-show' );

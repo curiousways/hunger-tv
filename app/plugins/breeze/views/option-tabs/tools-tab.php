@@ -66,9 +66,9 @@ if ( is_multisite() ) {
 		<div class="br-option">
 			<div class="br-input-container">
 			<div class="br-input-item">
-                <label for="breeze_import_settings" class="br-label-for-file">
+				<label for="breeze_import_settings" class="br-label-for-file">
 				<input type="file" name="breeze_import_settings" id="breeze_import_settings">
-                </label>
+				</label>
 			</div>
 			<div class="br-input-item">
 				<div class="br-file-text"><?php _e( 'No File Chosen', 'breeze' ); ?></div>
@@ -94,4 +94,5 @@ if ( is_multisite() ) {
 		</div>
 	</div>
 	<!-- END OPTION -->
+
 </section>

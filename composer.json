@@ -6,11 +6,17 @@
 		}
 	],
 	"require": {
-		"php": ">=7.2",
-		"roots/wordpress": "5.9.*",
-		"roots/wp-password-bcrypt": "^1.0"
+		"php": ">=7.4",
+		"roots/wordpress-no-content": "^6.1",
+		"roots/wordpress-core-installer": "^1.100",
+		"roots/wp-password-bcrypt": "^1.1"
 	},
 	"extra": {
 		"wordpress-install-dir": "wp"
+	},
+	"config": {
+		"allow-plugins": {
+			"roots/wordpress-core-installer": true
+		}
 	}
 }

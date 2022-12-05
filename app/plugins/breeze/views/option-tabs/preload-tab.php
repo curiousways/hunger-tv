@@ -109,11 +109,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/preload-active.png';
 				$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-preload-links'], '1', false ) : '';
 				?>
 				<div class="on-off-checkbox">
-					<input id="preload-links" name="preload-links" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-					<label for="preload-links">
-						<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-					</label>
+					<label class="br-switcher">
+						<input id="preload-links" name="preload-links" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+						<div class="br-see-state">
+						</div>
+					</label><br>
 				</div>
+
 				<div class="br-note">
 					<p>
 						<?php

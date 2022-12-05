@@ -20,10 +20,22 @@ class Breeze_Cli_Helpers {
 	public static function fetch_remote_json( $url ) {
 		$rop_user_agent = 'breeze-import-settings-system';
 
+		$ssl_verification = apply_filters('breeze_ssl_check_certificate', true);
+		$verify_host = 2;
+
+		if ( ! is_bool( $ssl_verification ) ) {
+			$ssl_verification = true;
+		}
+
+		if(defined('WP_DEBUG') && true === WP_DEBUG){
+			$ssl_verification = false;
+			$verify_host = 0;
+		}
+
 		$connection = curl_init( $url );
 		curl_setopt( $connection, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $connection, CURLOPT_SSL_VERIFYHOST, false );
-		curl_setopt( $connection, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $connection, CURLOPT_SSL_VERIFYHOST, $verify_host );
+		curl_setopt( $connection, CURLOPT_SSL_VERIFYPEER, $ssl_verification );
 		curl_setopt( $connection, CURLOPT_USERAGENT, $rop_user_agent );
 		curl_setopt( $connection, CURLOPT_REFERER, home_url() );
 		curl_setopt( $connection, CURLOPT_MAXREDIRS, 3 );

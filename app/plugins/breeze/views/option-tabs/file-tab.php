@@ -50,11 +50,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-minify-html'], '1', false ) : '';
 					?>
 					<div class="on-off-checkbox">
-						<input id="minification-html" name="minification-html" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-						<label for="minification-html">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="minification-html" name="minification-html" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php
@@ -101,11 +103,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 
 					?>
 					<div class="on-off-checkbox">
-						<input id="minification-css" name="minification-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-						<label for="minification-css">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="minification-css" name="minification-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Minify CSS removes whitespace and comments to reduce the file size.', 'breeze' ); ?>
@@ -123,11 +127,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 					?>
 					<div id="font-display-swap" <?php echo $is_font_display; ?>>
 						<div class="on-off-checkbox">
-							<input id="font-display" name="font-display" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-							<label for="font-display">
-								<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-							</label>
+							<label class="br-switcher">
+								<input id="font-display" name="font-display" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+								<div class="br-see-state">
+								</div>
+							</label><br>
 						</div>
+
 						<p>
 							<?php _e( 'Font remain visible during load', 'breeze' ); ?><br/>
 						</p>
@@ -148,33 +154,36 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+			$basic_value        = isset( $options['breeze-include-inline-css'] ) ? filter_var( $options['breeze-include-inline-css'], FILTER_VALIDATE_BOOLEAN ) : false;
+			$is_enabled         = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-include-inline-css'], '1', false ) : '';
+			$disable_inline_css = '';
+			$disable_overlay    = '';
+
+			if ( false === $css_minify_state ) {
+				//$disable_inline_css = 'disabled="disabled"';
+				$disable_overlay = ' br-apply-disable';
+			}
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Include Inline CSS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
-					$basic_value        = isset( $options['breeze-include-inline-css'] ) ? filter_var( $options['breeze-include-inline-css'], FILTER_VALIDATE_BOOLEAN ) : false;
-					$is_enabled         = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-include-inline-css'], '1', false ) : '';
-					$disable_inline_css = '';
 
-					if ( false === $css_minify_state ) {
-						$disable_inline_css = 'disabled="disabled"';
-					}
-					?>
 					<div class="on-off-checkbox">
-						<input id="include-inline-css" name="include-inline-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_inline_css; ?>>
-						<label for="include-inline-css">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="include-inline-css" name="include-inline-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_inline_css; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Minify Inline CSS removes whitespace and create seprate cache file for inline CSS.', 'breeze' ); ?>
-
-
 						</p>
 					</div>
 				</div>
@@ -182,29 +191,34 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+			$basic_value = isset( $options['breeze-group-css'] ) ? filter_var( $options['breeze-group-css'], FILTER_VALIDATE_BOOLEAN ) : false;
+			$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-group-css'], '1', false ) : '';
+
+			$disable_group_css = '';
+			$disable_overlay   = '';
+
+			if ( false === $css_minify_state ) {
+				//$disable_group_css = 'disabled="disabled"';
+				$disable_overlay = ' br-apply-disable';
+			}
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Combine CSS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
-					$basic_value = isset( $options['breeze-group-css'] ) ? filter_var( $options['breeze-group-css'], FILTER_VALIDATE_BOOLEAN ) : false;
-					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-group-css'], '1', false ) : '';
 
-					$disable_group_css = '';
-
-					if ( false === $css_minify_state ) {
-						$disable_group_css = 'disabled="disabled"';
-					}
-					?>
 					<div class="on-off-checkbox">
-						<input id="group-css" name="group-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_group_css; ?>>
-						<label for="group-css">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="group-css" name="group-css" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_group_css; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Combine CSS merges all your minified files into a single file, reducing HTTP requests.', 'breeze' ); ?>
@@ -215,28 +229,33 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+
+			if ( isset( $options['breeze-exclude-css'] ) && ! empty( $options['breeze-exclude-css'] ) ) {
+				$excluded_css_check = breeze_validate_urls( $options['breeze-exclude-css'] );
+				if ( true === $excluded_css_check ) {
+					$excluded_css_check_extension = breeze_validate_the_right_extension( $options['breeze-exclude-css'], 'css' );
+				}
+			}
+
+			$css_output = '';
+			if ( ! empty( $options['breeze-exclude-css'] ) ) {
+				$output     = implode( "\n", $options['breeze-exclude-css'] );
+				$css_output = esc_textarea( $output );
+			}
+			$disable_overlay = '';
+			if ( false === $css_minify_state ) {
+				$disable_overlay = ' br-apply-disable';
+			}
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Exclude CSS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
 
-					if ( isset( $options['breeze-exclude-css'] ) && ! empty( $options['breeze-exclude-css'] ) ) {
-						$excluded_css_check = breeze_validate_urls( $options['breeze-exclude-css'] );
-						if ( true === $excluded_css_check ) {
-							$excluded_css_check_extension = breeze_validate_the_right_extension( $options['breeze-exclude-css'], 'css' );
-						}
-					}
-
-					$css_output = '';
-					if ( ! empty( $options['breeze-exclude-css'] ) ) {
-						$output     = implode( "\n", $options['breeze-exclude-css'] );
-						$css_output = esc_textarea( $output );
-					}
-					?>
 					<textarea cols="100" rows="7" id="exclude-css" name="exclude-css"
 							  placeholder="Exclude CSS on the basis of the folder&#10;https://demo/wp-content/plugins/some-plugin/assets/css/demo(.*)&#10;&#10;Exclude CSS on the basis of the file name&#10;https://demo/wp-content/plugins/some-plugin/assets/css/demo_1/css_random_someplugin_(.*).css"><?php echo $css_output; ?></textarea>
 					<div class="br-note">
@@ -281,11 +300,13 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 					}
 					?>
 					<div class="on-off-checkbox">
-						<input id="minification-js" name="minification-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-						<label for="minification-js">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="minification-js" name="minification-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Minify JavaScript removes whitespace and comments to reduce the file size.', 'breeze' ); ?>
@@ -307,29 +328,32 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+			$basic_value = isset( $options['breeze-group-js'] ) ? filter_var( $options['breeze-group-js'], FILTER_VALIDATE_BOOLEAN ) : false;
+			$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-group-js'], '1', false ) : '';
+
+			$disable_group_js = '';
+			$disable_overlay  = '';
+			if ( false === $js_minify_state ) {
+				//$disable_group_js = 'disabled="disabled"';
+				$disable_overlay = ' br-apply-disable';
+			}
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Combine JS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
-					$basic_value = isset( $options['breeze-group-js'] ) ? filter_var( $options['breeze-group-js'], FILTER_VALIDATE_BOOLEAN ) : false;
-					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-group-js'], '1', false ) : '';
-
-					$disable_group_js = '';
-
-					if ( false === $js_minify_state ) {
-						$disable_group_js = 'disabled="disabled"';
-					}
-					?>
 					<div class="on-off-checkbox">
-						<input id="group-js" name="group-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_group_js; ?>>
-						<label for="group-js">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="group-js" name="group-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_group_js; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Combine JS merges all your minified files into a single file, reducing HTTP requests.', 'breeze' ); ?>
@@ -340,29 +364,33 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+			$basic_value = isset( $options['breeze-include-inline-js'] ) ? filter_var( $options['breeze-include-inline-js'], FILTER_VALIDATE_BOOLEAN ) : false;
+			$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-include-inline-js'], '1', false ) : '';
+
+			$disable_inline_js = '';
+			$disable_overlay   = '';
+			if ( false === $js_minify_state ) {
+				//$disable_inline_js = 'disabled="disabled"';
+				$disable_overlay = ' br-apply-disable';
+			}
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Include Inline JS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
-					$basic_value = isset( $options['breeze-include-inline-js'] ) ? filter_var( $options['breeze-include-inline-js'], FILTER_VALIDATE_BOOLEAN ) : false;
-					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-include-inline-js'], '1', false ) : '';
 
-					$disable_inline_js = '';
-
-					if ( false === $js_minify_state ) {
-						$disable_inline_js = 'disabled="disabled"';
-					}
-					?>
 					<div class="on-off-checkbox">
-						<input id="include-inline-js" name="include-inline-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_inline_js; ?>>
-						<label for="include-inline-js">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input id="include-inline-js" name="include-inline-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?> <?php echo $disable_inline_js; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
+
 					<div class="br-note">
 						<p>
 							<?php _e( 'Minify Inline JS removes whitespace and create seprate cache file for inline JS.', 'breeze' ); ?>
@@ -374,28 +402,33 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 			<!-- END OPTION -->
 
 			<!-- START OPTION -->
-			<div class="br-option-item">
+			<?php
+			if ( isset( $options['breeze-exclude-js'] ) && ! empty( $options['breeze-exclude-js'] ) ) {
+				$excluded_js_check = breeze_validate_urls( $options['breeze-exclude-js'] );
+				if ( true === $excluded_js_check ) {
+					$excluded_js_check_extension = breeze_validate_the_right_extension( $options['breeze-exclude-js'], 'js' );
+				}
+			}
+
+			$js_output = '';
+			if ( ! empty( $options['breeze-exclude-js'] ) ) {
+				$output    = implode( "\n", $options['breeze-exclude-js'] );
+				$js_output = esc_textarea( $output );
+			}
+
+			$disable_overlay = '';
+			if ( false === $js_minify_state ) {
+				$disable_overlay = ' br-apply-disable';
+			}
+
+			?>
+			<div class="br-option-item<?php echo $disable_overlay; ?>">
 				<div class="br-label">
 					<div class="br-option-text">
 						<?php _e( 'Exclude JS', 'breeze' ); ?>
 					</div>
 				</div>
 				<div class="br-option">
-					<?php
-					if ( isset( $options['breeze-exclude-js'] ) && ! empty( $options['breeze-exclude-js'] ) ) {
-						$excluded_js_check = breeze_validate_urls( $options['breeze-exclude-js'] );
-						if ( true === $excluded_js_check ) {
-							$excluded_js_check_extension = breeze_validate_the_right_extension( $options['breeze-exclude-js'], 'js' );
-						}
-					}
-
-					$js_output = '';
-					if ( ! empty( $options['breeze-exclude-js'] ) ) {
-						$output    = implode( "\n", $options['breeze-exclude-js'] );
-						$js_output = esc_textarea( $output );
-					}
-
-					?>
 					<textarea cols="100" rows="7" id="exclude-js" name="exclude-js"
 							  placeholder="Exclude JS on the basis of the folder&#10;https://demo/wp-content/plugins/some-plugin/assets/js/demo(.*)&#10;&#10;Exclude JS on the basis of the file name&#10;https://demo/wp-content/plugins/some-plugin/assets/js/demo_1/js_random_someplugin_(.*).js"><?php echo $js_output; ?></textarea>
 					<div class="br-note">
@@ -552,14 +585,28 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 				</div>
 				<div class="br-option">
 					<?php
-					$basic_value = isset( $options['breeze-enable-js-delay'] ) ? filter_var( $options['breeze-enable-js-delay'], FILTER_VALIDATE_BOOLEAN ) : false;
-					$is_enabled  = ( isset( $basic_value ) && true === $basic_value ) ? checked( $options['breeze-enable-js-delay'], '1', false ) : '';
+					// Delay All JavaScript START
+					/**
+					 * Used to disable one of the options when the ther is active.
+					 */
+					$basic_value_all = isset( $options['breeze-delay-all-js'] ) ? filter_var( $options['breeze-delay-all-js'], FILTER_VALIDATE_BOOLEAN ) : false;
+					$is_enabled_all  = ( isset( $basic_value_all ) && true === $basic_value_all ) ? checked( $options['breeze-delay-all-js'], '1', false ) : '';
+					// END
+
+					$basic_value_inlinejs = isset( $options['breeze-enable-js-delay'] ) ? filter_var( $options['breeze-enable-js-delay'], FILTER_VALIDATE_BOOLEAN ) : false;
+					$is_enabled_inlinejs  = ( isset( $basic_value_inlinejs ) && true === $basic_value_inlinejs ) ? checked( $options['breeze-enable-js-delay'], '1', false ) : '';
+
+					$delay_inline_disabled = '';
+					if ( true === $basic_value_all ) {
+						$delay_inline_disabled = 'disabled="disabled"';
+					}
 					?>
 					<div class="on-off-checkbox">
-						<input id="enable-js-delay" name="enable-js-delay" type="checkbox" class="br-box" value="1" <?php echo $is_enabled; ?>>
-						<label for="enable-js-delay">
-							<div class="status-switch" data-unchecked="OFF" data-checked="ON"></div>
-						</label>
+						<label class="br-switcher">
+							<input <?php echo $delay_inline_disabled; ?> id="enable-js-delay" name="enable-js-delay" type="checkbox" class="br-box" value="1" <?php echo $is_enabled_inlinejs; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
 					</div>
 					<?php
 					$js_output = '';
@@ -569,7 +616,7 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 					}
 
 					$display_text_area = 'style="display:none"';
-					if ( true === $basic_value ) {
+					if ( true === $basic_value_inlinejs ) {
 						$display_text_area = 'style="display:block"';
 					}
 					?>
@@ -586,10 +633,108 @@ $icon = BREEZE_PLUGIN_URL . 'assets/images/file-active.png';
 							</p>
 							<p class="br-notice">
 								<?php _e( 'Please clear Varnish after applying the new settings.', 'breeze' ); ?>
+
 							</p>
 						</div>
 					</div>
+					<p class="br-important">
+						<?php
+						echo '<strong>';
+						_e( 'Important: ', 'breeze' );
+						echo '</strong>';
+						_e( 'Use only one option "Delay JS Inline Scripts" OR "Delay All JavaScript" at same time.', 'breeze' );
+						?>
+					</p>
+				</div>
+			</div>
+			<!-- END OPTION -->
 
+			<!-- START OPTION -->
+			<div class="br-option-item">
+				<div class="br-label">
+					<div class="br-option-text">
+						<?php _e( 'Delay All JavaScript', 'breeze' ); ?>
+					</div>
+				</div>
+				<div class="br-option">
+					<?php
+					$basic_value_all = isset( $options['breeze-delay-all-js'] ) ? filter_var( $options['breeze-delay-all-js'], FILTER_VALIDATE_BOOLEAN ) : false;
+					$is_enabled_all  = ( isset( $basic_value_all ) && true === $basic_value_all ) ? checked( $options['breeze-delay-all-js'], '1', false ) : '';
+
+					$js_minify_state = true;
+					if ( empty( $is_enabled_all ) ) {
+						$js_minify_state = false;
+					}
+
+					$delay_js_disabled = '';
+					if ( true === $basic_value_inlinejs ) {
+						$delay_js_disabled = 'disabled="disabled"';
+					}
+					?>
+					<div class="on-off-checkbox">
+						<label class="br-switcher">
+							<input <?php echo $delay_js_disabled; ?> id="breeze-delay-all-js" name="breeze-delay-all-js" type="checkbox" class="br-box" value="1" <?php echo $is_enabled_all; ?>>
+							<div class="br-see-state">
+							</div>
+						</label><br>
+					</div>
+
+					<div class="br-note">
+						<p>
+							<?php _e( 'Improve the page load by delaying JavaScript execution.', 'breeze' ); ?>
+						</p>
+
+						<p class="br-important">
+							<?php
+							//                          echo '<strong>';
+							//                          _e( 'Important: ', 'breeze' );
+							//                          echo '</strong>';
+							//                          _e( 'We recommend testing minification on a staging website before deploying it on a live website. ', 'breeze' );
+							//                          echo '<br/>';
+							//                          _e( 'Minification is known to cause issues on the frontend.', 'breeze' );
+							?>
+						</p>
+					</div>
+
+					<?php
+					$js_output = '';
+					if ( ! empty( $options['no-breeze-no-delay-js'] ) ) {
+						$output    = implode( "\n", $options['no-breeze-no-delay-js'] );
+						$js_output = esc_textarea( $output );
+					}
+
+					$display_text_area = 'style="display:none"';
+					if ( true === $basic_value_all ) {
+						$display_text_area = 'style="display:block"';
+					}
+
+					?>
+
+					<div <?php echo $display_text_area; ?> id="breeze-delay-js-scripts-div-all">
+						<br/>
+						<div class="br-option-text"><strong><?php _e( 'List of scripts not to delay', 'breeze' ); ?></strong></div>
+						<textarea cols="100" rows="7" id="no-delay-js-scripts" name="no-delay-js-scripts"><?php echo $js_output; ?></textarea>
+						<div class="br-note">
+							<p>
+								<?php
+
+								_e( 'You can add specific keywords to identify the Inline JavaScript or JavaScript files to not be delayed. Each script identifying keyword must be added on a new line.', 'breeze' );
+								?>
+							</p>
+							<p class="br-notice">
+								<?php _e( 'Please clear Varnish after applying the new settings.', 'breeze' ); ?>
+
+							</p>
+						</div>
+					</div>
+					<p class="br-important">
+						<?php
+						echo '<strong>';
+						_e( 'Important: ', 'breeze' );
+						echo '</strong>';
+						_e( 'Use only one option "Delay JS Inline Scripts" OR "Delay All JavaScript" at same time.', 'breeze' );
+						?>
+					</p>
 				</div>
 			</div>
 			<!-- END OPTION -->

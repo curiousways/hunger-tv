@@ -25,7 +25,7 @@ class Breeze_MinificationCache {
 			$this->filename = BREEZE_CACHEFILE_PREFIX . $md5 . '.php';
 		} else {
 			if ( in_array( $ext, array( 'js', 'css' ) ) ) {
-				$this->filename = $ext . '/' . BREEZE_CACHEFILE_PREFIX . $md5 . '.' . $ext;
+				$this->filename = $ext . '/' . BREEZE_CACHEFILE_PREFIX . $md5 . breeze_currency_switcher_cache() .'.' . $ext;
 			} else {
 				$this->filename = '/' . BREEZE_CACHEFILE_PREFIX . $md5 . '.' . $ext;
 			}

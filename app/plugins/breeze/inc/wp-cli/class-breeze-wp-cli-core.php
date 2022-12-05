@@ -383,6 +383,43 @@ class Breeze_WP_Cli_Core extends \WP_CLI_Command {
 
 	}
 
+    /**
+     * Reset breeze to default setting using WP-CLI
+     *
+     * @param $args
+     * @param $assoc_args
+     * @return void
+     *
+     * @since 2.0.9
+     * @access public
+     */
+    function reset( $args, $assoc_args ) {
+
+        $site_id = 0;
+
+        if ( is_multisite() && isset( $assoc_args['level'] ) ) {
+            $site_id = $assoc_args['level'];
+        }
+
+        WP_CLI::line( WP_CLI::colorize( '%YReseting to default%n' ) );
+
+        if ( is_multisite() && ! $site_id ) {
+            WP_CLI::line( PHP_EOL );
+            WP_CLI::line( WP_CLI::colorize( '%ROn a multisite instance if you don\'t specify the site id by --level=$id|network all breeze settins will reset (default network).%n' ) );
+            WP_CLI::confirm( 'Are you sure you want to continue?' );
+        }
+
+        $reset_default = Breeze_Configuration::reset_to_default( $site_id );
+
+        if ( $reset_default ) {
+            WP_CLI::line( WP_CLI::colorize( '%GDone%n.' ) );
+        } else {
+            WP_CLI::error(
+                __( 'Something went wrong', 'breeze' )
+            );
+        }
+    }
+
 }
 
 WP_CLI::add_command(

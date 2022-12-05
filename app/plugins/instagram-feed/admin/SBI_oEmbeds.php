@@ -138,12 +138,12 @@ class SBI_oEmbeds {
 		);
 
 		wp_enqueue_script(
-			'feed-vue',
-			'https://cdn.jsdelivr.net/npm/vue@2.6.12',
-			null,
-			'2.6.12',
-			true
-		);
+            'sb-vue',
+            SBI_PLUGIN_URL . 'js/vue.min.js',
+            null,
+            '2.6.12',
+            true
+        );
 
 		wp_enqueue_script(
 			'oembeds-app',
@@ -217,6 +217,7 @@ class SBI_oEmbeds {
 			),
 			'loaderSVG' => '<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><path fill="#fff" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/></path></svg>',
 			'checkmarkSVG' => '<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>',
+			'timesCircleSVG' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"/></svg>'
 		);
 
 		$oembed_token_settings = get_option( 'sbi_oembed_token', array() );
@@ -228,6 +229,9 @@ class SBI_oEmbeds {
 
 			update_option( 'cff_oembed_token', $newly_retrieved_oembed_connection_data );
 			update_option( 'sbi_oembed_token', $newly_retrieved_oembed_connection_data );
+
+			// If the access token is new or has changed, then we need to clear the cache.
+			$this->clear_oembed_cache();
 		} elseif ( ! empty( $newly_retrieved_oembed_connection_data ) ) {
 			$return['newOembedData'] = $newly_retrieved_oembed_connection_data;
 		}
@@ -249,6 +253,65 @@ class SBI_oEmbeds {
 		}
 
 		return $return;
+	}
+
+	/**
+	 * Clear instagram oembed transients and cache
+	 *
+	 * @since 6.1.2
+	 */
+	public static function clear_oembed_cache() {
+
+		// get _transient_oembed_* options from wp_options.
+		global $wpdb;
+		$table_name        = $wpdb->prefix . 'options';
+		$transient_options = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT option_name, option_value FROM $table_name WHERE option_name LIKE %s AND option_value LIKE %s",
+				'_transient_oembed_%',
+				'%fbtrace_id%'
+			)
+		);
+
+		foreach ( $transient_options as $value ) {
+			$option_name  = $value->option_name;
+			delete_option( $option_name );
+
+			// find the _transient_timeout_oembed_* options and delete them.
+			$option_key    = substr( $option_name, 18 );
+			$timeout_key   = '_transient_timeout_oembed_' . $option_key;
+			$timeout_value = get_option( $timeout_key );
+			if ( is_numeric( $timeout_value ) ) {
+				delete_option( $timeout_key );
+			}
+		}
+
+		// get _oembed_* options from wp_postmeta.
+		$postmeta_table = $wpdb->prefix . 'postmeta';
+		$oembed_options = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT post_id, meta_key, meta_value FROM $postmeta_table WHERE meta_key LIKE %s AND meta_value LIKE %s",
+				'_oembed_%',
+				'{{unknown}}'
+			)
+		);
+
+		foreach ( $oembed_options as $value ) {
+			$post_id    = $value->post_id;
+			$meta_key   = $value->meta_key;
+			$meta_value = $value->meta_value;
+			$meta_value = maybe_unserialize( $meta_value );
+
+			delete_post_meta( $post_id, $meta_key );
+
+			// get the cache key.
+			$cache_key        = substr( $meta_key, 8 );
+			$cache_meta_key   = '_oembed_time_' . $cache_key;
+			$cache_meta_value = get_post_meta( $post_id, $cache_meta_key, true );
+			if ( is_numeric( $cache_meta_value ) ) {
+				delete_post_meta( $post_id, $cache_meta_key );
+			}
+		}
 	}
 
 	/**
@@ -293,7 +356,7 @@ class SBI_oEmbeds {
 		if ( ! $screen ) {
 			return false;
 		}
-		if ( $screen->id !== 'instagram-feed_page_sbi-oembeds-manager') {
+		if( ! isset( $_GET['page'] ) && 'sbi-oembeds-manager' !== $_GET['page'] ) {
 			return false;
 		}
 		if ( ! empty( $_GET['transfer'] ) ) {

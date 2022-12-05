@@ -52,6 +52,7 @@ class Breeze_Minify {
 						! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-js' ) ) ||
 						! empty( Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ) ) ||
 						! empty( Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ) ) ||
+						true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-delay-all-js' ), FILTER_VALIDATE_BOOLEAN ) ||
 						(
 							! empty( Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' ) ) &&
 							true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-enable-js-delay' ), FILTER_VALIDATE_BOOLEAN )
@@ -125,6 +126,7 @@ class Breeze_Minify {
 			} elseif (
 				! empty( Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ) ) ||
 				! empty( Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ) ) ||
+				true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-delay-all-js' ), FILTER_VALIDATE_BOOLEAN ) ||
 				(
 					! empty( Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' ) ) &&
 					true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-enable-js-delay' ), FILTER_VALIDATE_BOOLEAN )
@@ -186,20 +188,25 @@ class Breeze_Minify {
 		if ( '1' === Breeze_Options_Reader::get_option_value( 'cdn-active' ) ) {
 			$cdn_url = Breeze_Options_Reader::get_option_value( 'cdn-url' );
 		}
+
 		// Choose the classes
 		$classes           = array();
 		$js_include_inline = $css_include_inline = false;
 		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-js' ) ) ) {
 			$classes[] = 'Breeze_MinificationScripts';
+
 		} elseif (
 			! empty( Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ) ) ||
 			! empty( Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ) ) ||
+			true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-delay-all-js' ), FILTER_VALIDATE_BOOLEAN ) ||
 			(
 				! empty( Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' ) ) &&
 				true === filter_var( Breeze_Options_Reader::get_option_value( 'breeze-enable-js-delay' ), FILTER_VALIDATE_BOOLEAN )
 			)
+
 		) {
 			$classes[] = 'Breeze_Js_Deferred_Loading';
+
 		}
 
 		if ( ! empty( Breeze_Options_Reader::get_option_value( 'breeze-minify-css' ) ) ) {
@@ -226,20 +233,26 @@ class Breeze_Minify {
 		$font_swap = filter_var( Breeze_Options_Reader::get_option_value( 'breeze-font-display-swap' ), FILTER_VALIDATE_BOOLEAN );
 
 		// Set some options
-		$script_delay = Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' );
-		$classoptions = array(
+		$no_script_delay     = Breeze_Options_Reader::get_option_value( 'no-breeze-no-delay-js' );
+		$breeze_delay_all_js = filter_var( Breeze_Options_Reader::get_option_value( 'breeze-delay-all-js' ), FILTER_VALIDATE_BOOLEAN );
+		$script_delay        = Breeze_Options_Reader::get_option_value( 'breeze-delay-js-scripts' );
+		$is_inline_delay_on  = filter_var( Breeze_Options_Reader::get_option_value( 'breeze-enable-js-delay' ), FILTER_VALIDATE_BOOLEAN );
+		$classoptions        = array(
 			'Breeze_MinificationScripts' => array(
-				'justhead'          => false,
-				'forcehead'         => false,
-				'trycatch'          => false,
-				'js_exclude'        => 's_sid, smowtion_size, sc_project, WAU_, wau_add, comment-form-quicktags, edToolbar, ch_client, seal.js',
-				'cdn_url'           => '',
-				'include_inline'    => $js_include_inline,
-				'group_js'          => $groupjs,
-				'custom_js_exclude' => Breeze_Options_Reader::get_option_value( 'breeze-exclude-js' ),
-				'move_to_footer_js' => Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ),
-				'defer_js'          => Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ),
-				'delay_inline_js'   => ( ! empty( $script_delay ) ? $script_delay : array() ),
+				'justhead'           => false,
+				'forcehead'          => false,
+				'trycatch'           => false,
+				'js_exclude'         => 's_sid, smowtion_size, sc_project, WAU_, wau_add, comment-form-quicktags, edToolbar, ch_client, seal.js',
+				'cdn_url'            => '',
+				'include_inline'     => $js_include_inline,
+				'group_js'           => $groupjs,
+				'custom_js_exclude'  => Breeze_Options_Reader::get_option_value( 'breeze-exclude-js' ),
+				'move_to_footer_js'  => Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ),
+				'defer_js'           => Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ),
+				'delay_inline_js'    => ( ! empty( $script_delay ) ? $script_delay : array() ),
+				'no_delay_js'        => ( ! empty( $no_script_delay ) ? $no_script_delay : array() ),
+				'delay_javascript'   => $breeze_delay_all_js,
+				'is_inline_delay_on' => $is_inline_delay_on,
 			),
 			'Breeze_MinificationStyles'  => array(
 				'justhead'             => false,
@@ -260,10 +273,13 @@ class Breeze_Minify {
 				'keepcomments' => false,
 			),
 			'Breeze_Js_Deferred_Loading' => array(
-				'move_to_footer_js' => Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ),
-				'defer_js'          => Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ),
-				'delay_inline_js'   => ( ! empty( $script_delay ) ? $script_delay : array() ),
-				'cdn_url'           => $cdn_url,
+				'move_to_footer_js'  => Breeze_Options_Reader::get_option_value( 'breeze-move-to-footer-js' ),
+				'defer_js'           => Breeze_Options_Reader::get_option_value( 'breeze-defer-js' ),
+				'delay_inline_js'    => ( ! empty( $script_delay ) ? $script_delay : array() ),
+				'no_delay_js'        => ( ! empty( $no_script_delay ) ? $no_script_delay : array() ),
+				'cdn_url'            => $cdn_url,
+				'delay_javascript'   => $breeze_delay_all_js,
+				'is_inline_delay_on' => $is_inline_delay_on,
 			),
 		);
 
@@ -329,6 +345,10 @@ class Breeze_Minify {
 	 * Remove '/' chacracter of end url
 	 */
 	public function rtrim_urls( $url ) {
+		if ( ! is_string( $url ) ) {
+			$url = '';
+		}
+
 		return rtrim( $url, '/' );
 	}
 
@@ -392,10 +412,10 @@ class Breeze_Minify {
 				} else {
 
 					$test_url = ltrim( $exclude_url_item, 'https:' );
-					$test_url = $this->rtrim_urls($test_url);
+					$test_url = $this->rtrim_urls( $test_url );
 
 					$current_url = ltrim( $current_url, 'https:' );
-					$current_url = $this->rtrim_urls($current_url);
+					$current_url = $this->rtrim_urls( $current_url );
 
 					// Whole path
 					if ( mb_strtolower( $test_url ) === mb_strtolower( $current_url ) ) {

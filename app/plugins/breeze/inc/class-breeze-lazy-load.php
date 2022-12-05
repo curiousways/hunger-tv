@@ -100,6 +100,8 @@ class Breeze_Lazy_Load {
 		// The native lazy load is not yet supported by all browsers. ( As of February 2021, 73% of browsers support lazy loading. )
 		$use_native = apply_filters( 'breeze_use_native_lazy_load', $this->lazy_load_native );
 
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+
 		$html_dom                     = new DOMDocument();
 		$html_dom->preserveWhiteSpace = false;// phpcs:ignore
 		$html_dom->formatOutput       = false;// phpcs:ignore
@@ -258,7 +260,9 @@ class Breeze_Lazy_Load {
 			}
 		}
 
+		//return $html_dom->saveHTML( $html_dom->documentElement );
 		return $html_dom->saveHTML();
+
 	}
 
 	/**

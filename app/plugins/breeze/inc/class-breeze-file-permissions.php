@@ -38,6 +38,10 @@ class Breeze_File_Permissions {
 			$message_display .= '</div>';
 		}
 
+		if ( empty( $message_display ) ) {
+			$message_display = 'no-issue';
+		}
+
 		wp_die( $message_display );
 	}
 
