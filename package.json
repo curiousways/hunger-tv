@@ -1,12 +1,16 @@
 {
   "name": "spark",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Spark is a WordPress boilerplate for Timber incorporating Flynt's build process.",
-  "author": "Matthew Dixon <matthewdixondev@gmail.com>",
+  "author": "Matthew Dixon <MGHDdevelopment@gmail.com>",
   "license": "MIT",
+  "config": {
+    "path": "app/themes/hunger-tv"
+  },
   "scripts": {
-    "setup:development": "composer install && cd app/themes/hunger-tv && composer install && yarn install",
-    "setup:production": "composer install && cd app/themes/hunger-tv && composer install",
-    "watch": "cd app/themes/hunger-tv && yarn watch"
+    "dev": "cd $npm_package_config_path && yarn watch",
+    "install:development": "composer install && cd $npm_package_config_path && composer install && yarn install",
+    "install:production": "composer install && cd $npm_package_config_path && composer install",
+    "update": "composer update && cd $npm_package_config_path && composer update && yarn upgrade"
   }
 }
