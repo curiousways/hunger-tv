@@ -7,6 +7,7 @@
 
 namespace CustomFacebookFeed\Builder;
 use CustomFacebookFeed\SB_Facebook_Data_Encryption;
+use CustomFacebookFeed\CFF_Utils;
 
 class CFF_Db {
 
@@ -27,6 +28,7 @@ class CFF_Db {
 		global $wpdb;
 		$sources_table_name = $wpdb->prefix . 'cff_sources';
 		$feeds_table_name = $wpdb->prefix . 'cff_feeds';
+	   	$encryption = new SB_Facebook_Data_Encryption();
 
 		$page = 0;
 		if ( isset( $args['page'] ) ) {
@@ -67,6 +69,10 @@ class CFF_Db {
 					$results[ $i ]['instances'] = $wpdb->get_results( $sql, ARRAY_A );
 				}
 				$i++;
+				if ( isset( $result['access_token'] ) && strpos( $result['access_token'], 'IG' ) === false && strpos( $result['access_token'], 'EA' ) === false && ! $encryption->decrypt( $result['access_token'] ) ) {
+					//Add the Error for global notifications
+				    CFF_Source::add_report_error_option($result);
+				}
 			}
 
 

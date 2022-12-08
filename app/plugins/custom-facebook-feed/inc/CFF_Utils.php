@@ -20,9 +20,8 @@ class CFF_Utils{
   	 * @static
 	 * @since 2.19
 	 */
-	static function cff_fetchUrl($url){
+	static function cff_fetchUrl( $url, $check_admin = true){
 		$response = wp_remote_get( $url );
-
 		if ( ! CFF_Utils::cff_is_wp_error( $response ) ) {
 			$feedData = wp_remote_retrieve_body( $response );
 
@@ -36,8 +35,9 @@ class CFF_Utils{
 				return $feedData;
 			} else {
 				if ( strpos( $url, '&limit=' ) !== false ) {
-					CFF_Utils::cff_log_fb_error( $feedData, $url );
+					CFF_Utils::cff_log_fb_error( $feedData, $url, $check_admin );
 				}
+
 
 				$error = json_decode( $feedData, true );
 				$reporter = CFF_Utils::cff_is_pro_version() ? \cff_main_pro()->cff_error_reporter : \cff_main()->cff_error_reporter;
@@ -181,11 +181,10 @@ class CFF_Utils{
   	 * @static
 	 * @since 2.19
 	 */
-	static function cff_log_fb_error( $response, $url ) {
-		if ( is_admin() ) {
+	static function cff_log_fb_error( $response, $url, $check_admin = true ) {
+		if ( is_admin() && $check_admin == true ) {
 			return;
 		}
-
 		delete_option( 'cff_dismiss_critical_notice' );
 
 		$access_token_refresh_errors = array( 10, 4, 200 );

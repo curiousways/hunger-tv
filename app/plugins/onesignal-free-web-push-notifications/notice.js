@@ -8,7 +8,7 @@ var state = {
     interval_count : 0,             // how many times has the request been attempted
     status : undefined              // whether the post is scheduled or published
   }
-    
+
 function notice() {
   if (!isWpCoreEditorDefined()) {
     return;
@@ -33,10 +33,10 @@ function notice() {
       return;
     }
 
-    // post is defined now 
+    // post is defined now
     if (!state.first_modified) {
       // captures last modified date of loaded post
-      state.first_modified = post.modified;	
+      state.first_modified = post.modified;
     }
 
     // latest modified date, status of the post
@@ -44,9 +44,12 @@ function notice() {
     state.status = status;
 
     // is checked
-    const send_os_notif = jQuery("[name=send_onesignal_notification]").attr(
-      "checked"
-    );
+    let send_os_notif;
+    const htmlElement = jQuery("#send_onesignal_notification")[0];
+    
+    if (!!htmlElement) {
+       send_os_notif = htmlElement.checked;
+    }
 
     // if last modified differs from first modified times, post_modified = true
     const post_modified = modified !== state.first_modified;

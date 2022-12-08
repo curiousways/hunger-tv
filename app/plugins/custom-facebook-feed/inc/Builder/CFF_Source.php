@@ -6,6 +6,8 @@
  */
 
 namespace CustomFacebookFeed\Builder;
+use CustomFacebookFeed\CFF_Response;
+use CustomFacebookFeed\CFF_Utils;
 
 class CFF_Source {
 
@@ -135,7 +137,7 @@ class CFF_Source {
 			if ( ! current_user_can( $cap ) ) {
 				wp_send_json_error(); // This auto-dies.
 			}
-
+			$has_error = false;
 			if(isset($_POST['sourcesList']) && !empty($_POST['sourcesList'])  && is_array($_POST['sourcesList'])){
 				foreach ($_POST['sourcesList'] as $single_source):
 					$source_data = array(
@@ -158,10 +160,18 @@ class CFF_Source {
 						$source_data['error']                     = '';
 						$source_data['info']->connected_version   = CFFVER;
 						CFF_Source::update_or_insert( $source_data );
+					}else{
+						$has_error = true;
 					}
 				endforeach;
 			}
-			echo \CustomFacebookFeed\CFF_Utils::cff_json_encode( CFF_Feed_Builder::get_source_list() );
+			$response = [
+				'sourcesList' =>  CFF_Feed_Builder::get_source_list()
+			];
+			if( $has_error ){
+				$response['hasError'] = true;
+			}
+			echo \CustomFacebookFeed\CFF_Utils::cff_json_encode( $response );
 		}
 
 		wp_die();
@@ -1054,5 +1064,26 @@ class CFF_Source {
 			'error' => is_string( $error ) ? $error : \CustomFacebookFeed\CFF_Utils::cff_json_encode( $error )
 		);
 		return \CustomFacebookFeed\Builder\CFF_Source::update_or_insert( $source_data );
+	}
+
+
+	/**
+	 * Add error to the option table "cff_error_reporter"
+	 *
+	 * @param string $account_id
+	 * @param string|object|array $error
+	 *
+	 * @return bool
+	 *
+	 * @since 4.0.3
+	 */
+	public static function add_report_error_option( $account) {
+		$errors = get_option( 'cff_error_reporter', [] );
+		$add_error = (isset( $errors['connection'] ) && isset( $errors['connection']['error_id'] ) && $errors['connection']['error_id'] == 190) ? false : true;
+		if( $add_error ){
+			$url = 'https://graph.facebook.com/v4.0/'.$account['account_id'].'/posts?fields=id,updated_time,from{picture,id,name,link},message,message_tags,story,story_tags,status_type,created_time,backdated_time,call_to_action,attachments{title,description,media_type,unshimmed_url,target{id},media{source}}&access_token='. $account['access_token'].'&limit=7&locale=en_US';
+			CFF_Utils::cff_fetchUrl($url, false);
+		}
+
 	}
 }

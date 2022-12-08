@@ -208,9 +208,13 @@ Vue.component('sb-add-source-component', {
                     'sourcesList' : sourcesListToAdd
                 };
                 self.$parent.ajaxPost(connectSourceData, function(_ref){
-                    var data = _ref.data;
-                    self.sourcesList = data;
-                    self.$parent.sourcesList = data;
+                    var data = _ref.data,
+                        sourcesList = data.sourcesList;
+                    if( data?.hasError ){
+                        self.$parent.processNotification("addSourceError");
+                    }
+                    self.sourcesList = sourcesList;
+                    self.$parent.sourcesList = sourcesList;
                     self.$parent.viewsActive.sourcePopup = false;
                     if(self.$parent.customizerFeedData){
                         self.$parent.activateView('sourcePopup', 'customizer');

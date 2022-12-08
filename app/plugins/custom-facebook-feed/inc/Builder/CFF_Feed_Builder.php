@@ -1045,6 +1045,10 @@ class CFF_Feed_Builder {
 					'type' => 'error',
 					'text' => __( 'Please select a source for your feed', 'custom-facebook-feed' )
 				),
+				'addSourceError' => array(
+					'type' => 'error',
+					'text' => __( 'Couldn\'t connect one or more sources!', 'custom-facebook-feed' )
+				),
 			),
 			'install' => __( 'Install', 'custom-facebook-feed' ),
 			'installed' => __( 'Installed', 'custom-facebook-feed' ),

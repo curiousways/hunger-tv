@@ -21,8 +21,10 @@ $post_item_attr = $this_class->get_item_attributes($cff_post_type, $cff_album, $
 			echo $cff_post_text;
 		if( $cff_show_shared_links )
 			echo $cff_shared_link;
+		/*
 		if ( (!$cff_show_author && $cff_date_position == 'author') || $cff_show_date && $cff_date_position == 'below' )
 			echo $cff_date;
+		*/
 		if( $cff_show_media_link )
 			echo $cff_media_link;
 		if( $cff_show_link )

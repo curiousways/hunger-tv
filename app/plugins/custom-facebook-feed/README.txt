@@ -1,10 +1,10 @@
 === Smash Balloon Social Post Feed ===
-Contributors: smashballoon
+Contributors: smashballoon, craig-at-smash-balloon, am, smub
 Tags: Facebook, Facebook feed, Facebook posts, Facebook group, Facebook page
 Requires at least: 4.1
 Requires PHP: 5.6
-Tested up to: 6.0
-Stable tag: 4.1.4
+Tested up to: 6.1
+Stable tag: 4.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -262,6 +262,10 @@ The most common reason for this is that an add-on or extension you have installe
 9. It's super easy to display your Facebook feed in any page or post
 
 == Changelog ==
+= 4.1.5 =
+* Fix: An error message will now display if there was a problem connecting an account.
+* Fix: The Post Date could not be disabled.
+
 = 4.1.4 =
 * Tweak: Updated compatibility with the upcoming WordPress 6.0 release.
 * Tweak: Made improvements to how notices are displayed on our plugin settings pages.
